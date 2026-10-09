@@ -1,0 +1,553 @@
+/* Phone-first. A driver holds this at arm's length in a cab, so targets are
+   big, there's one column, and only one round is ever on screen. */
+
+:root {
+  --bg: #f1f4f6;
+  --panel: #ffffff;
+  --ink: #16202b;
+  --muted: #6b7c8f;
+  --line: #e3e9ef;
+  --accent: #0f7b47;
+  --urgent: #dc2626;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+#root {
+  max-width: 520px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg);
+  box-shadow: 0 0 40px rgba(22, 32, 43, 0.08);
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 16px 32px;
+}
+
+/* ---- sign in ---- */
+
+.screen--signin {
+  justify-content: center;
+  gap: 28px;
+}
+
+.signin-brand {
+  text-align: center;
+}
+
+.signin-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 34px;
+}
+
+.signin-brand h1 {
+  margin: 14px 0 4px;
+  font-size: 24px;
+}
+
+.signin-brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.driver-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.driver-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.driver-btn:active {
+  background: #eef6f1;
+}
+
+.avatar {
+  flex: 0 0 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #dff0e7;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.driver-btn__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.driver-btn__body small {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.driver-btn__count {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.demo-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ---- app bar ---- */
+
+.appbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 0 8px;
+}
+
+.appbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.appbar p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.appbar--round {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding-bottom: 12px;
+}
+
+.appbar__title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.appbar__title small {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.day-summary {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---- round list ---- */
+
+.round-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.round-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--fraction, var(--accent));
+  border-radius: var(--radius);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.round-btn.is-complete {
+  border-left-color: var(--line);
+  opacity: 0.65;
+}
+
+.round-btn__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.round-btn__top strong {
+  font-size: 17px;
+}
+
+.round-time {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.round-btn__districts {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.round-btn__facts {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.round-btn__progress-text {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.badge--urgent {
+  background: #fee2e2;
+  color: var(--urgent);
+}
+
+.progress {
+  display: block;
+  height: 6px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--fraction, var(--accent));
+  transition: width 0.2s;
+}
+
+/* ---- round view ---- */
+
+.map-wrap {
+  height: 46vh;
+  min-height: 280px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-cta {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.next-up,
+.all-done,
+.leg-note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.all-done {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.leg-note {
+  color: #9a3412;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn--primary + .btn--primary {
+  margin-top: 6px;
+}
+
+.btn--ghost {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.btn--ghost.is-current {
+  border-color: var(--fraction, var(--accent));
+  color: var(--fraction, var(--accent));
+}
+
+.full-route {
+  margin-top: 2px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.full-route summary {
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+/* ---- fraction (bin type) ---- */
+
+.fraction-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.fraction-strip span:last-child {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.fraction-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.fraction-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--fraction, var(--accent));
+  flex: 0 0 12px;
+}
+
+/* ---- stop list ---- */
+
+.stop-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stop-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.stop-row.is-next {
+  border-color: var(--fraction, var(--accent));
+  box-shadow: 0 0 0 1px var(--fraction, var(--accent));
+}
+
+.stop-row.is-done {
+  opacity: 0.5;
+}
+
+.stop-row.is-done .stop-body strong {
+  text-decoration: line-through;
+}
+
+/* The number doubles as the collected toggle — the biggest, easiest tap
+   target on the row, because it's the one a driver hits all day. */
+.stop-n {
+  flex: 0 0 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: none;
+  background: var(--fraction, var(--accent));
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stop-n.is-done {
+  background: var(--muted);
+}
+
+.stop-nav {
+  flex: 0 0 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #eef2f6;
+  color: var(--accent);
+  font-size: 15px;
+  text-decoration: none;
+  transform: rotate(-45deg);
+}
+
+.stop-body {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.stop-body small {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.stop-body em {
+  color: var(--urgent);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ---- map markers ---- */
+
+.marker-stop {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.marker-stop.is-compact {
+  width: 12px;
+  height: 12px;
+  border-width: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.marker-stop.is-done {
+  background: #9aa8b6;
+}
+
+.marker-stop.is-compact.is-done {
+  opacity: 0.45;
+}
+
+/* The fill is the fraction colour (set inline), so urgency reads as a red
+   ring rather than a competing fill. */
+.marker-stop.is-urgent {
+  border-color: var(--urgent);
+  border-width: 3px;
+}
+
+.marker-stop.is-active {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 5px rgba(15, 123, 71, 0.35);
+}
+
+.marker-depot {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #16202b;
+  font-size: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
