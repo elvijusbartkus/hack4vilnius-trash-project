@@ -32,9 +32,29 @@ export function formatLong(s: string): string {
   );
 }
 
+// "Penktadienis, spalio 16 d."
+export function formatHero(s: string): string {
+  return `${capitalize(formatWeekday(s))}, ${formatDay(s)}`;
+}
+
+// "penktadienis"
+export function formatWeekday(s: string): string {
+  return new Intl.DateTimeFormat("lt-LT", { weekday: "long" }).format(parseISODate(s));
+}
+
+// Genitive weekday for "Praleisti penktadienio išvežimą?" (all Lithuanian weekdays end in -is -> -io).
+export function formatWeekdayGenitive(s: string): string {
+  return formatWeekday(s).replace(/is$/, "io");
+}
+
 // "spalio 16 d."
 export function formatDay(s: string): string {
   return new Intl.DateTimeFormat("lt-LT", { month: "long", day: "numeric" }).format(parseISODate(s));
+}
+
+// "Pn"
+export function formatWeekdayShort(s: string): string {
+  return capitalize(new Intl.DateTimeFormat("lt-LT", { weekday: "short" }).format(parseISODate(s)));
 }
 
 // "Pn 16"

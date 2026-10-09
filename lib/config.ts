@@ -1,5 +1,8 @@
 // All tunable numbers in one place. See PRD sections 4 and 5.
 
+// Product name placeholder (working name until we pick one).
+export const APP_NAME = "Pagal poreikį";
+
 // --- Demo data (PRD section 5) ---
 
 // The app's "today". The demo runs on the evening before the big pickup day; use this instead of the real date.
@@ -32,6 +35,9 @@ export const CO2_KG_PER_L_DIESEL = 2.68;
 // TODO: set real depot coords. Placeholder = centre of the demo area.
 export const DEPOT: [number, number] = [54.6781, 25.3748];
 
+// PLACEHOLDER: average truck km saved per skipped stop, for the resident impact card. Not measured.
+export const AVG_KM_SAVED_PER_SKIP = 0.3;
+
 // Fallback when OSRM is unavailable: straight-line (haversine) distance times this factor.
 export const HAVERSINE_ROAD_FACTOR = 1.3;
 
@@ -53,6 +59,9 @@ export const ON_DEMAND_PICKUP_PRICE_EUR = 3.0;
 export const SKIP_CREDIT_EUR = 0;
 
 // --- Resident booking (PRD section 7) ---
+
+// Days shown in the resident calendar strip (starting today).
+export const CALENDAR_DAYS = 14;
 
 // How many days ahead the resident can book a pickup.
 export const BOOKING_DAYS_AHEAD = 7;

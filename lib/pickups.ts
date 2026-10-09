@@ -71,6 +71,11 @@ export async function searchHouseholds(query: string): Promise<Household[]> {
   return (rows ?? []) as Household[];
 }
 
+export async function getHousehold(id: number): Promise<Household | null> {
+  const rows = check(await supabase.from("households").select(HOUSEHOLD_COLUMNS).eq("id", id).limit(1));
+  return (rows?.[0] as Household) ?? null;
+}
+
 // Next pickup = earliest date >= today among planned extra pickups and the scheduled date.
 // A skipped scheduled date moves the scheduled pickup to next_service + 14 days.
 export async function getNextPickup(householdId: number): Promise<HouseholdState> {
@@ -104,17 +109,23 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
   return { household: h, pickups: rows, scheduledDate, skip, nextScheduledDate, extras, next: candidates[0] ?? null };
 }
 
-export async function bookExtra(householdId: number, date: string, timeWindow: TimeWindow | null) {
-  check(
-    await supabase.from("pickups").insert({
-      household_id: householdId,
-      date,
-      time_window: timeWindow,
-      kind: "extra",
-      status: "planned",
-      price_eur: EXTRA_PICKUP_PRICE_EUR,
-    }),
+// Inserts return the new row id so the toast can undo them.
+export async function bookExtra(householdId: number, date: string, timeWindow: TimeWindow | null): Promise<number> {
+  const row = check(
+    await supabase
+      .from("pickups")
+      .insert({
+        household_id: householdId,
+        date,
+        time_window: timeWindow,
+        kind: "extra",
+        status: "planned",
+        price_eur: EXTRA_PICKUP_PRICE_EUR,
+      })
+      .select("id")
+      .single(),
   );
+  return (row as { id: number }).id;
 }
 
 // Cancelling a booked extra pickup removes the row (it never reaches the driver route).
@@ -122,16 +133,15 @@ export async function cancelExtra(pickupId: number) {
   check(await supabase.from("pickups").delete().eq("id", pickupId));
 }
 
-export async function skipScheduled(householdId: number, date: string) {
-  check(
-    await supabase.from("pickups").insert({
-      household_id: householdId,
-      date,
-      kind: "scheduled",
-      status: "skipped",
-      price_eur: 0,
-    }),
+export async function skipScheduled(householdId: number, date: string): Promise<number> {
+  const row = check(
+    await supabase
+      .from("pickups")
+      .insert({ household_id: householdId, date, kind: "scheduled", status: "skipped", price_eur: 0 })
+      .select("id")
+      .single(),
   );
+  return (row as { id: number }).id;
 }
 
 export async function undoSkip(pickupId: number) {
