@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T20:25:16+00:00",
+  "title": "Design System: Trage",
+  "extensions": {
+    "colorMeta": {
+      "green": {
+        "role": "primary",
+        "displayName": "Forest Waybill Green",
+        "canonical": "oklch(42.0% 0.079 157.9)",
+        "tonalRamp": [
+          "#000f06",
+          "#022c19",
+          "#0d4c2f",
+          "#316b4c",
+          "#528c6b",
+          "#73ae8b",
+          "#98d4b1",
+          "#c5ffdb"
+        ]
+      },
+      "green-muted": {
+        "role": "primary",
+        "displayName": "Muted Ledger Green",
+        "canonical": "oklch(48.8% 0.064 158.0)",
+        "tonalRamp": [
+          "#000f06",
+          "#002c18",
+          "#1e4a33",
+          "#3d6950",
+          "#5c896f",
+          "#7dab8f",
+          "#a2d1b5",
+          "#ccfcde"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(24.2% 0.008 153.3)",
+        "tonalRamp": [
+          "#090c0a",
+          "#212522",
+          "#3d413e",
+          "#5a5f5b",
+          "#7a7f7b",
+          "#9ba09c",
+          "#c0c6c2",
+          "#ebf0ec"
+        ]
+      },
+      "clay-deep": {
+        "role": "neutral",
+        "displayName": "Clay Deep",
+        "canonical": "oklch(44.4% 0.012 81.8)",
+        "tonalRamp": [
+          "#0e0b06",
+          "#27241d",
+          "#433f38",
+          "#615d56",
+          "#817d75",
+          "#a29e96",
+          "#c8c3bb",
+          "#f3eee5"
+        ]
+      },
+      "clay": {
+        "role": "neutral",
+        "displayName": "Stamp Clay",
+        "canonical": "oklch(70.1% 0.014 82.4)",
+        "tonalRamp": [
+          "#0e0b05",
+          "#27231c",
+          "#433f37",
+          "#625d55",
+          "#817d74",
+          "#a39e95",
+          "#c9c3ba",
+          "#f3eee4"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Grey Clay Ground",
+        "canonical": "oklch(88.2% 0.004 91.5)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#252422",
+          "#40403d",
+          "#5e5d5b",
+          "#7e7d7a",
+          "#9f9e9b",
+          "#c5c4c1",
+          "#efeeeb"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Carbon-Copy Sheet",
+        "canonical": "oklch(92.0% 0.035 132.0)",
+        "tonalRamp": [
+          "#060e01",
+          "#1e2815",
+          "#394430",
+          "#56624d",
+          "#76826c",
+          "#96a38d",
+          "#bcc9b2",
+          "#e6f4dc"
+        ]
+      },
+      "sheet-hi": {
+        "role": "neutral",
+        "displayName": "Sheet Highlight",
+        "canonical": "oklch(95.0% 0.022 132.5)",
+        "tonalRamp": [
+          "#080d05",
+          "#20261b",
+          "#3b4236",
+          "#596054",
+          "#788073",
+          "#99a294",
+          "#bfc7b9",
+          "#e9f2e3"
+        ]
+      },
+      "sheet-lo": {
+        "role": "neutral",
+        "displayName": "Sheet Pressed",
+        "canonical": "oklch(89.0% 0.046 133.2)",
+        "tonalRamp": [
+          "#040f00",
+          "#1b2911",
+          "#36452c",
+          "#536449",
+          "#728467",
+          "#93a588",
+          "#b8cbad",
+          "#e2f6d6"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Field Rule",
+        "canonical": "oklch(73.9% 0.057 135.2)",
+        "tonalRamp": [
+          "#040f00",
+          "#172a0c",
+          "#324727",
+          "#4f6544",
+          "#6f8563",
+          "#8fa783",
+          "#b4cda8",
+          "#def8d2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero date only; steps down to clamp(2.5rem, 6vw, 4.25rem) while the evening question is open."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Hero question, hero sublines, 'Kitas: …', day-panel date."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel headings and large button labels."
+      },
+      "value": {
+        "displayName": "Value",
+        "purpose": "Right-aligned values, day numbers (1.6rem), ops counters; tabular figures."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, row labels, notices."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Weekday labels, legend, footnotes, small sub-headings."
+      },
+      "stamp": {
+        "displayName": "Stamp",
+        "purpose": "Uppercase status stamps only."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "The uppercase letterspaced TRAGE lockup only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hero-lift",
+        "value": "0 20px 40px -24px rgb(31 90 60 / 0.8)",
+        "purpose": "The single deep-green hero."
+      },
+      {
+        "name": "dropdown-float",
+        "value": "0 16px 32px -12px rgb(29 33 30 / 0.35)",
+        "purpose": "Address switcher listbox."
+      },
+      {
+        "name": "toast-float",
+        "value": "0 16px 32px -12px rgb(29 33 30 / 0.5)",
+        "purpose": "Undo toast."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one curve for every entrance."
+      },
+      {
+        "name": "stamp-press",
+        "value": "420ms ease-out-expo; rotate(-4deg) scale 1.35 -> 0.96 -> 1, opacity 0 -> 1",
+        "purpose": "Status stamp presses onto the date on every status change."
+      },
+      {
+        "name": "tick-in",
+        "value": "380ms ease-out-expo; translateY(60%) -> 0, opacity 0 -> 1",
+        "purpose": "A count ticks over to its new value (ops route total)."
+      },
+      {
+        "name": "slip-in",
+        "value": "220ms ease-out-expo; translateY(10px) scale(0.985), opacity 0 -> 1",
+        "purpose": "Day panel under the strip, listbox, toast on desktop."
+      },
+      {
+        "name": "slip-up",
+        "value": "280ms ease-out-expo; translateY(100%) -> 0",
+        "purpose": "Toast rising from the bottom on phones (<768px)."
+      },
+      {
+        "name": "bookable-pulse",
+        "value": "1.2s ease-in-out x2; inset 0 0 0 2px green at 40%",
+        "purpose": "Points at bookable days when 'Užsakyti papildomai' is pressed."
+      },
+      {
+        "name": "drain",
+        "value": "8s linear; scaleX 1 -> 0, paused on hover/focus-within",
+        "purpose": "Toast undo countdown; animationend dismisses."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "120ms ease-out fade",
+        "purpose": "Replaces stamp, tick, slip and day-panel motion; pulse becomes a static ring; drain bar hidden but timing kept."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "container",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Hero Panel",
+      "kind": "card",
+      "refersTo": "hero",
+      "description": "The one deep-green panel per page; carries the evening question, the date, a stamp and the two actions.",
+      "html": "<section class=\"ds-hero\"><p class=\"ds-hero-q\">Rytoj išvežimas. Ar konteineris pilnas?</p><div class=\"ds-hero-row\"><h2 class=\"ds-hero-date\">Spalio 16 d.</h2></div><p class=\"ds-hero-sub\">Penktadienis · pagal grafiką</p><div class=\"ds-hero-actions\"><button class=\"ds-btn-on-green\">Ne, praleisti</button><button class=\"ds-btn-on-green-2\">Taip, vežkite</button></div></section>",
+      "css": ".ds-hero{background:#1f5a3c;color:#dcead2;border-radius:4px;padding:28px 36px;box-shadow:0 20px 40px -24px rgb(31 90 60/.8);font-family:Barlow,ui-sans-serif,sans-serif;font-variant-numeric:tabular-nums lining-nums}.ds-hero-q{margin:0;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.75rem;font-weight:600;line-height:1.25;color:#fff}.ds-hero-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-top:12px}.ds-hero-date{margin:0;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-weight:600;font-size:clamp(2.5rem,6vw,4.25rem);line-height:.92;letter-spacing:-.015em;color:#fff}.ds-hero-sub{margin:8px 0 0;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.25rem;font-weight:500;color:#cfe2c3}.ds-hero-actions{display:flex;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid rgb(220 234 210/.25)}.ds-btn-on-green,.ds-btn-on-green-2{min-height:56px;border-radius:4px;padding:0 28px;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.25rem;font-weight:600;cursor:pointer}.ds-btn-on-green{background:#dcead2;color:#1f5a3c;border:0}.ds-btn-on-green:hover{background:#fff}.ds-btn-on-green-2{background:transparent;color:#dcead2;border:2px solid rgb(220 234 210/.7)}.ds-btn-on-green-2:hover{background:rgb(255 255 255/.1)}.ds-btn-on-green:focus-visible,.ds-btn-on-green-2:focus-visible{outline:2px solid #dcead2;outline-offset:3px}"
+    },
+    {
+      "name": "Panel Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single green action inside a sheet panel.",
+      "html": "<button class=\"ds-btn-primary\">Užsakyti už 4 €</button>",
+      "css": ".ds-btn-primary{min-height:52px;border:0;border-radius:4px;background:#1f5a3c;color:#dcead2;padding:0 24px;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.125rem;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer}.ds-btn-primary:hover{background:#184a31}.ds-btn-primary:focus-visible{outline:2px solid #1f5a3c;outline-offset:2px}"
+    },
+    {
+      "name": "Time Window Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Optional toggle (aria-pressed) for time windows in the day panel.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"false\">Rytas 7–12</button><button class=\"ds-chip ds-chip-on\" aria-pressed=\"true\">Diena 12–17</button></div>",
+      "css": ".ds-chips{display:flex;gap:8px;flex-wrap:wrap}.ds-chip{min-height:44px;border-radius:3px;padding:0 14px;font-family:Barlow,sans-serif;font-weight:600;background:#e9f2e3;color:#1d211e;border:1px solid #9bb38f;cursor:pointer}.ds-chip:hover{border-color:#3f6b52}.ds-chip-on{background:#1f5a3c;color:#dcead2;border-color:#1f5a3c}.ds-chip:focus-visible{outline:2px solid #1f5a3c;outline-offset:2px}"
+    },
+    {
+      "name": "Sheet Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Separate light-green sheet with its own heading and ruled label/value rows.",
+      "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-h\">Jūsų konteineris</h2><dl class=\"ds-rows\"><div><dt>Talpa</dt><dd>240 L</dd></div><div><dt>Vežėjas</dt><dd>Ecoservice</dd></div><div><dt>Grafikas</dt><dd>kas 2 savaites</dd></div></dl></section>",
+      "css": ".ds-panel{background:#dcead2;color:#1d211e;border:1px solid rgb(155 179 143/.7);border-radius:4px;padding:20px 24px;font-family:Barlow,sans-serif;font-variant-numeric:tabular-nums lining-nums;max-width:360px}.ds-panel-h{margin:0;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.25rem;font-weight:600}.ds-rows{margin:8px 0 0}.ds-rows div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:6px 0;border-top:1px solid rgb(155 179 143/.6)}.ds-rows div:first-child{border-top:0}.ds-rows dt{color:#57534c}.ds-rows dd{margin:0;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.05rem;font-weight:600}"
+    },
+    {
+      "name": "Status Stamp",
+      "kind": "custom",
+      "refersTo": "hero",
+      "description": "Rotated rectangular stamp that presses status onto a date; on green and on sheet.",
+      "html": "<div class=\"ds-stamp-row\"><div class=\"ds-stamp-ground\"><span class=\"ds-stamp ds-stamp-on-green\">Praleista</span></div><div class=\"ds-stamp-sheetbg\"><span class=\"ds-stamp ds-stamp-on-sheet\">Pridėta</span></div></div>",
+      "css": ".ds-stamp-row{display:flex;gap:16px;align-items:center}.ds-stamp-ground{background:#1f5a3c;padding:20px;border-radius:4px}.ds-stamp-sheetbg{background:#dcead2;padding:20px;border-radius:4px;border:1px solid rgb(155 179 143/.7)}.ds-stamp{display:inline-block;transform:rotate(-4deg);border-radius:2px;font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.08em;animation:ds-stamp-press 420ms cubic-bezier(.16,1,.3,1) both}.ds-stamp-on-green{padding:2px 12px;font-size:1.125rem;color:#dcead2;border:3px solid rgb(220 234 210/.8)}.ds-stamp-on-sheet{padding:4px 8px;font-size:1rem;color:#57534c;border:2px solid #57534c}@keyframes ds-stamp-press{0%{opacity:0;transform:rotate(-4deg) scale(1.35)}60%{opacity:1;transform:rotate(-4deg) scale(.96)}100%{opacity:1;transform:rotate(-4deg) scale(1)}}@media (prefers-reduced-motion:reduce){.ds-stamp{animation:ds-fade 120ms ease-out both}}@keyframes ds-fade{from{opacity:0}to{opacity:1}}"
+    },
+    {
+      "name": "Day Strip Cells and Markers",
+      "kind": "custom",
+      "refersTo": "day-cell",
+      "description": "Shape-coded day cells: filled square scheduled, filled circle booked, crossed square skipped, plus bookable.",
+      "html": "<div class=\"ds-strip\"><button class=\"ds-day ds-day-sched\" aria-label=\"Spalio 16, išvežimas pagal grafiką\"><span class=\"ds-wd\">Pn</span><span class=\"ds-dn\">16</span><svg viewBox=\"0 0 14 14\" width=\"14\" height=\"14\"><rect x=\"1\" y=\"1\" width=\"12\" height=\"12\" fill=\"#1f5a3c\"/></svg></button><button class=\"ds-day\" aria-label=\"Spalio 17, galima užsakyti\"><span class=\"ds-wd\">Š</span><span class=\"ds-dn\">17</span><svg viewBox=\"0 0 14 14\" width=\"14\" height=\"14\"><path d=\"M7 2v10M2 7h10\" stroke=\"#3f6b52\" stroke-width=\"1.8\" stroke-linecap=\"square\"/></svg></button><button class=\"ds-day ds-day-sched\" aria-label=\"Spalio 20, užsakyta\"><span class=\"ds-wd\">A</span><span class=\"ds-dn\">20</span><svg viewBox=\"0 0 14 14\" width=\"14\" height=\"14\"><circle cx=\"7\" cy=\"7\" r=\"6\" fill=\"#1f5a3c\"/></svg></button><button class=\"ds-day ds-day-sel\" aria-pressed=\"true\" aria-label=\"Spalio 30, praleista\"><span class=\"ds-wd\">Pn</span><span class=\"ds-dn ds-struck\">30</span><svg viewBox=\"0 0 14 14\" width=\"14\" height=\"14\"><g stroke=\"#dcead2\" stroke-width=\"1.6\" fill=\"none\"><rect x=\"1.5\" y=\"1.5\" width=\"11\" height=\"11\"/><path d=\"M3.5 3.5l7 7M10.5 3.5l-7 7\"/></g></svg></button></div>",
+      "css": ".ds-strip{display:grid;grid-template-columns:repeat(4,64px);gap:4px;background:#dcead2;padding:12px;font-family:Barlow,sans-serif}.ds-day{display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:88px;padding:10px 0;border:0;border-radius:3px;background:transparent;color:#1d211e;cursor:pointer;transition:background-color .15s}.ds-day:hover{background:#e9f2e3}.ds-day-sched{background:#cfe2c3}.ds-day-sel,.ds-day-sel:hover{background:#1f5a3c;color:#dcead2}.ds-wd{font-size:.875rem;font-weight:500;color:#3f6b52}.ds-day-sel .ds-wd{color:#cfe2c3}.ds-dn{font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.6rem;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}.ds-struck{text-decoration:line-through;text-decoration-thickness:2px}.ds-day:focus-visible{outline:2px solid #1f5a3c;outline-offset:2px}.ds-day-sel:focus-visible{outline-color:#dcead2;outline-offset:3px}"
+    },
+    {
+      "name": "Undo Toast",
+      "kind": "custom",
+      "refersTo": "toast",
+      "description": "Ink toast with Atšaukti, Cmd/Ctrl+Z hint and an 8s draining bar that pauses on hover or focus.",
+      "html": "<div class=\"ds-toast\" role=\"status\"><div class=\"ds-toast-row\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"#cfe2c3\" stroke-width=\"2\" stroke-linecap=\"square\"><path d=\"M5 12.5l4.5 4.5L19 7\"/></svg><span class=\"ds-toast-msg\">Praleista. Penktadienį šiukšliavežė pas jus neužsuks.</span><button class=\"ds-toast-undo\">Atšaukti</button><kbd class=\"ds-toast-kbd\">⌘Z</kbd></div><div class=\"ds-toast-timer\"></div></div>",
+      "css": ".ds-toast{position:relative;max-width:28rem;overflow:hidden;border-radius:3px;background:#1d211e;color:#dcead2;box-shadow:0 16px 32px -12px rgb(29 33 30/.5);font-family:Barlow,sans-serif}.ds-toast-row{display:flex;align-items:center;gap:12px;padding:10px 10px 10px 16px}.ds-toast-msg{flex:1;font-weight:600}.ds-toast-undo{min-height:44px;border-radius:3px;border:1px solid rgb(220 234 210/.6);background:transparent;color:#dcead2;padding:0 16px;font-weight:600;cursor:pointer}.ds-toast-undo:hover{background:rgb(255 255 255/.1)}.ds-toast-undo:focus-visible{outline:2px solid #dcead2;outline-offset:2px}.ds-toast-kbd{font-family:Barlow,sans-serif;font-size:.75rem;color:rgb(207 226 195/.8);padding-right:8px}.ds-toast-timer{height:4px;background:rgb(207 226 195/.7);transform-origin:left;animation:ds-drain 8s linear forwards}.ds-toast:hover .ds-toast-timer,.ds-toast:focus-within .ds-toast-timer{animation-play-state:paused}@keyframes ds-drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}@media (prefers-reduced-motion:reduce){.ds-toast-timer{opacity:0}}"
+    },
+    {
+      "name": "Header Lockup and Address Switcher",
+      "kind": "nav",
+      "refersTo": "address-switcher",
+      "description": "Bin-with-check mark beside the uppercase letterspaced TRAGE wordmark, then the address combobox trigger.",
+      "html": "<header class=\"ds-header\"><span class=\"ds-lockup\"><svg viewBox=\"0 0 32 32\" width=\"30\" height=\"30\"><rect width=\"32\" height=\"32\" rx=\"4\" fill=\"#1f5a3c\"/><path d=\"M9 12h14l-1.6 13H10.6z\" fill=\"#dcead2\"/><path d=\"M8 9.5h16\" stroke=\"#dcead2\" stroke-width=\"2.2\" stroke-linecap=\"square\"/><path d=\"M12.5 17.8l2.6 2.6 4.8-5\" fill=\"none\" stroke=\"#1f5a3c\" stroke-width=\"2.4\" stroke-linecap=\"square\"/></svg><span class=\"ds-wordmark\">Trage</span></span><button class=\"ds-switcher\" aria-haspopup=\"listbox\"><span>Alfonso Lipniūno g. 13</span><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"#3f6b52\" stroke-width=\"2\" stroke-linecap=\"square\"><path d=\"M6 9l6 6 6-6\"/></svg></button></header>",
+      "css": ".ds-header{display:flex;align-items:center;gap:20px;padding:12px 32px;background:#d9d8d5;border-bottom:1px solid #a39e95;font-family:Barlow,sans-serif;color:#1d211e}.ds-lockup{display:flex;align-items:center;gap:8px}.ds-wordmark{font-family:'Barlow Semi Condensed',Barlow,sans-serif;font-size:1.35rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;line-height:1;color:#1f5a3c}.ds-switcher{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border-radius:3px;border:1px solid #a39e95;background:#e9f2e3;color:#1d211e;font-family:Barlow,sans-serif;font-weight:600;cursor:pointer}.ds-switcher:hover{border-color:#3f6b52}.ds-switcher:focus-visible{outline:2px solid #1f5a3c;outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Route Manifest",
+    "overview": "Trage looks like the paperwork of a well-run collection service: light-green carbon-copy sheets laid separately on a neutral grey-clay desk, one deep-green slip on top that asks the evening question, and rubber stamps that press a status onto a date. It is calm logistics, not a dashboard. The resident's next pickup is one clear decision, answered in place and reversible from a toast, never through a dialog.\n\nDensity is moderate and legible for older house owners: values and dates in a semi-condensed transport grotesk at generous sizes, tabular figures everywhere, 44px minimum touch targets. Panels stay separate (their own surface, heading, and gap); only the hero is allowed to pop. Depth comes from tone, not shadow. Motion is mechanical and short: a stamp pressing down, a number ticking over, a slip sliding in.\n\nThe user explicitly rejected merged manifest sheets, modal popups (\"feel like scam ads\"), the white-card SaaS dashboard, a stiff government portal, playful/gamified treatments, and eco clichés (leaves, recycling arrows, planets).",
+    "keyCharacteristics": [
+      "Grey-clay ground with separate light-green panels; exactly one deep-green hero per page.",
+      "Barlow Semi Condensed for values, dates and headings; Barlow for running text; tabular lining figures site-wide.",
+      "Status as a rotated rectangular stamp, never a pill badge.",
+      "Shape-coded markers: shape carries meaning, colour only reinforces it.",
+      "No modals; inline confirmation and an undo toast with a draining 8s bar.",
+      "Small, consistent corners (2/3/4px); flat panels with a 1px green-grey rule.",
+      "Authored 24px-grid SVG icons with 2px square-capped strokes."
+    ],
+    "rules": [
+      {
+        "name": "The One Green Rule",
+        "body": "Deep green is the only action colour and the only saturated surface. One green hero per page; inside panels, green appears as a single primary button, a selected state, or a strong value.",
+        "section": "colors"
+      },
+      {
+        "name": "The Marks-Not-Text Rule",
+        "body": "`clay` and `rule` draw borders, strikes and dividers. Any text that must be read uses `ink`, `green`, `green-muted` or `clay-deep`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Waybill Figures Rule",
+        "body": "`tabular-nums lining-nums` is set on the body; every date, count, price and kg value aligns in columns. Numbers and dates are set in Barlow Semi Condensed.",
+        "section": "typography"
+      },
+      {
+        "name": "The Uppercase-Is-Ink-On-Rubber Rule",
+        "body": "Uppercase letterspacing belongs to two things only: the stamp and the wordmark. Headings, labels and captions stay sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Desk Rule",
+        "body": "Panels never carry a shadow. If a panel needs emphasis, it is the hero; there is only one.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep every panel a separate sheet on the grey-clay ground with its own heading and a 16px/24px gap.",
+      "Do reserve deep green for actions, selection, focus and the single hero.",
+      "Do confirm actions in place and offer undo through the toast (8s, pauses on hover/focus, Cmd/Ctrl+Z).",
+      "Do ask the resident's question once, in the hero, in plain Lithuanian.",
+      "Do set dates and numbers in Barlow Semi Condensed with tabular figures.",
+      "Do encode status by shape (square, circle, crossed square, plus) and by stamp text, never by colour alone.",
+      "Do switch focus rings to sheet colour inside `.on-green` surfaces.",
+      "Do give every motion a 120ms fade fallback under reduced motion."
+    ],
+    "donts": [
+      "Don't open modal dialogs or overlays for decisions or confirmations; the user found popups ad-like.",
+      "Don't merge panels into one sheet or nest cards inside panels.",
+      "Don't add a second green hero or shadows on ordinary panels.",
+      "Don't use `clay` or `rule` for text.",
+      "Don't show route jargon (stop counts, stop numbers, manifests) on the resident page `/`; that language belongs to `/ops`.",
+      "Don't use pill badges for status; status is a rotated rectangular stamp.",
+      "Don't use eco clichés (leaves, recycling arrows, planets), gamification, or generic SaaS white cards.",
+      "Don't use icon fonts or stock icon packs; draw icons on the 24px, 2px square-cap grid."
+    ]
+  }
+}

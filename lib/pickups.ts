@@ -151,3 +151,71 @@ export async function undoSkip(pickupId: number) {
 export async function resetHousehold(householdId: number) {
   check(await supabase.from("pickups").delete().eq("household_id", householdId));
 }
+
+// Tomorrow's truck route for the demo day: scheduled houses minus skips plus booked extras.
+export type RouteStats = { date: string; scheduled: number; skipped: number; extras: number; onRoute: number };
+
+export async function getRouteStats(date: string): Promise<RouteStats> {
+  const [houses, rows] = await Promise.all([
+    supabase.from("households").select("id", { count: "exact", head: true }).eq("next_service", date),
+    supabase.from("pickups").select("kind, status").eq("date", date).then(check),
+  ]);
+  if (houses.error) throw new Error(houses.error.message);
+  const scheduled = houses.count ?? 0;
+  const list = (rows ?? []) as Pick<Pickup, "kind" | "status">[];
+  const skipped = list.filter((p) => p.kind === "scheduled" && p.status === "skipped").length;
+  const extras = list.filter((p) => p.kind === "extra" && p.status === "planned").length;
+  return { date, scheduled, skipped, extras, onRoute: scheduled - skipped + extras };
+}
+
+// Live updates: calls onChange whenever any pickup row changes (driver/ops/other residents).
+export function subscribePickups(onChange: () => void): () => void {
+  const channel = supabase
+    .channel(`pickups-${Math.random().toString(36).slice(2)}`)
+    .on("postgres_changes", { event: "*", schema: "public", table: "pickups" }, onChange)
+    .subscribe();
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}
+
+// Manifest lines for a route day: every scheduled house plus booked extras, numbered by address.
+export type ManifestLine = {
+  no: number;
+  householdId: number;
+  address: string;
+  binVolume: number | null;
+  status: "planned" | "skipped" | "extra";
+};
+
+export async function getRouteManifest(date: string): Promise<ManifestLine[]> {
+  const [scheduled, rows] = await Promise.all([
+    supabase
+      .from("households")
+      .select("id, address, bin_volume_l")
+      .eq("next_service", date)
+      .order("address")
+      .then(check),
+    supabase.from("pickups").select("household_id, kind, status").eq("date", date).then(check),
+  ]);
+  const pickups = (rows ?? []) as Pick<Pickup, "household_id" | "kind" | "status">[];
+  const skipped = new Set(pickups.filter((p) => p.kind === "scheduled" && p.status === "skipped").map((p) => p.household_id));
+  const extraIds = [
+    ...new Set(pickups.filter((p) => p.kind === "extra" && p.status === "planned").map((p) => p.household_id)),
+  ];
+  const houses = (scheduled ?? []) as { id: number; address: string; bin_volume_l: number | null }[];
+  const scheduledIds = new Set(houses.map((h) => h.id));
+
+  let extras: typeof houses = [];
+  const missing = extraIds.filter((id) => !scheduledIds.has(id));
+  if (missing.length) {
+    extras = (check(await supabase.from("households").select("id, address, bin_volume_l").in("id", missing)) ?? []) as typeof houses;
+  }
+
+  return [
+    ...houses.map((h) => ({ h, status: skipped.has(h.id) ? ("skipped" as const) : ("planned" as const) })),
+    ...extras.map((h) => ({ h, status: "extra" as const })),
+  ]
+    .sort((a, b) => a.h.address.localeCompare(b.h.address, "lt"))
+    .map(({ h, status }, i) => ({ no: i + 1, householdId: h.id, address: h.address, binVolume: h.bin_volume_l, status }));
+}

@@ -1,7 +1,7 @@
 // All tunable numbers in one place. See PRD sections 4 and 5.
 
 // Product name placeholder (working name until we pick one).
-export const APP_NAME = "Pagal poreikį";
+export const APP_NAME = "Trage";
 
 // --- Demo data (PRD section 5) ---
 
@@ -78,7 +78,3 @@ export type TimeWindow = keyof typeof TIME_WINDOWS;
 // Days between fixed-schedule pickups (26x per year).
 export const SCHEDULE_INTERVAL_DAYS = 14;
 
-// --- Driver (PRD section 8) ---
-
-// Max waypoints per Google Maps directions link (URL limit is 9 between origin and destination).
-export const GOOGLE_MAPS_MAX_WAYPOINTS = 9;

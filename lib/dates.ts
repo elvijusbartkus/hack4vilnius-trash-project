@@ -27,9 +27,9 @@ export function todayISO(): string {
 
 // "spalio 16 d., penktadienis"
 export function formatLong(s: string): string {
-  return new Intl.DateTimeFormat("lt-LT", { month: "long", day: "numeric", weekday: "long" }).format(
-    parseISODate(s),
-  );
+  return new Intl.DateTimeFormat("lt-LT", { month: "long", day: "numeric", weekday: "long" })
+    .format(parseISODate(s))
+    .replace(/ d\.,/, "\u00a0d.,");
 }
 
 // "Penktadienis, spalio 16 d."
@@ -47,9 +47,14 @@ export function formatWeekdayGenitive(s: string): string {
   return formatWeekday(s).replace(/is$/, "io");
 }
 
-// "spalio 16 d."
+// "spalio 16 d." (non-breaking space keeps "16 d." together)
 export function formatDay(s: string): string {
-  return new Intl.DateTimeFormat("lt-LT", { month: "long", day: "numeric" }).format(parseISODate(s));
+  return new Intl.DateTimeFormat("lt-LT", { month: "long", day: "numeric" }).format(parseISODate(s)).replace(/ d\.$/, "\u00a0d.");
+}
+
+// "Spalio 16 d."
+export function formatDayCap(s: string): string {
+  return capitalize(formatDay(s));
 }
 
 // "Pn"

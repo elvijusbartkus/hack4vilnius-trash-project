@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { APP_NAME } from "@/lib/config";
 import { searchHouseholds, type Household } from "@/lib/pickups";
+import { ChevronDownIcon, LogoMark, SearchIcon } from "./Icons";
 
-// Header: product name, address switcher (search over households), user with avatar.
+// Header bar: product name, address switcher (combobox over households), resident.
 export default function Header({
   address,
   name,
@@ -22,21 +23,33 @@ export default function Header({
     .toUpperCase();
 
   return (
-    <header className="flex items-center justify-between gap-3 md:gap-6">
-      <div className="flex min-w-0 items-center gap-3 md:gap-4">
-        <span className="shrink-0 text-lg font-bold text-green">{APP_NAME}</span>
-        <AddressSwitcher address={address} onSwitch={onSwitch} />
-      </div>
-      <div className="flex shrink-0 items-center gap-3">
-        <span className="hidden font-semibold sm:inline">{name}</span>
-        <span
-          aria-hidden
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-green text-sm font-bold text-white"
-        >
-          {initials}
-        </span>
+    <header className="border-b border-clay bg-ground">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8">
+        <div className="flex min-w-0 items-center gap-3 md:gap-5">
+          <Wordmark />
+          <AddressSwitcher address={address} onSwitch={onSwitch} />
+        </div>
+        <div className="flex shrink-0 items-center gap-3">
+          <span className="hidden text-clay-deep sm:inline">{name}</span>
+          <span
+            aria-hidden="true"
+            className="flex h-10 w-10 items-center justify-center rounded-[3px] border border-green font-display text-base font-semibold text-green"
+          >
+            {initials}
+          </span>
+        </div>
       </div>
     </header>
+  );
+}
+
+// Brand lockup: the mark plus an uppercase, letterspaced wordmark (never set like a panel heading).
+export function Wordmark() {
+  return (
+    <span className="flex shrink-0 items-center gap-2">
+      <LogoMark size={30} />
+      <span className="font-display text-[1.35rem] font-bold uppercase leading-none tracking-[0.14em] text-green">{APP_NAME}</span>
+    </span>
   );
 }
 
@@ -44,7 +57,11 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Household[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const listId = useId();
 
   // Default list = first houses alphabetically; typing 2+ characters searches.
   useEffect(() => {
@@ -52,9 +69,15 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
     const q = query.trim();
     let stale = false; // ignore responses that arrive after a newer query
     const t = setTimeout(() => {
+      setLoading(true);
       searchHouseholds(q.length >= 2 ? q : "")
-        .then((r) => !stale && setResults(r))
-        .catch(() => !stale && setResults([]));
+        .then((r) => {
+          if (stale) return;
+          setResults(r);
+          setActive(0);
+        })
+        .catch(() => !stale && setResults([]))
+        .finally(() => !stale && setLoading(false));
     }, 150);
     return () => {
       stale = true;
@@ -67,53 +90,85 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
     function onDown(e: MouseEvent) {
       if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
     }
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
     document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
+    return () => document.removeEventListener("mousedown", onDown);
   }, [open]);
+
+  function close() {
+    setOpen(false);
+    setQuery("");
+    triggerRef.current?.focus();
+  }
+
+  function choose(h: Household) {
+    onSwitch(h);
+    close();
+  }
 
   return (
     <div ref={rootRef} className="relative min-w-0">
       <button
+        ref={triggerRef}
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="flex max-w-full min-w-0 items-center gap-2 rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold hover:border-ink/25"
+        aria-haspopup="listbox"
+        className="flex min-h-11 max-w-full min-w-0 items-center gap-2 rounded-[3px] border border-clay bg-sheet-hi px-3 text-left hover:border-green-muted"
       >
-        <span className="truncate">{address ?? "Kraunama…"}</span>
-        <span className="text-ink/40">▾</span>
+        <span className="sr-only">Adresas: </span>
+        <span className="truncate font-semibold">{address ?? "Kraunama…"}</span>
+        <ChevronDownIcon width={18} height={18} className="shrink-0 text-green-muted" />
       </button>
       {open && (
-        <div className="absolute left-0 top-full z-30 mt-2 w-80 max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-xl">
-          <input
-            autoFocus
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Ieškoti adreso…"
-            className="w-full border-b border-ink/10 px-4 py-3 outline-none"
-          />
-          <ul className="max-h-72 overflow-y-auto">
-            {results.map((h) => (
-              <li key={h.id}>
-                <button
-                  onClick={() => {
-                    onSwitch(h);
-                    setOpen(false);
-                    setQuery("");
-                  }}
-                  className="w-full px-4 py-2.5 text-left hover:bg-sand"
-                >
-                  {h.address}
-                  {h.is_demo_user && <span className="ml-2 text-xs font-semibold text-green">demo</span>}
-                </button>
+        <div className="slip absolute left-0 top-full z-30 mt-2 w-[22rem] max-w-[calc(100vw-2rem)] overflow-hidden rounded-[3px] border border-rule bg-sheet shadow-[0_16px_32px_-12px_rgb(29_33_30/0.35)]">
+          <label className="flex items-center gap-2 border-b border-rule px-3">
+            <SearchIcon width={18} height={18} className="shrink-0 text-green-muted" />
+            <span className="sr-only">Ieškoti adreso</span>
+            <input
+              autoFocus
+              role="combobox"
+              aria-expanded="true"
+              aria-controls={listId}
+              aria-activedescendant={results[active] ? `${listId}-${results[active].id}` : undefined}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowDown") {
+                  e.preventDefault();
+                  setActive((i) => Math.min(i + 1, results.length - 1));
+                } else if (e.key === "ArrowUp") {
+                  e.preventDefault();
+                  setActive((i) => Math.max(i - 1, 0));
+                } else if (e.key === "Enter" && results[active]) {
+                  e.preventDefault();
+                  choose(results[active]);
+                } else if (e.key === "Escape") {
+                  e.preventDefault();
+                  close();
+                }
+              }}
+              placeholder="Gatvė ir namo numeris"
+              className="min-h-12 w-full bg-transparent outline-none placeholder:text-clay-deep"
+            />
+          </label>
+          <ul id={listId} role="listbox" aria-label="Adresai" className="max-h-72 overflow-y-auto py-1">
+            {results.map((h, i) => (
+              <li
+                key={h.id}
+                id={`${listId}-${h.id}`}
+                role="option"
+                aria-selected={i === active}
+                onMouseEnter={() => setActive(i)}
+                onClick={() => choose(h)}
+                className={`flex min-h-11 cursor-pointer items-center justify-between gap-3 px-4 ${
+                  i === active ? "bg-sheet-lo" : ""
+                }`}
+              >
+                <span>{h.address}</span>
               </li>
             ))}
-            {results.length === 0 && <li className="px-4 py-3 text-ink/50">Nerasta</li>}
+            {results.length === 0 && (
+              <li className="px-4 py-3 text-clay-deep">{loading ? "Ieškoma…" : "Adresas nerastas"}</li>
+            )}
           </ul>
         </div>
       )}

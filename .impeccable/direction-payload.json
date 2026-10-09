@@ -1,0 +1,124 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned the Route Manifest. Keep it, take an alternate, or re-roll. All cards are translated into your pinned light green + grey clay palette and a transport typeface.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Route Manifest",
+      "kicker": "THE ROLL",
+      "lineage": "truck dispatch waybills and CMR consignment notes, with their green carbon copy",
+      "thesis": "Your pickup is a line on tomorrow's truck manifest, and one tap edits the route.",
+      "palette": ["#DCEBD3", "#F1F0EC", "#A8A39A", "#5E5A54", "#1F4A35"],
+      "materials": ["green carbon-copy form sheet", "numbered boxed fields with 1px rules", "rubber-stamp status marks", "Barlow / Barlow Semi Condensed (DIN-like highway face), tabular figures"],
+      "viewport": "A light-green manifest sheet: boxed field 01 'Kitas išvežimas' with the date huge in Barlow Semi Condensed, field 02 the 14-day ledger as an exact ruler, and a live strip 'Rytojaus maršrutas: 145 → 144 sustojimai' that ticks when you skip; history and container are the sheet's side fields.",
+      "risk": "Paperwork can read bureaucratic if the fields are cramped; it needs big type and generous boxes.",
+      "raised": [
+        {"from": "ikeda-datamatics", "raise": "Every number is tabular and column-aligned, so dates, stop counts and kg read like a manifest, not prose."},
+        {"from": "pop-culture-shelf-streaming-title-card-wall", "raise": "The focused day in the ledger expands its detail while the rest of the strip quiets."},
+        {"from": "notation-diagram-systems-labanotation", "raise": "The 14-day ledger is a true ruler: equal day widths, today marked, the 2-week schedule drawn as a span."},
+        {"from": "aww2-zoo-gardens-guide-map", "raise": "Light green owns whole regions (the manifest sheet itself), never just accent dots."},
+        {"from": "design-annual-s-plate-section", "raise": "1px hairline rules divide every field; no floating shadow cards anywhere."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Collection Calendar",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "the printed yearly 'Atliekų išvežimo grafikas' leaflet / fridge magnet",
+      "thesis": "The fridge-magnet schedule every house already has, made live.",
+      "palette": ["#E3EFDC", "#F3F2EF", "#B2ADA4", "#2B5A40", "#22241F"],
+      "materials": ["printed month grids", "dot per pickup day", "Overpass (Highway Gothic lineage)"],
+      "viewport": "A full year-at-a-glance grid with October open, tomorrow's dot ringed, and skip/book as marks on the grid itself.",
+      "risk": "Familiar: this is where most runs for a scheduling product land, and month grids get dense on mobile."
+    },
+    {
+      "id": "challenger-boarding-pass",
+      "label": "Pickup Pass + Route Board",
+      "verdict": "competitive",
+      "lineage": "boarding pass and live departure/gate board",
+      "thesis": "Each pickup is a segmented pass; the route board re-ranks in place when a house drops out.",
+      "palette": ["#F2F1ED", "#D7E8CF", "#A39E95", "#1E211F"],
+      "materials": ["perforated pass segments", "tabular board rows", "Overpass Mono codes"],
+      "viewport": "A pass for 'Pn 10-16 · Stotelė 37/145' beside a mini route board where your row slides out when you skip.",
+      "case": "Fuses cleanly and judges know passes instantly; holds audience identification, loses narrowly on clarity because a pass implies travel, not waste.",
+      "risk": "Can read as an airline theme if the pass is decorated instead of functional."
+    },
+    {
+      "id": "challenger-ikeda",
+      "label": "Datamatics Field",
+      "verdict": "declined",
+      "lineage": "Ryoji Ikeda data installations",
+      "thesis": "Pickups as a barcode field of bars and numbers.",
+      "palette": ["#000000", "#FFFFFF"],
+      "materials": ["barcode bars", "monospace numerics"],
+      "viewport": "A strobing bar field of 319 houses.",
+      "case": "Loses both axes: residents do not recognise themselves in a data artwork, and pure black/white overrides your pinned palette.",
+      "kept": "Tabular, column-aligned numerals throughout.",
+      "risk": "Unreadable for older residents."
+    },
+    {
+      "id": "challenger-streaming",
+      "label": "Title Card Wall",
+      "verdict": "declined",
+      "lineage": "streaming catalog rows",
+      "thesis": "Days as poster tiles in a horizontal wall.",
+      "palette": ["#141414", "#DCEBD3"],
+      "materials": ["poster tiles", "dimming rows"],
+      "viewport": "Rows of day tiles on a dark ground.",
+      "case": "Loses both axes: entertainment framing, dark ground fights the light palette.",
+      "kept": "Focus reveals detail while the rest quiets.",
+      "risk": "Feels like Netflix for bins."
+    },
+    {
+      "id": "challenger-labanotation",
+      "label": "Time Score",
+      "verdict": "declined",
+      "lineage": "Labanotation dance scores",
+      "thesis": "Time as a vertical staff read upward.",
+      "palette": ["#FFFFFF", "#1E211F", "#DCEBD3"],
+      "materials": ["staff lines", "shaded blocks"],
+      "viewport": "A vertical score of the next 14 days.",
+      "case": "Loses both axes: notation nobody can read.",
+      "kept": "Time as an exact spatial ruler.",
+      "risk": "Opaque."
+    },
+    {
+      "id": "challenger-zoo",
+      "label": "Guide Map Lobes",
+      "verdict": "declined",
+      "lineage": "zoo and gardens guide maps",
+      "thesis": "Areas as swelling lobes of flat colour.",
+      "palette": ["#8ED462", "#F5F1E4", "#2C2E2A"],
+      "materials": ["flat colour lobes", "capsule controls"],
+      "viewport": "The demo street as a green lobe.",
+      "case": "Loses both axes: you ruled out playful.",
+      "kept": "Total colour commitment by region.",
+      "risk": "Too playful."
+    },
+    {
+      "id": "challenger-annual",
+      "label": "Plate Section",
+      "verdict": "declined",
+      "lineage": "design annual plate pages",
+      "thesis": "Registration crosshairs and hairline credit rows.",
+      "palette": ["#F5F4F6", "#16181A", "#DCDDF3"],
+      "materials": ["registration marks", "hairlines", "rotating stamp"],
+      "viewport": "A printed plate of the pickup date.",
+      "case": "Loses both axes: design-world in-joke, not a resident tool.",
+      "kept": "1px hairline grid instead of shadows.",
+      "risk": "Precious."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean utility dashboard: white cards, one accent, system type, executed carefully.",
+    "palette": ["#FFFFFF", "#F4F5F3", "#2F6B4F", "#1F2421"],
+    "materials": ["white rounded cards", "system UI font"],
+    "viewport": "Header, big next-pickup card, calendar card, side cards.",
+    "risk": "Close to what you have now and to what you said feels like generic SaaS."
+  },
+  "steer": true
+}

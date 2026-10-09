@@ -4,8 +4,8 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 type Variant = "primary" | "secondary" | "text";
 
 const VARIANTS: Record<Variant, string> = {
-  primary: "w-full rounded-2xl bg-green py-4 text-lg font-semibold text-white active:opacity-80",
-  secondary: "w-full rounded-2xl border-2 border-ink/15 bg-white py-4 text-lg font-semibold text-ink active:bg-ink/5",
+  primary: "w-full min-h-14 rounded-[3px] bg-green font-display text-xl font-semibold text-sheet hover:bg-green-deep",
+  secondary: "w-full min-h-14 rounded-[3px] border-2 border-green bg-sheet font-display text-xl font-semibold text-green hover:bg-sheet-hi",
   text: "font-semibold text-green underline-offset-2 hover:underline",
 };
 
@@ -22,5 +22,5 @@ export function Screen({ children }: { children: ReactNode }) {
 }
 
 export function ErrorText({ children }: { children: ReactNode }) {
-  return <p className="rounded-xl bg-clay/10 px-4 py-3 text-clay">{children}</p>;
+  return <p className="rounded-[3px] border border-clay bg-sheet-hi px-4 py-3 text-clay-deep">{children}</p>;
 }

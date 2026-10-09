@@ -1,19 +1,131 @@
 @import "tailwindcss";
 
-/* Colour tokens (PRD section 11). Use as bg-green, text-ink, bg-sand, border-clay, etc. */
+/*
+  Route Manifest palette: pale grey-clay ground, one light-green carbon-copy sheet,
+  deep green as the only action colour, grey clay for stamps and secondary text.
+  Legacy names (green, clay, sand, ink) are kept for compatibility; the driver app is built separately.
+*/
 @theme {
-  --color-green: #1F6F4A;
-  --color-clay: #C2734F;
-  --color-sand: #F6F1EA;
-  --color-ink: #1B1B1B;
+  --color-ground: #d9d8d5; /* page, neutral grey clay */
+  --color-sheet: #dcead2; /* manifest sheet, light green carbon copy */
+  --color-sheet-hi: #e9f2e3; /* hovered / selected field on the sheet */
+  --color-sheet-lo: #cfe2c3; /* pressed field, today column */
+  --color-rule: #9bb38f; /* 1px field rules on the sheet (decorative, not text) */
+  --color-green: #1f5a3c; /* actions, strong values; 6.5:1 on sheet */
+  --color-green-deep: #184a31; /* hover/pressed state of green buttons */
+  --color-green-muted: #3f6b52; /* captions on the sheet; 4.9:1 */
+  --color-clay: #a39e95; /* stamps, marks, borders only (not text) */
+  --color-clay-deep: #57534c; /* secondary text; ≥4.9:1 on ground and sheet */
+  --color-ink: #1d211e;
+  --color-sand: #d9d8d5; /* legacy alias of ground */
+
+  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-barlow-sc), var(--font-barlow), ui-sans-serif, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+  html {
+    background: var(--color-ground);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    scrollbar-color: var(--color-clay) transparent;
+  }
+  body {
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-variant-numeric: tabular-nums lining-nums;
+    caret-color: var(--color-green);
+  }
+  ::selection {
+    background: var(--color-green);
+    color: var(--color-sheet);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 2px;
+  }
+  /* on deep-green surfaces a green ring would vanish */
+  .on-green :focus-visible,
+  .on-green:focus-visible {
+    outline-color: var(--color-sheet);
+    outline-offset: 3px;
+  }
+  a {
+    text-underline-offset: 3px;
+  }
 }
 
-body {
-  background: var(--color-sand);
-  color: var(--color-ink);
+/* Signature: the status stamp presses onto the sheet. */
+@keyframes stamp-press {
+  0% { opacity: 0; transform: rotate(-4deg) scale(1.35); }
+  60% { opacity: 1; transform: rotate(-4deg) scale(0.96); }
+  100% { opacity: 1; transform: rotate(-4deg) scale(1); }
+}
+.stamp {
+  transform: rotate(-4deg);
+  animation: stamp-press 420ms var(--ease-out-expo) both;
+}
+
+/* Route stop count ticks to its new value. */
+@keyframes tick-in {
+  from { transform: translateY(60%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.tick {
+  display: inline-block;
+  animation: tick-in 380ms var(--ease-out-expo) both;
+}
+
+/* Bookable days pulse once when "Užsakyti papildomai" points at them. */
+@keyframes bookable-pulse {
+  0%, 100% { box-shadow: inset 0 0 0 0 transparent; }
+  40% { box-shadow: inset 0 0 0 2px var(--color-green); }
+}
+.pulse-bookable { animation: bookable-pulse 1.2s ease-in-out 2; }
+
+/* Day panel opens under the strip. */
+.day-panel { animation: slip-in 220ms var(--ease-out-expo) both; }
+
+/* Toast and address dropdown: rise from the bottom on phones, settle in place on desktop. */
+@keyframes slip-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes slip-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.slip { animation: slip-up 280ms var(--ease-out-expo) both; }
+@media (min-width: 768px) {
+  .slip { animation: slip-in 220ms var(--ease-out-expo) both; }
+}
+
+/* Toast timer bar doubles as the undo countdown; hover or focus pauses it. */
+@keyframes drain {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+.toast-timer {
+  transform-origin: left;
+  animation: drain 8s linear forwards;
+}
+.toast:hover .toast-timer,
+.toast:focus-within .toast-timer {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp { animation: fade-in 120ms ease-out both; }
+  .tick { animation: fade-in 120ms ease-out both; }
+  .slip { animation: fade-in 120ms ease-out both; }
+  .day-panel { animation: fade-in 120ms ease-out both; }
+  .pulse-bookable { animation: none; box-shadow: inset 0 0 0 2px var(--color-green); }
+  /* keep the undo timing, hide the moving bar */
+  .toast-timer { opacity: 0; }
 }

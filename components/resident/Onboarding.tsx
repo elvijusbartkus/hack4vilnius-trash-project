@@ -39,21 +39,21 @@ export default function Onboarding({ onDone }: { onDone: (household: Household, 
   return (
     <Screen>
       <div className="pt-6">
-        <h1 className="text-3xl font-bold">Sveiki!</h1>
-        <p className="mt-2 text-ink/60">Atliekų išvežimas tada, kai jums reikia.</p>
+        <h1 className="font-display text-4xl font-semibold">Sveiki!</h1>
+        <p className="mt-2 text-clay-deep">Atliekų išvežimas tada, kai jums reikia.</p>
       </div>
 
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-semibold text-ink/60">Vardas</span>
+        <span className="font-semibold text-green-muted">Vardas</span>
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="rounded-2xl border-2 border-ink/10 bg-white px-4 py-4 text-lg outline-none focus:border-green"
+          className="rounded-[3px] border border-rule bg-sheet px-4 py-4 text-lg outline-none focus:border-green"
         />
       </label>
 
       <div className="relative flex flex-col gap-2">
-        <label htmlFor="address" className="text-sm font-semibold text-ink/60">
+        <label htmlFor="address" className="font-semibold text-green-muted">
           Adresas
         </label>
         <input
@@ -65,14 +65,14 @@ export default function Onboarding({ onDone }: { onDone: (household: Household, 
             setQuery(e.target.value);
             setSelected(null);
           }}
-          className="rounded-2xl border-2 border-ink/10 bg-white px-4 py-4 text-lg outline-none focus:border-green"
+          className="rounded-[3px] border border-rule bg-sheet px-4 py-4 text-lg outline-none focus:border-green"
         />
         {visibleResults.length > 0 && (
-          <ul className="absolute top-full z-10 mt-2 w-full overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-lg">
+          <ul className="absolute top-full z-10 mt-2 w-full overflow-hidden rounded-[3px] border border-rule bg-sheet shadow-[0_16px_32px_-12px_rgb(29_33_30/0.35)]">
             {visibleResults.map((h) => (
               <li key={h.id}>
                 <button
-                  className="w-full px-4 py-3 text-left text-lg active:bg-sand"
+                  className="min-h-11 w-full px-4 py-3 text-left text-lg hover:bg-sheet-lo"
                   onClick={() => {
                     setSelected(h);
                     setQuery(h.address);

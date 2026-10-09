@@ -90,9 +90,9 @@ export default function ResidentPage() {
     return (
       <main className="mx-auto max-w-[1200px] px-4 py-8 md:px-8">
         {error ? (
-          <p className="rounded-2xl bg-clay/10 px-5 py-4 text-clay">Klaida: {error}</p>
+          <p role="alert" className="rounded-[3px] border border-clay bg-sheet-hi px-5 py-4 text-clay-deep">Klaida: {error}</p>
         ) : (
-          <p className="text-ink/40">Kraunama…</p>
+          <p className="text-clay-deep">Kraunama…</p>
         )}
       </main>
     );
@@ -104,7 +104,8 @@ export default function ResidentPage() {
       householdId={user.householdId}
       name={user.name}
       onSwitch={(h) => {
-        const u = { householdId: h.id, name: user.name };
+        // the demo persona's name only belongs to the demo house
+        const u = { householdId: h.id, name: h.is_demo_user ? DEMO_USER_NAME : "Gyventojas" };
         store(u);
         setUser(u);
       }}

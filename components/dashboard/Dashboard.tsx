@@ -1,12 +1,21 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { CALENDAR_DAYS, EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, TIME_WINDOWS, type TimeWindow } from "@/lib/config";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import {
+  BOOKING_DAYS_AHEAD,
+  CALENDAR_DAYS,
+  EXTRA_PICKUP_PRICE_EUR,
+  SCHEDULE_INTERVAL_DAYS,
+  TIME_WINDOWS,
+  type TimeWindow,
+} from "@/lib/config";
 import {
   addDays,
+  capitalize,
   formatDay,
+  formatDayCap,
   formatHero,
-  formatWeekdayGenitive,
+  formatWeekday,
   formatWeekdayShort,
   parseISODate,
   todayISO,
@@ -16,29 +25,28 @@ import {
   cancelExtra,
   getNextPickup,
   skipScheduled,
+  subscribePickups,
   undoSkip,
   type Household,
   type HouseholdState,
   type Pickup,
+  type ServiceRecord,
 } from "@/lib/pickups";
-import { Card, ContainerCard, HistoryCard, ImpactCard } from "./Cards";
+import { ContainerField, HelpPanel, HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
-import Modal, { PrimaryButton } from "./Modal";
+import { CloseIcon, Marker, type MarkerKind } from "./Icons";
 import Toast, { type ToastData } from "./Toast";
 
+// Set once the resident has answered tomorrow's question in this browser session.
 export const REMINDER_SESSION_KEY = "reminderShown";
 
-type Popup =
-  | { type: "reminder"; date: string }
-  | { type: "skip"; date: string }
-  | { type: "unskip"; skip: Pickup }
-  | { type: "book"; date: string; pickDay: boolean }
-  | { type: "cancel"; pickup: Pickup };
+const ERROR_TEXT = "Nepavyko susisiekti su serveriu. Patikrinkite ryšį ir bandykite dar kartą.";
 
 type Day = {
   date: string;
   isToday: boolean;
   scheduled: boolean;
+  bookable: boolean; // free, within BOOKING_DAYS_AHEAD, not Sunday
   skip: Pickup | null;
   extra: Pickup | null;
 };
@@ -51,14 +59,23 @@ function buildDays(state: HouseholdState): Day[] {
   }
   return Array.from({ length: CALENDAR_DAYS }, (_, i) => {
     const date = addDays(today, i);
+    const extra = state.pickups.find((p) => p.date === date && p.kind === "extra" && p.status === "planned") ?? null;
+    const isScheduled = scheduled.has(date);
     return {
       date,
       isToday: i === 0,
-      scheduled: scheduled.has(date),
+      scheduled: isScheduled,
+      bookable: i > 0 && i <= BOOKING_DAYS_AHEAD && !isScheduled && !extra && parseISODate(date).getDay() !== 0,
       skip: state.pickups.find((p) => p.date === date && p.kind === "scheduled" && p.status === "skipped") ?? null,
-      extra: state.pickups.find((p) => p.date === date && p.kind === "extra" && p.status === "planned") ?? null,
+      extra,
     };
   });
+}
+
+// The newest real VASA record, if the truck could not collect last time.
+function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
+  const newest = [...history].sort((a, b) => b.date.localeCompare(a.date))[0];
+  return newest && !newest.serviced ? newest : null;
 }
 
 export default function Dashboard({
@@ -72,8 +89,12 @@ export default function Dashboard({
 }) {
   const [state, setState] = useState<HouseholdState | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [popup, setPopup] = useState<Popup | null>(null);
   const [toast, setToast] = useState<ToastData | null>(null);
+  const [answered, setAnswered] = useState(true); // true until we know the question is open
+  const [selected, setSelected] = useState<string | null>(null);
+  const [pulse, setPulse] = useState(0);
+  const stripRef = useRef<HTMLDivElement>(null);
+  const dayPanelRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(
     () =>
@@ -84,30 +105,37 @@ export default function Dashboard({
           return s;
         })
         .catch((e) => {
-          setError(e.message);
+          console.error(e);
+          setError(ERROR_TEXT);
           return null;
         }),
     [householdId],
   );
 
-  // First load, then the evening reminder once per browser session.
   useEffect(() => {
-    load().then((s) => {
-      if (!s?.scheduledDate || s.skip || s.scheduledDate !== addDays(todayISO(), 1)) return;
+    load().then(() => {
       try {
-        if (sessionStorage.getItem(REMINDER_SESSION_KEY)) return;
-        sessionStorage.setItem(REMINDER_SESSION_KEY, "1");
-      } catch {}
-      setPopup({ type: "reminder", date: s.scheduledDate });
+        setAnswered(!!sessionStorage.getItem(REMINDER_SESSION_KEY));
+      } catch {
+        setAnswered(false);
+      }
     });
   }, [load]);
 
-  const closePopup = useCallback(() => setPopup(null), []);
+  // Live: changes made anywhere (another tab, ops) refresh this house.
+  useEffect(() => subscribePickups(() => void load()), [load]);
+
+  function markAnswered() {
+    setAnswered(true);
+    try {
+      sessionStorage.setItem(REMINDER_SESSION_KEY, "1");
+    } catch {}
+  }
+
   const closeToast = useCallback(() => setToast(null), []);
 
-  // Every action: close popup, write, refresh in place, toast with undo.
+  // Every action: write, refresh in place, toast with undo (the undo itself confirms with a short toast).
   async function act(write: () => Promise<number | void>, message: string, undo: (result: number | void) => Promise<unknown>) {
-    setPopup(null);
     try {
       const result = await write();
       await load();
@@ -117,334 +145,541 @@ export default function Dashboard({
         undo: () => {
           undo(result)
             .then(load)
-            .catch((e) => setError(e.message));
+            .then(() => setToast({ id: Date.now(), message: "Atšaukta. Viskas kaip buvo." }))
+            .catch((e) => {
+              console.error(e);
+              setError(ERROR_TEXT);
+            });
         },
       });
     } catch (e) {
-      setError((e as Error).message);
+      console.error(e);
+      setError(ERROR_TEXT);
     }
   }
 
-  const skip = (date: string) =>
-    act(() => skipScheduled(householdId, date), "Išvežimas praleistas", (id) => undoSkip(id as number));
+  const skip = (date: string) => {
+    markAnswered();
+    return act(
+      () => skipScheduled(householdId, date),
+      `Praleista. ${capitalize(formatDay(date))} šiukšliavežė pas jus neužsuks.`,
+      (id) => undoSkip(id as number),
+    );
+  };
   const unskip = (p: Pickup) =>
-    act(() => undoSkip(p.id), "Išvežimas grąžintas", () => skipScheduled(householdId, p.date));
+    act(() => undoSkip(p.id), `Grąžinta. Atvažiuosime ${formatDay(p.date)}`, () => skipScheduled(householdId, p.date));
   const book = (date: string, tw: TimeWindow | null) =>
-    act(() => bookExtra(householdId, date, tw), `Užsakyta ${formatDay(date)}`, (id) => cancelExtra(id as number));
+    act(
+      () => bookExtra(householdId, date, tw),
+      `Užsakyta. Atvažiuosime ${tw ? `${formatDay(date)}, ${TIME_WINDOWS[tw].toLowerCase()}.` : formatDay(date)}`,
+      (id) => cancelExtra(id as number),
+    );
   const cancel = (p: Pickup) =>
-    act(() => cancelExtra(p.id), "Užsakymas atšauktas", () => bookExtra(householdId, p.date, p.time_window));
+    act(() => cancelExtra(p.id), `${capitalize(formatDay(p.date))} užsakymas atšauktas.`, () => bookExtra(householdId, p.date, p.time_window));
 
-  const days = state ? buildDays(state) : [];
-  const freeDays = days.filter((d) => !d.isToday && !d.scheduled && !d.extra).map((d) => d.date);
-
-  function openDay(d: Day) {
-    if (d.isToday) return;
-    if (d.extra) setPopup({ type: "cancel", pickup: d.extra });
-    else if (d.skip) setPopup({ type: "unskip", skip: d.skip });
-    else if (d.scheduled) setPopup({ type: "skip", date: d.date });
-    else setPopup({ type: "book", date: d.date, pickDay: false });
+  function confirmPickup(date: string) {
+    markAnswered();
+    setToast({ id: Date.now(), message: `Gerai, atvažiuosime ${formatDay(date)} Išstumkite konteinerį prie gatvės.` });
   }
 
-  // Hero = earliest of planned extras and the current scheduled date (shown as skipped if skipped).
-  const hero = state && heroItem(state);
+  const days = state ? buildDays(state) : [];
+  const selectedDay = days.find((d) => d.date === selected) ?? null;
+
+  function selectDay(date: string) {
+    setSelected(date);
+    requestAnimationFrame(() => dayPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
+  }
+
+  // "Užsakyti papildomai": bring the strip into view and point at the bookable days; the resident picks.
+  function showBookable() {
+    setSelected(null);
+    setPulse((n) => n + 1);
+    stripRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    requestAnimationFrame(() => stripRef.current?.querySelector<HTMLElement>("[data-bookable]")?.focus({ preventScroll: true }));
+  }
 
   return (
-    <div className="min-h-dvh bg-sand">
-      <div className="mx-auto max-w-[1200px] px-4 py-5 md:px-8 md:py-8">
-        <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
+    <div className="min-h-dvh bg-ground">
+      <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
 
-        {error && <p className="mt-6 rounded-2xl bg-clay/10 px-5 py-4 text-clay">Klaida: {error}</p>}
+      <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
+        <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
+        {error && (
+          <p role="alert" className="mb-5 rounded-[4px] border border-clay bg-sheet-hi px-5 py-3 text-clay-deep">
+            {error}
+          </p>
+        )}
 
         {!state ? (
-          !error && <p className="mt-10 text-ink/40">Kraunama…</p>
+          <p className="py-16 text-clay-deep">{error ? "Duomenų nėra." : "Kraunama…"}</p>
         ) : (
-          <div className="mt-6 flex flex-col gap-6 md:mt-8 md:grid md:grid-cols-12 md:items-start">
+          <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:items-start md:gap-6">
             <div className="max-md:contents md:col-span-8 md:flex md:flex-col md:gap-6">
-              {/* 1. Hero */}
-              <Card className="order-1 md:order-none md:p-8">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h2 className="text-sm font-semibold uppercase tracking-wide text-ink/50">Kitas išvežimas</h2>
-                  {hero && <StatusChip status={hero.status} />}
-                </div>
-                {hero ? (
-                  <p
-                    className={`mt-3 text-3xl font-bold md:text-5xl ${hero.status === "skipped" ? "text-ink/35 line-through decoration-2" : ""}`}
-                  >
-                    {formatHero(hero.date)}
-                  </p>
-                ) : (
-                  <p className="mt-3 text-3xl font-bold">Nesuplanuota</p>
-                )}
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <button
-                    disabled={!hero || hero.status === "skipped"}
-                    onClick={() =>
-                      hero?.pickup
-                        ? setPopup({ type: "cancel", pickup: hero.pickup })
-                        : hero && setPopup({ type: "skip", date: hero.date })
-                    }
-                    className="rounded-2xl border-2 border-ink/15 bg-white px-8 py-4 text-lg font-semibold hover:border-ink/30 disabled:opacity-40"
-                  >
-                    {hero?.status === "booked" ? "Atšaukti užsakymą" : "Praleisti"}
-                  </button>
-                  <button
-                    disabled={freeDays.length === 0}
-                    onClick={() => setPopup({ type: "book", date: freeDays[0], pickDay: true })}
-                    className="rounded-2xl bg-green px-8 py-4 text-lg font-semibold text-white hover:opacity-90 disabled:opacity-40"
-                  >
-                    Užsakyti kitą dieną
-                  </button>
-                </div>
-              </Card>
+              <Hero
+                state={state}
+                answered={answered}
+                failure={lastFailure(state.household.history ?? [])}
+                onSkip={skip}
+                onConfirm={confirmPickup}
+                onUnskip={unskip}
+                onCancel={cancel}
+                onBook={showBookable}
+              />
 
-              {/* 2. Calendar strip */}
-              <Card title="Artimiausios 14 dienų" className="order-2 md:order-none">
-                <div className="-mx-6 mt-4 overflow-x-auto px-6 pb-1">
-                  <div className="flex gap-1.5">
-                    {days.map((d) => (
-                      <DayCell key={d.date} day={d} onClick={() => openDay(d)} />
-                    ))}
+              <Panel title="Artimiausios 14 dienų" className="order-2 md:order-none">
+                <div ref={stripRef}>
+                  <Ledger
+                    days={days}
+                    selected={selected}
+                    pulse={pulse}
+                    onSelect={(d) => (d === selected ? setSelected(null) : selectDay(d))}
+                  />
+                </div>
+                {selectedDay && (
+                  <div ref={dayPanelRef}>
+                    <DayPanel
+                      key={selectedDay.date}
+                      day={selectedDay}
+                      onClose={() => setSelected(null)}
+                      // close after acting, so the button under the cursor can't flip into its opposite
+                      onSkip={(d) => (setSelected(null), skip(d))}
+                      onUnskip={(p) => (setSelected(null), unskip(p))}
+                      onBook={(d, tw) => (setSelected(null), book(d, tw))}
+                      onCancel={(p) => (setSelected(null), cancel(p))}
+                    />
                   </div>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-ink/60">
-                  <Legend className="bg-green">Pagal grafiką</Legend>
-                  <Legend className="bg-clay">Užsakyta</Legend>
-                  <Legend className="bg-ink/25">Praleista</Legend>
-                </div>
-              </Card>
+                )}
+              </Panel>
             </div>
 
             <div className="max-md:contents md:col-span-4 md:flex md:flex-col md:gap-6">
-              <div className="order-4 md:order-none">
-                <ContainerCard household={state.household} />
-              </div>
               <div className="order-3 md:order-none">
-                <HistoryCard household={state.household} pickups={state.pickups} />
+                <HistoryField household={state.household} pickups={state.pickups} />
+              </div>
+              <div className="order-4 md:order-none">
+                <ContainerField household={state.household} />
               </div>
               <div className="order-5 md:order-none">
-                <ImpactCard pickups={state.pickups} />
+                <ImpactField pickups={state.pickups} />
+              </div>
+              <div className="order-6 md:order-none">
+                <HelpPanel />
               </div>
             </div>
           </div>
         )}
-      </div>
+      </main>
 
-      {popup && state && (
-        <PopupContent
-          popup={popup}
-          freeDays={freeDays}
-          onClose={closePopup}
-          onSkip={skip}
-          onUnskip={unskip}
-          onBook={book}
-          onCancel={cancel}
-          onChangeDate={(date) => setPopup({ type: "book", date, pickDay: true })}
-        />
-      )}
       {toast && <Toast key={toast.id} toast={toast} onDone={closeToast} />}
     </div>
   );
 }
 
-type HeroStatus = "planned" | "skipped" | "booked";
+const HERO_BTN = "min-h-14 rounded-[4px] px-7 font-display text-xl font-semibold";
+const ON_GREEN_PRIMARY = `${HERO_BTN} bg-sheet text-green hover:bg-white`;
+const ON_GREEN_SECONDARY = `${HERO_BTN} border-2 border-sheet/70 text-sheet hover:bg-white/10`;
 
-// Hero: a booked extra if it is the next real pickup; otherwise the current scheduled date,
-// shown as skipped when skipped (so the skip is visible right where you made it).
-function heroItem(state: HouseholdState): { date: string; status: HeroStatus; pickup: Pickup | null } | null {
+// The one panel that pops. It carries the evening question itself while it is open,
+// so the page never asks the same thing twice. No confirm steps: every action has undo.
+function Hero({
+  state,
+  answered,
+  failure,
+  onSkip,
+  onConfirm,
+  onUnskip,
+  onCancel,
+  onBook,
+}: {
+  state: HouseholdState;
+  answered: boolean;
+  failure: ServiceRecord | null;
+  onSkip: (date: string) => void;
+  onConfirm: (date: string) => void;
+  onUnskip: (p: Pickup) => void;
+  onCancel: (p: Pickup) => void;
+  onBook: () => void;
+}) {
+  const today = todayISO();
+  const scheduled = state.scheduledDate;
   const extra = state.extras[0];
-  if (extra && (!state.nextScheduledDate || extra.date < state.nextScheduledDate)) {
-    return { date: extra.date, status: "booked", pickup: extra };
-  }
-  if (!state.scheduledDate) return null;
-  return { date: state.scheduledDate, status: state.skip ? "skipped" : "planned", pickup: null };
-}
+  const bookedFirst = !!extra && (!state.nextScheduledDate || extra.date < state.nextScheduledDate);
 
-function StatusChip({ status }: { status: HeroStatus }) {
-  const styles: Record<HeroStatus, [string, string]> = {
-    planned: ["Suplanuota", "bg-green/10 text-green"],
-    skipped: ["Praleista", "bg-ink/10 text-ink/60"],
-    booked: ["Užsakyta", "bg-clay/15 text-clay"],
+  let status: "question" | "today" | "planned" | "skipped" | "booked" | "none";
+  if (bookedFirst) status = "booked";
+  else if (!scheduled) status = "none";
+  else if (state.skip) status = "skipped";
+  else if (scheduled === today) status = "today";
+  else if (!answered && scheduled === addDays(today, 1)) status = "question";
+  else status = "planned";
+
+  const date = status === "booked" ? extra!.date : scheduled;
+  const stamp: Record<typeof status, string | null> = {
+    question: null,
+    today: "Šiandien",
+    planned: "Suplanuota",
+    skipped: "Praleista",
+    booked: "Užsakyta",
+    none: null,
   };
-  const [label, cls] = styles[status];
-  return <span className={`rounded-full px-3 py-1 text-sm font-semibold ${cls}`}>{label}</span>;
-}
 
-function DayCell({ day, onClick }: { day: Day; onClick: () => void }) {
-  const d = parseISODate(day.date);
-  const weekend = d.getDay() === 0 || d.getDay() === 6;
-  const skipped = !!day.skip;
-  let dot = null;
-  if (day.extra) dot = "bg-clay";
-  else if (skipped) dot = "bg-ink/25";
-  else if (day.scheduled) dot = "bg-green";
+  // Plain-language line under the date, so no label ever sits above a struck date.
+  let subline: ReactNode = null;
+  if (date) {
+    const wd = capitalize(formatWeekday(date));
+    subline = {
+      question: `${wd} · pagal grafiką`,
+      today: `Šiandien · pagal grafiką`,
+      planned: `Kitas išvežimas · ${wd} · pagal grafiką`,
+      skipped: `Praleista · ${wd}`,
+      booked: `Kitas išvežimas · ${wd} · užsakyta papildomai${extra?.time_window ? ` · ${TIME_WINDOWS[extra.time_window]}` : ""}`,
+      none: null,
+    }[status];
+  }
 
-  const label = [
-    formatHero(day.date),
-    day.extra && "užsakyta",
-    skipped && "praleista",
-    day.scheduled && !skipped && "išvežimas pagal grafiką",
-  ]
-    .filter(Boolean)
-    .join(", ");
+  const failureLine = failure && (status === "question" || status === "planned") && (
+    <p className="mt-5 rounded-[3px] border border-sheet/40 bg-white/10 px-4 py-3 text-sheet">
+      <span className="font-semibold">Praėjusį kartą ({formatDay(failure.date.slice(0, 10))}) neišvežta:</span>{" "}
+      {(failure.reason ?? "konteineris nepasiekiamas").toLowerCase()}. Konteineris tikriausiai pilnas, šįkart nepraleiskite ir
+      išstumkite jį prie gatvės.
+    </p>
+  );
+
+  let actions: ReactNode;
+  if (status === "question") {
+    const skipBtn = (
+      <button onClick={() => onSkip(scheduled!)} className={failure ? ON_GREEN_SECONDARY : ON_GREEN_PRIMARY}>
+        Ne, praleisti
+      </button>
+    );
+    const yesBtn = (
+      <button onClick={() => onConfirm(scheduled!)} className={failure ? ON_GREEN_PRIMARY : ON_GREEN_SECONDARY}>
+        Taip, vežkite
+      </button>
+    );
+    actions = failure ? (
+      <>
+        {yesBtn}
+        {skipBtn}
+      </>
+    ) : (
+      <>
+        {skipBtn}
+        {yesBtn}
+      </>
+    );
+  } else if (status === "planned") {
+    actions = (
+      <>
+        <button onClick={() => onSkip(scheduled!)} className={ON_GREEN_PRIMARY}>
+          Praleisti
+        </button>
+        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
+          Užsakyti papildomai
+        </button>
+      </>
+    );
+  } else if (status === "skipped") {
+    actions = (
+      <>
+        <button onClick={() => onUnskip(state.skip!)} className={ON_GREEN_PRIMARY}>
+          Grąžinti išvežimą
+        </button>
+        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
+          Užsakyti papildomai
+        </button>
+      </>
+    );
+  } else if (status === "booked") {
+    actions = (
+      <>
+        <button onClick={() => onCancel(extra!)} className={ON_GREEN_SECONDARY}>
+          Atšaukti užsakymą
+        </button>
+        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
+          Užsakyti dar vieną
+        </button>
+      </>
+    );
+  } else {
+    // today (truck already on the way) or nothing scheduled
+    actions = (
+      <button onClick={onBook} className={ON_GREEN_PRIMARY}>
+        Užsakyti papildomai
+      </button>
+    );
+  }
 
   return (
-    <button
-      onClick={onClick}
-      disabled={day.isToday}
-      aria-label={label}
-      className={`flex min-w-[44px] flex-1 flex-col items-center gap-1 rounded-xl border-2 py-3 transition-colors ${
-        day.isToday
-          ? "cursor-default border-transparent bg-sand"
-          : day.scheduled && !skipped
-            ? "border-green/40 bg-green/5 hover:border-green"
-            : day.extra
-              ? "border-clay/40 bg-clay/5 hover:border-clay"
-              : "border-ink/10 hover:border-ink/30"
-      }`}
+    <section
+      aria-labelledby="hero-h"
+      className="on-green order-1 rounded-[4px] bg-green px-6 py-6 text-sheet shadow-[0_20px_40px_-24px_rgb(31_90_60/0.8)] md:order-none md:px-9 md:py-7"
     >
-      <span className={`text-xs font-semibold ${weekend ? "text-ink/40" : "text-ink/60"}`}>
-        {day.isToday ? "Šiand." : formatWeekdayShort(day.date)}
-      </span>
-      <span className={`text-lg font-bold ${skipped ? "text-ink/35 line-through" : ""}`}>{d.getDate()}</span>
-      <span className={`h-2 w-2 rounded-full ${dot ?? "bg-transparent"}`} />
-    </button>
+      {status === "question" && (
+        <p className="font-display text-2xl font-semibold leading-tight text-white md:text-[1.75rem]">
+          Rytoj išvežimas. Ar konteineris pilnas?
+        </p>
+      )}
+
+      <div className={`flex items-start justify-between gap-4 ${status === "question" ? "mt-3" : ""}`}>
+        <h2
+          id="hero-h"
+          className={`font-display font-semibold leading-[0.92] tracking-[-0.015em] ${
+            status === "question" ? "text-[clamp(2.5rem,6vw,4.25rem)]" : "text-[clamp(3rem,7.5vw,5.5rem)]"
+          } ${status === "skipped" ? "text-sheet/55 line-through decoration-sheet/60 decoration-[6px]" : "text-white"}`}
+        >
+          <span className="sr-only">{status === "skipped" ? "Praleistas išvežimas: " : "Kitas išvežimas: "}</span>
+          {date ? formatDayCap(date) : "Nesuplanuota"}
+        </h2>
+        {stamp[status] && (
+          <span
+            key={status + date}
+            className="stamp mt-2 shrink-0 rounded-[2px] border-[3px] border-sheet/80 px-3 py-0.5 font-display text-base font-bold uppercase tracking-[0.08em] text-sheet md:text-lg"
+          >
+            {stamp[status]}
+          </span>
+        )}
+      </div>
+
+      {subline && <p className="mt-2 font-display text-xl font-medium text-sheet-lo md:text-2xl">{subline}</p>}
+      {status === "skipped" && state.nextScheduledDate && (
+        <p className="mt-3 font-display text-3xl font-semibold text-white">Kitas: {formatDay(state.nextScheduledDate)}</p>
+      )}
+      {status === "today" && (
+        <p className="mt-3 text-sheet-lo">Šiukšliavežė jau pakeliui, šiandien praleisti nebegalima.</p>
+      )}
+      {status === "none" && <p className="mt-3 text-sheet-lo">Grafike išvežimų nėra. Galite užsakyti papildomą.</p>}
+      {failureLine}
+
+      {/* screen readers hear state changes made on this panel */}
+      <p className="sr-only" aria-live="polite">
+        {stamp[status] ?? ""}
+      </p>
+
+      <div className="mt-6 flex flex-col gap-3 border-t border-sheet/25 pt-5 sm:flex-row">{actions}</div>
+    </section>
   );
 }
 
-function Legend({ className, children }: { className: string; children: string }) {
+function dayKind(d: Day): MarkerKind {
+  if (d.extra) return "extra";
+  if (d.skip) return "skipped";
+  if (d.scheduled) return "scheduled";
+  if (d.bookable) return "bookable";
+  return "none";
+}
+
+function dayLabel(d: Day): string {
+  const when = formatHero(d.date);
+  if (d.isToday) return `${when}, šiandien`;
+  if (d.extra) return `${when}, užsakyta`;
+  if (d.skip) return `${when}, praleista`;
+  if (d.scheduled) return `${when}, išvežimas pagal grafiką`;
+  if (d.bookable) return `${when}, galima užsakyti`;
+  return `${when}, užsakyti negalima`;
+}
+
+// 14 equal day columns. Arrow keys move along the strip; selecting a day opens its panel below.
+function Ledger({
+  days,
+  selected,
+  pulse,
+  onSelect,
+}: {
+  days: Day[];
+  selected: string | null;
+  pulse: number;
+  onSelect: (date: string) => void;
+}) {
+  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const buttons = [...e.currentTarget.querySelectorAll<HTMLButtonElement>("button:not([disabled])")];
+    const i = buttons.indexOf(document.activeElement as HTMLButtonElement);
+    if (i < 0) return;
+    e.preventDefault();
+    buttons[Math.min(Math.max(i + (e.key === "ArrowRight" ? 1 : -1), 0), buttons.length - 1)]?.focus();
+  }
+
+  return (
+    <div className="mt-4">
+      <div className="-mx-5 overflow-x-auto px-5 pb-1 [mask-image:linear-gradient(to_right,black_82%,transparent)] md:mx-0 md:px-0 md:[mask-image:none]">
+        <div className="grid min-w-[620px] grid-cols-14 gap-1" onKeyDown={onKeyDown}>
+          {days.map((d) => {
+            const kind = dayKind(d);
+            const date = parseISODate(d.date);
+            const isSel = d.date === selected;
+            const disabled = d.isToday || kind === "none";
+            return (
+              <button
+                key={`${d.date}-${d.bookable ? pulse : 0}`}
+                onClick={() => onSelect(d.date)}
+                disabled={disabled}
+                data-bookable={d.bookable || undefined}
+                aria-label={dayLabel(d)}
+                aria-pressed={isSel}
+                className={`flex min-h-[88px] flex-col items-center justify-between rounded-[3px] py-2.5 transition-colors ${
+                  isSel
+                    ? "on-green bg-green text-sheet"
+                    : disabled
+                      ? "cursor-default text-clay-deep"
+                      : kind === "scheduled" || kind === "extra"
+                        ? "bg-sheet-lo hover:bg-sheet-hi"
+                        : "hover:bg-sheet-hi"
+                } ${d.bookable && pulse ? "pulse-bookable" : ""}`}
+              >
+                <span
+                  className={`font-medium ${d.isToday ? "text-[0.7rem] tracking-tight" : "text-sm"} ${
+                    isSel ? "text-sheet-lo" : disabled ? "" : kind === "scheduled" || kind === "extra" ? "text-green" : "text-green-muted"
+                  }`}
+                >
+                  {d.isToday ? "Šiandien" : formatWeekdayShort(d.date)}
+                </span>
+                <span
+                  className={`font-display text-[1.6rem] font-semibold leading-none ${
+                    kind === "skipped" ? "line-through decoration-2" : ""
+                  } ${disabled && !isSel ? "font-medium opacity-70" : ""}`}
+                >
+                  {date.getDate()}
+                </span>
+                <Marker kind={kind} inverted={isSel} />
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-clay-deep">
+        <Legend kind="scheduled">Pagal grafiką, kas 2 sav.</Legend>
+        <Legend kind="bookable">{`Galima užsakyti, ${EXTRA_PICKUP_PRICE_EUR} €`}</Legend>
+        <Legend kind="extra">Užsakyta</Legend>
+        <Legend kind="skipped">Praleista</Legend>
+      </div>
+    </div>
+  );
+}
+
+function Legend({ kind, children }: { kind: MarkerKind; children: string }) {
   return (
     <span className="flex items-center gap-2">
-      <span className={`h-2 w-2 rounded-full ${className}`} />
+      <Marker kind={kind} />
       {children}
     </span>
   );
 }
 
-function PopupContent({
-  popup,
-  freeDays,
+function Chip({ selected, onClick, children }: { selected: boolean; onClick: () => void; children: string }) {
+  return (
+    <button
+      aria-pressed={selected}
+      onClick={onClick}
+      className={`min-h-11 rounded-[3px] px-3.5 font-semibold ${
+        selected ? "bg-green text-sheet" : "border border-rule bg-sheet-hi text-ink hover:border-green-muted"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+const PANEL_PRIMARY = "min-h-13 rounded-[4px] bg-green px-6 font-display text-lg font-semibold text-sheet hover:bg-green-deep";
+
+// The selected day continues the strip panel below a rule (not a nested card), with its one action.
+function DayPanel({
+  day,
   onClose,
   onSkip,
   onUnskip,
   onBook,
   onCancel,
-  onChangeDate,
 }: {
-  popup: Popup;
-  freeDays: string[];
+  day: Day;
   onClose: () => void;
   onSkip: (date: string) => void;
   onUnskip: (p: Pickup) => void;
   onBook: (date: string, tw: TimeWindow | null) => void;
   onCancel: (p: Pickup) => void;
-  onChangeDate: (date: string) => void;
-}) {
-  switch (popup.type) {
-    case "reminder":
-      return (
-        <Modal title="Rytoj išvežimas. Ar konteineris pilnas?" onClose={onClose}>
-          <p className="mt-2 text-ink/60">{formatHero(popup.date)}</p>
-          <PrimaryButton onClick={() => onSkip(popup.date)}>Ne, praleisti</PrimaryButton>
-          <button onClick={onClose} className="mt-3 w-full rounded-2xl py-3 text-lg font-semibold text-ink/70 hover:bg-ink/5">
-            Taip, vežkite
-          </button>
-        </Modal>
-      );
-
-    case "skip": {
-      const next = addDays(popup.date, SCHEDULE_INTERVAL_DAYS);
-      return (
-        <Modal title={`Praleisti ${formatWeekdayGenitive(popup.date)} išvežimą?`} onClose={onClose}>
-          <p className="mt-2 text-ink/60">Šiukšliavežė pas jus neužsuks. Kitas išvežimas: {formatDay(next)}</p>
-          <PrimaryButton onClick={() => onSkip(popup.date)}>Praleisti</PrimaryButton>
-        </Modal>
-      );
-    }
-
-    case "unskip":
-      return (
-        <Modal title={`Grąžinti ${formatDay(popup.skip.date)} išvežimą?`} onClose={onClose}>
-          <p className="mt-2 text-ink/60">Šiukšliavežė užsuks pagal grafiką.</p>
-          <PrimaryButton onClick={() => onUnskip(popup.skip)}>Grąžinti</PrimaryButton>
-        </Modal>
-      );
-
-    case "book":
-      return (
-        <BookPopup
-          key={popup.date}
-          date={popup.date}
-          pickDay={popup.pickDay}
-          freeDays={freeDays}
-          onClose={onClose}
-          onBook={onBook}
-          onChangeDate={onChangeDate}
-        />
-      );
-
-    case "cancel":
-      return (
-        <Modal title={`Atšaukti ${formatDay(popup.pickup.date)} užsakymą?`} onClose={onClose}>
-          <p className="mt-2 text-ink/60">
-            {popup.pickup.time_window ? TIME_WINDOWS[popup.pickup.time_window] : "Bet kuriuo metu"} ·{" "}
-            {Number(popup.pickup.price_eur)}€
-          </p>
-          <PrimaryButton onClick={() => onCancel(popup.pickup)}>Atšaukti užsakymą</PrimaryButton>
-        </Modal>
-      );
-  }
-}
-
-function BookPopup({
-  date,
-  pickDay,
-  freeDays,
-  onClose,
-  onBook,
-  onChangeDate,
-}: {
-  date: string;
-  pickDay: boolean;
-  freeDays: string[];
-  onClose: () => void;
-  onBook: (date: string, tw: TimeWindow | null) => void;
-  onChangeDate: (date: string) => void;
 }) {
   const [tw, setTw] = useState<TimeWindow | null>(null);
-  return (
-    <Modal title={formatHero(date)} onClose={onClose}>
-      {pickDay && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {freeDays.slice(0, 7).map((d) => (
-            <button
-              key={d}
-              onClick={() => onChangeDate(d)}
-              className={`rounded-full px-3 py-1.5 text-sm font-semibold ${
-                d === date ? "bg-ink text-white" : "border border-ink/15 hover:border-ink/30"
-              }`}
-            >
-              {formatWeekdayShort(d)} {parseISODate(d).getDate()}
-            </button>
+  const kind = dayKind(day);
+
+  let status: string;
+  let body: ReactNode = null;
+  let action: ReactNode;
+  if (kind === "extra") {
+    status = "Užsakytas papildomas išvežimas";
+    body = (
+      <p className="mt-1 text-clay-deep">
+        {day.extra!.time_window ? TIME_WINDOWS[day.extra!.time_window] : "Bet kuriuo metu"} · {Number(day.extra!.price_eur)} €
+      </p>
+    );
+    action = (
+      <button onClick={() => onCancel(day.extra!)} className={PANEL_PRIMARY}>
+        Atšaukti užsakymą
+      </button>
+    );
+  } else if (kind === "skipped") {
+    status = "Išvežimas praleistas";
+    action = (
+      <button onClick={() => onUnskip(day.skip!)} className={PANEL_PRIMARY}>
+        Grąžinti išvežimą
+      </button>
+    );
+  } else if (kind === "scheduled") {
+    status = "Išvežimas pagal grafiką";
+    body = (
+      <p className="mt-1 text-clay-deep">
+        Jei konteineris nepilnas, praleiskite. Kitas išvežimas bus {formatDay(addDays(day.date, SCHEDULE_INTERVAL_DAYS))}.
+      </p>
+    );
+    action = (
+      <button onClick={() => onSkip(day.date)} className={PANEL_PRIMARY}>
+        Praleisti šį išvežimą
+      </button>
+    );
+  } else {
+    status = "Laisva diena, galima užsakyti";
+    body = (
+      <div className="mt-3">
+        <p id={`tw-${day.date}`} className="text-sm font-semibold text-green-muted">
+          Laikas <span className="font-normal text-clay-deep">(nebūtina)</span>
+        </p>
+        <div role="group" aria-labelledby={`tw-${day.date}`} className="mt-2 flex flex-wrap gap-2">
+          {(Object.keys(TIME_WINDOWS) as TimeWindow[]).map((key) => (
+            <Chip key={key} selected={tw === key} onClick={() => setTw(tw === key ? null : key)}>
+              {TIME_WINDOWS[key]}
+            </Chip>
           ))}
         </div>
-      )}
-      <p className="mt-5 text-sm font-semibold text-ink/50">Laikas (nebūtina)</p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {(Object.keys(TIME_WINDOWS) as TimeWindow[]).map((key) => (
-          <button
-            key={key}
-            onClick={() => setTw(tw === key ? null : key)}
-            aria-pressed={tw === key}
-            className={`rounded-full px-3 py-1.5 text-sm font-semibold ${
-              tw === key ? "bg-green text-white" : "border border-ink/15 hover:border-ink/30"
-            }`}
-          >
-            {TIME_WINDOWS[key]}
-          </button>
-        ))}
       </div>
-      <p className="mt-5 text-ink/60">Kaina: {EXTRA_PICKUP_PRICE_EUR}€ už papildomą išvežimą</p>
-      <PrimaryButton onClick={() => onBook(date, tw)}>Užsakyti už {EXTRA_PICKUP_PRICE_EUR}€</PrimaryButton>
-    </Modal>
+    );
+    action = (
+      <button onClick={() => onBook(day.date, tw)} className={PANEL_PRIMARY}>
+        Užsakyti už {EXTRA_PICKUP_PRICE_EUR} €
+      </button>
+    );
+  }
+
+  return (
+    <div
+      role="region"
+      aria-label={`${formatHero(day.date)}: ${status}`}
+      className="day-panel mt-5 border-t border-rule pt-5"
+      onKeyDown={(e) => e.key === "Escape" && onClose()}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div aria-live="polite">
+          <h3 className="font-display text-2xl font-semibold leading-tight">{formatHero(day.date)}</h3>
+          <p className="font-semibold text-green-muted">{status}</p>
+        </div>
+        <button
+          onClick={onClose}
+          aria-label="Uždaryti dienos informaciją"
+          className="-mr-2 -mt-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] text-green-muted hover:bg-sheet-hi"
+        >
+          <CloseIcon />
+        </button>
+      </div>
+      {body}
+      <div className="mt-4">{action}</div>
+    </div>
   );
 }

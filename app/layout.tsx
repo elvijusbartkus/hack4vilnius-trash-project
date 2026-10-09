@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow, Barlow_Semi_Condensed } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Barlow: low-contrast grotesk modelled on highway and transport signage; latin-ext covers Lithuanian.
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+  variable: "--font-barlow-sc",
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Atliekų išvežimas pagal poreikį",
+  title: "Trage – atliekų išvežimas pagal poreikį",
   description: "Hack4Vilnius 2026 prototipas",
 };
 
@@ -22,9 +25,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="lt"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${barlow.variable} ${barlowSemiCondensed.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-sand text-ink font-sans">{children}</body>
+      <body className="flex min-h-full flex-col bg-ground font-sans text-ink">{children}</body>
     </html>
   );
 }
