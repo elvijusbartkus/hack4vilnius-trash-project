@@ -56,10 +56,15 @@ export const BOOKING_DAYS_AHEAD = 7;
 
 // Optional time windows for a booked pickup (value stored in pickups.time_window -> Lithuanian label).
 export const TIME_WINDOWS = {
-  rytas: "Rytas (8–12)",
-  diena: "Diena (12–16)",
-  vakaras: "Vakaras (16–20)",
+  rytas: "Rytas 7–11",
+  diena: "Diena 11–16",
+  vakaras: "Vakaras 16–21",
 } as const;
+
+export type TimeWindow = keyof typeof TIME_WINDOWS;
+
+// Days between fixed-schedule pickups (26x per year).
+export const SCHEDULE_INTERVAL_DAYS = 14;
 
 // --- Driver (PRD section 8) ---
 
