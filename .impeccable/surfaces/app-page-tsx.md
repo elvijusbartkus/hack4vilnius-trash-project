@@ -2,10 +2,10 @@
 version: 1
 slug: "app-page-tsx"
 primary_target: "app/page.tsx"
-related_targets: ["app/ops/page.tsx"]
+related_targets: []
 ---
 
-# Resident dashboard `/` (+ shared tokens, `/ops`)
+# Resident dashboard `/` (+ shared tokens)
 
 Mode: Operate. Audience: hackathon judges on a big screen; the resident (Baldas) is the story. Task: skip in 1 click (reminder) or 2, book in 2, undo from the toast. Constraints: Lithuanian, light green + grey clay (pinned), transport typeface (pinned). No driver code in this repo. Working brand name "Trage". User rejected (with screenshots): route stop counts on the resident page, merged sections where nothing pops, and popups ("feel like scam ads").
 

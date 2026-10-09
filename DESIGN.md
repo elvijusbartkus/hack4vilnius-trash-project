@@ -145,7 +145,7 @@ components:
 
 Trage looks like the paperwork of a well-run collection service: light-green carbon-copy sheets laid separately on a neutral grey-clay desk, one deep-green slip on top that asks the evening question, and rubber stamps that press a status onto a date. It is calm logistics, not a dashboard. The resident's next pickup is one clear decision, answered in place and reversible from a toast, never through a dialog.
 
-Density is moderate and legible for older house owners: values and dates in a semi-condensed transport grotesk at generous sizes, tabular figures everywhere, 44px minimum touch targets. Panels stay separate (their own surface, heading, and gap); only the hero is allowed to pop. Depth comes from tone, not shadow. Motion is mechanical and short: a stamp pressing down, a number ticking over, a slip sliding in.
+Density is moderate and legible for older house owners: values and dates in a semi-condensed transport grotesk at generous sizes, tabular figures everywhere, 44px minimum touch targets. Panels stay separate (their own surface, heading, and gap); only the hero is allowed to pop. Depth comes from tone, not shadow. Motion is mechanical and short: a stamp pressing down, a panel sliding in.
 
 The user explicitly rejected merged manifest sheets, modal popups ("feel like scam ads"), the white-card SaaS dashboard, a stiff government portal, playful/gamified treatments, and eco clichés (leaves, recycling arrows, planets).
 
@@ -169,11 +169,11 @@ A pinned two-family palette: light green for paper and a deep forest green for a
 ### Neutral
 - **Grey Clay Ground** (`ground`): page and header background; the desk the panels sit on.
 - **Carbon-Copy Sheet** (`sheet`): every panel surface; also the text colour on green and on the ink toast.
-- **Sheet Highlight** (`sheet-hi`): hovered fields, the address switcher, unselected chips, error notices, "your row" on the ops manifest.
+- **Sheet Highlight** (`sheet-hi`): hovered fields, the address switcher, unselected chips, error notices.
 - **Sheet Pressed** (`sheet-lo`): scheduled/booked day cells, the active listbox option, toast check and timer bar.
 - **Field Rule** (`rule`): 1px panel borders (at 70%) and row dividers (at 60%). Decorative only, 1.81:1 on sheet; never text.
 - **Stamp Clay** (`clay`): header bottom border, scrollbar, strike decoration, notice borders. Marks and borders only, never text (1.87:1 on ground).
-- **Clay Deep** (`clay-deep`): secondary text, row labels, skipped-state strokes and the ops stamp (6.10:1 on sheet, 5.36:1 on ground, 5.58:1 on sheet-lo).
+- **Clay Deep** (`clay-deep`): secondary text, row labels, skipped-state strokes (6.10:1 on sheet, 5.36:1 on ground, 5.58:1 on sheet-lo).
 - **Ink** (`ink`): body text (12.99:1 on sheet, 11.43:1 on ground) and the toast surface (sheet on ink 12.99:1).
 
 `sand` survives in the stylesheet only as a legacy alias of `ground`; do not use it in new work.
@@ -194,7 +194,7 @@ A pinned two-family palette: light green for paper and a deep forest green for a
 - **Display** (600, clamp(3rem, 7.5vw, 5.5rem), 0.92, -0.015em): the hero date only. While the evening question is open it steps down to clamp(2.5rem, 6vw, 4.25rem).
 - **Headline** (600, 1.5rem rising to 1.75rem, leading-tight): the hero question "Rytoj išvežimas. Ar konteineris pilnas?"; the "Kitas: …" follow-up runs at 1.875rem; hero sublines at 1.25 to 1.5rem weight 500; day-panel date at 1.5rem.
 - **Title** (600, 1.25rem): panel headings, hero buttons (1.25rem), panel primary buttons (1.125rem).
-- **Value** (600, 1.05rem): right-aligned values in label/value rows; day numbers in the strip at 1.6rem with line-height 1; ops counters at 1.5rem and 3.5rem.
+- **Value** (600, 1.05rem): right-aligned values in label/value rows; day numbers in the strip at 1.6rem with line-height 1.
 - **Body** (Barlow 400, 1rem, 1.5): running text, row labels, notices.
 - **Caption** (Barlow 500 to 600, 0.875rem): weekday labels, legend, small sub-headings, footnotes.
 - **Stamp** (700, 1rem to 1.125rem, 0.08em, uppercase): status stamps only.
@@ -223,7 +223,7 @@ Flat by default, depth by tone: ground is the desk, sheet panels sit on it with 
 
 ## Shapes
 
-Small, near-square corners, consistent by role: 2px on stamps and the ops counter frame, 3px on controls (chips, address switcher, toast and its button, listbox, day cells, avatar tile, notices), 4px on panels, the hero, and large buttons. The logo tile uses the same 4-in-32 corner. Borders are 1px for fields and panels, 2px for secondary buttons on green and the ops stamp, 3px for the hero stamp. Stamps rotate -4deg; nothing else rotates. Strikethrough is a first-class shape: a skipped date is struck (6px on the hero, 2px elsewhere), not hidden.
+Small, near-square corners, consistent by role: 2px on stamps, 3px on controls (chips, address switcher, toast and its button, listbox, day cells, avatar tile, notices), 4px on panels, the hero, and large buttons. The logo tile uses the same 4-in-32 corner. Borders are 1px for fields and panels, 2px for secondary buttons on green, 3px for the hero stamp. Stamps rotate -4deg; nothing else rotates. Strikethrough is a first-class shape: a skipped date is struck (6px on the hero, 2px elsewhere), not hidden.
 
 Icons are authored on a 24px grid with a 2px stroke and square caps, matching the ruled lines; default size 20px.
 
@@ -264,7 +264,7 @@ Panels are separate sheets: never merged, never nested.
 The one deep-green panel that pops. It carries the evening question itself while open ("Rytoj išvežimas. Ar konteineris pilnas?"), so the page asks it exactly once. Below the question: the date in Display, a stamp to its right, a plain sentence subline in sheet-lo, then actions above a 1px sheet rule at 25%. Skipped state strikes the date (sheet at 55%, 6px decoration) and states "Kitas: …" in white. A previous-failure note sits in a sheet-at-10% box with a sheet-at-40% border. State changes are announced through a polite live region.
 
 ### Status Stamp (signature)
-Rectangular, 2px corners, uppercase stamp type, rotated -4deg. On green: 3px sheet border at 80%, sheet text. On sheet (ops manifest): 2px clay-deep border, clay-deep text. Keyed on status so each change re-presses: `stamp-press` 420ms on the expo-out curve, scale 1.35 to 0.96 to 1 with opacity in.
+Rectangular, 2px corners, uppercase stamp type, rotated -4deg. On green: 3px sheet border at 80%, sheet text. Keyed on status so each change re-presses: `stamp-press` 420ms on the expo-out curve, scale 1.35 to 0.96 to 1 with opacity in.
 
 ### Day Strip and Markers (signature)
 Fourteen equal day cells (88px min height, 3px corners): weekday caption, day number in the value face at 1.6rem, marker. Scheduled and booked cells are sheet-lo; others are transparent with sheet-hi hover; today and unbookable days are disabled in clay-deep at reduced weight. The selected cell turns green with inverted markers. Left/right arrows move focus along the strip. A legend sits below in caption type.
@@ -276,7 +276,7 @@ Fourteen equal day cells (88px min height, 3px corners): weekday caption, day nu
 Ink surface, sheet text, 3px corners, max 28rem, bottom-centred on phones and bottom-right from 768px, with the toast shadow. A sheet-lo check icon, the message, an "Atšaukti" button (1px sheet border at 60%) and a Cmd/Ctrl+Z hint. A 4px sheet-lo bar drains over 8s and dismisses the toast when it ends; hover or focus pauses it. Cmd/Ctrl+Z undoes while the toast is visible, except inside text inputs. Undoing confirms with a short "Atšaukta. Viskas kaip buvo." toast. Reduced motion keeps the 8s timing but hides the bar.
 
 ### Motion
-One curve, expo-out `cubic-bezier(0.16, 1, 0.3, 1)`: stamp-press 420ms; tick (count rises 60% into place) 380ms; slip-in 220ms (opacity, 10px rise, 0.985 scale) for the day panel, listbox and desktop toast; slip-up 280ms from below for the toast on phones. Under `prefers-reduced-motion` every one of these becomes a 120ms fade.
+One curve, expo-out `cubic-bezier(0.16, 1, 0.3, 1)`: stamp-press 420ms; slip-in 220ms (opacity, 10px rise, 0.985 scale) for the day panel, listbox and desktop toast; slip-up 280ms from below for the toast on phones. Under `prefers-reduced-motion` every one of these becomes a 120ms fade.
 
 ## Do's and Don'ts
 
@@ -295,7 +295,7 @@ One curve, expo-out `cubic-bezier(0.16, 1, 0.3, 1)`: stamp-press 420ms; tick (co
 - **Don't** merge panels into one sheet or nest cards inside panels.
 - **Don't** add a second green hero or shadows on ordinary panels.
 - **Don't** use `clay` or `rule` for text.
-- **Don't** show route jargon (stop counts, stop numbers, manifests) on the resident page `/`; that language belongs to `/ops`.
+- **Don't** show route jargon (stop counts, stop numbers, manifests) on the resident page `/`; route views belong to the separate driver app.
 - **Don't** use pill badges for status; status is a rotated rectangular stamp.
 - **Don't** use eco clichés (leaves, recycling arrows, planets), gamification, or generic SaaS white cards.
 - **Don't** use icon fonts or stock icon packs; draw icons on the 24px, 2px square-cap grid.

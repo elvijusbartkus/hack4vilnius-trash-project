@@ -10,7 +10,7 @@ web
 - **Hackathon judges (primary audience for design decisions):** Hack4Vilnius 2026, challenge 10. They watch the demo on a big screen (laptop/projector, desktop web) and decide in minutes whether the idea is credible and the flow is effortless.
 - **Residents of private houses in Vilnius (the story):** house owners with a 240L mixed-waste bin collected every 2 weeks. Job: tell the system when they actually need a pickup (skip or book) with zero effort. Demo persona: Baldas Venkunskas, Alfonso Lipniūno g. 13, Pavilnys.
 - **Garbage truck driver (separate app built by a teammate, integrated later; nothing driver-specific lives in this repo):** gets today's ordered stops and opens them in Google Maps or Waze.
-- **Ops / judges view (`/ops`):** map of the demo area and a savings counter.
+- **Route / ops view:** removed from this repo (2026-10-09); route views belong to the driver app built separately.
 
 ## Product Purpose
 Fixed-schedule collection stops at every house whether the bin is full or not (Tallinn 2024 pilot: 85.7% of containers under half full). Residents skip or book pickups; the driver gets a route each morning built only from houses that need it. Success at the hackathon: judges see a resident skip in one click, the stop drop off the route, and the savings counter move.
@@ -22,7 +22,7 @@ On-demand collection for private houses built on real VASA data: the resident's 
 - Demo date is fixed: DEMO_TODAY = 2026-10-15, the evening before 145 Pavilnys houses are scheduled (2026-10-16).
 - Resident flow: evening reminder ("Rytoj išvežimas. Ar konteineris pilnas?"), skip, book an extra pickup on another day, undo.
 - Default stays the VASA fixed schedule; non-users are unaffected.
-- One shared Supabase DB; realtime on pickups so driver/ops update live.
+- One shared Supabase DB; realtime on pickups so the separate driver app can update live.
 
 ## Capabilities and Constraints
 - Next.js App Router + TypeScript + Tailwind v4, static export to GitHub Pages; Supabase (Postgres + Realtime); Leaflet + OSM for maps.
@@ -30,7 +30,7 @@ On-demand collection for private houses built on real VASA data: the resident's 
 - No real auth or payments. Prices are placeholders in `lib/config.ts` (extra pickup 4€).
 - Working product name: "Trage" (`APP_NAME`), chosen as a placeholder by the user; final name undecided.
 - The driver app is built separately by a teammate; do not add driver pages or driver-only code here.
-- Redesign scope: resident page `/`, shared tokens in `app/globals.css`, and `/ops`.
+- Scope of this repo: the resident page `/` and shared tokens in `app/globals.css`.
 
 ## Brand Commitments
 - Palette pinned by the user: light green and grey clay.

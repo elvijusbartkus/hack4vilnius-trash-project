@@ -41,16 +41,6 @@ export function CheckIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-export function TruckIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <Icon {...props}>
-      <path d="M2 6h11v10H2zM13 10h4l3 3v3h-7" />
-      <circle cx="6" cy="17.5" r="1.8" />
-      <circle cx="17" cy="17.5" r="1.8" />
-    </Icon>
-  );
-}
-
 export function SearchIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <Icon {...props}>
