@@ -2,6 +2,9 @@
 
 // --- Demo data (PRD section 5) ---
 
+// The app's "today". The demo runs on the evening before the big pickup day; use this instead of the real date.
+export const DEMO_TODAY = "2026-10-15";
+
 // Day used as "today's route" in the demo: 145 Pavilnys houses are scheduled on it.
 export const DEMO_DAY = "2026-10-16";
 

@@ -25,6 +25,7 @@ type House = {
   carrier: string;
   last_service: string | null;
   next_service: string | null;
+  history?: { date: string; serviced: boolean; reason: string | null }[];
 };
 
 const { houses } = JSON.parse(
@@ -49,6 +50,7 @@ const rows = houses.map((h) => {
     carrier: h.carrier,
     last_service: h.last_service,
     next_service: h.next_service,
+    history: h.history ?? [],
     // Exactly one demo user; everyone else is reset to non-user on re-seed.
     app_user: isDemo,
     is_demo_user: isDemo,

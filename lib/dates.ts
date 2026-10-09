@@ -1,3 +1,5 @@
+import { DEMO_TODAY } from "@/lib/config";
+
 // Dates are stored as 'YYYY-MM-DD' strings and treated as local calendar days.
 
 export function toISODate(d: Date): string {
@@ -18,8 +20,9 @@ export function addDays(s: string, days: number): string {
   return toISODate(d);
 }
 
+// The app's "today" is fixed for the demo (see DEMO_TODAY in lib/config.ts).
 export function todayISO(): string {
-  return toISODate(new Date());
+  return DEMO_TODAY;
 }
 
 // "spalio 16 d., penktadienis"
@@ -39,6 +42,14 @@ export function formatChip(s: string): string {
   const d = parseISODate(s);
   const wd = new Intl.DateTimeFormat("lt-LT", { weekday: "short" }).format(d);
   return `${wd.charAt(0).toUpperCase()}${wd.slice(1)} ${d.getDate()}`;
+}
+
+// Lithuanian plural forms: 1 išvežimą, 2 išvežimus, 10 išvežimų.
+const pluralRules = new Intl.PluralRules("lt-LT");
+export function plural(n: number, forms: { one: string; few: string; many: string }): string {
+  const rule = pluralRules.select(n);
+  const form = rule === "one" ? forms.one : rule === "few" ? forms.few : forms.many;
+  return `${n} ${form}`;
 }
 
 export function capitalize(s: string): string {

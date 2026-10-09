@@ -11,7 +11,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:50:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:02:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17080,
@@ -22,7 +34,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:40",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:03:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15552,
@@ -33,7 +57,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:00:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18836,
@@ -44,7 +80,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:49:26",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:00:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16149,
@@ -55,7 +103,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:53:03",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:07:33",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 15753,
@@ -66,7 +126,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:47:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:58:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15754,
@@ -77,7 +149,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:47:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:57:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15755,
@@ -88,7 +172,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:45:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:55:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15756,
@@ -99,7 +195,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:47:06",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:55:45",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 38937,
@@ -110,7 +218,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:44:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:52:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18290,
@@ -121,7 +241,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:42:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:49:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16869,
@@ -132,7 +264,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:43:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:52:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18464,
@@ -143,7 +287,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:42:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:50:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18097,
@@ -154,7 +310,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:46:40",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:51:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19424,
@@ -165,7 +333,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:46:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:56:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16513,
@@ -176,7 +356,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:46:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:56:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18934,
@@ -187,7 +379,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:45:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:54:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16468,
@@ -198,7 +402,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:48",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:01:57",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18139,
@@ -209,7 +425,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:44",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:07:17",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 18072,
@@ -220,7 +448,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:49:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:01:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17910,
@@ -231,7 +471,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:48:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:59:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16729,
@@ -242,7 +494,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:47:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:58:07",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17366,
@@ -253,7 +517,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:52:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:06:29",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17903,
@@ -264,7 +540,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:50:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:04:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16656,
@@ -275,7 +563,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:04:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15843,
@@ -286,7 +586,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:27:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:43:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16902,
@@ -297,7 +609,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:27:31",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:44:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18535,
@@ -308,7 +632,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:28:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:43:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17324,
@@ -319,7 +655,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:28:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:42:56",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15917,
@@ -330,7 +678,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:40:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15918,
@@ -341,7 +701,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:39:52",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17954,
@@ -352,7 +724,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:31:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:36:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18682,
@@ -363,7 +747,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:31:15",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:38:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19164,
@@ -374,7 +770,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:31:07",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:35:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 102064,
@@ -385,7 +793,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:37:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:35:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18420,
@@ -396,7 +816,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:36:59",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:34:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17396,
@@ -407,7 +839,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:36:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:33:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17397,
@@ -418,7 +862,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:35:37",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:30:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18052,
@@ -429,7 +885,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:59",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:32:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18073,
@@ -440,7 +908,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:36:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:31:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15882,
@@ -451,7 +931,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:36:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:30:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15935,
@@ -462,7 +954,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:35:05",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:29:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18683,
@@ -473,7 +977,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:32:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:27:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17089,
@@ -484,7 +1000,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:33:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:27:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16763,
@@ -495,7 +1023,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:33:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:22:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15795,
@@ -506,7 +1046,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:34:35",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:25:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15842,
@@ -517,7 +1069,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:33:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:26:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15838,
@@ -528,7 +1092,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:32:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:24:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17619,
@@ -539,7 +1115,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:29:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:42:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16755,
@@ -550,7 +1138,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:40:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19130,
@@ -561,7 +1161,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:38:00",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 37112,
@@ -572,7 +1184,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:30:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:38:56",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 113504,
@@ -583,7 +1207,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:35:21",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:37:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15828,
@@ -594,7 +1230,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:28:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:45:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15767,
@@ -605,7 +1253,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:27:31",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:46:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16595,
@@ -616,7 +1276,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:29:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:44:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17821,
@@ -627,7 +1299,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:52:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:06:49",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17623,
@@ -638,7 +1322,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:05:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17853,
@@ -649,7 +1345,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:52:59",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:07:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 17137,
@@ -660,7 +1368,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:51:44",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-10-02 11:18:54",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:04:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18445,
@@ -671,7 +1396,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:08:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:05:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14752,
@@ -682,7 +1419,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:06:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:07:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 32,
@@ -693,7 +1442,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-07-13",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": []
   },
   {
    "vasa_id": 8563,
@@ -704,7 +1454,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:11:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:03:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8564,
@@ -715,7 +1477,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:11:01",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:02:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8620,
@@ -726,7 +1500,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:09:13",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:01:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8621,
@@ -737,7 +1523,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:09:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:01:37",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8622,
@@ -748,7 +1546,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:10:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:02:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12915,
@@ -759,7 +1569,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:07:05",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:06:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 718,
@@ -770,7 +1592,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:06:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:07:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 4820,
@@ -781,7 +1615,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 06:54:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 07:36:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1230,
@@ -792,7 +1638,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 06:55:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 07:36:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6475,
@@ -803,7 +1661,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:00:20",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:47:29",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 5434,
@@ -814,7 +1684,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 07:59:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:46:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19095,
@@ -825,7 +1707,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:16:54",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 12:44:18",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 7907,
@@ -836,7 +1730,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 05:27:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:18:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8030,
@@ -847,7 +1753,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 05:26:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:17:37",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1287,
@@ -858,7 +1776,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:27:06",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:35:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13461,
@@ -869,7 +1799,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:40:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:19:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 135683,
@@ -880,7 +1822,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:41:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:20:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9298,
@@ -891,7 +1845,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:39:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 09:17:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9297,
@@ -902,7 +1868,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:40:00",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 09:17:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15825,
@@ -913,7 +1891,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:20:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:11:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15998,
@@ -924,7 +1914,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:20:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:12:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 96769,
@@ -935,7 +1937,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:21:04",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 06:18:23",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 118146,
@@ -946,7 +1960,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:24:26",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:17:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8755,
@@ -957,7 +1983,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 10:59:58",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 06:16:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8063,
@@ -968,7 +2006,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:00:12",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 06:15:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14935,
@@ -979,7 +2029,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 10:59:12",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:35:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 132769,
@@ -990,7 +2052,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-04-02",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": []
   },
   {
    "vasa_id": 132768,
@@ -1001,7 +2064,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-04-02",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": []
   },
   {
    "vasa_id": 7909,
@@ -1012,7 +2076,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 10:59:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:36:01",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 5069,
@@ -1023,7 +2099,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:06:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:41:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 37116,
@@ -1034,7 +2122,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:05:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:40:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9257,
@@ -1045,7 +2145,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:07:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:44:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8945,
@@ -1056,7 +2168,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:07:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:44:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15947,
@@ -1067,7 +2191,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:07:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:44:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16067,
@@ -1078,7 +2214,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:02:04",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 05:29:49",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 126911,
@@ -1089,7 +2237,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:01:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:30:49",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 121933,
@@ -1100,7 +2260,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:02:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 05:33:43",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 15353,
@@ -1111,7 +2283,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:01:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:30:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 136593,
@@ -1122,7 +2306,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:02:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:32:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13534,
@@ -1133,7 +2329,8 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-04-30",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": []
   },
   {
    "vasa_id": 6914,
@@ -1144,7 +2341,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:02:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:33:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 7354,
@@ -1155,7 +2364,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 10:58:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:34:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 621,
@@ -1166,7 +2387,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:04:47",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 11:14:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12687,
@@ -1177,7 +2410,29 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-03",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-03 15:58:01",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:06:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-19 14:38:59",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-12 15:35:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12688,
@@ -1188,7 +2443,29 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-03",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-03 15:58:31",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:06:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-19 14:39:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-12 15:34:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15103,
@@ -1199,7 +2476,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:44:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:33:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 259,
@@ -1210,7 +2499,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:17:13",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:44:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 131322,
@@ -1221,7 +2522,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:43:58",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 15:05:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 36414,
@@ -1232,7 +2545,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-04-01",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": []
   },
   {
    "vasa_id": 135714,
@@ -1243,7 +2557,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:35:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 14:53:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 108692,
@@ -1254,7 +2580,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:42:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 15:03:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 137692,
@@ -1265,7 +2603,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:38:46",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 14:58:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 137877,
@@ -1276,7 +2626,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:39:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 15:00:29",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 111620,
@@ -1287,7 +2649,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:39:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 14:59:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 41078,
@@ -1298,7 +2672,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:37:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 14:56:29",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 38169,
@@ -1309,7 +2695,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:38:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 14:57:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 37458,
@@ -1320,7 +2718,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 06:40:44",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 15:01:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8914,
@@ -1331,7 +2741,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:08:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:41:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 38167,
@@ -1342,7 +2764,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:55:20",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:31:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8666,
@@ -1353,7 +2787,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:03:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:38:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8667,
@@ -1364,7 +2810,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:03:38",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 12:38:22",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8297,
@@ -1375,7 +2833,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:05:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:39:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8465,
@@ -1386,7 +2856,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:04:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:39:14",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14015,
@@ -1397,7 +2879,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:06:36",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:40:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13994,
@@ -1408,7 +2902,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:06:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:40:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8081,
@@ -1419,7 +2925,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:56:58",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:32:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8913,
@@ -1430,7 +2948,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:08:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:42:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16699,
@@ -1441,7 +2971,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:05:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:40:04",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 8915,
@@ -1452,7 +2994,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:04:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:39:44",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14879,
@@ -1463,7 +3017,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:02:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:37:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14878,
@@ -1474,7 +3040,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:01:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:37:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14910,
@@ -1485,7 +3063,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:02:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:37:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14909,
@@ -1496,7 +3086,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:03:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:37:52",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 7007,
@@ -1507,7 +3109,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:07:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:41:22",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9551,
@@ -1518,7 +3132,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:59:26",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:35:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9553,
@@ -1529,7 +3155,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:00:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:35:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16952,
@@ -1540,7 +3178,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:00:48",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 12:35:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9555,
@@ -1551,7 +3201,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:59:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:35:44",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 9552,
@@ -1562,7 +3224,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:59:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:34:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14819,
@@ -1573,7 +3247,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:56:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 12:32:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19056,
@@ -1584,7 +3270,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:15:33",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 09:41:29",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 130571,
@@ -1595,7 +3293,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:14:11",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 09:40:05",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 36416,
@@ -1606,7 +3316,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:58:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:11:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18782,
@@ -1617,7 +3339,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:58:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:11:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19331,
@@ -1628,7 +3362,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:56:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:10:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6366,
@@ -1639,7 +3385,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:04:21",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:16:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12983,
@@ -1650,7 +3408,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:03:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:15:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16136,
@@ -1661,7 +3431,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:01:37",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:13:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16137,
@@ -1672,7 +3454,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:02:23",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:14:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 135202,
@@ -1683,7 +3477,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:00:15",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:12:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16436,
@@ -1694,7 +3500,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:03:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:15:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6790,
@@ -1705,7 +3523,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:04:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:17:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 129448,
@@ -1716,7 +3546,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:55:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:09:07",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 117365,
@@ -1727,7 +3569,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:54:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 10:08:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 135891,
@@ -1738,7 +3592,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:00:07",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:06:12",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 2888,
@@ -1749,7 +3615,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:59:59",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:04:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2447,
@@ -1760,7 +3638,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:00:25",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:23:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:06:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2844,
@@ -1771,7 +3666,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:59:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:05:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2448,
@@ -1782,7 +3689,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:59:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:04:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14438,
@@ -1793,7 +3712,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:57:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:04:04",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2330,
@@ -1804,7 +3735,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-08-20",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 37309,
@@ -1815,7 +3747,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:55:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:59:28",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1139,
@@ -1826,7 +3770,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:02:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:25:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:08:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 135277,
@@ -1837,7 +3798,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:01:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:07:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2331,
@@ -1848,7 +3821,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-03-21",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 2446,
@@ -1859,7 +3833,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-03-17",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 135117,
@@ -1870,7 +3845,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:00:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:07:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12805,
@@ -1881,7 +3868,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:34:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:18:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6846,
@@ -1892,7 +3891,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:34:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:16:44",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12790,
@@ -1903,7 +3914,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:35:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:18:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 129655,
@@ -1914,7 +3937,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:14:20",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 09:30:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 5855,
@@ -1925,7 +3960,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:33:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:17:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2199,
@@ -1936,7 +3983,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:51:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:53:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2355,
@@ -1947,7 +4006,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:52:05",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:55:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2657,
@@ -1958,7 +4029,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:51:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:54:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 136002,
@@ -1969,7 +4052,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:50:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:52:44",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2658,
@@ -1980,7 +4075,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:50:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:53:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2496,
@@ -1991,7 +4098,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:49:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:52:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2659,
@@ -2002,7 +4121,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:48:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:51:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2497,
@@ -2013,7 +4144,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:49:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:51:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14354,
@@ -2024,7 +4167,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:48:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:20:34",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:50:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2353,
@@ -2035,7 +4195,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:54:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:58:16",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2260,
@@ -2046,7 +4218,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:53:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:57:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2495,
@@ -2057,7 +4241,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:54:23",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:58:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2354,
@@ -2068,7 +4264,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:53:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 07:56:14",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1589,
@@ -2079,7 +4287,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:51:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:54:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2656,
@@ -2090,7 +4310,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:53:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:56:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1629,
@@ -2101,7 +4333,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 07:57:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:44:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1630,
@@ -2112,7 +4356,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 07:54:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:41:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14831,
@@ -2123,7 +4379,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:19:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:47:07",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15936,
@@ -2134,7 +4402,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:26:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:53:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15800,
@@ -2145,7 +4425,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:25:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:53:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 7596,
@@ -2156,7 +4448,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:20:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:48:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18489,
@@ -2167,7 +4471,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:26:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:54:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17841,
@@ -2178,7 +4494,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:27:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:54:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16194,
@@ -2189,7 +4517,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:27:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:55:23",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16290,
@@ -2200,7 +4540,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:28:23",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:56:03",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15880,
@@ -2211,7 +4563,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:29:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:55:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15878,
@@ -2222,7 +4586,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:28:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:55:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17693,
@@ -2233,7 +4609,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:30:01",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:57:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17446,
@@ -2244,7 +4632,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:30:31",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:57:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18689,
@@ -2255,7 +4655,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:30:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:58:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18674,
@@ -2266,7 +4678,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:31:23",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:58:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18576,
@@ -2277,7 +4701,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:31:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:58:57",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18481,
@@ -2288,7 +4724,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 12:13:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:59:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6264,
@@ -2299,7 +4747,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:17:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:45:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 126294,
@@ -2310,7 +4770,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:20:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:49:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14829,
@@ -2321,7 +4793,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:19:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:47:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14828,
@@ -2332,7 +4816,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:19:53",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 09:47:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 113308,
@@ -2343,7 +4839,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-04-20",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": []
   },
   {
    "vasa_id": 116231,
@@ -2354,7 +4851,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:41:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 12:15:23",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 117005,
@@ -2365,7 +4874,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:42:01",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 12:14:01",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14596,
@@ -2376,7 +4897,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:31:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 13:03:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15271,
@@ -2387,7 +4920,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:30:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 13:02:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16048,
@@ -2398,7 +4943,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:57:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:37:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17091,
@@ -2409,7 +4966,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 13:32:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 13:04:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15799,
@@ -2420,7 +4989,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:19:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:10:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15238,
@@ -2431,7 +5012,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:13:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:00:49",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15544,
@@ -2442,7 +5035,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:12:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:59:23",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14792,
@@ -2453,7 +5058,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:12:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:58:37",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15743,
@@ -2464,7 +5081,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:12:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:57:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15146,
@@ -2475,7 +5104,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:11:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:56:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18615,
@@ -2486,7 +5127,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:10:58",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:53:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 136728,
@@ -2497,7 +5150,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:09:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 05:55:01",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 131308,
@@ -2508,7 +5173,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:08:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:46:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 107896,
@@ -2519,7 +5196,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:03:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:36:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 120504,
@@ -2530,7 +5219,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:04:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:37:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19485,
@@ -2541,7 +5242,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:17:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:09:01",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17135,
@@ -2552,7 +5265,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:03:00",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 05:51:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 38281,
@@ -2563,7 +5288,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:10:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:52:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19063,
@@ -2574,7 +5311,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:18:12",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:09:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19105,
@@ -2585,7 +5334,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:18:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:06:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 108915,
@@ -2596,7 +5357,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:18:46",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 06:08:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 19109,
@@ -2607,7 +5380,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:18:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:07:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18933,
@@ -2618,7 +5403,29 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-03",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-03 16:27:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:35:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-19 14:57:49",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-12 15:50:02",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 17062,
@@ -2629,7 +5436,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:15:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:04:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18884,
@@ -2640,7 +5459,29 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-03",
-   "next_service": "2026-10-10"
+   "next_service": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-03 16:26:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 14:35:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-19 14:57:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-12 15:49:58",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 15437,
@@ -2651,7 +5492,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:15:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:01:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 15946,
@@ -2662,7 +5515,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:14:58",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:02:07",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 16377,
@@ -2673,7 +5538,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 11:13:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 06:00:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6141,
@@ -2684,7 +5561,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-07-23",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": []
   },
   {
    "vasa_id": 6161,
@@ -2695,7 +5573,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:24:23",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:46:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 6142,
@@ -2706,7 +5596,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:23:49",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:45:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6160,
@@ -2717,7 +5619,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:24:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:46:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6143,
@@ -2728,7 +5642,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:23:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:44:03",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6154,
@@ -2739,7 +5665,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:22:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:41:29",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6144,
@@ -2750,7 +5688,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:22:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:43:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6155,
@@ -2761,7 +5711,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:21:03",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-18 10:40:03",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 6145,
@@ -2772,7 +5734,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:21:33",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:41:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6146,
@@ -2783,7 +5757,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:20:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:40:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6147,
@@ -2794,7 +5780,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:19:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:38:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6162,
@@ -2805,7 +5803,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:12:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:26:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6167,
@@ -2816,7 +5826,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:11:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:24:37",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 875,
@@ -2827,7 +5849,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:28:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:52:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6168,
@@ -2838,7 +5872,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:10:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:23:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6169,
@@ -2849,7 +5895,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:10:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:22:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6166,
@@ -2860,7 +5918,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:31:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:57:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6139,
@@ -2871,7 +5941,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:27:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:51:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6164,
@@ -2882,7 +5964,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:26:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:50:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6140,
@@ -2893,7 +5987,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:25:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:49:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6163,
@@ -2904,7 +6010,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 12:26:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 10:50:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13924,
@@ -2915,7 +6033,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:38:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:27:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 131122,
@@ -2926,7 +6056,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:38:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:27:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 7965,
@@ -2937,7 +6079,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:39:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:28:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13882,
@@ -2948,7 +6102,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:38:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:28:15",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 16061,
@@ -2959,7 +6125,14 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-17",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-09-17 06:58:09",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 1130,
@@ -2970,7 +6143,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:33:37",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:57:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1157,
@@ -2981,7 +6166,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:34:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:57:21",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 12399,
@@ -2992,7 +6189,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:34:25",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 06:55:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 6798,
@@ -3003,7 +6212,19 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:36:51",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:56:19",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1172,
@@ -3014,7 +6235,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:35:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:54:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 3047,
@@ -3025,7 +6258,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:35:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:53:45",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1769,
@@ -3036,7 +6281,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:38:27",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 06:50:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17680,
@@ -3047,7 +6304,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:40:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:48:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 5420,
@@ -3058,7 +6327,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-01",
-   "next_service": "2026-10-15"
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:42:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 06:47:33",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 3568,
@@ -3069,7 +6350,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-02",
-   "next_service": "2026-10-16"
+   "next_service": "2026-10-16",
+   "history": [
+    {
+     "date": "2026-10-02 05:28:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-18 05:19:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 3562,
@@ -3080,7 +6373,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 09:44:47",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-22 09:35:15",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 15960,
@@ -3091,7 +6396,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:24:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:52:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 18751,
@@ -3102,7 +6419,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:24:13",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:51:57",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14008,
@@ -3113,7 +6442,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-10-06",
-   "next_service": "2026-10-20"
+   "next_service": "2026-10-20",
+   "history": [
+    {
+     "date": "2026-10-06 11:23:37",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-22 09:51:17",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2018,
@@ -3124,7 +6465,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:39:01",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 07:39:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 36538,
@@ -3135,7 +6488,14 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-15",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-15 07:41:02",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 109853,
@@ -3146,7 +6506,14 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-15",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-15 07:40:20",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 8530,
@@ -3157,7 +6524,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:41:31",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:44:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1015,
@@ -3168,7 +6547,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:40:19",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 07:41:26",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 1880,
@@ -3179,7 +6570,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:04:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:11:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 132747,
@@ -3190,7 +6593,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-04-02",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 2397,
@@ -3201,7 +6605,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:40:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:42:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 1881,
@@ -3212,7 +6628,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:06:13",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:15:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1083,
@@ -3223,7 +6651,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:06:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:18:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 14023,
@@ -3234,7 +6674,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:07:15",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:18:14",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 14089,
@@ -3245,7 +6697,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:07:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:17:52",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 17400,
@@ -3256,7 +6720,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:08:43",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:19:46",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 17401,
@@ -3267,7 +6743,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:07:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:18:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1882,
@@ -3278,7 +6766,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-08-18",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 1005,
@@ -3289,7 +6778,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:10:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:22:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2724,
@@ -3300,7 +6801,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:13:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:25:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 13939,
@@ -3311,7 +6824,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:12:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:24:04",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 13940,
@@ -3322,7 +6847,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:57:21",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:02:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2398,
@@ -3333,7 +6870,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:13:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:25:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 137693,
@@ -3344,7 +6893,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:12:33",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:24:46",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 2725,
@@ -3355,7 +6916,8 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-06-05",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": []
   },
   {
    "vasa_id": 2532,
@@ -3366,7 +6928,14 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-15",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-15 08:24:24",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 16603,
@@ -3377,7 +6946,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:45:26",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 15:15:12",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:57:05",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1885,
@@ -3388,7 +6974,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:15:51",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-15 08:27:22",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 4314,
@@ -3399,7 +6997,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:19:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:28:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 4315,
@@ -3410,7 +7020,14 @@
    "type": "Dvibučiai",
    "carrier": "Ecoservice",
    "last_service": "2026-09-15",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-15 08:28:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
   },
   {
    "vasa_id": 3168,
@@ -3421,7 +7038,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:24:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:33:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1886,
@@ -3432,7 +7061,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:26:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:36:28",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1887,
@@ -3443,7 +7084,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:26:14",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:36:22",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1888,
@@ -3454,7 +7107,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:26:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:35:52",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1889,
@@ -3465,7 +7130,24 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 09:41:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-26 15:26:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 10:53:09",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 1123,
@@ -3476,7 +7158,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:31:36",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:47:16",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2399,
@@ -3487,7 +7181,29 @@
    "type": "Individualios valdos (kassavaitinis)",
    "carrier": "Ecoservice",
    "last_service": "2026-10-04",
-   "next_service": "2026-10-11"
+   "next_service": "2026-10-11",
+   "history": [
+    {
+     "date": "2026-10-04 08:02:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-27 08:27:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-20 07:48:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-13 08:03:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2950,
@@ -3498,7 +7214,19 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 07:44:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 07:46:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   },
   {
    "vasa_id": 2726,
@@ -3509,7 +7237,20 @@
    "type": "Individualios valdos",
    "carrier": "Ecoservice",
    "last_service": "2026-09-29",
-   "next_service": "2026-10-13"
+   "next_service": "2026-10-13",
+   "history": [
+    {
+     "date": "2026-09-29 08:03:35",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-15 08:10:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
   }
- ]
+ ],
+ "history_note": "VASA dumpsters-service-history, window 2026-09-12 to 2026-10-06"
 }

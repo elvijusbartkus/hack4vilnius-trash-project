@@ -2,14 +2,20 @@ import { supabase } from "@/lib/supabase";
 import { EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, type TimeWindow } from "@/lib/config";
 import { addDays, todayISO } from "@/lib/dates";
 
+// One real VASA service record, e.g. { date: "2026-10-02 11:47:38", serviced: true, reason: null }
+export type ServiceRecord = { date: string; serviced: boolean; reason: string | null };
+
 export type Household = {
   id: number;
   vasa_id: number;
   address: string;
   lat: number;
   lon: number;
+  bin_volume_l: number | null;
+  carrier: string | null;
   next_service: string | null;
   is_demo_user: boolean;
+  history: ServiceRecord[];
 };
 
 export type Pickup = {
@@ -20,6 +26,7 @@ export type Pickup = {
   kind: "scheduled" | "extra";
   status: "planned" | "skipped" | "collected" | "blocked";
   price_eur: number;
+  created_at: string;
 };
 
 export type NextPickup = {
@@ -30,12 +37,15 @@ export type NextPickup = {
 
 export type HouseholdState = {
   household: Household;
-  scheduledDate: string | null; // the current fixed-schedule date (next_service rolled forward to today or later)
+  pickups: Pickup[]; // all app pickups for this household, newest date first
+  scheduledDate: string | null; // current fixed-schedule date (next_service rolled forward to today or later)
   skip: Pickup | null; // skip row for scheduledDate, if any
+  nextScheduledDate: string | null; // scheduledDate, or +14 days if it is skipped
+  extras: Pickup[]; // planned extra pickups from today on, soonest first
   next: NextPickup | null;
 };
 
-const HOUSEHOLD_COLUMNS = "id, vasa_id, address, lat, lon, next_service, is_demo_user";
+const HOUSEHOLD_COLUMNS = "id, vasa_id, address, lat, lon, bin_volume_l, carrier, next_service, is_demo_user, history";
 
 function check<T>(res: { data: T; error: { message: string } | null }): T {
   if (res.error) throw new Error(res.error.message);
@@ -67,7 +77,13 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
   const today = todayISO();
   const [household, pickups] = await Promise.all([
     supabase.from("households").select(HOUSEHOLD_COLUMNS).eq("id", householdId).single().then(check),
-    supabase.from("pickups").select("*").eq("household_id", householdId).gte("date", today).then(check),
+    supabase
+      .from("pickups")
+      .select("*")
+      .eq("household_id", householdId)
+      .order("date", { ascending: false })
+      .order("created_at", { ascending: false })
+      .then(check),
   ]);
   const h = household as Household;
   const rows = (pickups ?? []) as Pickup[];
@@ -76,20 +92,16 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
   while (scheduledDate && scheduledDate < today) scheduledDate = addDays(scheduledDate, SCHEDULE_INTERVAL_DAYS);
 
   const skip = rows.find((p) => p.kind === "scheduled" && p.status === "skipped" && p.date === scheduledDate) ?? null;
+  const nextScheduledDate = scheduledDate && skip ? addDays(scheduledDate, SCHEDULE_INTERVAL_DAYS) : scheduledDate;
+  const extras = rows
+    .filter((p) => p.kind === "extra" && p.status === "planned" && p.date >= today)
+    .sort((a, b) => a.date.localeCompare(b.date));
 
-  const candidates: NextPickup[] = rows
-    .filter((p) => p.kind === "extra" && p.status === "planned")
-    .map((p) => ({ date: p.date, kind: "extra", timeWindow: p.time_window }));
-  if (scheduledDate) {
-    candidates.push({
-      date: skip ? addDays(scheduledDate, SCHEDULE_INTERVAL_DAYS) : scheduledDate,
-      kind: "scheduled",
-      timeWindow: null,
-    });
-  }
+  const candidates: NextPickup[] = extras.map((p) => ({ date: p.date, kind: "extra", timeWindow: p.time_window }));
+  if (nextScheduledDate) candidates.push({ date: nextScheduledDate, kind: "scheduled", timeWindow: null });
   candidates.sort((a, b) => a.date.localeCompare(b.date));
 
-  return { household: h, scheduledDate, skip, next: candidates[0] ?? null };
+  return { household: h, pickups: rows, scheduledDate, skip, nextScheduledDate, extras, next: candidates[0] ?? null };
 }
 
 export async function bookExtra(householdId: number, date: string, timeWindow: TimeWindow | null) {
@@ -103,6 +115,11 @@ export async function bookExtra(householdId: number, date: string, timeWindow: T
       price_eur: EXTRA_PICKUP_PRICE_EUR,
     }),
   );
+}
+
+// Cancelling a booked extra pickup removes the row (it never reaches the driver route).
+export async function cancelExtra(pickupId: number) {
+  check(await supabase.from("pickups").delete().eq("id", pickupId));
 }
 
 export async function skipScheduled(householdId: number, date: string) {

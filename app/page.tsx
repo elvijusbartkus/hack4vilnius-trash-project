@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Home from "@/components/resident/Home";
 import Onboarding from "@/components/resident/Onboarding";
-import { Screen } from "@/components/resident/ui";
+import { PhoneFrame, Screen } from "@/components/resident/ui";
 import { getDemoHousehold, resetHousehold } from "@/lib/pickups";
 
 // No real auth: the chosen household lives in localStorage.
@@ -26,17 +26,19 @@ export default function ResidentPage() {
   const [user, setUser] = useState<User | undefined>(undefined); // undefined = still loading
 
   useEffect(() => {
-    // Demo helper: /?reset=1 deletes this household's pickups and clears localStorage.
+    // Demo helper: /?reset=1 deletes pickups for the current and the demo household,
+    // clears localStorage and lands on onboarding with the demo user preselected.
     if (new URLSearchParams(window.location.search).get("reset") === "1") {
       const current = readUser();
       (async () => {
-        const id = current?.householdId ?? (await getDemoHousehold())?.id;
-        if (id) await resetHousehold(id);
+        const demoId = (await getDemoHousehold())?.id;
+        const ids = new Set([current?.householdId, demoId].filter((id): id is number => !!id));
+        await Promise.all([...ids].map(resetHousehold));
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
           localStorage.removeItem(NAME_KEY);
         } catch {}
-        window.history.replaceState(null, "", "/");
+        window.history.replaceState(null, "", window.location.pathname);
         setUser(null);
       })().catch(() => setUser(null));
       return;
@@ -46,16 +48,15 @@ export default function ResidentPage() {
     setUser(readUser());
   }, []);
 
+  let content;
   if (user === undefined) {
-    return (
+    content = (
       <Screen>
         <p className="pt-6 text-ink/40">Kraunama…</p>
       </Screen>
     );
-  }
-
-  if (!user) {
-    return (
+  } else if (!user) {
+    content = (
       <Onboarding
         onDone={(household, name) => {
           try {
@@ -66,7 +67,9 @@ export default function ResidentPage() {
         }}
       />
     );
+  } else {
+    content = <Home householdId={user.householdId} name={user.name} />;
   }
 
-  return <Home householdId={user.householdId} name={user.name} />;
+  return <PhoneFrame>{content}</PhoneFrame>;
 }
