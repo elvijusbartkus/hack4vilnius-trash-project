@@ -1,5 +1,6 @@
 import { drivers } from '../data/shift.js'
 import { plural } from '../lib/lt.js'
+import { LogoMark } from './icons.jsx'
 
 // Shift-terminal style sign-in: the driver taps their own name to start the
 // day. Mock only — the real app hands off to the fleet account system.
@@ -7,9 +8,11 @@ export default function SignIn({ onSignIn }) {
   return (
     <div className="screen screen--signin">
       <div className="signin-brand">
-        <span className="signin-mark">♻</span>
-        <h1>Atliekų maršrutai</h1>
-        <p>Pasirinkite save ir pradėkite pamainą</p>
+        <span className="signin-mark">
+          <LogoMark size={56} />
+        </span>
+        <h1>TRAGE</h1>
+        <p>Vairuotojo maršrutai · pasirinkite save ir pradėkite pamainą</p>
       </div>
 
       <ul className="driver-list">

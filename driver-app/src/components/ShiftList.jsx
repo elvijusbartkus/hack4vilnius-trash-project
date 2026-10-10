@@ -63,8 +63,9 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
                 </span>
 
                 <span className="progress">
+                  {/* scaleX instead of width: no layout work while progress changes */}
                   <span
-                    style={{ width: `${((done + missed) / round.stops.length) * 100}%` }}
+                    style={{ transform: `scaleX(${(done + missed) / round.stops.length})` }}
                   />
                 </span>
                 <span className="round-btn__progress-text">

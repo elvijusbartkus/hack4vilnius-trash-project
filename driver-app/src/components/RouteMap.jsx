@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { CHECK_SVG, DEPOT_SVG } from './icons.jsx'
 
 // One round, nothing else. The driver is looking at the stops they're about
 // to drive, so the map shows only those — no other crews, no other colours.
@@ -80,7 +81,7 @@ export default function RouteMap({ depot, round, doneIds, issueIds = [], activeI
 function depotIcon() {
   return L.divIcon({
     className: '',
-    html: '<div class="marker-depot">🏭</div>',
+    html: `<div class="marker-depot">${DEPOT_SVG}</div>`,
     iconSize: [28, 28],
     iconAnchor: [14, 14],
   })
@@ -96,7 +97,7 @@ function stopIcon(n, colour, { done, issue, active, compact }) {
   if (active) classes.push('is-active')
 
   const style = done || issue ? '' : ` style="background:${colour}"`
-  const label = compact ? '' : done ? '✓' : issue ? '!' : n
+  const label = compact ? '' : done ? CHECK_SVG : issue ? '!' : n
   const size = compact ? 12 : 28
 
   return L.divIcon({
