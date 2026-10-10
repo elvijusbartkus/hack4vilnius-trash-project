@@ -5,18 +5,17 @@
 // ones whose resident answered "Ne, nereikia" (pickups: scheduled/skipped),
 // plus booked extra pickups for that day. Realtime on `pickups` refreshes it,
 // with a 3 s poll as a fallback in case the socket never connects.
+//
+// Stops are ordered by real road distance (OSRM), fetched once for every
+// house on the schedule, so a skip reorders without new requests. Until that
+// table arrives, straight-line distance stands in.
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@supabase/supabase-js'
-import {
-  CO2_KG_PER_L_DIESEL,
-  DEMO_DAY,
-  FUEL_L_PER_100KM,
-  HAVERSINE_ROAD_FACTOR,
-  OSRM_URL,
-} from '../../../lib/config.ts'
+import { DEMO_DAY } from '../../../lib/config.ts'
 import { DEPOT, getFraction } from '../data/vilnius.js'
-import { haversine } from './geo.js'
+import { roadDistance } from './geo.js'
+import { roadMatrix } from './osrm.js'
 import { optimiseRoute } from './route.js'
 
 const url = import.meta.env.NEXT_PUBLIC_SUPABASE_URL
@@ -59,17 +58,12 @@ async function fetchDay() {
     more.data.forEach((h) => known.set(h.id, h))
   }
 
-  // Counted in households (every bin on the schedule), routed in stops (one per address).
-  const counts = {
-    baseline: scheduled.length,
-    today: new Set([...scheduled.filter((h) => !skipped.has(h.id)).map((h) => h.id), ...extraIds]).size,
-  }
   const baseline = uniqueByAddress(scheduled.map((h) => toStop(h)))
   const today = uniqueByAddress([
     ...scheduled.filter((h) => !skipped.has(h.id)).map((h) => toStop(h)),
     ...extraIds.map((id) => known.get(id)).filter(Boolean).map((h) => toStop(h, true)),
   ])
-  return { baseline, today, counts }
+  return { baseline, today }
 }
 
 function toStop(h, extra = false) {
@@ -100,58 +94,17 @@ function uniqueByAddress(stops) {
   })
 }
 
-// Depot → stops → depot, straight lines times the road factor.
-function approxKm(stops) {
-  const path = [DEPOT, ...stops, DEPOT]
-  let km = 0
-  for (let i = 0; i < path.length - 1; i++) km += haversine(path[i], path[i + 1])
-  return km * HAVERSINE_ROAD_FACTOR
-}
-
-// Road distance of the ordered round from OSRM; null if it can't be had.
-const osrmCache = new Map()
-async function osrmKm(stops) {
-  const key = stops.map((s) => s.id).join(',')
-  if (osrmCache.has(key)) return osrmCache.get(key)
-  const coords = [DEPOT, ...stops, DEPOT].map((p) => `${p.lng.toFixed(5)},${p.lat.toFixed(5)}`).join(';')
-  const ctrl = new AbortController()
-  const timer = setTimeout(() => ctrl.abort(), 8000)
-  try {
-    const res = await fetch(`${OSRM_URL}/route/v1/driving/${coords}?overview=false`, { signal: ctrl.signal })
-    const json = await res.json()
-    const km = json.code === 'Ok' ? json.routes[0].distance / 1000 : null
-    osrmCache.set(key, km)
-    return km
-  } catch {
-    return null
-  } finally {
-    clearTimeout(timer)
-  }
-}
-
-function plan(stops) {
-  return optimiseRoute(DEPOT, stops)
-}
-
-function makeRound(todayPlan, counts, km) {
-  const savedKm = km.baseline - km.today
+function makeRound(plan) {
   return {
     id: LIVE_ROUND_ID,
     shiftLabel: 'Rytinis reisas',
     startTime: '07:00',
     fraction: getFraction('mixed'),
     districts: ['Pilaitė'],
-    stops: todayPlan.stops,
-    distanceKm: km.today,
-    durationMin: todayPlan.durationMin,
+    stops: plan.stops,
+    distanceKm: plan.distanceKm,
+    durationMin: plan.durationMin,
     live: true,
-    savings: {
-      baselineStops: counts.baseline,
-      stops: counts.today,
-      savedKm,
-      savedCo2Kg: (savedKm * FUEL_L_PER_100KM * CO2_KG_PER_L_DIESEL) / 100,
-      source: km.source,
-    },
   }
 }
 
@@ -166,38 +119,37 @@ export function useLiveRound() {
     let alive = true
     let busy = false
     let lastKey = null
-    let baselineCache = { key: null, plan: null }
+    // road distances for the whole schedule: { key, km: Map | null, loading }
+    let roads = { key: null, km: null }
+
+    const dist = (a, b) => {
+      const id = (p) => p.id ?? 'depot'
+      return roads.km?.get(`${id(a)}>${id(b)}`) ?? roadDistance(a, b)
+    }
 
     async function refresh() {
       if (busy) return
       busy = true
       try {
-        const { baseline, today, counts } = await fetchDay()
-        const key = `${counts.baseline}|${counts.today}|${today.map((s) => s.id).join(',')}`
+        const { baseline, today } = await fetchDay()
+        const scheduleKey = baseline.map((s) => s.id).join(',')
+        if (roads.key !== scheduleKey) {
+          roads = { key: scheduleKey, km: null }
+          // Not awaited: the round shows straight away and re-orders once roads arrive.
+          roadMatrix([DEPOT, ...baseline])
+            .then((km) => {
+              if (roads.key !== scheduleKey) return
+              roads.km = km
+              lastKey = null // re-plan with road distances on the next refresh
+              refresh()
+            })
+            .catch((e) => console.warn('OSRM table failed, using straight-line distances', e))
+        }
+
+        const key = `${roads.km ? 'road' : 'line'}|${today.map((s) => s.id).join(',')}`
         if (key === lastKey) return
         lastKey = key
-
-        const baselineKey = baseline.map((s) => s.id).join(',')
-        if (baselineCache.key !== baselineKey) {
-          baselineCache = { key: baselineKey, plan: plan(baseline) }
-        }
-        const basePlan = baselineCache.plan
-        const todayPlan = plan(today)
-
-        // Show the change straight away with the approximate distance,
-        // then swap in OSRM road distances once they arrive.
-        const approx = { baseline: approxKm(basePlan.stops), today: approxKm(todayPlan.stops), source: 'approx' }
-        if (alive) setState({ status: 'ready', round: makeRound(todayPlan, counts, approx) })
-
-        // Not awaited: polling must not wait on OSRM.
-        Promise.all([osrmKm(basePlan.stops), osrmKm(todayPlan.stops)]).then(([b, t]) => {
-          if (alive && b != null && t != null && lastKey === key) {
-            setState({
-              status: 'ready',
-              round: makeRound(todayPlan, counts, { baseline: b, today: t, source: 'osrm' }),
-            })
-          }
-        })
+        if (alive) setState({ status: 'ready', round: makeRound(optimiseRoute(DEPOT, today, dist)) })
       } catch (e) {
         console.error(e)
         if (alive) setState((s) => (s.round ? s : { status: 'error', message: e.message }))

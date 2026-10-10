@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { CHECK_SVG } from './icons.jsx'
+import { roadPath } from '../lib/osrm.js'
 
 // One round, nothing else. The driver is looking at the stops they're about
 // to drive, so the map shows only those — no other crews, no other colours.
@@ -12,6 +13,7 @@ export default function RouteMap({ round, doneIds, issueIds = [], activeIndex })
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const layerRef = useRef(null)
+  const roadRef = useRef(null) // the drawn route line, swapped for the road path when it arrives
 
   useEffect(() => {
     const map = L.map(containerRef.current, {
@@ -48,7 +50,8 @@ export default function RouteMap({ round, doneIds, issueIds = [], activeIndex })
     // it tells the driver nothing and pulls the map's framing away from
     // the stops.
     const path = round.stops.map((p) => [p.lat, p.lng])
-    L.polyline(path, { color: colour, weight: 4, opacity: 0.8 }).addTo(layer)
+    // Straight lines until OSRM returns the path along real roads.
+    roadRef.current = L.polyline(path, { color: colour, weight: 4, opacity: 0.35, dashArray: '4 8' }).addTo(layer)
 
     // A hundred numbered circles is unreadable. Past a couple of dozen
     // stops the markers become plain dots and the path carries the order;
@@ -72,6 +75,18 @@ export default function RouteMap({ round, doneIds, issueIds = [], activeIndex })
     })
 
     map.fitBounds(path, { padding: [50, 50] })
+  }, [round, doneIds, issueIds, activeIndex])
+
+  // The driven path through the stops, in order, along real roads.
+  useEffect(() => {
+    let alive = true
+    roadPath(round.stops).then((road) => {
+      if (!alive || !road || !roadRef.current) return
+      roadRef.current.setLatLngs(road.latlngs).setStyle({ opacity: 0.85, dashArray: null })
+    })
+    return () => {
+      alive = false
+    }
   }, [round, doneIds, issueIds, activeIndex])
 
   return <div className="map" ref={containerRef} />

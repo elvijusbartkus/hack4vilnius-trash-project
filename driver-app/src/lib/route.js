@@ -14,13 +14,14 @@ function serviceMinutes(stop) {
   return 1 + stop.volumeL / 1000
 }
 
-export function optimiseRoute(depot, stops) {
+// `dist` defaults to straight-line × detour; pass a road-distance lookup when there is one.
+export function optimiseRoute(depot, stops, dist = roadDistance) {
   if (!stops.length) {
     return { stops: [], distanceKm: 0, durationMin: 0, loadL: 0, looseL: 0 }
   }
 
-  const ordered = twoOpt(depot, nearestNeighbour(depot, stops))
-  const distanceKm = tourLength(depot, ordered)
+  const ordered = twoOpt(depot, nearestNeighbour(depot, stops, dist), dist)
+  const distanceKm = tourLength(depot, ordered, dist)
 
   return {
     stops: ordered,
@@ -35,7 +36,7 @@ export function optimiseRoute(depot, stops) {
   }
 }
 
-function nearestNeighbour(depot, stops) {
+function nearestNeighbour(depot, stops, dist = roadDistance) {
   const remaining = [...stops]
   const order = []
   let current = depot
@@ -44,7 +45,7 @@ function nearestNeighbour(depot, stops) {
     let bestIdx = 0
     let bestDist = Infinity
     remaining.forEach((p, i) => {
-      const d = roadDistance(current, p)
+      const d = dist(current, p)
       if (d < bestDist) {
         bestDist = d
         bestIdx = i
@@ -59,7 +60,7 @@ function nearestNeighbour(depot, stops) {
 
 // Repeatedly reverse the segment between two stops when doing so shortens
 // the round trip, until no reversal helps.
-function twoOpt(depot, order) {
+function twoOpt(depot, order, dist = roadDistance) {
   const route = [...order]
   let improved = true
 
@@ -72,8 +73,8 @@ function twoOpt(depot, order) {
         const c = route[j]
         const d = j === route.length - 1 ? depot : route[j + 1]
 
-        const before = roadDistance(a, b) + roadDistance(c, d)
-        const after = roadDistance(a, c) + roadDistance(b, d)
+        const before = dist(a, b) + dist(c, d)
+        const after = dist(a, c) + dist(b, d)
 
         if (after < before - 1e-9) {
           route.splice(i, j - i + 1, ...route.slice(i, j + 1).reverse())
@@ -86,11 +87,11 @@ function twoOpt(depot, order) {
 }
 
 // Depot → every stop in order → back to the depot.
-export function tourLength(depot, stops) {
+export function tourLength(depot, stops, dist = roadDistance) {
   if (!stops.length) return 0
-  let total = roadDistance(depot, stops[0])
+  let total = dist(depot, stops[0])
   for (let i = 0; i < stops.length - 1; i++) {
-    total += roadDistance(stops[i], stops[i + 1])
+    total += dist(stops[i], stops[i + 1])
   }
-  return total + roadDistance(stops[stops.length - 1], depot)
+  return total + dist(stops[stops.length - 1], depot)
 }
