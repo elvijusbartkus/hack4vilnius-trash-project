@@ -456,8 +456,9 @@ body {
 
 .stop-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px 12px;
   padding: 10px 12px;
   background: var(--panel);
   border: 1px solid var(--line);
@@ -478,21 +479,70 @@ body {
   text-decoration: line-through;
 }
 
-/* The number doubles as the collected toggle — the biggest, easiest tap
-   target on the row, because it's the one a driver hits all day. */
+/* Just the stop's number: marking happens on the row's own buttons, so a
+   stray tap on the number can't tick a stop off. */
 .stop-n {
   flex: 0 0 40px;
   height: 40px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: none;
   background: var(--fraction, var(--accent));
   color: #fff; /* white on the fraction colour: >= 4.9:1 for all three */
-  font: inherit;
   font-size: 14px;
   font-weight: 700;
+}
+
+.stop-row__actions {
+  flex: 1 0 100%;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 8px;
+}
+
+.stop-collect {
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--on-accent);
+  font: inherit;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
+}
+
+.stop-collect:hover {
+  background: var(--accent-deep);
+}
+
+.stop-undo {
+  flex: 0 0 auto;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* The row fades once collected, but undo must stay readable. */
+.stop-row.is-done {
+  opacity: 1;
+}
+
+.stop-row.is-done .stop-n,
+.stop-row.is-done .stop-body {
+  opacity: 0.5;
 }
 
 .stop-n.is-done {
@@ -592,8 +642,7 @@ body {
 }
 
 .stop-issue {
-  flex: 0 0 auto;
-  height: 40px;
+  height: 44px;
   padding: 0 12px;
   border-radius: var(--radius);
   border: 1px solid var(--clay);

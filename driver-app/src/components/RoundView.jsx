@@ -140,18 +140,9 @@ export default function RoundView({
                 i === nextIndex ? ' is-next' : ''
               }`}
             >
-              <button
-                className={`stop-n${isDone ? ' is-done' : ''}`}
-                onClick={() => onToggleStop(stop.id)}
-                aria-pressed={isDone}
-                aria-label={
-                  isDone
-                    ? `Pažymėti ${stop.address} kaip neištuštintą`
-                    : `Pažymėti ${stop.address} kaip ištuštintą`
-                }
-              >
+              <span className={`stop-n${isDone ? ' is-done' : ''}`} aria-hidden>
                 {isDone ? <CheckIcon size={18} /> : issue ? '!' : i + 1}
-              </button>
+              </span>
 
               <span className="stop-body">
                 <strong>{stop.address}</strong>
@@ -164,26 +155,47 @@ export default function RoundView({
                 </small>
               </span>
 
-              {!isDone && (
+              {isDone ? (
                 <button
-                  className={`stop-issue${issue ? ' is-active' : ''}`}
-                  onClick={() => setIssueStopId(stop.id)}
-                  aria-label={`Nepavyko paimti: ${stop.address}`}
+                  className="stop-undo"
+                  onClick={() => onToggleStop(stop.id)}
+                  aria-label={`Atšaukti: ${stop.address} paimta`}
                 >
-                  {issue ? 'Pakeisti' : 'Nepaimta'}
+                  Atšaukti
                 </button>
+              ) : (
+                !issue && (
+                  <a
+                    className="stop-nav"
+                    href={stopUrl(stop)}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Vykti į ${stop.address}`}
+                  >
+                    <NavigateIcon size={18} />
+                  </a>
+                )
               )}
 
-              {!isDone && !issue && (
-                <a
-                  className="stop-nav"
-                  href={stopUrl(stop)}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Vykti į ${stop.address}`}
-                >
-                  <NavigateIcon size={18} />
-                </a>
+              {/* Every stop answers the same question, so every stop gets
+                  both answers — on their own line, where they fit a phone. */}
+              {!isDone && (
+                <span className="stop-row__actions">
+                  <button
+                    className="stop-collect"
+                    onClick={() => onToggleStop(stop.id)}
+                    aria-label={`Paimta: ${stop.address}`}
+                  >
+                    <CheckIcon size={18} /> Paimta
+                  </button>
+                  <button
+                    className={`stop-issue${issue ? ' is-active' : ''}`}
+                    onClick={() => setIssueStopId(stop.id)}
+                    aria-label={`Nepavyko paimti: ${stop.address}`}
+                  >
+                    {issue ? 'Pakeisti priežastį' : 'Nepaimta'}
+                  </button>
+                </span>
               )}
             </li>
           )

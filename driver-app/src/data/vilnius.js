@@ -69,6 +69,9 @@ export const DISTRICTS = [
   { id: 'naujamiestis', name: 'Naujamiestis', lat: 54.678, lng: 25.26, spread: 1.1, streets: ['Savanorių pr.', 'Naugarduko g.', 'Švitrigailos g.', 'Vytenio g.'] },
 ]
 
+// Addresses taken out of the demo day.
+const EXCLUDED_ADDRESSES = ['Valeikos g. 76']
+
 /**
  * Build a batch of pending pickups spread across the chosen districts.
  *
@@ -91,9 +94,19 @@ export function generatePickups({ districtIds, count, seed }) {
     const street = district.streets[Math.floor(rand() * district.streets.length)]
     const houseNo = 1 + Math.floor(rand() * 80)
 
+    // Skipped after drawing all its random values, so every other pickup
+    // keeps the same id, place and container as before.
+    const address = `${street} ${houseNo}`
+    // Bins are rarely brim-full, and planning as if they were would size
+    // rounds far too short.
+    const fillLevel = +(0.45 + rand() * 0.55).toFixed(2)
+    // A few stops are urgent — overflowing bins reported by residents.
+    const urgent = rand() < 0.12
+    if (EXCLUDED_ADDRESSES.includes(address)) continue
+
     pickups.push({
       id: `p-${i + 1}`,
-      address: `${street} ${houseNo}`,
+      address,
       district: district.name,
       districtId: district.id,
       lat,
@@ -101,11 +114,8 @@ export function generatePickups({ districtIds, count, seed }) {
       fractionId: fraction.id,
       containerType: fraction.containerLabel,
       volumeL: fraction.volumeL,
-      // Bins are rarely brim-full, and planning as if they were would size
-      // rounds far too short.
-      fillLevel: +(0.45 + rand() * 0.55).toFixed(2),
-      // A few stops are urgent — overflowing bins reported by residents.
-      urgent: rand() < 0.12,
+      fillLevel,
+      urgent,
     })
   }
   return pickups
