@@ -76,7 +76,6 @@ export default function RoundView({
 
       <div className="map-wrap">
         <RouteMap
-          depot={DEPOT}
           round={round}
           doneIds={done}
           issueIds={issueIds}
@@ -103,11 +102,18 @@ export default function RoundView({
           </>
         ) : (
           <>
-            <div className="next-row">
-              <p className="next-up">
-                {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
-                {round.stops.length} — <strong>{nextStop.address}</strong>
-              </p>
+            <p className="next-up">
+              {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
+              {round.stops.length} — <strong>{nextStop.address}</strong>
+            </p>
+
+            {/* The two answers a driver gives at every container. */}
+            <div className="stop-actions">
+              <button className="btn btn--primary" onClick={() => onToggleStop(nextStop.id)}>
+                <span className="btn-label">
+                  <CheckIcon size={20} /> Paimta
+                </span>
+              </button>
               <button className="issue-btn" onClick={() => setIssueStopId(nextStop.id)}>
                 Nepavyko paimti
               </button>
@@ -115,7 +121,7 @@ export default function RoundView({
 
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
-            <a className="btn btn--primary" href={osmandRouteUrl(remaining, DEPOT)}>
+            <a className="btn btn--ghost" href={osmandRouteUrl(remaining, DEPOT)}>
               Navigacija OsmAnd
             </a>
           </>

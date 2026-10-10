@@ -567,31 +567,19 @@ body {
   box-shadow: 0 0 0 5px rgba(31, 90, 60, 0.35);
 }
 
-.marker-depot {
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  font-size: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
 /* ---- couldn't collect ---- */
 
-.next-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.stop-actions {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 8px;
 }
 
-.next-row .next-up {
-  flex: 1;
+.stop-actions .btn {
+  font-size: 18px;
 }
 
 .issue-btn {
-  flex: 0 0 auto;
   padding: 8px 12px;
   border-radius: var(--radius);
   border: 1px solid var(--clay);

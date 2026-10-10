@@ -8,7 +8,7 @@ import { CHECK_SVG, DEPOT_SVG } from './icons.jsx'
 //
 // Leaflet's default marker images don't survive bundling, so every marker
 // here is a divIcon drawn from CSS instead.
-export default function RouteMap({ depot, round, doneIds, issueIds = [], activeIndex }) {
+export default function RouteMap({ round, doneIds, issueIds = [], activeIndex }) {
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const layerRef = useRef(null)
@@ -44,12 +44,11 @@ export default function RouteMap({ depot, round, doneIds, issueIds = [], activeI
     layer.clearLayers()
 
     const colour = round.fraction.colour
-    const path = [depot, ...round.stops, depot].map((p) => [p.lat, p.lng])
+    // Only the pickups: the depot is where every round starts and ends, so
+    // it tells the driver nothing and pulls the map's framing away from
+    // the stops.
+    const path = round.stops.map((p) => [p.lat, p.lng])
     L.polyline(path, { color: colour, weight: 4, opacity: 0.8 }).addTo(layer)
-
-    L.marker([depot.lat, depot.lng], { icon: depotIcon() })
-      .bindTooltip('Bazė', { direction: 'top' })
-      .addTo(layer)
 
     // A hundred numbered circles is unreadable. Past a couple of dozen
     // stops the markers become plain dots and the path carries the order;
@@ -73,19 +72,11 @@ export default function RouteMap({ depot, round, doneIds, issueIds = [], activeI
     })
 
     map.fitBounds(path, { padding: [50, 50] })
-  }, [depot, round, doneIds, issueIds, activeIndex])
+  }, [round, doneIds, issueIds, activeIndex])
 
   return <div className="map" ref={containerRef} />
 }
 
-function depotIcon() {
-  return L.divIcon({
-    className: '',
-    html: `<div class="marker-depot">${DEPOT_SVG}</div>`,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
-  })
-}
 
 // Stops carry the round's fraction colour, so a glass round reads as green
 // and a mixed-waste round as slate at a glance.
