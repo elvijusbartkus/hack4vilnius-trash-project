@@ -411,7 +411,7 @@ function Hero({
     >
       {isEve && (
         <p className="font-display text-2xl font-semibold leading-tight text-white md:text-[1.75rem]">
-          {answer ? "Sekantis išvežimas rytoj" : "Sekantis išvežimas rytoj, ar išstumsite konteinerį?"}
+          {answer ? "Rytoj išvežimas" : "Rytoj išvežimas. Išstumsite konteinerį?"}
         </p>
       )}
 

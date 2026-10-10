@@ -22,10 +22,10 @@ Residents tell the system when they actually need a pickup (book or skip), and t
 - All prices are constants in `lib/config.ts` (placeholders until we get the real VASA variable fee).
 
 ## 5. Data
-- **Source:** VASA public container map API (atliekuaiksteles.vasa.lt), fetched 2026-10-09.
-- **Demo area:** Pavilnys, Naujosios Vilnios sen. 319 private house / two-family bins (mostly 240L), all served by Ecoservice.
-- **Seed file:** `data/pavilnys_houses.json` (fields: vasa_id, address, lat, lon, bin_volume_l, type, carrier, last_service, next_service).
-- **Demo day:** 2026-10-16 has 145 houses scheduled on the same day. This is the "today's route" for the demo.
+- **Source:** VASA public container map API (atliekuaiksteles.vasa.lt), fetched 2026-10-10.
+- **Demo area:** Pilaitė. 169 private house / two-family bins (mostly 240L and 120L), served by Ecoservice.
+- **Seed file:** `data/pilaite_houses.json` (fields: vasa_id, address, lat, lon, bin_volume_l, type, carrier, last_service, next_service).
+- **Demo day:** 2026-10-22 has 117 houses scheduled on the same day. This is the "today's route" for the demo.
 - **Constants (`lib/config.ts`):** FUEL_L_PER_100KM = 96, DIESEL_EUR_PER_L = 1.45 (to verify), CO2_KG_PER_L_DIESEL = 2.68, DEPOT = Ecoservice depot coords (to set).
 
 ## 6. Data model (Supabase, one shared DB for resident and driver)

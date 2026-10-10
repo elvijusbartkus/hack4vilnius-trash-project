@@ -1,4 +1,5 @@
-// Seed households from data/pavilnys_houses.json. Run: npm run seed
+// Seed households from data/pilaite_houses.json. Run: npm run seed
+// Households not in the file (e.g. the old Pavilnys set) are deleted first; their pickups go with them (on delete cascade).
 // Uses the service role key from .env.local (server-side only, never shipped to the browser).
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -29,7 +30,7 @@ type House = {
 };
 
 const { houses } = JSON.parse(
-  readFileSync(join(process.cwd(), "data/pavilnys_houses.json"), "utf8"),
+  readFileSync(join(process.cwd(), "data/pilaite_houses.json"), "utf8"),
 ) as { houses: House[] };
 
 const demo = houses.find((h) => h.vasa_id === DEMO_VASA_ID);
@@ -59,6 +60,19 @@ const rows = houses.map((h) => {
 
 async function main(url: string, serviceKey: string, demo: House) {
   const supabase = createClient(url, serviceKey, { auth: { persistSession: false } });
+
+  // Drop households that are no longer in the seed file.
+  const keep = new Set(rows.map((r) => r.vasa_id));
+  const existing = (await supabase.from("households").select("id, vasa_id")).data ?? [];
+  const stale = existing.filter((h) => !keep.has(h.vasa_id)).map((h) => h.id);
+  for (let i = 0; i < stale.length; i += 200) {
+    const del = await supabase.from("households").delete().in("id", stale.slice(i, i + 200));
+    if (del.error) {
+      console.error("Delete failed:", del.error.message);
+      process.exit(1);
+    }
+  }
+  if (stale.length) console.log(`Deleted ${stale.length} old households (and their pickups).`);
 
   const { error } = await supabase.from("households").upsert(rows, { onConflict: "vasa_id" });
   if (error) {

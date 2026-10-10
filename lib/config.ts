@@ -6,19 +6,19 @@ export const APP_NAME = "WasteWise";
 // --- Demo data (PRD section 5) ---
 
 // The app's "today". The demo runs on the evening before the big pickup day; use this instead of the real date.
-export const DEMO_TODAY = "2026-10-15";
+export const DEMO_TODAY = "2026-10-21";
 
-// Day used as "today's route" in the demo: 145 Pavilnys houses are scheduled on it.
-export const DEMO_DAY = "2026-10-16";
+// Day used as "today's route" in the demo: 117 Pilaitė houses are scheduled on it.
+export const DEMO_DAY = "2026-10-22";
 
-// VASA id of the household seeded as the demo resident (Alfonso Lipniūno g. 13, scheduled on DEMO_DAY).
-export const DEMO_VASA_ID = 15753;
+// VASA id of the household seeded as the demo resident (Darkiemio g. 13, Pilaitė, scheduled on DEMO_DAY).
+export const DEMO_VASA_ID = 9175;
 
 // Display name of the prefilled demo resident (PRD section 7).
 export const DEMO_USER_NAME = "Žygimantas Bakanas";
 
-// Map centre for the Pavilnys demo area (mean of seeded house coordinates).
-export const DEMO_AREA_CENTER: [number, number] = [54.6781, 25.3748];
+// Map centre for the Pilaitė demo area (mean of seeded house coordinates).
+export const DEMO_AREA_CENTER: [number, number] = [54.7088, 25.1882];
 
 // --- Fuel / emissions (PRD section 5) ---
 
@@ -104,7 +104,7 @@ export const WASTE_TYPES = {
 
 export type WasteType = keyof typeof WASTE_TYPES;
 
-// The household's regular bin (all seeded Pavilnys bins are mixed municipal waste).
+// The household's regular bin (all seeded Pilaitė bins are mixed municipal waste).
 export const HOUSEHOLD_WASTE_TYPE: WasteType = "mixed";
 
 // Days between fixed-schedule pickups (26x per year).

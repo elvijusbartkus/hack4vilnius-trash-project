@@ -1,0 +1,3889 @@
+{
+ "source": "VASA public container map API (atliekuaiksteles.vasa.lt), fetched 2026-10-10",
+ "area": "Pilaitė (bbox 54.700,25.170 to 54.712,25.195)",
+ "history_window": "2026-09-10 to 2026-10-09",
+ "houses": [
+  {
+   "vasa_id": 3473,
+   "address": "Adomo Brako g. 2",
+   "lat": 54.712,
+   "lon": 25.192101,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos (kassavaitinis)",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-08 07:57:00",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-10-01 08:42:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:50:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:44:59",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3886,
+   "address": "Aismarių g. 17",
+   "lat": 54.712301,
+   "lon": 25.195802,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-24",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-09-24 08:27:14",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3910,
+   "address": "Aismarių g. 21",
+   "lat": 54.712499,
+   "lon": 25.195899,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-24",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-09-24 08:27:16",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3903,
+   "address": "Darkiemio g. 1",
+   "lat": 54.709701,
+   "lon": 25.193201,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:23:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:41:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3860,
+   "address": "Darkiemio g. 11",
+   "lat": 54.7101,
+   "lon": 25.192198,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:25:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:44:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 129610,
+   "address": "Darkiemio g. 12",
+   "lat": 54.7113,
+   "lon": 25.1926,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:30:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:52:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 9175,
+   "address": "Darkiemio g. 13",
+   "lat": 54.7102,
+   "lon": 25.192401,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:25:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:45:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3788,
+   "address": "Darkiemio g. 14",
+   "lat": 54.7113,
+   "lon": 25.192798,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:31:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:53:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3547,
+   "address": "Darkiemio g. 15",
+   "lat": 54.710299,
+   "lon": 25.192299,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:26:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:45:48",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3973,
+   "address": "Darkiemio g. 18",
+   "lat": 54.7116,
+   "lon": 25.193002,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:33:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:54:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4804,
+   "address": "Darkiemio g. 19",
+   "lat": 54.7109,
+   "lon": 25.192299,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-24",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-09-24 07:39:54",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4129,
+   "address": "Darkiemio g. 20",
+   "lat": 54.711901,
+   "lon": 25.193002,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:34:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:56:04",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 133014,
+   "address": "Darkiemio g. 21",
+   "lat": 54.711188,
+   "lon": 25.192262,
+   "bin_volume_l": 1100,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:28:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:41:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5168,
+   "address": "Darkiemio g. 21",
+   "lat": 54.711201,
+   "lon": 25.192498,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2025-12-09",
+   "next_service": "2025-12-18",
+   "history": []
+  },
+  {
+   "vasa_id": 4331,
+   "address": "Darkiemio g. 22",
+   "lat": 54.711901,
+   "lon": 25.193099,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-24",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-09-24 07:57:00",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4878,
+   "address": "Darkiemio g. 23",
+   "lat": 54.7113,
+   "lon": 25.192702,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:32:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:53:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 13935,
+   "address": "Darkiemio g. 24",
+   "lat": 54.7124,
+   "lon": 25.193099,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:55:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:02:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3542,
+   "address": "Darkiemio g. 25",
+   "lat": 54.711399,
+   "lon": 25.192702,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:33:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:54:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4422,
+   "address": "Darkiemio g. 26",
+   "lat": 54.712499,
+   "lon": 25.193303,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-09",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-09 10:51:12",
+     "serviced": false,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4421,
+   "address": "Darkiemio g. 26",
+   "lat": 54.7124,
+   "lon": 25.193099,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:55:28",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:02:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 133318,
+   "address": "Darkiemio g. 27",
+   "lat": 54.7116,
+   "lon": 25.1929,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:34:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:55:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4326,
+   "address": "Darkiemio g. 27",
+   "lat": 54.7116,
+   "lon": 25.1929,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2025-12-22",
+   "next_service": "2026-10-22",
+   "history": []
+  },
+  {
+   "vasa_id": 4780,
+   "address": "Darkiemio g. 28",
+   "lat": 54.7128,
+   "lon": 25.192798,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:53:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:00:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5640,
+   "address": "Darkiemio g. 29",
+   "lat": 54.7117,
+   "lon": 25.1929,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:35:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 07:56:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 160,
+   "address": "Darkiemio g. 3",
+   "lat": 54.7098,
+   "lon": 25.192798,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:23:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:42:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7037,
+   "address": "Darkiemio g. 31",
+   "lat": 54.712601,
+   "lon": 25.193002,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:54:26",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:01:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3923,
+   "address": "Darkiemio g. 32",
+   "lat": 54.7131,
+   "lon": 25.193201,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:53:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:59:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3792,
+   "address": "Darkiemio g. 34",
+   "lat": 54.713199,
+   "lon": 25.191302,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:52:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:58:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 17046,
+   "address": "Darkiemio g. 35",
+   "lat": 54.712899,
+   "lon": 25.193099,
+   "bin_volume_l": 660,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:44:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:46:57",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4136,
+   "address": "Darkiemio g. 37",
+   "lat": 54.713001,
+   "lon": 25.193099,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:53:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:00:14",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4153,
+   "address": "Darkiemio g. 39",
+   "lat": 54.7131,
+   "lon": 25.193303,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:52:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:59:44",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4327,
+   "address": "Darkiemio g. 5",
+   "lat": 54.7098,
+   "lon": 25.192702,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:24:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:42:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3467,
+   "address": "Darkiemio g. 7",
+   "lat": 54.709899,
+   "lon": 25.192498,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:24:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:43:28",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 106657,
+   "address": "Karvaičių g. 10",
+   "lat": 54.7105,
+   "lon": 25.194402,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:49:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:25:20",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 5802,
+   "address": "Karvaičių g. 11",
+   "lat": 54.711399,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:44:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:17:54",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 5036,
+   "address": "Karvaičių g. 12",
+   "lat": 54.710699,
+   "lon": 25.193598,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:46:20",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:19:16",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5987,
+   "address": "Karvaičių g. 13",
+   "lat": 54.7116,
+   "lon": 25.1943,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:43:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:15:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4134,
+   "address": "Karvaičių g. 14",
+   "lat": 54.710999,
+   "lon": 25.193802,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-24",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-09-24 08:18:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 7714,
+   "address": "Karvaičių g. 16",
+   "lat": 54.711101,
+   "lon": 25.194,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:45:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:25:56",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 16523,
+   "address": "Karvaičių g. 17",
+   "lat": 54.711799,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:42:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:15:00",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5486,
+   "address": "Karvaičių g. 18",
+   "lat": 54.711399,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:44:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:16:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 15215,
+   "address": "Karvaičių g. 19-2",
+   "lat": 54.712198,
+   "lon": 25.193898,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:36:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:04:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 15625,
+   "address": "Karvaičių g. 19A-1",
+   "lat": 54.7124,
+   "lon": 25.194198,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:42:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:13:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 15626,
+   "address": "Karvaičių g. 19A-2",
+   "lat": 54.7124,
+   "lon": 25.194198,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:42:14",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:14:12",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 6038,
+   "address": "Karvaičių g. 20",
+   "lat": 54.7116,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:43:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:26:28",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 8176,
+   "address": "Karvaičių g. 23",
+   "lat": 54.7124,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:41:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:12:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 8177,
+   "address": "Karvaičių g. 23A",
+   "lat": 54.712499,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:40:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:11:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 8178,
+   "address": "Karvaičių g. 23B",
+   "lat": 54.712499,
+   "lon": 25.193898,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:40:44",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:11:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 17994,
+   "address": "Karvaičių g. 23C",
+   "lat": 54.712499,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:41:14",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:11:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 127505,
+   "address": "Karvaičių g. 25",
+   "lat": 54.71262,
+   "lon": 25.194139,
+   "bin_volume_l": 240,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:41:30",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:09:50",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3967,
+   "address": "Karvaičių g. 27",
+   "lat": 54.712899,
+   "lon": 25.194402,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:38:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:07:56",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4900,
+   "address": "Karvaičių g. 28",
+   "lat": 54.712601,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:40:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:10:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4901,
+   "address": "Karvaičių g. 28",
+   "lat": 54.712499,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:39:36",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:10:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3965,
+   "address": "Karvaičių g. 29",
+   "lat": 54.713001,
+   "lon": 25.194601,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:37:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:06:48",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 14755,
+   "address": "Karvaičių g. 2A",
+   "lat": 54.710401,
+   "lon": 25.193802,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:47:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:20:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4578,
+   "address": "Karvaičių g. 30",
+   "lat": 54.712601,
+   "lon": 25.194499,
+   "bin_volume_l": 240,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:39:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:09:28",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 12383,
+   "address": "Karvaičių g. 32",
+   "lat": 54.7128,
+   "lon": 25.194499,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:39:14",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:08:54",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 6091,
+   "address": "Karvaičių g. 34",
+   "lat": 54.712899,
+   "lon": 25.194799,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:38:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:07:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5223,
+   "address": "Karvaičių g. 36",
+   "lat": 54.713199,
+   "lon": 25.194697,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:37:44",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:06:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6743,
+   "address": "Karvaičių g. 4C",
+   "lat": 54.710001,
+   "lon": 25.193501,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:48:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:21:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4924,
+   "address": "Karvaičių g. 5",
+   "lat": 54.710801,
+   "lon": 25.193501,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:46:10",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:19:50",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 7503,
+   "address": "Karvaičių g. 6",
+   "lat": 54.710299,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:49:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:24:32",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4124,
+   "address": "Karvaičių g. 7",
+   "lat": 54.7109,
+   "lon": 25.193802,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:45:48",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:18:46",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3664,
+   "address": "Karvaičių g. 8A",
+   "lat": 54.710299,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:49:34",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:24:22",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3665,
+   "address": "Karvaičių g. 8B",
+   "lat": 54.710299,
+   "lon": 25.1943,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:49:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:23:16",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6057,
+   "address": "Nadruvos g. 10",
+   "lat": 54.700601,
+   "lon": 25.172902,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:57:23",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 10:48:13",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4733,
+   "address": "Nadruvos g. 11",
+   "lat": 54.6995,
+   "lon": 25.173599,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:07:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:58:16",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5045,
+   "address": "Nadruvos g. 12",
+   "lat": 54.700399,
+   "lon": 25.172397,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:13:57",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:50:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4734,
+   "address": "Nadruvos g. 13",
+   "lat": 54.699401,
+   "lon": 25.173503,
+   "bin_volume_l": 1100,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-06-09",
+   "next_service": "2026-10-12",
+   "history": []
+  },
+  {
+   "vasa_id": 137753,
+   "address": "Nadruvos g. 13",
+   "lat": 54.699401,
+   "lon": 25.173503,
+   "bin_volume_l": 1100,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-28",
+   "next_service": "2026-10-12",
+   "history": [
+    {
+     "date": "2026-09-28 09:29:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-14 08:32:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6056,
+   "address": "Nadruvos g. 14",
+   "lat": 54.700399,
+   "lon": 25.172301,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:13:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:50:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 115368,
+   "address": "Nadruvos g. 15",
+   "lat": 54.699894,
+   "lon": 25.172912,
+   "bin_volume_l": 770,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-28",
+   "next_service": "2026-10-12",
+   "history": [
+    {
+     "date": "2026-09-28 09:30:01",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-14 08:33:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6052,
+   "address": "Nadruvos g. 16",
+   "lat": 54.700101,
+   "lon": 25.172601,
+   "bin_volume_l": 770,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-09-28",
+   "next_service": "2026-10-12",
+   "history": [
+    {
+     "date": "2026-09-28 09:31:09",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-14 08:34:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 107810,
+   "address": "Nadruvos g. 17",
+   "lat": 54.699801,
+   "lon": 25.1728,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:11:45",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 11:00:28",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4644,
+   "address": "Nadruvos g. 18",
+   "lat": 54.699999,
+   "lon": 25.172698,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:11:49",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:50:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4445,
+   "address": "Nadruvos g. 19",
+   "lat": 54.699599,
+   "lon": 25.172902,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:05:23",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 10:59:22",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3747,
+   "address": "Nadruvos g. 2",
+   "lat": 54.700501,
+   "lon": 25.173202,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:57:15",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:48:17",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4645,
+   "address": "Nadruvos g. 20",
+   "lat": 54.700201,
+   "lon": 25.172499,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:11:51",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 11:00:36",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4446,
+   "address": "Nadruvos g. 21",
+   "lat": 54.699299,
+   "lon": 25.173202,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:03:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:55:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4646,
+   "address": "Nadruvos g. 22",
+   "lat": 54.700201,
+   "lon": 25.172397,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:12:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:01:04",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4728,
+   "address": "Nadruvos g. 23",
+   "lat": 54.699401,
+   "lon": 25.172499,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:05:05",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:50:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4647,
+   "address": "Nadruvos g. 24",
+   "lat": 54.699999,
+   "lon": 25.172102,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:13:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:00:58",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4530,
+   "address": "Nadruvos g. 25",
+   "lat": 54.699401,
+   "lon": 25.172698,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:04:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:56:58",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4874,
+   "address": "Nadruvos g. 26",
+   "lat": 54.699401,
+   "lon": 25.172397,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:58:11",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:50:56",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4727,
+   "address": "Nadruvos g. 27",
+   "lat": 54.699299,
+   "lon": 25.172998,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:04:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:56:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5282,
+   "address": "Nadruvos g. 28",
+   "lat": 54.699401,
+   "lon": 25.172397,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos (kassavaitinis)",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:58:37",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:51:06",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4726,
+   "address": "Nadruvos g. 29",
+   "lat": 54.699199,
+   "lon": 25.173202,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:03:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:55:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4467,
+   "address": "Nadruvos g. 3",
+   "lat": 54.699801,
+   "lon": 25.172998,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos (kassavaitinis)",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-08 09:52:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-10-01 12:09:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 10:10:44",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-20 10:15:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:00:22",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-10 10:15:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5472,
+   "address": "Nadruvos g. 30",
+   "lat": 54.699299,
+   "lon": 25.172199,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:59:07",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:52:32",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 129673,
+   "address": "Nadruvos g. 31",
+   "lat": 54.6991,
+   "lon": 25.173202,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:03:55",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 10:55:00",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5471,
+   "address": "Nadruvos g. 32",
+   "lat": 54.699199,
+   "lon": 25.172199,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 11:59:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:53:04",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4487,
+   "address": "Nadruvos g. 33",
+   "lat": 54.6991,
+   "lon": 25.1731,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:01:41",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:54:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5073,
+   "address": "Nadruvos g. 34",
+   "lat": 54.699001,
+   "lon": 25.172001,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:00:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:53:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 7910,
+   "address": "Nadruvos g. 4-2",
+   "lat": 54.701,
+   "lon": 25.173401,
+   "bin_volume_l": 120,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:15:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:02:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 37068,
+   "address": "Nadruvos g. 5",
+   "lat": 54.6999,
+   "lon": 25.173503,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:11:15",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 10:59:44",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3746,
+   "address": "Nadruvos g. 6",
+   "lat": 54.7011,
+   "lon": 25.173299,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:16:19",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:02:46",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4468,
+   "address": "Nadruvos g. 7",
+   "lat": 54.6999,
+   "lon": 25.173701,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:08:55",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:58:40",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3745,
+   "address": "Nadruvos g. 8",
+   "lat": 54.701,
+   "lon": 25.172698,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-08 09:54:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-10-01 12:15:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 10:11:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:47:41",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-10 10:17:02",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4732,
+   "address": "Nadruvos g. 9",
+   "lat": 54.699699,
+   "lon": 25.173798,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:08:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 10:59:26",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3602,
+   "address": "Pajautos g. 8A",
+   "lat": 54.710699,
+   "lon": 25.169801,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 11:27:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 12:00:29",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-10 11:43:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 12831,
+   "address": "Pilaitės Sodų 1-oji g. 21",
+   "lat": 54.713801,
+   "lon": 25.197498,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:59:36",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:58:15",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 15020,
+   "address": "Pilaitės Sodų 1-oji g. 22-1",
+   "lat": 54.713801,
+   "lon": 25.1976,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:58:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:57:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6786,
+   "address": "Pilaitės Sodų 3-ioji g. 17",
+   "lat": 54.713701,
+   "lon": 25.196097,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:54:25",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:52:07",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6422,
+   "address": "Pilaitės Sodų 3-ioji g. 18",
+   "lat": 54.713701,
+   "lon": 25.196097,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:54:45",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:52:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7506,
+   "address": "Pilaitės Sodų 3-ioji g. 20",
+   "lat": 54.713599,
+   "lon": 25.196199,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:55:15",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:53:03",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 134744,
+   "address": "Pilaitės Sodų 3-ioji g. 22",
+   "lat": 54.713401,
+   "lon": 25.196398,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:55:47",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:53:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6509,
+   "address": "Pilaitės Sodų 3-ioji g. 22",
+   "lat": 54.713401,
+   "lon": 25.196398,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-03-05",
+   "next_service": "2026-10-22",
+   "history": []
+  },
+  {
+   "vasa_id": 9438,
+   "address": "Pilaitės Sodų 3-ioji g. 23",
+   "lat": 54.713299,
+   "lon": 25.196602,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:56:43",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:54:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6104,
+   "address": "Pilaitės Sodų 3-ioji g. 24",
+   "lat": 54.713299,
+   "lon": 25.196602,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:56:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:54:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 855,
+   "address": "Pilaitės Sodų 3-ioji g. 25",
+   "lat": 54.7131,
+   "lon": 25.1968,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 05:57:13",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 05:55:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6049,
+   "address": "Pilaitės Sodų 5-oji g. 10",
+   "lat": 54.713599,
+   "lon": 25.194697,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:20:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:24:25",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 134044,
+   "address": "Pilaitės Sodų 5-oji g. 11",
+   "lat": 54.713491,
+   "lon": 25.194569,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:20:40",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:24:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 18569,
+   "address": "Pilaitės Sodų 5-oji g. 14",
+   "lat": 54.713401,
+   "lon": 25.194998,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:19:58",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:23:39",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6616,
+   "address": "Pilaitės Sodų 5-oji g. 16",
+   "lat": 54.713299,
+   "lon": 25.195202,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:19:28",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:22:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 14153,
+   "address": "Pilaitės Sodų 5-oji g. 20",
+   "lat": 54.713001,
+   "lon": 25.195298,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:18:52",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:22:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 543,
+   "address": "Pilaitės Sodų 5-oji g. 6",
+   "lat": 54.713801,
+   "lon": 25.194499,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:22:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:26:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5917,
+   "address": "Pilaitės Sodų 5-oji g. 7",
+   "lat": 54.713801,
+   "lon": 25.194499,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:22:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:26:47",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6043,
+   "address": "Pilaitės Sodų 5-oji g. 8",
+   "lat": 54.713701,
+   "lon": 25.194601,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:21:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:25:27",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 14862,
+   "address": "Pilaitės Sodų 5-oji g. 9",
+   "lat": 54.713801,
+   "lon": 25.194499,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:21:36",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:25:51",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6436,
+   "address": "Pilaitės Sodų g. 24",
+   "lat": 54.7135,
+   "lon": 25.193303,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 06:38:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 06:46:35",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7794,
+   "address": "Piliakalnio g. 10",
+   "lat": 54.702925,
+   "lon": 25.192696,
+   "bin_volume_l": 770,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-07",
+   "next_service": "2026-10-14",
+   "history": [
+    {
+     "date": "2026-10-07 10:42:27",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-30 11:52:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-23 10:42:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-16 18:54:37",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3958,
+   "address": "Piliakalnio g. 16",
+   "lat": 54.702963,
+   "lon": 25.192713,
+   "bin_volume_l": 240,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:31:53",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-16 18:55:23",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5897,
+   "address": "Smalinės g. 10",
+   "lat": 54.702699,
+   "lon": 25.188099,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:25:47",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 05:50:13",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 5896,
+   "address": "Smalinės g. 12",
+   "lat": 54.704106,
+   "lon": 25.188823,
+   "bin_volume_l": 660,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-07",
+   "next_service": "2026-10-14",
+   "history": [
+    {
+     "date": "2026-10-07 08:07:25",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-30 08:45:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-23 08:05:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-16 16:04:11",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5878,
+   "address": "Smalinės g. 18",
+   "lat": 54.704298,
+   "lon": 25.1887,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:27:03",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 05:51:13",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 12855,
+   "address": "Smalinės g. 20",
+   "lat": 54.704401,
+   "lon": 25.188898,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:27:25",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 05:51:55",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 12579,
+   "address": "Smalinės g. 20A",
+   "lat": 54.699001,
+   "lon": 25.184602,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:21:51",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 05:46:53",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5993,
+   "address": "Smalinės g. 24",
+   "lat": 54.704801,
+   "lon": 25.189102,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 05:26:51",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-17 05:52:31",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 5864,
+   "address": "Smalinės g. 8",
+   "lat": 54.702699,
+   "lon": 25.188003,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-29",
+   "history": [
+    {
+     "date": "2026-10-01 05:25:43",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4398,
+   "address": "Stalupėnų g. 10",
+   "lat": 54.709601,
+   "lon": 25.191001,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:17:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:35:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 17943,
+   "address": "Stalupėnų g. 12",
+   "lat": 54.709701,
+   "lon": 25.190899,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:17:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:36:28",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 117101,
+   "address": "Stalupėnų g. 14",
+   "lat": 54.709936,
+   "lon": 25.191103,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:18:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:37:04",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 117003,
+   "address": "Stalupėnų g. 16",
+   "lat": 54.710057,
+   "lon": 25.191017,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:18:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:37:26",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4379,
+   "address": "Stalupėnų g. 18",
+   "lat": 54.710401,
+   "lon": 25.190899,
+   "bin_volume_l": 660,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:41:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:43:43",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 16298,
+   "address": "Stalupėnų g. 18",
+   "lat": 54.7102,
+   "lon": 25.190899,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:19:30",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:38:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3544,
+   "address": "Stalupėnų g. 2",
+   "lat": 54.709,
+   "lon": 25.192299,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:15:50",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:32:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4121,
+   "address": "Stalupėnų g. 24",
+   "lat": 54.710999,
+   "lon": 25.191001,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:27:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:46:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6244,
+   "address": "Stalupėnų g. 26",
+   "lat": 54.7113,
+   "lon": 25.1912,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:27:52",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 07:47:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 6327,
+   "address": "Stalupėnų g. 28",
+   "lat": 54.711501,
+   "lon": 25.191302,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:28:06",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:47:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 137672,
+   "address": "Stalupėnų g. 30",
+   "lat": 54.7117,
+   "lon": 25.191602,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:28:42",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:48:34",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3525,
+   "address": "Stalupėnų g. 30",
+   "lat": 54.7117,
+   "lon": 25.191602,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-06-05",
+   "next_service": "2026-10-22",
+   "history": []
+  },
+  {
+   "vasa_id": 5943,
+   "address": "Stalupėnų g. 32",
+   "lat": 54.7117,
+   "lon": 25.191903,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:29:24",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 07:49:26",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3990,
+   "address": "Stalupėnų g. 36",
+   "lat": 54.712198,
+   "lon": 25.192498,
+   "bin_volume_l": 660,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 08:43:08",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 08:45:41",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7682,
+   "address": "Stalupėnų g. 4",
+   "lat": 54.709099,
+   "lon": 25.192198,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:16:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:33:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5498,
+   "address": "Stalupėnų g. 40",
+   "lat": 54.7127,
+   "lon": 25.192198,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:57:56",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:28:52",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5054,
+   "address": "Stalupėnų g. 42",
+   "lat": 54.7127,
+   "lon": 25.191903,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:58:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:29:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4325,
+   "address": "Stalupėnų g. 44",
+   "lat": 54.712899,
+   "lon": 25.191699,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:58:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:29:54",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 13010,
+   "address": "Stalupėnų g. 46",
+   "lat": 54.712899,
+   "lon": 25.191302,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:59:14",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:30:16",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 4453,
+   "address": "Stalupėnų g. 52",
+   "lat": 54.713199,
+   "lon": 25.190299,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:59:48",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:31:06",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4113,
+   "address": "Stalupėnų g. 54",
+   "lat": 54.713401,
+   "lon": 25.189998,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:00:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:32:12",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 13886,
+   "address": "Stalupėnų g. 56-2",
+   "lat": 54.713701,
+   "lon": 25.189601,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:00:54",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:33:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4069,
+   "address": "Stalupėnų g. 6",
+   "lat": 54.709099,
+   "lon": 25.191903,
+   "bin_volume_l": 120,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:16:32",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:34:10",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4373,
+   "address": "Stalupėnų g. 8",
+   "lat": 54.709199,
+   "lon": 25.191699,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:17:02",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 07:35:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4328,
+   "address": "Stanislovo Rapolionio g. 10",
+   "lat": 54.713701,
+   "lon": 25.191398,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:07:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:39:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4437,
+   "address": "Stanislovo Rapolionio g. 12",
+   "lat": 54.713701,
+   "lon": 25.191699,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:06:42",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    },
+    {
+     "date": "2026-09-24 08:38:56",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 3524,
+   "address": "Stanislovo Rapolionio g. 14",
+   "lat": 54.713701,
+   "lon": 25.191999,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:06:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:38:20",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7079,
+   "address": "Stanislovo Rapolionio g. 16-1",
+   "lat": 54.7135,
+   "lon": 25.192498,
+   "bin_volume_l": 120,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:05:00",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:37:24",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7080,
+   "address": "Stanislovo Rapolionio g. 16-2",
+   "lat": 54.7135,
+   "lon": 25.192299,
+   "bin_volume_l": 240,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:05:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:37:44",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5452,
+   "address": "Stanislovo Rapolionio g. 18",
+   "lat": 54.713701,
+   "lon": 25.192101,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:05:16",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:38:38",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 5450,
+   "address": "Stanislovo Rapolionio g. 6",
+   "lat": 54.713801,
+   "lon": 25.191001,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:08:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:41:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 4420,
+   "address": "Stanislovo Rapolionio g. 8",
+   "lat": 54.713801,
+   "lon": 25.191098,
+   "bin_volume_l": 120,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:07:38",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:40:18",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7971,
+   "address": "Stanislovo Rapolionio g. 9",
+   "lat": 54.713801,
+   "lon": 25.190899,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 08:08:24",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 08:41:50",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5247,
+   "address": "Trakėnų g. 10",
+   "lat": 54.700799,
+   "lon": 25.1692,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:42:23",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:37:08",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 129193,
+   "address": "Trakėnų g. 4",
+   "lat": 54.700901,
+   "lon": 25.1692,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:42:17",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:36:42",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5235,
+   "address": "Trakėnų g. 6",
+   "lat": 54.700867,
+   "lon": 25.169978,
+   "bin_volume_l": 240,
+   "type": "Dvibučiai",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-07",
+   "next_service": "2026-10-14",
+   "history": [
+    {
+     "date": "2026-10-07 08:44:49",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-30 09:29:18",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-23 09:12:02",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-16 16:46:31",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 5236,
+   "address": "Trakėnų g. 8",
+   "lat": 54.700501,
+   "lon": 25.169399,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-01",
+   "next_service": "2026-10-15",
+   "history": [
+    {
+     "date": "2026-10-01 12:41:51",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-17 11:36:38",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 7486,
+   "address": "Tvenkinių g. 10A",
+   "lat": 54.709899,
+   "lon": 25.197101,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:07:46",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:22:36",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  },
+  {
+   "vasa_id": 114182,
+   "address": "Tvenkinių g. 10A",
+   "lat": 54.709967,
+   "lon": 25.197213,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 07:07:04",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 07:23:08",
+     "serviced": false,
+     "reason": "Neišstumtas konteineris"
+    }
+   ]
+  },
+  {
+   "vasa_id": 3600,
+   "address": "Vištyčio g. 4",
+   "lat": 54.713199,
+   "lon": 25.1742,
+   "bin_volume_l": 240,
+   "type": "Individualios valdos",
+   "carrier": "Ecoservice",
+   "last_service": "2026-10-08",
+   "next_service": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-08 09:54:22",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-24 10:14:39",
+     "serviced": true,
+     "reason": null
+    },
+    {
+     "date": "2026-09-10 09:50:30",
+     "serviced": true,
+     "reason": null
+    }
+   ]
+  }
+ ]
+}

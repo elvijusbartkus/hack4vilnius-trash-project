@@ -60,7 +60,7 @@ export default function Onboarding({ onDone }: { onDone: (household: Household, 
           id="address"
           value={query}
           autoComplete="off"
-          placeholder="Pvz. Alfonso Lipniūno g. 13"
+          placeholder="Pvz. Darkiemio g. 13"
           onChange={(e) => {
             setQuery(e.target.value);
             setSelected(null);

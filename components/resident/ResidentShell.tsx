@@ -5,7 +5,7 @@ import { INVOICE_PAID_PREFIX } from "@/components/dashboard/Invoices";
 import type { Household } from "@/lib/pickups";
 import Onboarding from "@/components/resident/Onboarding";
 import { DEMO_DAY, DEMO_USER_NAME } from "@/lib/config";
-import { getDemoHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
+import { getDemoHousehold, getHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
 import { registerServiceWorker } from "@/lib/pwa";
 import { resetReports } from "@/lib/reports";
 
@@ -44,7 +44,7 @@ async function demoUser(): Promise<User> {
   return { householdId: demo.id, name: DEMO_USER_NAME };
 }
 
-// Shared by every resident screen (/ and /saskaitos): resolves who is looking (demo household,
+// Shared by every resident screen (/, /saskaitos, /pranesti): resolves who is looking (demo household,
 // a stored choice, ?onboarding=1, ?reset=1) and renders the screen for them.
 export default function ResidentShell({
   children,
@@ -98,7 +98,10 @@ export default function ResidentShell({
         return;
       }
 
-      setUser(readStored() ?? (await demoUser()));
+      // a stored house may no longer exist (re-seeded area): fall back to the demo house
+      const stored = readStored();
+      const exists = stored && (await getHousehold(stored.householdId).catch(() => null));
+      setUser(exists ? stored : await demoUser());
     })().catch((e) => setError(e.message));
   }, []);
 

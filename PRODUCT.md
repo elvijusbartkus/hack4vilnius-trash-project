@@ -8,7 +8,7 @@ web
 
 ## Users
 - **Hackathon judges (primary audience for design decisions):** Hack4Vilnius 2026, challenge 10. They watch the demo on a big screen (laptop/projector, desktop web) and decide in minutes whether the idea is credible and the flow is effortless.
-- **Residents of private houses in Vilnius (the story):** house owners with a 240L mixed-waste bin collected every 2 weeks. Job: tell the system when they actually need a pickup (skip or book) with zero effort. Demo persona: Žygimantas Bakanas, Alfonso Lipniūno g. 13, Pavilnys.
+- **Residents of private houses in Vilnius (the story):** house owners with a 240L mixed-waste bin collected every 2 weeks. Job: tell the system when they actually need a pickup (skip or book) with zero effort. Demo persona: Žygimantas Bakanas, Darkiemio g. 13, Pilaitė.
 - **Garbage truck driver (separate app built by a teammate, integrated later; nothing driver-specific lives in this repo):** gets today's ordered stops and opens them in Google Maps or Waze.
 - **Route / ops view:** removed from this repo (2026-10-09); route views belong to the driver app built separately.
 
@@ -19,7 +19,7 @@ Fixed-schedule collection stops at every house whether the bin is full or not (T
 On-demand collection for private houses built on real VASA data: the resident's single tap directly reshapes tomorrow's truck route. Savings come when whole street segments drop out, not single houses.
 
 ## Operating Context
-- Demo date is fixed: DEMO_TODAY = 2026-10-15, the evening before 145 Pavilnys houses are scheduled (2026-10-16).
+- Demo date is fixed: DEMO_TODAY = 2026-10-21, the evening before 117 Pilaitė houses are scheduled (2026-10-22).
 - Resident flow: evening reminder ("Rytoj išvežimas. Ar konteineris pilnas?"), skip, book an extra pickup on another day, undo.
 - Default stays the VASA fixed schedule; non-users are unaffected.
 - One shared Supabase DB; realtime on pickups so the separate driver app can update live.
@@ -40,7 +40,7 @@ On-demand collection for private houses built on real VASA data: the resident's 
 - Deferred: Smart-ID login for address verification.
 
 ## Evidence on Hand
-- `data/pavilnys_houses.json`: 319 real houses from the VASA public container map API (fetched 2026-10-09), with real pickup history (2026-09-12 to 2026-10-06), including failure reasons such as "Neišstumtas konteineris".
+- `data/pilaite_houses.json`: 169 real Pilaitė houses from the VASA public container map API (fetched 2026-10-10), with real pickup history (2026-09-10 to 2026-10-09), including failure reasons such as "Neišstumtas konteineris".
 - Benchmarks in PRD.md: Tallinn 2024 pilot (85.7% under half full), Cascais 2019 (≈96 L/100 km in collection), Lithuanian driver shortage.
 - No testimonials, customers, or measured savings exist; impact numbers use the placeholder AVG_KM_SAVED_PER_SKIP = 0.3 and must stay labelled approximate.
 

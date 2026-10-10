@@ -1,7 +1,7 @@
 -- Hack4Vilnius waste pickup on demand: schema (PRD section 6).
 -- Paste into the Supabase SQL editor and run once. Hackathon only: RLS is OFF, no auth.
 
--- Households: one row per VASA bin (seeded from data/pavilnys_houses.json).
+-- Households: one row per VASA bin (seeded from data/pilaite_houses.json).
 create table if not exists public.households (
   id            bigint generated always as identity primary key,
   vasa_id       integer not null unique,          -- VASA container id, upsert key for the seed
