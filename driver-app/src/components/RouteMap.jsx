@@ -7,7 +7,7 @@ import 'leaflet/dist/leaflet.css'
 //
 // Leaflet's default marker images don't survive bundling, so every marker
 // here is a divIcon drawn from CSS instead.
-export default function RouteMap({ depot, round, doneIds, activeIndex }) {
+export default function RouteMap({ depot, round, doneIds, issueIds = [], activeIndex }) {
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const layerRef = useRef(null)
@@ -57,9 +57,11 @@ export default function RouteMap({ depot, round, doneIds, activeIndex }) {
 
     round.stops.forEach((stop, i) => {
       const done = doneIds.includes(stop.id)
+      const issue = issueIds.includes(stop.id)
       L.marker([stop.lat, stop.lng], {
         icon: stopIcon(i + 1, colour, {
           done,
+          issue,
           active: i === activeIndex,
           urgent: stop.urgent,
           compact: compact && i !== activeIndex,
@@ -71,7 +73,7 @@ export default function RouteMap({ depot, round, doneIds, activeIndex }) {
     })
 
     map.fitBounds(path, { padding: [50, 50] })
-  }, [depot, round, doneIds, activeIndex])
+  }, [depot, round, doneIds, issueIds, activeIndex])
 
   return <div className="map" ref={containerRef} />
 }
@@ -87,15 +89,16 @@ function depotIcon() {
 
 // Stops carry the round's fraction colour, so a glass round reads as green
 // and a mixed-waste round as slate at a glance.
-function stopIcon(n, colour, { done, active, urgent, compact }) {
+function stopIcon(n, colour, { done, issue, active, urgent, compact }) {
   const classes = ['marker-stop']
   if (compact) classes.push('is-compact')
   if (done) classes.push('is-done')
+  if (issue) classes.push('is-issue')
   if (active) classes.push('is-active')
   if (urgent && !done) classes.push('is-urgent')
 
-  const style = done ? '' : ` style="background:${colour}"`
-  const label = compact ? '' : done ? '✓' : n
+  const style = done || issue ? '' : ` style="background:${colour}"`
+  const label = compact ? '' : done ? '✓' : issue ? '!' : n
   const size = compact ? 12 : 28
 
   return L.divIcon({

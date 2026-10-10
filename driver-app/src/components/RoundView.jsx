@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import RouteMap from './RouteMap.jsx'
 import { formatDuration } from './ShiftList.jsx'
 import { DEPOT } from '../data/shift.js'
 import { stopUrl } from '../lib/maps.js'
 import { osmandRouteUrl } from '../lib/osmand.js'
+import { issueLabel } from '../data/issues.js'
+import IssueSheet from './IssueSheet.jsx'
 import { plural } from '../lib/lt.js'
 
 // The screen the driver actually works from: their route on the map, the
@@ -15,8 +17,20 @@ import { plural } from '../lib/lt.js'
 // be fed a new stop while navigating, so it goes one stop at a time: at each
 // container the driver comes back here, taps once, and Maps is already
 // navigating to the next one.
-export default function RoundView({ round, done, onToggleStop, onBack }) {
-  const nextIndex = round.stops.findIndex((s) => !done.includes(s.id))
+export default function RoundView({
+  round,
+  done,
+  issues,
+  onToggleStop,
+  onReportIssue,
+  onBack,
+}) {
+  // A stop is dealt with once it's collected or reported as not collectable;
+  // either way navigation moves on past it.
+  const handled = (stop) => done.includes(stop.id) || Boolean(issues[stop.id])
+  const issueIds = useMemo(() => Object.keys(issues), [issues])
+  const issueCount = issueIds.length
+  const nextIndex = round.stops.findIndex((s) => !handled(s))
   const complete = nextIndex === -1
   const nextStop = complete ? null : round.stops[nextIndex]
   const nextNumber = nextIndex + 1
@@ -24,9 +38,12 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
   // the next one still to collect, not simply the next in the array.
   const afterNext = complete
     ? null
-    : round.stops.find((s, i) => i > nextIndex && !done.includes(s.id)) ?? null
+    : round.stops.find((s, i) => i > nextIndex && !handled(s)) ?? null
   const afterNextNumber = afterNext ? round.stops.indexOf(afterNext) + 1 : null
-  const remaining = round.stops.filter((s) => !done.includes(s.id))
+  const remaining = round.stops.filter((s) => !handled(s))
+
+  const [issueStopId, setIssueStopId] = useState(null)
+  const issueStop = round.stops.find((s) => s.id === issueStopId) ?? null
 
   // Until the driver has set off, the first tap is just "go to stop 1" —
   // there's nothing to mark collected yet.
@@ -53,6 +70,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
           <strong>{round.shiftLabel}</strong>
           <small>
             Ištuštinta {done.length}/{round.stops.length} ·{' '}
+            {issueCount > 0 && <>{issueCount} nepaimta · </>}
             {round.distanceKm.toFixed(0)} km · {formatDuration(round.durationMin)}
           </small>
         </div>
@@ -68,6 +86,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
           depot={DEPOT}
           round={round}
           doneIds={done}
+          issueIds={issueIds}
           activeIndex={nextIndex}
         />
       </div>
@@ -76,7 +95,9 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
         {complete ? (
           <>
             <p className="all-done">
-              Visi konteineriai ištuštinti — grįžkite į bazę.
+              {issueCount
+                ? `Reisas baigtas, ${plural(issueCount, 'konteineris', 'konteineriai', 'konteinerių')} nepaimta — grįžkite į bazę.`
+                : 'Visi konteineriai ištuštinti — grįžkite į bazę.'}
             </p>
             <a
               className="btn btn--primary"
@@ -89,10 +110,15 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
           </>
         ) : (
           <>
-            <p className="next-up">
-              {done.length ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
-              {round.stops.length} — <strong>{nextStop.address}</strong>
-            </p>
+            <div className="next-row">
+              <p className="next-up">
+                {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
+                {round.stops.length} — <strong>{nextStop.address}</strong>
+              </p>
+              <button className="issue-btn" onClick={() => setIssueStopId(nextStop.id)}>
+                Nepavyko paimti
+              </button>
+            </div>
 
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
@@ -167,11 +193,12 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
       <ol className="stop-list">
         {round.stops.map((stop, i) => {
           const isDone = done.includes(stop.id)
+          const issue = issues[stop.id]
           return (
             <li
               key={stop.id}
               ref={i === nextIndex ? nextRef : null}
-              className={`stop-row${isDone ? ' is-done' : ''}${
+              className={`stop-row${isDone ? ' is-done' : ''}${issue ? ' is-issue' : ''}${
                 i === nextIndex ? ' is-next' : ''
               }`}
             >
@@ -185,18 +212,34 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
                     : `Pažymėti ${stop.address} kaip ištuštintą`
                 }
               >
-                {isDone ? '✓' : i + 1}
+                {isDone ? '✓' : issue ? '!' : i + 1}
               </button>
 
               <span className="stop-body">
                 <strong>{stop.address}</strong>
                 <small>
-                  {stop.containerType}
-                  {stop.urgent && !isDone && <em> · skubu</em>}
+                  {issue ? (
+                    <em className="issue-text">Nepaimta: {issueLabel(issue)}</em>
+                  ) : (
+                    <>
+                      {stop.containerType}
+                      {stop.urgent && !isDone && <em> · skubu</em>}
+                    </>
+                  )}
                 </small>
               </span>
 
               {!isDone && (
+                <button
+                  className={`stop-issue${issue ? ' is-active' : ''}`}
+                  onClick={() => setIssueStopId(stop.id)}
+                  aria-label={`Nepavyko paimti: ${stop.address}`}
+                >
+                  {issue ? 'Pakeisti' : 'Nepaimta'}
+                </button>
+              )}
+
+              {!isDone && !issue && (
                 <a
                   className="stop-nav"
                   href={stopUrl(stop)}
@@ -211,6 +254,19 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
           )
         })}
       </ol>
+
+      {issueStop && (
+        <IssueSheet
+          stop={issueStop}
+          number={round.stops.indexOf(issueStop) + 1}
+          current={issues[issueStop.id] ?? null}
+          onPick={(reasonId) => {
+            onReportIssue(issueStop.id, reasonId)
+            setIssueStopId(null)
+          }}
+          onClose={() => setIssueStopId(null)}
+        />
+      )}
     </div>
   )
 }

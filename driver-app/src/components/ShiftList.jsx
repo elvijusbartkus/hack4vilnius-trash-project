@@ -2,7 +2,7 @@ import { plural } from '../lib/lt.js'
 
 // What the driver sees after signing in: their own rounds for today,
 // nothing else. One tap opens a round.
-export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
+export default function ShiftList({ driver, progress, issues, onOpen, onSignOut }) {
   const totalStops = driver.rounds.reduce((s, r) => s + r.stops.length, 0)
   const totalDone = driver.rounds.reduce(
     (s, r) => s + (progress[r.id]?.length ?? 0),
@@ -30,7 +30,9 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
       <ul className="round-list">
         {driver.rounds.map((round) => {
           const done = progress[round.id]?.length ?? 0
-          const complete = done === round.stops.length
+          const missed = Object.keys(issues[round.id] ?? {}).length
+          // Reported stops count as dealt with — the round can still finish.
+          const complete = done + missed === round.stops.length
           return (
             <li key={round.id}>
               <button
@@ -68,11 +70,12 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
 
                 <span className="progress">
                   <span
-                    style={{ width: `${(done / round.stops.length) * 100}%` }}
+                    style={{ width: `${((done + missed) / round.stops.length) * 100}%` }}
                   />
                 </span>
                 <span className="round-btn__progress-text">
                   {complete ? 'Baigta' : `Ištuštinta ${done}/${round.stops.length}`}
+                  {missed > 0 && ` · ${missed} nepaimta`}
                 </span>
               </button>
             </li>
