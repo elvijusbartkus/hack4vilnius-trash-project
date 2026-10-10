@@ -36,24 +36,24 @@ the rounds for the signed-in driver.
    2-opt to un-cross the path.
 3. **Hand over** (`maps.js`) — build the Google Maps directions links.
 
-## Bin fractions
+## Container types
 
-Three household bins, from `FRACTIONS` in `src/data/vilnius.js`:
+Three container types, from `FRACTIONS` in `src/data/vilnius.js`:
 
-| Fraction | Lithuanian | Colour |
+| Type | Lithuanian | Colour |
 | --- | --- | --- |
-| Non-recyclable | Mišrios komunalinės | slate |
-| Recyclables | Pakuotės | yellow |
+| Non-recyclable | Nerūšiuojamos atliekos | slate |
+| Recyclable | Rūšiuojamos atliekos | yellow |
 | Glass | Stiklas | green |
 
-A truck collects **one fraction at a time** — glass can't ride along with
-mixed waste — so `buildPlan` clusters each fraction separately and every
-round carries exactly one bin type. The fraction's colour drives the round
-card, the map markers and the route line.
+The driver only ever sees the type, never a container size. Each type keeps
+a nominal `volumeL` purely for capacity planning.
 
-Glass rounds come out short (~25 stops) but near-full, because glass barely
-compacts — capacity-bound, where mixed-waste rounds are stop-bound. That's
-the capacity constraint doing real work.
+A truck collects **one type at a time** — glass can't ride along with mixed
+waste — so `buildPlan` clusters each type separately and every round carries
+exactly one. Each driver is also assigned a single type for the whole day
+(`fractionId` in `src/data/shift.js`), and only gets rounds of that type.
+The type's colour drives the round card, the map markers and the route line.
 
 ## Round size and truck capacity
 

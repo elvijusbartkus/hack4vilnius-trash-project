@@ -8,8 +8,8 @@ import { roadDistance } from './geo.js'
 
 const AVG_SPEED_KMH = 24 // city driving with a heavy truck
 
-// Pull up, empty, move on. A wheelie bin is quick; a 2500 L communal
-// container means manoeuvring the lift, so service time tracks its size.
+// Pull up, empty, move on. A wheelie bin is quick; a large glass container
+// means manoeuvring the lift, so service time tracks its size.
 function serviceMinutes(stop) {
   return 1 + stop.volumeL / 1000
 }

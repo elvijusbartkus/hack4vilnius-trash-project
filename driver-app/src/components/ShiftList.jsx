@@ -1,3 +1,5 @@
+import { plural } from '../lib/lt.js'
+
 // What the driver sees after signing in: their own rounds for today,
 // nothing else. One tap opens a round.
 export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
@@ -11,16 +13,18 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
     <div className="screen">
       <header className="appbar">
         <div>
-          <h1>Today</h1>
-          <p>{driver.name.split(' ')[0]} · {driver.plate}</p>
+          <h1>Šiandien</h1>
+          <p>
+            {driver.name.split(' ')[0]} · {driver.plate} · {driver.fraction.label}
+          </p>
         </div>
         <button className="link-btn" onClick={onSignOut}>
-          Sign out
+          Atsijungti
         </button>
       </header>
 
       <p className="day-summary">
-        {totalDone} of {totalStops} stops done
+        Ištuštinta {totalDone} iš {totalStops}
       </p>
 
       <ul className="round-list">
@@ -49,14 +53,16 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
                 </span>
 
                 <span className="round-btn__facts">
-                  <span>{round.stops.length} stops</span>
+                  <span>
+                    {plural(round.stops.length, 'konteineris', 'konteineriai', 'konteinerių')}
+                  </span>
                   <span>{round.distanceKm.toFixed(0)} km</span>
                   <span>{formatDuration(round.durationMin)}</span>
                 </span>
 
                 {round.urgentCount > 0 && !complete && (
                   <span className="badge badge--urgent">
-                    {round.urgentCount} urgent
+                    {plural(round.urgentCount, 'skubus', 'skubūs', 'skubių')}
                   </span>
                 )}
 
@@ -66,7 +72,7 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
                   />
                 </span>
                 <span className="round-btn__progress-text">
-                  {complete ? 'Completed' : `${done}/${round.stops.length} collected`}
+                  {complete ? 'Baigta' : `Ištuštinta ${done}/${round.stops.length}`}
                 </span>
               </button>
             </li>
@@ -80,5 +86,5 @@ export default function ShiftList({ driver, progress, onOpen, onSignOut }) {
 export function formatDuration(min) {
   const h = Math.floor(min / 60)
   const m = min % 60
-  return h ? `${h} h ${m} min` : `${m} min`
+  return h ? `${h} val. ${m} min.` : `${m} min.`
 }

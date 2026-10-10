@@ -47,7 +47,7 @@ export default function RouteMap({ depot, round, doneIds, activeIndex }) {
     L.polyline(path, { color: colour, weight: 4, opacity: 0.8 }).addTo(layer)
 
     L.marker([depot.lat, depot.lng], { icon: depotIcon() })
-      .bindTooltip('Depot', { direction: 'top' })
+      .bindTooltip('Bazė', { direction: 'top' })
       .addTo(layer)
 
     // A hundred numbered circles is unreadable. Past a couple of dozen

@@ -4,7 +4,7 @@
 // reads back the rounds assigned to the signed-in driver. Here we run the
 // planner once at load with a fixed seed so every reload shows the same day.
 
-import { DEPOT, DISTRICTS, generatePickups } from './vilnius.js'
+import { DEPOT, DISTRICTS, generatePickups, getFraction } from './vilnius.js'
 import { buildPlan } from '../lib/plan.js'
 
 export { DEPOT }
@@ -21,16 +21,16 @@ const TRUCK_CAPACITY_L = 16000
 // handoff problem, solved by splitting the round into legs.
 const MAX_STOPS = 100
 
+// Each driver hauls a single container type all day — the truck is set up
+// for it — so drivers are assigned a fraction, not just a truck.
 const DRIVERS = [
-  { id: 'd1', name: 'Tomas Jankauskas', truck: 'Mercedes Econic', plate: 'JKL 412' },
-  { id: 'd2', name: 'Rasa Petrauskienė', truck: 'Volvo FE', plate: 'MPV 806' },
-  { id: 'd3', name: 'Mindaugas Urbonas', truck: 'Scania P280', plate: 'ZRT 155' },
-  { id: 'd4', name: 'Giedrė Kazlauskaitė', truck: 'DAF LF', plate: 'BNK 039' },
+  { id: 'd1', name: 'Tomas Jankauskas', truck: 'Mercedes Econic', plate: 'JKL 412', fractionId: 'mixed' },
+  { id: 'd2', name: 'Rasa Petrauskienė', truck: 'Volvo FE', plate: 'MPV 806', fractionId: 'mixed' },
+  { id: 'd3', name: 'Mindaugas Urbonas', truck: 'Scania P280', plate: 'ZRT 155', fractionId: 'packaging' },
+  { id: 'd4', name: 'Giedrė Kazlauskaitė', truck: 'DAF LF', plate: 'BNK 039', fractionId: 'glass' },
 ]
 
-// A truck empties at the depot between rounds, so a driver can take a
-// different fraction each time.
-const SHIFT_LABELS = ['Morning round', 'Midday round', 'Afternoon round', 'Evening round']
+const SHIFT_LABELS = ['Rytinis reisas', 'Vidurdienio reisas', 'Popietinis reisas', 'Vakarinis reisas']
 const SHIFT_TIMES = ['07:00', '10:30', '13:30', '16:30']
 
 const plan = buildPlan({
@@ -44,18 +44,21 @@ const plan = buildPlan({
   maxStops: MAX_STOPS,
 })
 
-// Deal the rounds out to drivers one at a time, so everybody gets a first
-// round before anyone gets a second.
-export const drivers = DRIVERS.map((driver, i) => {
+// Deal each fraction's rounds out to the drivers working that fraction, one
+// at a time, so everybody gets a first round before anyone gets a second.
+export const drivers = DRIVERS.map((driver) => {
+  const crew = DRIVERS.filter((d) => d.fractionId === driver.fractionId)
+  const slot = crew.indexOf(driver)
   const rounds = plan.routes
-    .filter((_, routeIdx) => routeIdx % DRIVERS.length === i)
+    .filter((route) => route.fraction.id === driver.fractionId)
+    .filter((_, routeIdx) => routeIdx % crew.length === slot)
     .map((route, n) => ({
       ...route,
-      shiftLabel: SHIFT_LABELS[n] ?? `Round ${n + 1}`,
+      shiftLabel: SHIFT_LABELS[n] ?? `${n + 1}-asis reisas`,
       startTime: SHIFT_TIMES[n] ?? '—',
     }))
 
-  return { ...driver, rounds }
+  return { ...driver, fraction: getFraction(driver.fractionId), rounds }
 })
 
 export function findDriver(id) {

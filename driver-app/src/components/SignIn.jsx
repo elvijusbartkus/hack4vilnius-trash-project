@@ -1,4 +1,5 @@
 import { drivers } from '../data/shift.js'
+import { plural } from '../lib/lt.js'
 
 // Shift-terminal style sign-in: the driver taps their own name to start the
 // day. Mock only — the real app hands off to the fleet account system.
@@ -7,8 +8,8 @@ export default function SignIn({ onSignIn }) {
     <div className="screen screen--signin">
       <div className="signin-brand">
         <span className="signin-mark">♻</span>
-        <h1>Trash Routes</h1>
-        <p>Tap your name to start your shift</p>
+        <h1>Atliekų maršrutai</h1>
+        <p>Pasirinkite save ir pradėkite pamainą</p>
       </div>
 
       <ul className="driver-list">
@@ -21,18 +22,23 @@ export default function SignIn({ onSignIn }) {
                 <small>
                   {driver.truck} · {driver.plate}
                 </small>
+                <span
+                  className="fraction-tag"
+                  style={{ '--fraction': driver.fraction.colour }}
+                >
+                  <span className="fraction-dot" />
+                  {driver.fraction.label}
+                </span>
               </span>
               <span className="driver-btn__count">
-                {driver.rounds.length === 1
-                  ? '1 round'
-                  : `${driver.rounds.length} rounds`}
+                {plural(driver.rounds.length, 'reisas', 'reisai', 'reisų')}
               </span>
             </button>
           </li>
         ))}
       </ul>
 
-      <p className="demo-note">Demo accounts — no password needed.</p>
+      <p className="demo-note">Demonstracinės paskyros — slaptažodžio nereikia.</p>
     </div>
   )
 }

@@ -35,12 +35,12 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
     >
       <header className="appbar appbar--round">
         <button className="link-btn" onClick={onBack}>
-          ‹ Today
+          ‹ Šiandien
         </button>
         <div className="appbar__title">
           <strong>{round.shiftLabel}</strong>
           <small>
-            {done.length}/{round.stops.length} collected ·{' '}
+            Ištuštinta {done.length}/{round.stops.length} ·{' '}
             {round.distanceKm.toFixed(0)} km · {formatDuration(round.durationMin)}
           </small>
         </div>
@@ -49,7 +49,6 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
       <p className="fraction-strip">
         <span className="fraction-dot" />
         <strong>{round.fraction.label}</strong>
-        <span>{round.fraction.en}</span>
       </p>
 
       <div className="map-wrap">
@@ -65,7 +64,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
         {complete ? (
           <>
             <p className="all-done">
-              All stops collected — head back to the depot.
+              Visi konteineriai ištuštinti — grįžkite į bazę.
             </p>
             <a
               className="btn btn--primary"
@@ -73,13 +72,13 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
               target="_blank"
               rel="noreferrer"
             >
-              Navigate to depot
+              Vykti į bazę
             </a>
           </>
         ) : (
           <>
             <p className="next-up">
-              Next stop {nextNumber} of {round.stops.length}:{' '}
+              Kitas sustojimas {nextNumber} iš {round.stops.length}:{' '}
               <strong>{nextStop.address}</strong>
             </p>
 
@@ -90,20 +89,21 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
               rel="noreferrer"
             >
               {round.legs.length > 1
-                ? `Open stops ${currentLeg.startIndex}–${currentLeg.endIndex} in Google Maps`
-                : 'Start route in Google Maps'}
+                ? `Google Maps: sustojimai ${currentLeg.startIndex}–${currentLeg.endIndex}`
+                : 'Pradėti maršrutą Google Maps'}
             </a>
 
             {round.legs.length > 1 && (
               <>
                 <p className="leg-note">
-                  Leg {legIndex + 1} of {round.legs.length} — Google Maps takes{' '}
-                  {MAX_WAYPOINTS + 1} stops per link, so the round opens a leg
-                  at a time. Tick stops off and this button moves on.
+                  Atkarpa {legIndex + 1} iš {round.legs.length}. Į vieną Google
+                  Maps nuorodą telpa {MAX_WAYPOINTS + 1} sustojimų, todėl
+                  maršrutas atidaromas dalimis. Pažymėkite ištuštintus
+                  konteinerius ir mygtukas persijungs į kitą atkarpą.
                 </p>
 
                 <details className="full-route">
-                  <summary>All {round.legs.length} legs</summary>
+                  <summary>Visos atkarpos ({round.legs.length})</summary>
                   {round.legs.map((leg, i) => (
                     <a
                       key={i}
@@ -112,7 +112,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Leg {i + 1} · stops {leg.startIndex}–{leg.endIndex}
+                      Atkarpa {i + 1} · sustojimai {leg.startIndex}–{leg.endIndex}
                     </a>
                   ))}
                 </details>
@@ -139,8 +139,8 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
                 aria-pressed={isDone}
                 aria-label={
                   isDone
-                    ? `Mark ${stop.address} as not collected`
-                    : `Mark ${stop.address} as collected`
+                    ? `Pažymėti ${stop.address} kaip neištuštintą`
+                    : `Pažymėti ${stop.address} kaip ištuštintą`
                 }
               >
                 {isDone ? '✓' : i + 1}
@@ -150,7 +150,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
                 <strong>{stop.address}</strong>
                 <small>
                   {stop.containerType}
-                  {stop.urgent && !isDone && <em> · urgent</em>}
+                  {stop.urgent && !isDone && <em> · skubu</em>}
                 </small>
               </span>
 
@@ -160,7 +160,7 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
                   href={stopUrl(stop)}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Navigate to ${stop.address}`}
+                  aria-label={`Vykti į ${stop.address}`}
                 >
                   ➤
                 </a>

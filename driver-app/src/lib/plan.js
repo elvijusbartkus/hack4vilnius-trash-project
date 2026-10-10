@@ -45,7 +45,7 @@ export function buildPlan({ pickups, depot, capacityL, maxStops }) {
   // Number the rounds once everything is planned, so ids stay stable.
   routes.forEach((route, i) => {
     route.id = `round-${i + 1}`
-    route.name = `Round ${i + 1}`
+    route.name = `Reisas ${i + 1}`
   })
 
   const totals = routes.reduce(

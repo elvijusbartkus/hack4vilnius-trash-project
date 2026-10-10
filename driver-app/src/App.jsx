@@ -5,7 +5,7 @@ import ShiftList from './components/ShiftList.jsx'
 import RoundView from './components/RoundView.jsx'
 
 const SESSION_KEY = 'tr.driverId'
-const PROGRESS_KEY = 'tr.progress'
+const PROGRESS_KEY = 'tr.progress.v2'
 
 export default function App() {
   // Survives a reload — a driver who backgrounds the app mid-round comes
