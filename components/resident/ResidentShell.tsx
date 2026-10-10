@@ -13,6 +13,7 @@ import { resetReports } from "@/lib/reports";
 // header switcher or in onboarding is remembered in localStorage.
 const HOUSEHOLD_KEY = "householdId";
 const NAME_KEY = "userName";
+const OLD_DEMO_NAMES = ["Baldas Venkunskas"]; // renamed persona; ignore it if a browser still has it saved
 
 export type ResidentUser = { householdId: number; name: string };
 type User = ResidentUser;
@@ -22,7 +23,9 @@ let resetStarted = false;
 function readStored(): User | null {
   try {
     const id = Number(localStorage.getItem(HOUSEHOLD_KEY));
-    return id ? { householdId: id, name: localStorage.getItem(NAME_KEY) || DEMO_USER_NAME } : null;
+    const stored = localStorage.getItem(NAME_KEY);
+    const name = stored && !OLD_DEMO_NAMES.includes(stored) ? stored : DEMO_USER_NAME;
+    return id ? { householdId: id, name } : null;
   } catch {
     return null;
   }

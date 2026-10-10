@@ -15,7 +15,7 @@ export const DEMO_DAY = "2026-10-16";
 export const DEMO_VASA_ID = 15753;
 
 // Display name of the prefilled demo resident (PRD section 7).
-export const DEMO_USER_NAME = "Baldas Venkunskas";
+export const DEMO_USER_NAME = "Žygimantas Bakanas";
 
 // Map centre for the Pavilnys demo area (mean of seeded house coordinates).
 export const DEMO_AREA_CENTER: [number, number] = [54.6781, 25.3748];

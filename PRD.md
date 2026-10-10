@@ -39,7 +39,7 @@ Residents tell the system when they actually need a pickup (book or skip), and t
 ## 7. Resident app (B2C), Lithuanian UI, mobile-first
 Principle: open app, pick a day (and time if needed), done. Or skip. Nothing else on the main path.
 
-1. **Onboarding (one screen):** prefilled demo user "Baldas Venkunskas". Type an address, pick from autocomplete (seeded households), "Tęsti". Under 10 seconds.
+1. **Onboarding (one screen):** prefilled demo user "Žygimantas Bakanas". Type an address, pick from autocomplete (seeded households), "Tęsti". Under 10 seconds.
 2. **Home:** card "Kitas išvežimas: [data]" plus two big buttons: "Užsakyti išvežimą" and "Praleisti".
 3. **Book:** day chips for the next 7 days, optional time window collapsed under "Laikas (nebūtina)", price shown, "Patvirtinti". Then a success screen.
 4. **Skip:** one confirm sheet: "Praleisti [data] išvežimą?" then "Išvežimas praleistas".
@@ -60,7 +60,7 @@ Principle: open app, pick a day (and time if needed), done. Or skip. Nothing els
 - Demo control: a "simulate adoption" slider that marks whole streets as app users who skip. Whole streets on purpose: savings only come when trucks can drop full street segments, not single houses.
 
 ## 10. The demo moment (build backwards from this)
-Phone in hand: Baldas Venkunskas skips his pickup. On the big screen the stop turns grey, the route redraws and the counter ticks up. Then the driver taps "Atidaryti Google Maps" and the real route opens.
+Phone in hand: Žygimantas Bakanas skips their pickup. On the big screen the stop turns grey, the route redraws and the counter ticks up. Then the driver taps "Atidaryti Google Maps" and the real route opens.
 
 ## 11. Tech
 - Next.js (App Router) + TypeScript + Tailwind, deployed on Vercel. Runs in any browser; judges open a link on their phone.
