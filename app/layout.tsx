@@ -23,7 +23,10 @@ export const metadata: Metadata = {
   applicationName: "WasteWise",
   manifest: `${base}/manifest.webmanifest`,
   icons: {
-    icon: [{ url: `${base}/icons/icon-192.png`, sizes: "192x192", type: "image/png" }],
+    icon: [
+      { url: `${base}/icons/favicon-32.png`, sizes: "32x32", type: "image/png" },
+      { url: `${base}/icons/icon-192.png`, sizes: "192x192", type: "image/png" },
+    ],
     apple: [{ url: `${base}/icons/apple-touch-icon.png`, sizes: "180x180" }],
   },
   appleWebApp: { capable: true, title: "WasteWise", statusBarStyle: "default" },
