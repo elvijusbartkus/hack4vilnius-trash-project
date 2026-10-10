@@ -205,31 +205,34 @@ export function BillingScreen({
               )}
             </section>
 
-            {/* earlier months: amounts and numbers blurred on purpose */}
+            {/* earlier months: same breakdown as the popup, by the bin's schedule */}
             <Panel title="Ankstesnės sąskaitos" className="md:col-span-4">
               <ul className="mt-2 divide-y divide-rule/60">
-                {PAST_INVOICES.map((inv) => (
-                  <li key={inv.period}>
-                    <button
-                      onClick={() => setOpenPast(inv)}
-                      aria-label={`${inv.period} sąskaita, apmokėta. Atidaryti`}
-                      className="flex min-h-14 w-full items-center justify-between gap-3 rounded-[3px] py-2.5 text-left hover:bg-sheet-hi"
-                    >
-                      <span>
-                        <span className="block">{inv.period}</span>
-                        <span aria-hidden="true" className="block select-none text-xs text-stone-deep blur-[5px]">
-                          Nr. VR-2026-00000
+                {PAST_INVOICES.map((inv) => {
+                  const n = household?.next_service ? scheduledInRange(household.next_service, inv.range) : 2;
+                  return (
+                    <li key={inv.period}>
+                      <button
+                        onClick={() => setOpenPast(inv)}
+                        aria-label={`${inv.period} sąskaita, apmokėta. Atidaryti`}
+                        className="flex min-h-14 w-full items-center justify-between gap-3 rounded-[3px] py-2.5 text-left hover:bg-sheet-hi"
+                      >
+                        <span>
+                          <span className="block">{inv.period}</span>
+                          <span className="block text-sm text-stone-deep">
+                            {plural(n, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })}
+                          </span>
                         </span>
-                      </span>
-                      <span className="flex items-center gap-2.5">
-                        <span aria-hidden="true" className="select-none font-display font-semibold blur-[5px]">
-                          {formatEur(INVOICE_FIXED_EUR + 2 * INVOICE_PER_EMPTYING_EUR)}
+                        <span className="flex items-center gap-2.5">
+                          <span className="font-display font-semibold">
+                            {formatEur(INVOICE_FIXED_EUR + n * INVOICE_PER_EMPTYING_EUR)}
+                          </span>
+                          <Chip paid />
                         </span>
-                        <Chip paid />
-                      </span>
-                    </button>
-                  </li>
-                ))}
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             </Panel>
           </div>

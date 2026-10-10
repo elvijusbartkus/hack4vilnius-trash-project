@@ -19,7 +19,7 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
         <div className="appbar__title">
           <strong>{driver.name}</strong>
           <small>
-            {driver.truck} · {driver.plate}
+            {driver.truck}
           </small>
         </div>
       </header>

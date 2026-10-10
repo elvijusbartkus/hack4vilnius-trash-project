@@ -29,18 +29,21 @@ export default function SignIn({ drivers, onSignIn }) {
           return (
             <li key={driver.id}>
               <button className="roster-row" onClick={() => onSignIn(driver.id)}>
-                <span className="roster-row__top">
-                  <Plate number={driver.plate} />
-                  <span className="roster-row__fraction">
-                    <span className="fraction-swatch" style={{ '--fraction': driver.fraction.colour }} aria-hidden="true" />
-                    {driver.fraction.label}
-                  </span>
+                <span className="roster-row__fraction">
+                  <span className="fraction-swatch" style={{ '--fraction': driver.fraction.colour }} aria-hidden="true" />
+                  {driver.fraction.label}
                 </span>
                 <strong className="roster-row__name">{driver.name}</strong>
                 <span className="roster-row__truck">{driver.truck}</span>
                 <span className="roster-row__load">
-                  {plural(driver.rounds.length, 'reisas', 'reisai', 'reisų')} ·{' '}
-                  {plural(stops, 'konteineris', 'konteineriai', 'konteinerių')} · {Math.round(km)} km
+                  {driver.rounds.length === 0 && driver.liveStatus ? (
+                    driver.liveStatus.status === 'error' ? 'Maršruto įkelti nepavyko' : 'Kraunamas maršrutas…'
+                  ) : (
+                    <>
+                      {plural(driver.rounds.length, 'reisas', 'reisai', 'reisų')} ·{' '}
+                      {plural(stops, 'konteineris', 'konteineriai', 'konteinerių')} · {Math.round(km)} km
+                    </>
+                  )}
                 </span>
                 <svg className="roster-row__go" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
                   <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" />
@@ -53,20 +56,6 @@ export default function SignIn({ drivers, onSignIn }) {
 
       <p className="demo-note">Demonstracinės paskyros — slaptažodžio nereikia.</p>
     </div>
-  )
-}
-
-// Lithuanian number plate: EU blue band with "LT", black characters on white.
-function Plate({ number }) {
-  return (
-    <span className="plate" aria-label={`Valstybinis numeris ${number}`}>
-      <span className="plate__eu" aria-hidden="true">
-        LT
-      </span>
-      <span className="plate__no" aria-hidden="true">
-        {number}
-      </span>
-    </span>
   )
 }
 

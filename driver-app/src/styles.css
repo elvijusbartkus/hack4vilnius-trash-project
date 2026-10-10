@@ -234,6 +234,8 @@ body {
 
 .roster-row__fraction {
   display: inline-flex;
+  justify-self: start;
+  margin-bottom: 2px;
   align-items: center;
   gap: 6px;
   font-size: 14px;
@@ -267,41 +269,6 @@ body {
 
 .roster-row:hover .roster-row__go {
   transform: translateX(3px);
-}
-
-/* Lithuanian number plate (EU band). Real plates are white with black type. */
-.plate {
-  display: inline-flex;
-  align-items: stretch;
-  height: 28px;
-  border: 1.5px solid var(--ink);
-  border-radius: 3px;
-  background: #fff;
-  overflow: hidden;
-}
-
-.plate__eu {
-  display: grid;
-  place-items: end center;
-  width: 18px;
-  padding-bottom: 3px;
-  background: #003399;
-  color: #fff;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 9px;
-  letter-spacing: 0.02em;
-}
-
-.plate__no {
-  display: grid;
-  place-items: center;
-  padding: 0 9px 0 8px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  color: #111;
 }
 
 .demo-note {
