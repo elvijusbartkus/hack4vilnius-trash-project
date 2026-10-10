@@ -1,12 +1,6 @@
 import { useId, type ReactNode } from "react";
-import {
-  AVG_KM_SAVED_PER_SKIP,
-  EXTRA_AMOUNTS,
-  CO2_KG_PER_L_DIESEL,
-  FUEL_L_PER_100KM,
-  TIME_WINDOWS,
-} from "@/lib/config";
-import { formatDayCap, todayISO } from "@/lib/dates";
+import { AVG_KM_SAVED_PER_SKIP, CO2_KG_PER_L_DIESEL, FUEL_L_PER_100KM } from "@/lib/config";
+import { formatDayCap, plural, todayISO } from "@/lib/dates";
 import type { Household, Pickup } from "@/lib/pickups";
 
 // A separate panel: its own surface, its own heading, space between panels (never merged).
@@ -48,14 +42,7 @@ function Rows({ rows }: { rows: [ReactNode, ReactNode, string?][] }) {
   );
 }
 
-function pickupLabel(p: Pickup): string {
-  if (p.status === "skipped") return p.date < todayISO() ? "Nevažiavo" : "Nevažiuos";
-  if (p.status === "collected") return "Išvežta";
-  if (p.status === "blocked") return "Užstatyta";
-  return p.kind === "extra" ? "Papildomas" : "Patvirtinta";
-}
-
-export function HistoryField({ household, pickups }: { household: Household; pickups: Pickup[] }) {
+export function HistoryField({ household }: { household: Household }) {
   // Real VASA records, newest first. Dates look like "2026-10-02 11:47:38".
   const vasa = [...(household.history ?? [])].sort((a, b) => b.date.localeCompare(a.date));
   return (
@@ -71,45 +58,38 @@ export function HistoryField({ household, pickups }: { household: Household; pic
           )}
         />
       )}
-      {pickups.length > 0 && (
-        <>
-          <h3 className="mt-4 text-sm font-semibold text-green-muted">Jūsų veiksmai</h3>
-          <Rows
-            rows={pickups.map((p) => [
-              <>
-                {formatDayCap(p.date)}
-                {p.kind === "extra" && p.time_window && (
-                  <span className="text-stone-deep"> · {TIME_WINDOWS[p.time_window].split(" ")[0]}</span>
-                )}
-              </>,
-              `${pickupLabel(p)}${p.kind === "extra" && p.amount ? ` · ${EXTRA_AMOUNTS[p.amount]}` : ""}`,
-              p.status === "skipped" || p.kind === "extra" ? "text-orange-deep" : "text-green",
-            ])}
-          />
-        </>
-      )}
     </Panel>
   );
 }
 
 const num = new Intl.NumberFormat("lt-LT", { maximumFractionDigits: 1 });
 
-// N answers to the evening question; every "Ne" is a stop the truck did not need to make.
+// CO₂ first: the one number a resident cares about, then what it came from.
 export function ImpactField({ pickups }: { pickups: Pickup[] }) {
-  const answers = pickups.filter((p) => p.kind === "scheduled" && (p.status === "planned" || p.status === "skipped")).length;
-  const no = pickups.filter((p) => p.kind === "scheduled" && p.status === "skipped").length;
+  const year = todayISO().slice(0, 4);
+  const mine = pickups.filter((p) => p.kind === "scheduled" && p.date.startsWith(year));
+  const answers = mine.filter((p) => p.status === "planned" || p.status === "skipped").length;
+  const no = mine.filter((p) => p.status === "skipped").length;
   const perSkip = AVG_KM_SAVED_PER_SKIP * (FUEL_L_PER_100KM / 100) * CO2_KG_PER_L_DIESEL;
   return (
     <Panel title="Jūsų poveikis">
-      <Rows
-        rows={[
-          ["Atsakyta į priminimus", answers],
-          ["Sutaupyta sustojimų", no],
-        ]}
-      />
-      <p className="mt-2 font-semibold">Iš viso {num.format(no * perSkip)}&nbsp;kg CO₂ mažiau</p>
-      <p className="mt-1 text-sm leading-snug text-stone-deep">
-        {num.format(perSkip)}kg CO₂ mažiau už kiekvieną sutaupytą sustojimą
+      <p className="mt-3 flex items-baseline gap-2">
+        <span className="font-display text-5xl font-semibold leading-none text-green">{num.format(no * perSkip)}</span>
+        <span className="font-display text-xl font-semibold text-green">kg CO₂</span>
+      </p>
+      <p className="mt-1 font-semibold">mažiau išmetė šiukšliavežė {year} m.</p>
+      {no > 0 ? (
+        <p className="mt-3 leading-snug text-stone-deep">
+          {plural(no, { one: "kartą", few: "kartus", many: "kartų" })} atsakėte „Ne, nereikia“, todėl šiukšliavežei nereikėjo
+          važiuoti pas jus. Kiekvienas toks kartas: {num.format(perSkip)}kg CO₂ mažiau.
+        </p>
+      ) : (
+        <p className="mt-3 leading-snug text-stone-deep">
+          Kai konteineris nepilnas, atsakykite „Ne, nereikia“: kiekvienas kartas sutaupo {num.format(perSkip)}kg CO₂.
+        </p>
+      )}
+      <p className="mt-3 border-t border-rule/60 pt-2 text-sm text-stone-deep">
+        Atsakyta į {plural(answers, { one: "priminimą", few: "priminimus", many: "priminimų" })}
       </p>
     </Panel>
   );

@@ -19,6 +19,11 @@
   /* Navigation hand-off in the logo's route orange, apart from the green "done" actions */
   --nav: #e8890c;
   --nav-deep: #d17a06;
+  /* Red for "couldn't collect" (Nepavyko paimti / Nepaimta) */
+  --danger: #c0262d; /* white text on it 5.9:1; 5.0:1 as a mark on the panel */
+  --danger-deep: #a11f25;
+  --danger-text: #b3261e; /* red text, 5.5:1 on its tint */
+  --danger-tint: #fde7e6;
   --radius: 4px;
   --font: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Barlow Semi Condensed', 'Barlow', system-ui, sans-serif;
@@ -652,49 +657,53 @@ body {
 .issue-btn {
   padding: 8px 12px;
   border-radius: var(--radius);
-  border: 1px solid var(--orange);
-  background: var(--urgent-tint);
-  color: var(--urgent);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.stop-issue {
-  height: 44px;
-  padding: 0 12px;
-  border-radius: var(--radius);
-  border: 1px solid var(--orange);
-  background: transparent; /* quiet on every row; the reported state is the loud one */
-  color: var(--urgent);
+  border: 1px solid var(--danger);
+  background: var(--danger);
+  color: #fff; /* 5.9:1 */
   font: inherit;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
 }
 
+.issue-btn:hover {
+  background: var(--danger-deep);
+}
+
+.stop-issue {
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--danger);
+  background: var(--danger);
+  color: #fff; /* 5.9:1 */
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.stop-issue:hover,
 .stop-issue.is-active {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: #fff; /* white on orange #a85a00: 5.1:1 */
+  background: var(--danger-deep);
+  border-color: var(--danger-deep);
 }
 
 .stop-row.is-issue {
-  background: var(--urgent-tint);
-  border-color: var(--orange);
+  background: var(--danger-tint);
+  border-color: var(--danger);
 }
 
 .stop-row.is-issue .stop-n {
-  background: var(--orange);
+  background: var(--danger);
 }
 
 .stop-body em.issue-text {
-  color: var(--urgent);
+  color: var(--danger-text);
 }
 
 .marker-stop.is-issue {
-  background: var(--orange);
+  background: var(--danger);
 }
 
 /* Bottom sheet: thumb-reachable reasons, one tap each. */
@@ -750,9 +759,9 @@ body {
 }
 
 .sheet__option.is-selected {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 1px var(--orange);
-  color: var(--urgent);
+  border-color: var(--danger);
+  box-shadow: 0 0 0 1px var(--danger);
+  color: var(--danger-text);
 }
 
 .sheet__close {

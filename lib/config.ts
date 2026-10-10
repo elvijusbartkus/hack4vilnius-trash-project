@@ -60,8 +60,10 @@ export const SKIP_CREDIT_EUR = 0;
 
 // --- Invoices (mock-up only: no real payments), billed monthly ---
 
-// PLACEHOLDER: monthly local waste fee ("vietinė rinkliava"), EUR.
-export const INVOICE_AMOUNT_EUR = 8.85;
+// PLACEHOLDER amounts. Vilnius bills the local waste fee in two parts:
+// a fixed part (pastovioji dalis) and a variable part by bin size and scheduled emptyings (kintamoji dalis).
+export const INVOICE_FIXED_EUR = 2.95;
+export const INVOICE_PER_EMPTYING_EUR = 1.95; // per scheduled emptying of a 240 L bin
 
 // Current invoice month, due date (ISO) and the date range whose extra pickups are added to it.
 export const INVOICE_PERIOD = "2026 m. spalis";
@@ -73,8 +75,8 @@ export const PAST_INVOICE_PERIODS = ["2026 m. rugsėjis", "2026 m. rugpjūtis", 
 
 // --- Resident booking (PRD section 7) ---
 
-// Days shown in the resident calendar strip (starting today).
-export const CALENDAR_DAYS = 14;
+// Days shown in the resident calendar (starting today), four weeks.
+export const CALENDAR_DAYS = 28;
 
 // How many days ahead the resident can book a pickup.
 export const BOOKING_DAYS_AHEAD = 7;
@@ -88,14 +90,18 @@ export const TIME_WINDOWS = {
 
 export type TimeWindow = keyof typeof TIME_WINDOWS;
 
-// Optional "how much extra" answer when reporting an extra pickup (stored in pickups.amount).
-export const EXTRA_AMOUNTS = {
-  "1": "1 maišas",
-  "2-3": "2-3 maišai",
-  daugiau: "Daugiau",
+// Which bin an extra pickup is for (stored in pickups.waste_type, migration 004).
+export const WASTE_TYPES = {
+  mixed: "Mišrios atliekos",
+  packaging: "Pakuotės",
+  glass: "Stiklas",
+  green: "Žaliosios atliekos",
 } as const;
 
-export type ExtraAmount = keyof typeof EXTRA_AMOUNTS;
+export type WasteType = keyof typeof WASTE_TYPES;
+
+// The household's regular bin (all seeded Pavilnys bins are mixed municipal waste).
+export const HOUSEHOLD_WASTE_TYPE: WasteType = "mixed";
 
 // Days between fixed-schedule pickups (26x per year).
 export const SCHEDULE_INTERVAL_DAYS = 14;

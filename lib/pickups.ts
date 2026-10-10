@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import { EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, type ExtraAmount, type TimeWindow } from "@/lib/config";
+import { EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, type TimeWindow, type WasteType } from "@/lib/config";
 import { addDays, todayISO } from "@/lib/dates";
 
 // One real VASA service record, e.g. { date: "2026-10-02 11:47:38", serviced: true, reason: null }
@@ -26,7 +26,7 @@ export type Pickup = {
   kind: "scheduled" | "extra";
   status: "planned" | "skipped" | "collected" | "blocked";
   price_eur: number;
-  amount?: ExtraAmount | null; // needs migration 003; absent until it has run
+  waste_type?: WasteType | null; // needs migration 004; absent until it has run
   created_at: string;
 };
 
@@ -117,7 +117,7 @@ export async function bookExtra(
   householdId: number,
   date: string,
   timeWindow: TimeWindow | null,
-  amount: ExtraAmount | null = null,
+  wasteType: WasteType | null = null,
 ): Promise<number> {
   const row: Record<string, unknown> = {
     household_id: householdId,
@@ -129,11 +129,11 @@ export async function bookExtra(
   };
   let res = await supabase
     .from("pickups")
-    .insert(amount ? { ...row, amount } : row)
+    .insert(wasteType ? { ...row, waste_type: wasteType } : row)
     .select("id")
     .single();
-  // Before migration 003 has run there is no amount column: keep the booking, drop the amount.
-  if (res.error && amount && /amount/.test(res.error.message)) {
+  // Before migration 004 has run there is no waste_type column: keep the booking, drop the type.
+  if (res.error && wasteType && /waste_type/.test(res.error.message)) {
     res = await supabase.from("pickups").insert(row).select("id").single();
   }
   return (check(res) as { id: number }).id;

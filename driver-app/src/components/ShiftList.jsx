@@ -24,7 +24,7 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
       </header>
 
       <p className="day-summary">
-        Ištuštinta {totalDone} iš {totalStops}
+        Paimta {totalDone} iš {totalStops}
       </p>
 
       <ul className="round-list">
@@ -69,7 +69,7 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
                   />
                 </span>
                 <span className="round-btn__progress-text">
-                  {complete ? 'Baigta' : `Ištuštinta ${done}/${round.stops.length}`}
+                  {complete ? 'Baigta' : `Paimta ${done}/${round.stops.length}`}
                   {missed > 0 && ` · ${missed} nepaimta`}
                 </span>
               </button>

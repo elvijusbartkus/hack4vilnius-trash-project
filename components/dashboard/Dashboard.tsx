@@ -4,10 +4,11 @@ import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "re
 import {
   BOOKING_DAYS_AHEAD,
   CALENDAR_DAYS,
-  EXTRA_AMOUNTS,
+  HOUSEHOLD_WASTE_TYPE,
+  WASTE_TYPES,
   EXTRA_PICKUP_PRICE_EUR,
   SCHEDULE_INTERVAL_DAYS,
-  type ExtraAmount,
+  type WasteType,
 } from "@/lib/config";
 import {
   addDays,
@@ -84,7 +85,8 @@ export default function Dashboard({
   const [state, setState] = useState<HouseholdState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [toast, setToast] = useState<ToastData | null>(null);
-  const [extraFor, setExtraFor] = useState<string | null>(null); // open "Papildomas išvežimas" popup on this day
+  // open "Papildomas išvežimas" popup: from a calendar day (that day only) or from the section button (day choice)
+  const [extraFor, setExtraFor] = useState<{ date: string; fixed: boolean } | null>(null);
   const [reminderOpen, setReminderOpen] = useState(false);
   const [banner, setBanner] = useState(false); // in-page notification (fallback when system ones aren't possible)
   const pendingRef = useRef<"yes" | "no" | "open" | null>(null);
@@ -216,10 +218,10 @@ export default function Dashboard({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, pendingTick]);
 
-  const reportExtra = (date: string, amount: ExtraAmount | null) => {
+  const reportExtra = (date: string, wasteType: WasteType) => {
     setExtraFor(null);
     return act(
-      () => bookExtra(householdId, date, null, amount),
+      () => bookExtra(householdId, date, null, wasteType),
       `Užregistruota. Šiukšliavežė paims papildomai ${formatDay(date)}`,
       (id) => cancelExtra(id as number),
     );
@@ -229,7 +231,7 @@ export default function Dashboard({
     act(
       () => cancelExtra(p.id),
       `${capitalize(formatDay(p.date))} papildomas išvežimas atšauktas.`,
-      () => bookExtra(householdId, p.date, null, p.amount ?? null),
+      () => bookExtra(householdId, p.date, null, p.waste_type ?? null),
     );
 
   const days = state ? buildDays(state) : [];
@@ -238,9 +240,11 @@ export default function Dashboard({
 
   // From the section button: preselect the scheduled day if it is within range.
   function openExtra(date?: string) {
-    const pre = date ?? (state?.scheduledDate && bookableDays.includes(state.scheduledDate) ? state.scheduledDate : bookableDays[0]);
-    if (pre) setExtraFor(pre);
+    if (date) return setExtraFor({ date, fixed: true }); // a day picked in the calendar: that day only
+    const pre = state?.scheduledDate && bookableDays.includes(state.scheduledDate) ? state.scheduledDate : bookableDays[0];
+    if (pre) setExtraFor({ date: pre, fixed: false });
   }
+
 
   return (
     <div className="min-h-dvh bg-ground">
@@ -269,7 +273,7 @@ export default function Dashboard({
               <div className="max-md:contents md:col-span-8 md:flex md:flex-col md:gap-6">
                 <Hero state={state} onConfirm={confirm} onDecline={decline} />
 
-                <Panel title="Artimiausios 14 dienų" className="order-2 md:order-none">
+                <Panel title="Kalendorius" className="order-2 md:order-none">
                   <Ledger days={days} onPick={(d) => openExtra(d)} />
                 </Panel>
 
@@ -284,7 +288,7 @@ export default function Dashboard({
                           <span className="flex items-center gap-2.5">
                             <Marker kind="extra" />
                             <span className="font-display text-lg font-semibold">{formatHero(p.date)}</span>
-                            {p.amount && <span className="text-stone-deep">· {EXTRA_AMOUNTS[p.amount]}</span>}
+                            {p.waste_type && <span className="text-stone-deep">· {WASTE_TYPES[p.waste_type]}</span>}
                           </span>
                           <button
                             onClick={() => cancel(p)}
@@ -308,7 +312,7 @@ export default function Dashboard({
 
               <div className="max-md:contents md:col-span-4 md:flex md:flex-col md:gap-6">
                 <div className="order-4 md:order-none">
-                  <HistoryField household={state.household} pickups={state.pickups} />
+                  <HistoryField household={state.household} />
                 </div>
                 <div className="order-5 md:order-none">
                   <ImpactField pickups={state.pickups} />
@@ -325,7 +329,7 @@ export default function Dashboard({
       {reminderOpen && state?.scheduledDate && (
         <ReminderPopup
           date={state.scheduledDate}
-          containerLine={[state.household.bin_volume_l && `${state.household.bin_volume_l}L`, state.household.carrier, "kas 2 sav."]
+          containerLine={[state.household.bin_volume_l && `${state.household.bin_volume_l}L`, state.household.carrier, "kas 2 sav.", WASTE_TYPES[HOUSEHOLD_WASTE_TYPE]]
             .filter(Boolean)
             .join(" · ")}
           onClose={() => setReminderOpen(false)}
@@ -337,7 +341,8 @@ export default function Dashboard({
       )}
       {extraFor && state && (
         <ExtraPopup
-          initialDate={extraFor}
+          initialDate={extraFor.date}
+          fixedDay={extraFor.fixed}
           days={bookableDays}
           scheduledDate={state.scheduledDate}
           onClose={() => setExtraFor(null)}
@@ -378,7 +383,10 @@ function Hero({
   const record = (h.history ?? []).find((r) => r.date.slice(0, 10) === today) ?? null;
   const scheduled = state.scheduledDate;
   const isEve = !record && !!scheduled && scheduled === addDays(today, 1);
-  const containerLine = [h.bin_volume_l && `${h.bin_volume_l}L`, h.carrier, "kas 2 sav."].filter(Boolean).join(" · ");
+  // day · litres · who collects · cadence · what it is
+  const containerLine = [h.bin_volume_l && `${h.bin_volume_l}L`, h.carrier, "kas 2 sav.", WASTE_TYPES[HOUSEHOLD_WASTE_TYPE]]
+    .filter(Boolean)
+    .join(" · ");
 
   const answer = isEve ? (state.skip ? "no" : state.confirmed ? "yes" : null) : null;
   const failure = isEve && !answer ? lastFailure(h.history ?? []) : null;
@@ -410,7 +418,7 @@ function Hero({
     >
       {isEve && (
         <p className="font-display text-2xl font-semibold leading-tight text-white md:text-[1.75rem]">
-          {answer ? "Rytoj išvežimas" : "Rytoj išvežimas. Išstumsite konteinerį?"}
+          {answer ? "Sekantis išvežimas rytoj" : "Sekantis išvežimas rytoj, ar išstumsite konteinerį?"}
         </p>
       )}
 
@@ -619,51 +627,61 @@ function Chip({ selected, onClick, children }: { selected: boolean; onClick: () 
   );
 }
 
-// "Papildomas išvežimas" popup: day (preselected), optional amount, price, one button.
+// "Papildomas išvežimas" popup: the day (fixed when picked in the calendar), which bin, price, one button.
 function ExtraPopup({
   initialDate,
+  fixedDay,
   days,
   scheduledDate,
   onClose,
   onReport,
 }: {
   initialDate: string;
+  fixedDay: boolean;
   days: string[];
   scheduledDate: string | null;
   onClose: () => void;
-  onReport: (date: string, amount: ExtraAmount | null) => void;
+  onReport: (date: string, wasteType: WasteType) => void;
 }) {
   const [date, setDate] = useState(initialDate);
-  const [amount, setAmount] = useState<ExtraAmount | null>(null);
+  const [wasteType, setWasteType] = useState<WasteType>(HOUSEHOLD_WASTE_TYPE);
   return (
-    <Modal title="Papildomas išvežimas" description="Bus daugiau atliekų nei įprastai? Pasirinkite dieną." onClose={onClose}>
-      <p id="extra-day" className="mt-4 text-sm font-semibold text-green-muted">
-        Diena
+    <Modal
+      title="Papildomas išvežimas"
+      description={fixedDay ? capitalize(formatHero(date)) : "Bus daugiau atliekų nei įprastai? Pasirinkite dieną."}
+      onClose={onClose}
+    >
+      {!fixedDay && (
+        <>
+          <p id="extra-day" className="mt-4 text-sm font-semibold text-green-muted">
+            Diena
+          </p>
+          <div role="group" aria-labelledby="extra-day" className="mt-2 flex flex-wrap gap-2">
+            {days.map((d) => (
+              <Chip key={d} selected={d === date} onClick={() => setDate(d)}>
+                {`${formatWeekdayShort(d)} ${parseISODate(d).getDate()}${d === scheduledDate ? " · grafikas" : ""}`}
+              </Chip>
+            ))}
+          </div>
+        </>
+      )}
+      <p id="extra-bin" className="mt-5 text-sm font-semibold text-green-muted">
+        Kokios atliekos?
       </p>
-      <div role="group" aria-labelledby="extra-day" className="mt-2 flex flex-wrap gap-2">
-        {days.map((d) => (
-          <Chip key={d} selected={d === date} onClick={() => setDate(d)}>
-            {`${formatWeekdayShort(d)} ${parseISODate(d).getDate()}${d === scheduledDate ? " · grafikas" : ""}`}
-          </Chip>
-        ))}
-      </div>
-      <p id="extra-amount" className="mt-5 text-sm font-semibold text-green-muted">
-        Kiek papildomai <span className="font-normal text-stone-deep">(nebūtina)</span>
-      </p>
-      <div role="group" aria-labelledby="extra-amount" className="mt-2 flex flex-wrap gap-2">
-        {(Object.keys(EXTRA_AMOUNTS) as ExtraAmount[]).map((a) => (
-          <Chip key={a} selected={amount === a} onClick={() => setAmount(amount === a ? null : a)}>
-            {EXTRA_AMOUNTS[a]}
+      <div role="group" aria-labelledby="extra-bin" className="mt-2 flex flex-wrap gap-2">
+        {(Object.keys(WASTE_TYPES) as WasteType[]).map((t) => (
+          <Chip key={t} selected={wasteType === t} onClick={() => setWasteType(t)}>
+            {WASTE_TYPES[t]}
           </Chip>
         ))}
       </div>
       <p className="mt-5 flex items-baseline justify-between border-t border-rule pt-3">
-        <span className="text-stone-deep">{capitalize(formatHero(date))}</span>
+        <span className="text-stone-deep">{fixedDay ? WASTE_TYPES[wasteType] : capitalize(formatHero(date))}</span>
         <span className="font-display text-xl font-semibold">{EXTRA_PICKUP_PRICE_EUR}&nbsp;€</span>
       </p>
       <button
         data-autofocus
-        onClick={() => onReport(date, amount)}
+        onClick={() => onReport(date, wasteType)}
         className="mt-4 flex min-h-14 w-full items-center justify-center rounded-[4px] bg-green px-6 font-display text-xl font-semibold text-sheet hover:bg-green-deep"
       >
         Pranešti

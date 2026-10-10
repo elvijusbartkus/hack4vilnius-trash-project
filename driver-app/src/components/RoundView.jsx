@@ -63,7 +63,7 @@ export default function RoundView({
         <div className="appbar__title">
           <strong>{round.shiftLabel}</strong>
           <small>
-            Ištuštinta {done.length}/{round.stops.length} ·{' '}
+            Paimta {done.length}/{round.stops.length} ·{' '}
             {issueCount > 0 && <>{issueCount} nepaimta · </>}
             {round.distanceKm.toFixed(0)} km · {formatDuration(round.durationMin)}
           </small>

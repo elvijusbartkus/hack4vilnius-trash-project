@@ -3,13 +3,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   EXTRA_PICKUP_PRICE_EUR,
-  INVOICE_AMOUNT_EUR,
+  INVOICE_FIXED_EUR,
+  INVOICE_PER_EMPTYING_EUR,
+  SCHEDULE_INTERVAL_DAYS,
   INVOICE_DUE,
   INVOICE_PERIOD,
   INVOICE_RANGE,
   PAST_INVOICE_PERIODS,
 } from "@/lib/config";
-import { formatDay, formatEur } from "@/lib/dates";
+import { addDays, formatDay, formatEur, plural } from "@/lib/dates";
 import { getNextPickup, subscribePickups, type Household, type Pickup } from "@/lib/pickups";
 import { Panel } from "./Cards";
 import Header from "./Header";
@@ -28,6 +30,15 @@ export function isInvoicePaid(householdId: number): boolean {
   } catch {
     return false;
   }
+}
+
+// Scheduled emptyings inside this invoice month, stepping the 2-week schedule from next_service.
+function scheduledInRange(nextService: string): number {
+  let d = nextService;
+  while (d >= INVOICE_RANGE[0]) d = addDays(d, -SCHEDULE_INTERVAL_DAYS);
+  let n = 0;
+  for (d = addDays(d, SCHEDULE_INTERVAL_DAYS); d <= INVOICE_RANGE[1]; d = addDays(d, SCHEDULE_INTERVAL_DAYS)) n++;
+  return n;
 }
 
 const METHODS = ["Swedbank", "SEB", "Luminor", "Revolut", "Apple Pay / Google Pay"];
@@ -96,7 +107,11 @@ export function BillingScreen({
     (p) => p.kind === "extra" && p.status !== "skipped" && p.date >= INVOICE_RANGE[0] && p.date <= INVOICE_RANGE[1],
   ).length;
   const extrasTotal = extras * EXTRA_PICKUP_PRICE_EUR;
-  const total = INVOICE_AMOUNT_EUR + extrasTotal;
+  // Variable part: emptyings scheduled this month for the bin (by the schedule, not by answers).
+  const emptyings = household?.next_service ? scheduledInRange(household.next_service) : 2;
+  const binL = household?.bin_volume_l ?? 240;
+  const variable = emptyings * INVOICE_PER_EMPTYING_EUR;
+  const total = INVOICE_FIXED_EUR + variable + extrasTotal;
 
   const markPaid = useCallback(() => {
     try {
@@ -130,11 +145,12 @@ export function BillingScreen({
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 id="current-invoice" className="font-display text-2xl font-semibold md:text-3xl">
-                    Vietinė rinkliava
+                    Atliekų tvarkymo sąskaita
                   </h2>
                   <p className="mt-0.5 text-stone-deep">
                     {INVOICE_PERIOD} · apmokėti iki {formatDay(INVOICE_DUE)}
                   </p>
+                  <p className="text-sm text-stone-deep">Vietinė rinkliava už komunalinių atliekų tvarkymą</p>
                 </div>
                 <Chip paid={paid} />
               </div>
@@ -145,8 +161,21 @@ export function BillingScreen({
 
               <dl className="mt-5 divide-y divide-rule/60 border-y border-rule/60">
                 <div className="flex justify-between gap-3 py-2.5">
-                  <dt className="text-stone-deep">Atliekų tvarkymo rinkliava</dt>
-                  <dd className="font-display text-lg font-semibold">{formatEur(INVOICE_AMOUNT_EUR)}</dd>
+                  <dt>
+                    <span className="block">Pastovioji dalis</span>
+                    <span className="block text-sm text-stone-deep">už būstą, kas mėnesį vienoda</span>
+                  </dt>
+                  <dd className="font-display text-lg font-semibold">{formatEur(INVOICE_FIXED_EUR)}</dd>
+                </div>
+                <div className="flex justify-between gap-3 py-2.5">
+                  <dt>
+                    <span className="block">Kintamoji dalis</span>
+                    <span className="block text-sm text-stone-deep">
+                      {plural(emptyings, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })} × {binL}L ×{" "}
+                      {formatEur(INVOICE_PER_EMPTYING_EUR)}
+                    </span>
+                  </dt>
+                  <dd className="font-display text-lg font-semibold">{formatEur(variable)}</dd>
                 </div>
                 {extras > 0 && (
                   <div className="flex justify-between gap-3 py-2.5">
@@ -193,7 +222,7 @@ export function BillingScreen({
                     <span className="flex items-center gap-2.5">
                       <span className="sr-only">Suma paslėpta</span>
                       <span aria-hidden="true" className="select-none font-display font-semibold blur-[5px]">
-                        {formatEur(INVOICE_AMOUNT_EUR)}
+                        {formatEur(INVOICE_FIXED_EUR + 2 * INVOICE_PER_EMPTYING_EUR)}
                       </span>
                       <Chip paid />
                     </span>
@@ -230,7 +259,7 @@ function PaymentPopup({ amount, onClose, onPaid }: { amount: number; onClose: ()
   return (
     <Modal title="Apmokėti sąskaitą" onClose={loading ? () => {} : onClose}>
       <p className="flex items-baseline justify-between">
-        <span className="text-stone-deep">Vietinė rinkliava · {INVOICE_PERIOD}</span>
+        <span className="text-stone-deep">Atliekų tvarkymo sąskaita · {INVOICE_PERIOD}</span>
         <span className="font-display text-2xl font-semibold">{formatEur(amount)}</span>
       </p>
 
