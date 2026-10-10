@@ -70,8 +70,12 @@ export const INVOICE_PERIOD = "2026 m. spalis";
 export const INVOICE_DUE = "2026-11-15";
 export const INVOICE_RANGE: [string, string] = ["2026-10-01", "2026-10-31"];
 
-// Earlier months shown as paid (amounts and numbers are blurred in the UI).
-export const PAST_INVOICE_PERIODS = ["2026 m. rugsėjis", "2026 m. rugpjūtis", "2026 m. liepa"];
+// Earlier months shown as paid (amounts blurred in the list, full breakdown when opened).
+export const PAST_INVOICES: { period: string; range: [string, string] }[] = [
+  { period: "2026 m. rugsėjis", range: ["2026-09-01", "2026-09-30"] },
+  { period: "2026 m. rugpjūtis", range: ["2026-08-01", "2026-08-31"] },
+  { period: "2026 m. liepa", range: ["2026-07-01", "2026-07-31"] },
+];
 
 // --- Resident booking (PRD section 7) ---
 

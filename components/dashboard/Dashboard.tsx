@@ -36,7 +36,6 @@ import {
 } from "@/lib/pickups";
 import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
-import { isInvoicePaid } from "./Invoices";
 import { ChevronDownIcon, Marker, type MarkerKind } from "./Icons";
 import Modal from "./Modal";
 import { DemoControls, NotificationBanner, ReminderPopup } from "./Reminder";
@@ -90,11 +89,6 @@ export default function Dashboard({
   const [reminderOpen, setReminderOpen] = useState(false);
   const [banner, setBanner] = useState(false); // in-page notification (fallback when system ones aren't possible)
   const pendingRef = useRef<"yes" | "no" | "open" | null>(null);
-  const [billingUnpaid, setBillingUnpaid] = useState(false);
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setBillingUnpaid(!isInvoicePaid(householdId));
-  }, [householdId]);
   const [pendingTick, setPendingTick] = useState(0);
   const demo = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("demo") === "1";
   const toastSeq = useRef(0); // unique key per toast so each one restarts its timer
@@ -254,7 +248,6 @@ export default function Dashboard({
           name={name}
           onSwitch={onSwitch}
           current="home"
-          billingUnpaid={billingUnpaid}
         />
 
         <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
@@ -476,6 +469,22 @@ function Hero({
           <button onClick={() => onDecline(scheduled!)} className={ON_GREEN_CLAY}>
             Ne, nereikia
           </button>
+        </div>
+      )}
+
+      {/* The answer is never final: switch to the other one until the truck comes. */}
+      {isEve && answer && (
+        <div className="mt-6 flex flex-col gap-3 border-t border-sheet/25 pt-5 sm:flex-row sm:items-center">
+          <p className="text-sheet-lo">Persigalvojote?</p>
+          {answer === "no" ? (
+            <button onClick={() => onConfirm(scheduled!)} className={ON_GREEN_PRIMARY}>
+              Vis dėlto išstumsiu
+            </button>
+          ) : (
+            <button onClick={() => onDecline(scheduled!)} className={ON_GREEN_CLAY}>
+              Ne, nereikia
+            </button>
+          )}
         </div>
       )}
     </section>

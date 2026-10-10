@@ -9,7 +9,7 @@ import {
   INVOICE_DUE,
   INVOICE_PERIOD,
   INVOICE_RANGE,
-  PAST_INVOICE_PERIODS,
+  PAST_INVOICES,
 } from "@/lib/config";
 import { addDays, formatDay, formatEur, plural } from "@/lib/dates";
 import { getNextPickup, subscribePickups, type Household, type Pickup } from "@/lib/pickups";
@@ -33,11 +33,11 @@ export function isInvoicePaid(householdId: number): boolean {
 }
 
 // Scheduled emptyings inside this invoice month, stepping the 2-week schedule from next_service.
-function scheduledInRange(nextService: string): number {
+function scheduledInRange(nextService: string, range: [string, string] = INVOICE_RANGE): number {
   let d = nextService;
-  while (d >= INVOICE_RANGE[0]) d = addDays(d, -SCHEDULE_INTERVAL_DAYS);
+  while (d >= range[0]) d = addDays(d, -SCHEDULE_INTERVAL_DAYS);
   let n = 0;
-  for (d = addDays(d, SCHEDULE_INTERVAL_DAYS); d <= INVOICE_RANGE[1]; d = addDays(d, SCHEDULE_INTERVAL_DAYS)) n++;
+  for (d = addDays(d, SCHEDULE_INTERVAL_DAYS); d <= range[1]; d = addDays(d, SCHEDULE_INTERVAL_DAYS)) n++;
   return n;
 }
 
@@ -70,6 +70,7 @@ export function BillingScreen({
   const [pickups, setPickups] = useState<Pickup[]>([]);
   const [paid, setPaid] = useState(false);
   const [paying, setPaying] = useState(false);
+  const [openPast, setOpenPast] = useState<(typeof PAST_INVOICES)[number] | null>(null);
   const [toast, setToast] = useState<ToastData | null>(null);
   const toastSeq = useRef(0);
 
@@ -124,13 +125,12 @@ export function BillingScreen({
 
   return (
     <div className="min-h-dvh bg-ground">
-      <div inert={paying}>
+      <div inert={paying || !!openPast}>
         <Header
           address={household?.address ?? null}
           name={name}
           onSwitch={onSwitch}
           current="billing"
-          billingUnpaid={!paid}
         />
 
         <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
@@ -208,24 +208,26 @@ export function BillingScreen({
             {/* earlier months: amounts and numbers blurred on purpose */}
             <Panel title="Ankstesnės sąskaitos" className="md:col-span-4">
               <ul className="mt-2 divide-y divide-rule/60">
-                {PAST_INVOICE_PERIODS.map((period) => (
-                  <li key={period} className="flex items-center justify-between gap-3 py-2.5">
-                    <span>
-                      <span className="block">{period}</span>
-                      <span className="block text-xs text-stone-deep">
-                        <span className="sr-only">Sąskaitos numeris paslėptas</span>
-                        <span aria-hidden="true" className="select-none blur-[5px]">
+                {PAST_INVOICES.map((inv) => (
+                  <li key={inv.period}>
+                    <button
+                      onClick={() => setOpenPast(inv)}
+                      aria-label={`${inv.period} sąskaita, apmokėta. Atidaryti`}
+                      className="flex min-h-14 w-full items-center justify-between gap-3 rounded-[3px] py-2.5 text-left hover:bg-sheet-hi"
+                    >
+                      <span>
+                        <span className="block">{inv.period}</span>
+                        <span aria-hidden="true" className="block select-none text-xs text-stone-deep blur-[5px]">
                           Nr. VR-2026-00000
                         </span>
                       </span>
-                    </span>
-                    <span className="flex items-center gap-2.5">
-                      <span className="sr-only">Suma paslėpta</span>
-                      <span aria-hidden="true" className="select-none font-display font-semibold blur-[5px]">
-                        {formatEur(INVOICE_FIXED_EUR + 2 * INVOICE_PER_EMPTYING_EUR)}
+                      <span className="flex items-center gap-2.5">
+                        <span aria-hidden="true" className="select-none font-display font-semibold blur-[5px]">
+                          {formatEur(INVOICE_FIXED_EUR + 2 * INVOICE_PER_EMPTYING_EUR)}
+                        </span>
+                        <Chip paid />
                       </span>
-                      <Chip paid />
-                    </span>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -235,6 +237,14 @@ export function BillingScreen({
       </div>
 
       {paying && <PaymentPopup amount={total} onClose={() => setPaying(false)} onPaid={markPaid} />}
+      {openPast && (
+        <PastInvoicePopup
+          period={openPast.period}
+          emptyings={household?.next_service ? scheduledInRange(household.next_service, openPast.range) : 2}
+          binL={binL}
+          onClose={() => setOpenPast(null)}
+        />
+      )}
       {toast && <Toast key={toast.id} toast={toast} onDone={() => setToast(null)} />}
     </div>
   );
@@ -305,6 +315,60 @@ function PaymentPopup({ amount, onClose, onPaid }: { amount: number; onClose: ()
         {loading ? "Jungiamasi prie banko..." : "Mokėti"}
       </button>
       <p className="mt-3 text-center text-xs text-stone-deep">Mokėjimas per Paysera · Demo, pinigai nenurašomi</p>
+    </Modal>
+  );
+}
+
+// An earlier month's bill: the same breakdown as the current one, already paid.
+function PastInvoicePopup({
+  period,
+  emptyings,
+  binL,
+  onClose,
+}: {
+  period: string;
+  emptyings: number;
+  binL: number;
+  onClose: () => void;
+}) {
+  const variable = emptyings * INVOICE_PER_EMPTYING_EUR;
+  const total = INVOICE_FIXED_EUR + variable;
+  return (
+    <Modal title="Atliekų tvarkymo sąskaita" description={`${period} · Vietinė rinkliava už komunalinių atliekų tvarkymą`} onClose={onClose}>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <span className="font-display text-4xl font-semibold leading-none">{formatEur(total)}</span>
+        <Chip paid />
+      </div>
+      <dl className="mt-4 divide-y divide-rule/60 border-y border-rule/60">
+        <div className="flex justify-between gap-3 py-2.5">
+          <dt>
+            <span className="block">Pastovioji dalis</span>
+            <span className="block text-sm text-stone-deep">už būstą, kas mėnesį vienoda</span>
+          </dt>
+          <dd className="font-display text-lg font-semibold">{formatEur(INVOICE_FIXED_EUR)}</dd>
+        </div>
+        <div className="flex justify-between gap-3 py-2.5">
+          <dt>
+            <span className="block">Kintamoji dalis</span>
+            <span className="block text-sm text-stone-deep">
+              {plural(emptyings, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })} × {binL}L ×{" "}
+              {formatEur(INVOICE_PER_EMPTYING_EUR)}
+            </span>
+          </dt>
+          <dd className="font-display text-lg font-semibold">{formatEur(variable)}</dd>
+        </div>
+        <div className="flex justify-between gap-3 py-2.5">
+          <dt className="font-semibold">Iš viso</dt>
+          <dd className="font-display text-xl font-semibold">{formatEur(total)}</dd>
+        </div>
+      </dl>
+      <button
+        data-autofocus
+        onClick={onClose}
+        className="mt-5 flex min-h-12 w-full items-center justify-center rounded-[4px] border-2 border-green px-6 font-display text-lg font-semibold text-green hover:bg-sheet-hi"
+      >
+        Uždaryti
+      </button>
     </Modal>
   );
 }

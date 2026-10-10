@@ -7,6 +7,7 @@ import Onboarding from "@/components/resident/Onboarding";
 import { DEMO_DAY, DEMO_USER_NAME } from "@/lib/config";
 import { getDemoHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
 import { registerServiceWorker } from "@/lib/pwa";
+import { resetReports } from "@/lib/reports";
 
 // No real auth. The demo household loads by default; a household picked in the
 // header switcher or in onboarding is remembered in localStorage.
@@ -79,7 +80,7 @@ export default function ResidentShell({
         const current = readStored();
         const demo = await demoUser();
         const ids = new Set([current?.householdId, demo.householdId].filter((id): id is number => !!id));
-        await Promise.all([...ids].map(resetHousehold));
+        await Promise.all([...ids].flatMap((id) => [resetHousehold(id), resetReports(id)]));
         await seedDemoActivity(demo.householdId, DEMO_DAY);
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
