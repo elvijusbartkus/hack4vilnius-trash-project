@@ -74,7 +74,8 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   background: var(--bg);
-  box-shadow: 0 0 40px rgba(19, 32, 28, 0.1);
+  /* the phone-width column is ruled off from the desk, not floated with a halo */
+  border-inline: 1px solid rgba(135, 173, 164, 0.6);
 }
 
 .screen {
@@ -84,29 +85,36 @@ body {
   padding: 0 16px 32px;
 }
 
-/* ---- sign in ---- */
+/* ---- sign in: the day's shift roster ---- */
 
 .screen--signin {
-  justify-content: center;
-  gap: 28px;
+  gap: 0;
+  padding-top: 0;
 }
 
-.signin-brand {
-  text-align: center;
+.roster-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  border-bottom: 1px solid var(--line);
 }
 
-.signin-mark {
-  display: inline-grid;
-  place-items: center;
+.roster-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.signin-brand h1 {
-  margin: 14px 0 4px;
-  font-size: 32px;
+.roster-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 21px;
   letter-spacing: -0.01em;
 }
 
-/* Wordmark as in the logo: "Waste" green, "Wise" orange (#c26a00 at 32px bold: large text, 3.3:1) */
+/* Wordmark as in the logo: "Waste" green, "Wise" orange (#c26a00 bold: large text) */
 .wm-waste {
   color: var(--accent);
 }
@@ -115,82 +123,181 @@ body {
   color: #c26a00;
 }
 
-.signin-brand p {
-  margin: 0;
-  color: var(--muted);
+.roster-date {
   font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: right;
 }
 
-.driver-list {
+.roster-head {
+  padding: 36px 0 20px;
+}
+
+.roster-head h1 {
+  margin: 0;
+  font-size: clamp(30px, 8vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.roster-head p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* One ruled sheet, a row per driver: not a stack of cards */
+.roster {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.driver-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
 }
 
-.driver-btn:hover,
-.driver-btn:active {
+.roster li + li {
+  border-top: 1px solid var(--line);
+}
+
+.roster-row {
+  position: relative;
+  width: 100%;
+  display: grid;
+  gap: 4px;
+  padding: 16px 48px 16px 16px;
+  background: transparent;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roster li:first-child .roster-row {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.roster li:last-child .roster-row {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.roster-row:hover {
   background: var(--panel-hi);
 }
 
-.avatar {
-  flex: 0 0 44px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius);
-  border: 1px solid var(--accent);
-  background: transparent;
-  color: var(--accent);
+.roster-row:active {
+  background: var(--panel-lo);
+}
+
+.roster-row:focus-visible {
+  outline-offset: -3px;
+}
+
+.roster-row__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.roster-row__name {
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.roster-row__truck {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.roster-row__fraction {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Bin colour as a square, matching the resident app's square "scheduled" marker */
+.fraction-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 1px;
+  background: var(--fraction, var(--accent));
+}
+
+.roster-row__load {
+  margin-top: 4px;
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 15px;
 }
 
-.driver-btn__body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.roster-row__go {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  margin-top: -11px;
+  color: var(--accent);
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.driver-btn__body small {
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 2px;
+.roster-row:hover .roster-row__go {
+  transform: translateX(3px);
 }
 
-.driver-btn__body .fraction-tag {
-  margin-top: 4px;
-  font-size: 12px;
+/* Lithuanian number plate (EU band). Real plates are white with black type. */
+.plate {
+  display: inline-flex;
+  align-items: stretch;
+  height: 28px;
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  background: #fff;
+  overflow: hidden;
 }
 
-.driver-btn__count {
-  font-size: 12px;
-  color: var(--muted);
-  white-space: nowrap;
+.plate__eu {
+  display: grid;
+  place-items: end center;
+  width: 18px;
+  padding-bottom: 3px;
+  background: #003399;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.02em;
+}
+
+.plate__no {
+  display: grid;
+  place-items: center;
+  padding: 0 9px 0 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  color: #111;
 }
 
 .demo-note {
-  text-align: center;
-  font-size: 12px;
+  margin: 14px 0 0;
+  font-size: 13px;
   color: var(--muted);
-  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roster-row,
+  .roster-row__go {
+    transition: none;
+  }
 }
 
 /* ---- app bar ---- */
