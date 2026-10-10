@@ -660,7 +660,7 @@ body {
   padding: 0 12px;
   border-radius: var(--radius);
   border: 1px solid var(--clay);
-  background: var(--urgent-tint);
+  background: transparent; /* quiet on every row; the reported state is the loud one */
   color: var(--urgent);
   font: inherit;
   font-size: 13px;
