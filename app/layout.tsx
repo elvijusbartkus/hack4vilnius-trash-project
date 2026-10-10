@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Barlow, Barlow_Semi_Condensed } from "next/font/google";
 import "./globals.css";
 
@@ -15,9 +15,22 @@ const barlowSemiCondensed = Barlow_Semi_Condensed({
   weight: ["500", "600", "700"],
 });
 
+const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata: Metadata = {
   title: "Trage – atliekų išvežimas pagal poreikį",
   description: "Hack4Vilnius 2026 prototipas",
+  applicationName: "TRAGE",
+  manifest: `${base}/manifest.webmanifest`,
+  icons: {
+    icon: [{ url: `${base}/icons/icon-192.png`, sizes: "192x192", type: "image/png" }],
+    apple: [{ url: `${base}/icons/apple-touch-icon.png`, sizes: "180x180" }],
+  },
+  appleWebApp: { capable: true, title: "TRAGE", statusBarStyle: "default" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1f5a3c",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

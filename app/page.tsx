@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import Dashboard from "@/components/dashboard/Dashboard";
 import Onboarding from "@/components/resident/Onboarding";
-import { DEMO_USER_NAME } from "@/lib/config";
-import { getDemoHousehold, resetHousehold } from "@/lib/pickups";
+import { DEMO_DAY, DEMO_USER_NAME } from "@/lib/config";
+import { getDemoHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
+import { registerServiceWorker } from "@/lib/pwa";
 
 // No real auth. The demo household loads by default; a household picked in the
 // header switcher or in onboarding is remembered in localStorage.
@@ -12,6 +13,8 @@ const HOUSEHOLD_KEY = "householdId";
 const NAME_KEY = "userName";
 
 type User = { householdId: number; name: string };
+
+let resetStarted = false;
 
 function readStored(): User | null {
   try {
@@ -51,6 +54,8 @@ export default function ResidentPage() {
       window.history.replaceState(null, "", window.location.pathname + (rest ? `?${rest}` : ""));
     };
 
+    registerServiceWorker();
+
     (async () => {
       // /?onboarding=1 shows the old onboarding screen.
       if (params.get("onboarding") === "1") {
@@ -61,10 +66,13 @@ export default function ResidentPage() {
       // /?reset=1 deletes pickups for the current and demo household, clears local state,
       // and loads the demo user (tomorrow's question shows again).
       if (params.get("reset") === "1") {
+        if (resetStarted) return; // the effect can run twice (React dev mode); reset and seed only once
+        resetStarted = true;
         const current = readStored();
         const demo = await demoUser();
         const ids = new Set([current?.householdId, demo.householdId].filter((id): id is number => !!id));
         await Promise.all([...ids].map(resetHousehold));
+        await seedDemoActivity(demo.householdId, DEMO_DAY);
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
           localStorage.removeItem(NAME_KEY);

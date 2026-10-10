@@ -6,7 +6,7 @@ import {
   FUEL_L_PER_100KM,
   TIME_WINDOWS,
 } from "@/lib/config";
-import { formatDayCap } from "@/lib/dates";
+import { formatDayCap, todayISO } from "@/lib/dates";
 import type { Household, Pickup } from "@/lib/pickups";
 
 // A separate panel: its own surface, its own heading, space between panels (never merged).
@@ -49,7 +49,7 @@ function Rows({ rows }: { rows: [ReactNode, ReactNode, string?][] }) {
 }
 
 function pickupLabel(p: Pickup): string {
-  if (p.status === "skipped") return "Nevažiuos";
+  if (p.status === "skipped") return p.date < todayISO() ? "Nevažiavo" : "Nevažiuos";
   if (p.status === "collected") return "Išvežta";
   if (p.status === "blocked") return "Užstatyta";
   return p.kind === "extra" ? "Papildomas" : "Patvirtinta";
@@ -107,8 +107,9 @@ export function ImpactField({ pickups }: { pickups: Pickup[] }) {
           ["Sutaupyta sustojimų", no],
         ]}
       />
-      <p className="mt-2 text-sm leading-snug text-stone-deep">
-        CO₂ mažiau: apie {num.format(no * perSkip)}&nbsp;kg (≈&nbsp;{num.format(perSkip)}&nbsp;kg už kiekvieną sustojimą).
+      <p className="mt-2 font-semibold">Iš viso {num.format(no * perSkip)}&nbsp;kg CO₂ mažiau</p>
+      <p className="mt-1 text-sm leading-snug text-stone-deep">
+        {num.format(perSkip)}kg CO₂ mažiau už kiekvieną sutaupytą sustojimą
       </p>
     </Panel>
   );
