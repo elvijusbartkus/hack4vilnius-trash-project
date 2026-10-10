@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { drivers as plannedDrivers } from './data/shift.js'
-import { useLiveRound } from './lib/live.js'
+import { useCrewRounds, useLiveRound } from './lib/live.js'
 import SignIn from './components/SignIn.jsx'
 import ShiftList from './components/ShiftList.jsx'
 import RoundView from './components/RoundView.jsx'
@@ -31,15 +31,18 @@ export default function App() {
   const [collectedAt, setCollectedAt] = useState({})
   const [openRoundId, setOpenRoundId] = useState(null)
 
-  // The first driver works the real route day from Supabase (Pilaitė, live);
-  // the other crews keep their planned rounds as decoration.
+  // Every crew works real Pilaitė addresses from Supabase: the first driver
+  // the live route day, the others the rest of the area (see lib/live.js).
   const live = useLiveRound()
+  const crew = useCrewRounds()
   const drivers = useMemo(
     () =>
       plannedDrivers.map((d, i) =>
-        i === 0 ? { ...d, rounds: live.round ? [live.round] : [], liveStatus: live } : d,
+        i === 0
+          ? { ...d, rounds: live.round ? [live.round] : [], liveStatus: live }
+          : { ...d, rounds: crew?.[d.id] ?? [], liveStatus: crew ? undefined : { status: 'loading' } },
       ),
-    [live],
+    [live, crew],
   )
   const driver = driverId ? drivers.find((d) => d.id === driverId) ?? null : null
 

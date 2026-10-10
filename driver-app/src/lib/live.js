@@ -25,7 +25,7 @@ const supabase = url && anonKey ? createClient(url, anonKey) : null
 export const LIVE_ROUND_ID = `live-${DEMO_DAY}`
 const POLL_MS = 3000
 
-const HOUSE_COLUMNS = 'id, address, lat, lon, bin_volume_l'
+const HOUSE_COLUMNS = 'id, address, lat, lon, bin_volume_l, next_service'
 
 async function fetchDay() {
   const [houses, pickups] = await Promise.all([
@@ -77,6 +77,7 @@ function toStop(h, extra = false) {
     district: 'Pilaitė',
     volumeL,
     containerType: extra ? `${volumeL}L konteineris · papildomas` : `${volumeL}L konteineris`,
+    nextService: h.next_service,
     // the route optimiser's capacity fields; one round, so only the shape matters
     looseL: volumeL,
     bodyL: volumeL,
@@ -172,4 +173,83 @@ export function useLiveRound() {
   }, [])
 
   return state
+}
+
+// The other crews' rounds, also on real Pilaitė addresses from the same table
+// (not generated points, which could land in a river or a park):
+//   d2, d3 (mixed waste): houses scheduled on other days, split west / east
+//   d4 (glass): every third address in the area; there is no glass data, so
+//       the places are real but the glass round itself is decoration.
+// Built once; each is ordered by road distance when OSRM answers.
+async function buildOtherRounds() {
+  const res = await supabase.from('households').select(HOUSE_COLUMNS).order('id')
+  if (res.error) throw new Error(res.error.message)
+  const all = uniqueByAddress(res.data.map((h) => toStop(h)))
+  const offDay = all
+    .filter((s) => s.nextService !== DEMO_DAY)
+    .sort((a, b) => a.lng - b.lng)
+  const half = Math.ceil(offDay.length / 2)
+  const glass = getFraction('glass')
+  const groups = {
+    d2: { stops: offDay.slice(0, half), fraction: getFraction('mixed') },
+    d3: { stops: offDay.slice(half), fraction: getFraction('mixed') },
+    d4: {
+      stops: all
+        .filter((_, i) => i % 3 === 0)
+        .map((s) => ({ ...s, volumeL: glass.volumeL, containerType: glass.containerLabel })),
+      fraction: glass,
+    },
+  }
+  return groups
+}
+
+function crewRound(driverId, group, dist) {
+  const plan = optimiseRoute(DEPOT, group.stops, dist)
+  return {
+    id: `real-${driverId}`,
+    shiftLabel: 'Rytinis reisas',
+    startTime: '07:00',
+    fraction: group.fraction,
+    districts: ['Pilaitė'],
+    stops: plan.stops,
+    distanceKm: plan.distanceKm,
+    durationMin: plan.durationMin,
+  }
+}
+
+/** { d2: [round], d3: [round], d4: [round] } once loaded, else null. */
+export function useCrewRounds() {
+  const [rounds, setRounds] = useState(null)
+
+  useEffect(() => {
+    if (!supabase) return
+    let alive = true
+    buildOtherRounds()
+      .then(async (groups) => {
+        const build = (dist) =>
+          Object.fromEntries(Object.entries(groups).map(([id, g]) => [id, [crewRound(id, g, dist)]]))
+        if (alive) setRounds(build(roadDistance))
+        // Road distances per group, one after another (the public OSRM server is shared).
+        const tables = {}
+        for (const [id, g] of Object.entries(groups)) {
+          tables[id] = await roadMatrix([DEPOT, ...g.stops]).catch(() => null)
+        }
+        if (!alive) return
+        setRounds(
+          Object.fromEntries(
+            Object.entries(groups).map(([id, g]) => {
+              const km = tables[id]
+              const dist = (a, b) => km?.get(`${a.id ?? 'depot'}>${b.id ?? 'depot'}`) ?? roadDistance(a, b)
+              return [id, [crewRound(id, g, dist)]]
+            }),
+          ),
+        )
+      })
+      .catch((e) => console.error(e))
+    return () => {
+      alive = false
+    }
+  }, [])
+
+  return rounds
 }
