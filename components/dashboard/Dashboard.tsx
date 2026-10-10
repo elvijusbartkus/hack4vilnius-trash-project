@@ -35,7 +35,7 @@ import {
 } from "@/lib/pickups";
 import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
-import { Marker, type MarkerKind } from "./Icons";
+import { ChevronDownIcon, Marker, type MarkerKind } from "./Icons";
 import Modal from "./Modal";
 import { DemoControls, NotificationBanner, ReminderPopup } from "./Reminder";
 import Toast, { type ToastData } from "./Toast";
@@ -488,16 +488,56 @@ function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void 
     const i = buttons.indexOf(document.activeElement as HTMLButtonElement);
     if (i < 0) return;
     e.preventDefault();
-    buttons[Math.min(Math.max(i + (e.key === "ArrowRight" ? 1 : -1), 0), buttons.length - 1)]?.focus();
+    const next = buttons[Math.min(Math.max(i + (e.key === "ArrowRight" ? 1 : -1), 0), buttons.length - 1)];
+    next?.focus();
+    next?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
   }
+
+  // The strip scrolls sideways at every width; fades and arrows show which way there is more.
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ left: false, right: true });
+  const updateEdges = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setEdges({ left: el.scrollLeft > 4, right: el.scrollLeft + el.clientWidth < el.scrollWidth - 4 });
+  }, []);
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener("resize", updateEdges);
+    return () => window.removeEventListener("resize", updateEdges);
+  }, [updateEdges]);
+  const page = (dir: 1 | -1) => {
+    const el = scrollRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
+  };
+  const arrow =
+    "absolute top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-rule bg-sheet-hi text-green shadow-[0_6px_16px_-8px_rgb(29_33_30/0.5)] hover:bg-white md:flex";
 
   return (
     <div className="mt-4">
       <div className="relative">
-      {/* phones: a right-edge fade shows the strip scrolls sideways */}
-      <div className="pointer-events-none absolute inset-y-0 -right-5 z-10 w-16 bg-gradient-to-l from-sheet via-sheet/80 to-transparent md:hidden" aria-hidden="true" />
-      <div className="-mx-5 overflow-x-auto px-5 pb-1 md:mx-0 md:px-0">
-        <div className="grid min-w-[620px] grid-cols-14 gap-1" onKeyDown={onKeyDown}>
+      {edges.left && (
+        <>
+          <div className="pointer-events-none absolute inset-y-0 -left-5 z-10 w-16 bg-gradient-to-r from-sheet via-sheet/80 to-transparent md:left-0" aria-hidden="true" />
+          <button onClick={() => page(-1)} aria-label="Ankstesnės dienos" className={`${arrow} -left-3`}>
+            <ChevronDownIcon className="rotate-90" />
+          </button>
+        </>
+      )}
+      {edges.right && (
+        <>
+          <div className="pointer-events-none absolute inset-y-0 -right-5 z-10 w-16 bg-gradient-to-l from-sheet via-sheet/80 to-transparent md:right-0" aria-hidden="true" />
+          <button onClick={() => page(1)} aria-label="Tolesnės dienos" className={`${arrow} -right-3`}>
+            <ChevronDownIcon className="-rotate-90" />
+          </button>
+        </>
+      )}
+      <div
+        ref={scrollRef}
+        onScroll={updateEdges}
+        className="-mx-5 snap-x snap-mandatory overflow-x-auto scroll-px-5 px-5 pb-1 [scrollbar-width:none] md:mx-0 md:scroll-px-0 md:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        <div className="grid w-max auto-cols-[64px] grid-flow-col gap-1.5 md:auto-cols-[76px]" onKeyDown={onKeyDown}>
           {days.map((d) => {
             const kind = dayKind(d);
             const date = parseISODate(d.date);
@@ -508,7 +548,7 @@ function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void 
                 onClick={() => onPick(d.date)}
                 disabled={disabled}
                 aria-label={dayLabel(d)}
-                className={`flex min-h-[88px] flex-col items-center justify-between rounded-[3px] py-2.5 transition-colors ${
+                className={`flex min-h-[88px] snap-start flex-col items-center justify-between rounded-[3px] py-2.5 transition-colors ${
                   disabled ? "cursor-default" : "hover:bg-sheet-hi"
                 } ${d.scheduled || d.extra ? "bg-sheet-lo" : ""} ${kind === "none" ? "text-stone-deep" : ""}`}
               >

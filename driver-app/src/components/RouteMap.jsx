@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import { CHECK_SVG, DEPOT_SVG } from './icons.jsx'
+import { CHECK_SVG } from './icons.jsx'
 
 // One round, nothing else. The driver is looking at the stops they're about
 // to drive, so the map shows only those — no other crews, no other colours.
