@@ -83,6 +83,13 @@
 
 .backdrop-in { animation: fade-in 180ms ease-out both; }
 
+/* Demo notification banner slides down from the top like a phone notification. */
+@keyframes notif-in {
+  from { transform: translateY(-120%); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.notif-in { animation: notif-in 420ms var(--ease-out-expo) both; }
+
 /* Popups, toast and address dropdown: rise from the bottom on phones, settle in place on desktop. */
 @keyframes slip-up {
   from { transform: translateY(100%); }
@@ -119,6 +126,7 @@
   .stamp { animation: fade-in 120ms ease-out both; }
   .slip { animation: fade-in 120ms ease-out both; }
   .day-panel { animation: fade-in 120ms ease-out both; }
+  .notif-in { animation: fade-in 120ms ease-out both; }
   .pulse-bookable { animation: none; box-shadow: inset 0 0 0 2px var(--color-green); }
   /* keep the undo timing, hide the moving bar */
   .toast-timer { opacity: 0; }

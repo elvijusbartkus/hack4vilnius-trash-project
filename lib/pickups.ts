@@ -190,3 +190,26 @@ export function subscribePickups(onChange: () => void): () => void {
     supabase.removeChannel(channel);
   };
 }
+
+// Demo history for the reset: four earlier reminders answered (three "Taip", one "Ne"), every
+// two weeks back from the demo day. The "Ne" sits before the VASA history window, so it never
+// contradicts a real "Išvežta" record.
+export async function seedDemoActivity(householdId: number, demoDay: string) {
+  const answers: { weeksBack: number; status: "planned" | "skipped" }[] = [
+    { weeksBack: 2, status: "planned" },
+    { weeksBack: 4, status: "planned" },
+    { weeksBack: 6, status: "planned" },
+    { weeksBack: 8, status: "skipped" },
+  ];
+  check(
+    await supabase.from("pickups").insert(
+      answers.map((a) => ({
+        household_id: householdId,
+        date: addDays(demoDay, -7 * a.weeksBack),
+        kind: "scheduled",
+        status: a.status,
+        price_eur: 0,
+      })),
+    ),
+  );
+}

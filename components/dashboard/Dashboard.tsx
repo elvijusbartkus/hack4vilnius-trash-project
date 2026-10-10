@@ -37,6 +37,7 @@ import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
 import { Marker, type MarkerKind } from "./Icons";
 import Modal from "./Modal";
+import { DemoControls, NotificationBanner, ReminderPopup } from "./Reminder";
 import Toast, { type ToastData } from "./Toast";
 
 const ERROR_TEXT = "Nepavyko susisiekti su serveriu. Patikrinkite ryšį ir bandykite dar kartą.";
@@ -83,6 +84,11 @@ export default function Dashboard({
   const [error, setError] = useState<string | null>(null);
   const [toast, setToast] = useState<ToastData | null>(null);
   const [extraFor, setExtraFor] = useState<string | null>(null); // open "Papildomas išvežimas" popup on this day
+  const [reminderOpen, setReminderOpen] = useState(false);
+  const [banner, setBanner] = useState(false); // in-page notification (fallback when system ones aren't possible)
+  const pendingRef = useRef<"yes" | "no" | "open" | null>(null);
+  const [pendingTick, setPendingTick] = useState(0);
+  const demo = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("demo") === "1";
   const toastSeq = useRef(0); // unique key per toast so each one restarts its timer
 
   const load = useCallback(
@@ -136,23 +142,73 @@ export default function Dashboard({
 
   const tomorrow = addDays(todayISO(), 1);
 
-  // "Taip, išstumsiu": a confirmed scheduled pickup.
-  const confirm = (date: string) =>
-    act(
-      () => confirmScheduled(householdId, date),
-      date === tomorrow ? "Ačiū! Šiukšliavežė atvažiuos rytoj." : `Ačiū! Šiukšliavežė atvažiuos ${formatDay(date)}`,
-      (id) => removePickup(id as number),
+  // The resident's answer to the reminder for `date`. A new answer replaces an earlier one; undo restores it.
+  function answer(date: string, yes: boolean) {
+    const prev =
+      state?.pickups.find((p) => p.date === date && p.kind === "scheduled" && (p.status === "planned" || p.status === "skipped")) ??
+      null;
+    if (prev && (prev.status === "planned") === yes) return; // same answer again: nothing to do
+    const message = yes
+      ? date === tomorrow
+        ? "Ačiū! Šiukšliavežė atvažiuos rytoj."
+        : `Ačiū! Šiukšliavežė atvažiuos ${formatDay(date)}`
+      : `${date === tomorrow ? "Rytoj" : capitalize(formatDay(date))} pas jus neužsuks. Kitas išvežimas: ${formatDay(
+          addDays(date, SCHEDULE_INTERVAL_DAYS),
+        )}`;
+    return act(
+      async () => {
+        if (prev) await removePickup(prev.id);
+        return yes ? confirmScheduled(householdId, date) : skipScheduled(householdId, date);
+      },
+      message,
+      async (id) => {
+        await removePickup(id as number);
+        if (prev) await (prev.status === "planned" ? confirmScheduled : skipScheduled)(householdId, date);
+      },
     );
+  }
+  const confirm = (date: string) => answer(date, true);
+  const decline = (date: string) => answer(date, false);
 
-  // "Ne, nereikia": the truck won't come that day.
-  const decline = (date: string) =>
-    act(
-      () => skipScheduled(householdId, date),
-      `${date === tomorrow ? "Rytoj" : capitalize(formatDay(date))} pas jus neužsuks. Kitas išvežimas: ${formatDay(
-        addDays(date, SCHEDULE_INTERVAL_DAYS),
-      )}`,
-      (id) => removePickup(id as number),
-    );
+  // Reminder from a notification: open the popup, or apply an action button's answer directly.
+  function handleReminder(reply: "yes" | "no" | null) {
+    setBanner(false);
+    const date = state?.scheduledDate;
+    if (!date) return;
+    if (reply) answer(date, reply === "yes");
+    else setReminderOpen(true);
+  }
+
+  // Service worker messages (notification clicked while the page is open).
+  useEffect(() => {
+    if (!("serviceWorker" in navigator)) return;
+    const onMessage = (e: MessageEvent) => {
+      if (e.data?.type === "reminder") pendingRef.current = e.data.answer ?? "open";
+      setPendingTick((n) => n + 1);
+    };
+    navigator.serviceWorker.addEventListener("message", onMessage);
+    return () => navigator.serviceWorker.removeEventListener("message", onMessage);
+  }, []);
+
+  // ?remind=1 / ?answer=yes|no (page opened from a notification): handled once the house has loaded.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const a = q.get("answer");
+    if (q.get("remind") === "1" || a === "yes" || a === "no") {
+      pendingRef.current = a === "yes" || a === "no" ? a : "open";
+      q.delete("remind");
+      q.delete("answer");
+      window.history.replaceState(null, "", window.location.pathname + (q.toString() ? `?${q}` : ""));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!state || !pendingRef.current) return;
+    const p = pendingRef.current;
+    pendingRef.current = null;
+    handleReminder(p === "open" ? null : p);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state, pendingTick]);
 
   const reportExtra = (date: string, amount: ExtraAmount | null) => {
     setExtraFor(null);
@@ -182,11 +238,12 @@ export default function Dashboard({
 
   return (
     <div className="min-h-dvh bg-ground">
-      <div inert={!!extraFor}>
+      <div inert={!!extraFor || reminderOpen}>
         <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
 
         <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
           <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
+          {demo && state && <DemoControls onFallback={(delay) => setTimeout(() => setBanner(true), delay)} />}
           {error && (
             <p role="alert" className="mb-5 rounded-[4px] border-2 border-clay bg-sheet-hi px-5 py-3 font-semibold text-clay-deep">
               {error}
@@ -250,6 +307,22 @@ export default function Dashboard({
         </main>
       </div>
 
+      {banner && state && (
+        <NotificationBanner onOpen={() => handleReminder(null)} onDismiss={() => setBanner(false)} />
+      )}
+      {reminderOpen && state?.scheduledDate && (
+        <ReminderPopup
+          date={state.scheduledDate}
+          containerLine={[state.household.bin_volume_l && `${state.household.bin_volume_l}L`, state.household.carrier, "kas 2 sav."]
+            .filter(Boolean)
+            .join(" · ")}
+          onClose={() => setReminderOpen(false)}
+          onAnswer={(yes) => {
+            setReminderOpen(false);
+            answer(state.scheduledDate!, yes);
+          }}
+        />
+      )}
       {extraFor && state && (
         <ExtraPopup
           initialDate={extraFor}
@@ -266,7 +339,8 @@ export default function Dashboard({
 
 const HERO_BTN = "min-h-14 rounded-[4px] px-7 font-display text-xl font-semibold";
 const ON_GREEN_PRIMARY = `${HERO_BTN} bg-sheet text-green hover:bg-white`;
-const ON_GREEN_CLAY = `${HERO_BTN} border-2 border-clay-light text-clay-light hover:bg-clay-light/10`;
+// "Ne, nereikia": white text on green (8.1:1, AA) with a clay outline as the accent.
+const ON_GREEN_CLAY = `${HERO_BTN} border-[3px] border-clay-light text-white hover:bg-clay-light/15`;
 
 // The newest real VASA record, if the truck could not collect last time.
 function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
@@ -419,7 +493,10 @@ function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void 
 
   return (
     <div className="mt-4">
-      <div className="-mx-5 overflow-x-auto px-5 pb-1 [mask-image:linear-gradient(to_right,black_82%,transparent)] md:mx-0 md:px-0 md:[mask-image:none]">
+      <div className="relative">
+      {/* phones: a right-edge fade shows the strip scrolls sideways */}
+      <div className="pointer-events-none absolute inset-y-0 -right-5 z-10 w-16 bg-gradient-to-l from-sheet via-sheet/80 to-transparent md:hidden" aria-hidden="true" />
+      <div className="-mx-5 overflow-x-auto px-5 pb-1 md:mx-0 md:px-0">
         <div className="grid min-w-[620px] grid-cols-14 gap-1" onKeyDown={onKeyDown}>
           {days.map((d) => {
             const kind = dayKind(d);
@@ -456,9 +533,10 @@ function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void 
           })}
         </div>
       </div>
+      </div>
       <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-deep">
         <Legend kind="scheduled">Pagal grafiką, kas 2 sav.</Legend>
-        <Legend kind="bookable">Galima pranešti apie papildomą</Legend>
+        <Legend kind="bookable">Galima pranešti apie papildomą išvežimą</Legend>
         <Legend kind="extra">Papildomas išvežimas</Legend>
         <Legend kind="skipped">Nevažiuos</Legend>
       </div>
