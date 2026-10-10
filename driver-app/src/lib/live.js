@@ -137,7 +137,7 @@ function makeRound(todayPlan, counts, km) {
   const savedKm = km.baseline - km.today
   return {
     id: LIVE_ROUND_ID,
-    shiftLabel: 'Pilaitė',
+    shiftLabel: 'Rytinis reisas',
     startTime: '07:00',
     fraction: getFraction('mixed'),
     districts: ['Pilaitė'],

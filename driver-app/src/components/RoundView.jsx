@@ -107,23 +107,11 @@ export default function RoundView({
           <>
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
-            <div className="nav-row">
-              <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
-                <span className="btn-label">
-                  <NavigateIcon size={20} /> Navigacija
-                </span>
-              </a>
-              {/* Waze takes one destination: the next stop. */}
-              <a
-                className="btn btn--waze"
-                href={`https://waze.com/ul?ll=${nextStop.lat},${nextStop.lng}&navigate=yes`}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Waze: ${nextStop.address}`}
-              >
-                Waze
-              </a>
-            </div>
+            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
+              <span className="btn-label">
+                <NavigateIcon size={20} /> Navigacija
+              </span>
+            </a>
 
             <p className="next-up">
               {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}

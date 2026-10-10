@@ -8,7 +8,7 @@ Hack4Vilnius 2026, challenge 10. Prototype for a 47h hackathon. Optimise for a w
 - Garbage trucks burn about 96L/100km in stop-and-go collection (Cascais, Portugal 2019 study, median), and Lithuania has a chronic shortage of truck drivers.
 
 ## 2. Solution (one sentence)
-Residents tell the system when they actually need a pickup (book or skip), and the driver gets a route each morning built only from the houses that need it, opened in one tap in Google Maps or Waze.
+Residents tell the system when they actually need a pickup (book or skip), and the driver gets a route each morning built only from the houses that need it, opened in one tap in OsmAnd or Google Maps.
 
 ## 3. Users
 - **Resident (B2C, mobile web):** private house owner. Wants zero effort.
@@ -49,9 +49,8 @@ Principle: open app, pick a day (and time if needed), done. Or skip. Nothing els
 1. **Today's route:** ordered stop list and map. Order = nearest neighbour from depot plus 2-opt, computed in the browser.
 2. **Open in Google Maps:** the route is split into legs of max 9 waypoints (Google Maps URL limit; mobile browsers allow only 3, so the link must open the Maps app). Button per leg: "1 dalis (1-10 stotelės)".
    Format: `https://www.google.com/maps/dir/?api=1&origin=LAT,LON&destination=LAT,LON&waypoints=LAT,LON|LAT,LON&travelmode=driving`
-3. **Open in Waze:** Waze links take one destination only, so "Kita stotelė Waze" opens the next unvisited stop: `https://waze.com/ul?ll=LAT,LON&navigate=yes`
-4. **Per stop:** "Paimta" (collected) and "Užstatyta" (blocked) buttons. Updates the DB.
-5. Live: a new booking or skip updates the route without reload.
+3. **Per stop:** "Paimta" (collected) and "Užstatyta" (blocked) buttons. Updates the DB.
+4. Live: a new booking or skip updates the route without reload.
 
 ## 9. Ops / demo view, desktop
 - Map of the demo area. Grey = skipped / not needed, green = on route.

@@ -5,7 +5,7 @@ import { INVOICE_PAID_PREFIX } from "@/components/dashboard/Invoices";
 import type { Household } from "@/lib/pickups";
 import Onboarding from "@/components/resident/Onboarding";
 import { DEMO_DAY, DEMO_SEEDED_SKIP_VASA_IDS, DEMO_USER_NAME } from "@/lib/config";
-import { getDemoHousehold, getHousehold, resetHousehold, seedDemoActivity, seedNeighbourSkips } from "@/lib/pickups";
+import { clearAnswer, getDemoHousehold, getHousehold, resetHousehold, seedDemoActivity, seedNeighbourSkips } from "@/lib/pickups";
 import { registerServiceWorker } from "@/lib/pwa";
 import { resetReports } from "@/lib/reports";
 
@@ -13,6 +13,7 @@ import { resetReports } from "@/lib/reports";
 // header switcher or in onboarding is remembered in localStorage.
 const HOUSEHOLD_KEY = "householdId";
 const NAME_KEY = "userName";
+const FRESH_KEY = "demoQuestionShown";
 const OLD_DEMO_NAMES = ["Baldas Venkunskas"]; // renamed persona; ignore it if a browser still has it saved
 
 export type ResidentUser = { householdId: number; name: string };
@@ -102,7 +103,19 @@ export default function ResidentShell({
       // a stored house may no longer exist (re-seeded area): fall back to the demo house
       const stored = readStored();
       const exists = stored && (await getHousehold(stored.householdId).catch(() => null));
-      setUser(exists ? stored : await demoUser());
+      const demo = await demoUser();
+      const user = exists ? stored : demo;
+      // The demo opens on the evening question: the first visit in a tab clears the demo house's
+      // answer for the route day. Reloads in the same tab keep it, so the story survives a refresh.
+      if (user.householdId === demo.householdId) {
+        let fresh = false;
+        try {
+          fresh = !sessionStorage.getItem(FRESH_KEY);
+          sessionStorage.setItem(FRESH_KEY, "1");
+        } catch {}
+        if (fresh) await clearAnswer(demo.householdId, DEMO_DAY);
+      }
+      setUser(user);
     })().catch((e) => setError(e.message));
   }, []);
 

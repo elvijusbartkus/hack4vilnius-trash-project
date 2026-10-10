@@ -9,7 +9,7 @@ web
 ## Users
 - **Hackathon judges (primary audience for design decisions):** Hack4Vilnius 2026, challenge 10. They watch the demo on a big screen (laptop/projector, desktop web) and decide in minutes whether the idea is credible and the flow is effortless.
 - **Residents of private houses in Vilnius (the story):** house owners with a 240L mixed-waste bin collected every 2 weeks. Job: tell the system when they actually need a pickup (skip or book) with zero effort. Demo persona: Žygimantas Bakanas, Darkiemio g. 13, Pilaitė.
-- **Garbage truck driver (separate app built by a teammate, integrated later; nothing driver-specific lives in this repo):** gets today's ordered stops and opens them in Google Maps or Waze.
+- **Garbage truck driver (separate app built by a teammate, integrated later; nothing driver-specific lives in this repo):** gets today's ordered stops and opens them in OsmAnd or Google Maps.
 - **Route / ops view:** removed from this repo (2026-10-09); route views belong to the driver app built separately.
 
 ## Product Purpose

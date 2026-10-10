@@ -180,6 +180,11 @@ export async function resetHousehold(householdId: number) {
   check(await supabase.from("pickups").delete().eq("household_id", householdId));
 }
 
+// Clears the household's answer ("Taip"/"Ne") for one scheduled day, so the question is asked again.
+export async function clearAnswer(householdId: number, date: string) {
+  check(await supabase.from("pickups").delete().eq("household_id", householdId).eq("date", date).eq("kind", "scheduled"));
+}
+
 // Demo reset: neighbours who answered "Ne, nereikia" for the route day (see DEMO_SEEDED_SKIP_VASA_IDS).
 // Their pickups for that day are replaced, so repeated resets never stack rows.
 export async function seedNeighbourSkips(vasaIds: number[], day: string) {

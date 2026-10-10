@@ -518,28 +518,6 @@ body {
   color: var(--accent);
 }
 
-.nav-row {
-  display: flex;
-  gap: 8px;
-}
-
-.nav-row .btn--nav {
-  flex: 1;
-}
-
-.btn--waze {
-  flex: 0 0 auto;
-  width: auto;
-  padding: 16px 18px;
-  background: var(--panel);
-  border: 2px solid var(--ink);
-  color: var(--ink);
-}
-
-.btn--waze:hover {
-  background: var(--panel-hi);
-}
-
 .roster-empty {
   margin: 0;
   padding: 16px;
