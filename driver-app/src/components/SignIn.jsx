@@ -5,11 +5,6 @@ import { LogoMark } from './icons.jsx'
 // Shift-terminal style sign-in: the driver taps their own row on the day's
 // roster to start. Mock only — the real app hands off to the fleet account system.
 export default function SignIn({ onSignIn }) {
-  // earliest departure across the roster (rounds carry "HH:MM")
-  const start = drivers
-    .map((d) => d.rounds[0]?.startTime)
-    .filter((t) => t && t !== '—')
-    .sort()[0]
   return (
     <div className="screen screen--signin">
       <header className="roster-bar">
@@ -24,10 +19,8 @@ export default function SignIn({ onSignIn }) {
       </header>
 
       <div className="roster-head">
-        <h1>Kas šiandien vairuoja?</h1>
-        <p>
-          {start && <>Pirmieji reisai išvyksta {start}. </>}Palieskite savo eilutę, kad pradėtumėte pamainą.
-        </p>
+        <h1>Pradėkite pamainą</h1>
+        <p>Pasirinkite save sąraše.</p>
       </div>
 
       <ul className="roster" aria-label="Šios dienos pamaina">
