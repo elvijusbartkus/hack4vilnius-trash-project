@@ -309,3 +309,9 @@ The grey clay tokens were renamed `stone` (`#a39e95`, marks and borders) and `st
 - **Clay Light** (`clay-light`, `#edbb9e`): clay inside the deep-green hero ("Ne, nereikia" outline, struck "nevažiuos" date, stamp, failed-pickup warning). 4.7:1 on green.
 
 Resident model: the hero asks "Rytoj išvežimas. Išstumsite konteinerį?" until answered. "Taip, išstumsiu" saves a `scheduled`/`planned` pickup (stamp PATVIRTINTA); "Ne, nereikia" saves `scheduled`/`skipped` (stamp NEVAŽIUOS, clay). No answer keeps the question and the "Atvažiuos pagal grafiką" status.
+
+## Structure update (2026-10-10)
+
+- One shared popup (`components/dashboard/Modal.tsx`) is back for exactly one flow: reporting an extra pickup (day chips, optional amount, price, "Pranešti"). Dimmed backdrop, centered on desktop, bottom sheet on phones, Esc/backdrop/X, focus trap.
+- Hero has three states from today (`DEMO_TODAY`, or `?date=YYYY-MM-DD`): the evening question, the real VASA result for that day ("Ištuštinta …" green / "Neištuštinta: …" clay), or "Kitas išvežimas: …". The container is one line under the date.
+- Layout: left = hero, 14-day calendar, "Papildomas išvežimas"; right = history, impact. No container or help panels.

@@ -1,11 +1,12 @@
 import { useId, type ReactNode } from "react";
 import {
   AVG_KM_SAVED_PER_SKIP,
+  EXTRA_AMOUNTS,
   CO2_KG_PER_L_DIESEL,
   FUEL_L_PER_100KM,
   TIME_WINDOWS,
 } from "@/lib/config";
-import { formatDayCap, todayISO } from "@/lib/dates";
+import { formatDayCap } from "@/lib/dates";
 import type { Household, Pickup } from "@/lib/pickups";
 
 // A separate panel: its own surface, its own heading, space between panels (never merged).
@@ -47,25 +48,11 @@ function Rows({ rows }: { rows: [ReactNode, ReactNode, string?][] }) {
   );
 }
 
-export function ContainerField({ household }: { household: Household }) {
-  return (
-    <Panel title="Jūsų konteineris">
-      <Rows
-        rows={[
-          ["Talpa", household.bin_volume_l ? `${household.bin_volume_l} L` : "—"],
-          ["Vežėjas", household.carrier ?? "—"],
-          ["Grafikas", "kas 2 savaites"],
-        ]}
-      />
-    </Panel>
-  );
-}
-
 function pickupLabel(p: Pickup): string {
   if (p.status === "skipped") return "Nevažiuos";
   if (p.status === "collected") return "Išvežta";
   if (p.status === "blocked") return "Užstatyta";
-  return p.kind === "extra" ? "Užsakyta papildomai" : "Patvirtinta";
+  return p.kind === "extra" ? "Papildomas" : "Patvirtinta";
 }
 
 export function HistoryField({ household, pickups }: { household: Household; pickups: Pickup[] }) {
@@ -95,7 +82,7 @@ export function HistoryField({ household, pickups }: { household: Household; pic
                   <span className="text-stone-deep"> · {TIME_WINDOWS[p.time_window].split(" ")[0]}</span>
                 )}
               </>,
-              `${pickupLabel(p)}${p.kind === "extra" ? ` · ${Number(p.price_eur)} €` : ""}`,
+              `${pickupLabel(p)}${p.kind === "extra" && p.amount ? ` · ${EXTRA_AMOUNTS[p.amount]}` : ""}`,
               p.status === "skipped" || p.kind === "extra" ? "text-clay-deep" : "text-green",
             ])}
           />
@@ -107,34 +94,22 @@ export function HistoryField({ household, pickups }: { household: Household; pic
 
 const num = new Intl.NumberFormat("lt-LT", { maximumFractionDigits: 1 });
 
+// N answers to the evening question; every "Ne" is a stop the truck did not need to make.
 export function ImpactField({ pickups }: { pickups: Pickup[] }) {
-  const year = todayISO().slice(0, 4);
-  const skips = pickups.filter((p) => p.status === "skipped" && p.date.startsWith(year)).length;
+  const answers = pickups.filter((p) => p.kind === "scheduled" && (p.status === "planned" || p.status === "skipped")).length;
+  const no = pickups.filter((p) => p.kind === "scheduled" && p.status === "skipped").length;
   const perSkip = AVG_KM_SAVED_PER_SKIP * (FUEL_L_PER_100KM / 100) * CO2_KG_PER_L_DIESEL;
   return (
     <Panel title="Jūsų poveikis">
       <Rows
         rows={[
-          [`Atsakyta „Ne“ ${year} m.`, skips],
-          ["CO₂ mažiau, apytiksliai", skips ? `≈ ${num.format(skips * perSkip)} kg` : "0 kg"],
+          ["Atsakyta į priminimus", answers],
+          ["Sutaupyta sustojimų", no],
         ]}
       />
       <p className="mt-2 text-sm leading-snug text-stone-deep">
-        Kiekvieną kartą, kai šiukšliavežei nereikia atvažiuoti: apie {num.format(perSkip)}&nbsp;kg CO₂ mažiau.
+        CO₂ mažiau: apie {num.format(no * perSkip)}&nbsp;kg (≈&nbsp;{num.format(perSkip)}&nbsp;kg už kiekvieną sustojimą).
       </p>
-    </Panel>
-  );
-}
-
-// Short, task-focused help: exactly how the service works.
-export function HelpPanel() {
-  return (
-    <Panel title="Kaip tai veikia">
-      <ul className="mt-2 list-disc space-y-2 pl-5 text-base leading-snug marker:text-green-muted">
-        <li>Vakare prieš išvežimą paklausime, ar išstumsite konteinerį.</li>
-        <li>Jei ne, šiukšliavežė pas jus nevažiuos.</li>
-        <li>Reikia papildomo išvežimo? Pasirinkite dieną kalendoriuje.</li>
-      </ul>
     </Panel>
   );
 }

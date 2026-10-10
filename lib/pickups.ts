@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import { EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, type TimeWindow } from "@/lib/config";
+import { EXTRA_PICKUP_PRICE_EUR, SCHEDULE_INTERVAL_DAYS, type ExtraAmount, type TimeWindow } from "@/lib/config";
 import { addDays, todayISO } from "@/lib/dates";
 
 // One real VASA service record, e.g. { date: "2026-10-02 11:47:38", serviced: true, reason: null }
@@ -26,6 +26,7 @@ export type Pickup = {
   kind: "scheduled" | "extra";
   status: "planned" | "skipped" | "collected" | "blocked";
   price_eur: number;
+  amount?: ExtraAmount | null; // needs migration 003; absent until it has run
   created_at: string;
 };
 
@@ -112,22 +113,30 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
 }
 
 // Inserts return the new row id so the toast can undo them.
-export async function bookExtra(householdId: number, date: string, timeWindow: TimeWindow | null): Promise<number> {
-  const row = check(
-    await supabase
-      .from("pickups")
-      .insert({
-        household_id: householdId,
-        date,
-        time_window: timeWindow,
-        kind: "extra",
-        status: "planned",
-        price_eur: EXTRA_PICKUP_PRICE_EUR,
-      })
-      .select("id")
-      .single(),
-  );
-  return (row as { id: number }).id;
+export async function bookExtra(
+  householdId: number,
+  date: string,
+  timeWindow: TimeWindow | null,
+  amount: ExtraAmount | null = null,
+): Promise<number> {
+  const row: Record<string, unknown> = {
+    household_id: householdId,
+    date,
+    time_window: timeWindow,
+    kind: "extra",
+    status: "planned",
+    price_eur: EXTRA_PICKUP_PRICE_EUR,
+  };
+  let res = await supabase
+    .from("pickups")
+    .insert(amount ? { ...row, amount } : row)
+    .select("id")
+    .single();
+  // Before migration 003 has run there is no amount column: keep the booking, drop the amount.
+  if (res.error && amount && /amount/.test(res.error.message)) {
+    res = await supabase.from("pickups").insert(row).select("id").single();
+  }
+  return (check(res) as { id: number }).id;
 }
 
 // Cancelling a booked extra pickup removes the row (it never reaches the driver route).
