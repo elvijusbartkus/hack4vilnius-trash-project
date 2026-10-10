@@ -102,6 +102,14 @@ export default function RoundView({
           </>
         ) : (
           <>
+            {/* Only the stops still to collect go in, so re-opening
+                mid-round picks up where the driver is. */}
+            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT)}>
+              <span className="btn-label">
+                <NavigateIcon size={20} /> Navigacija OsmAnd
+              </span>
+            </a>
+
             <p className="next-up">
               {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
               {round.stops.length} — <strong>{nextStop.address}</strong>
@@ -118,12 +126,6 @@ export default function RoundView({
                 Nepavyko paimti
               </button>
             </div>
-
-            {/* Only the stops still to collect go in, so re-opening
-                mid-round picks up where the driver is. */}
-            <a className="btn btn--ghost" href={osmandRouteUrl(remaining, DEPOT)}>
-              Navigacija OsmAnd
-            </a>
           </>
         )}
       </div>

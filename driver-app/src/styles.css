@@ -16,6 +16,8 @@
   --urgent: #96491f; /* clay-deep: urgent text, 4.9:1 on its tint */
   --urgent-tint: #f2ddd0;
   --clay: #b0603d; /* clay: urgent marks */
+  --nav: #1d5fa8; /* blue: hand-off to navigation, apart from the green "done" actions */
+  --nav-deep: #174c87;
   --radius: 4px;
   --font: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Barlow Semi Condensed', 'Barlow', system-ui, sans-serif;
@@ -390,6 +392,15 @@ body {
 
 .btn--primary:hover {
   background: var(--accent-deep);
+}
+
+.btn--nav {
+  background: var(--nav);
+  color: #fff; /* white on #1d5fa8: 6.5:1 */
+}
+
+.btn--nav:hover {
+  background: var(--nav-deep);
 }
 
 .btn-label {
