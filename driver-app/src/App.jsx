@@ -7,11 +7,13 @@ import RoundView from './components/RoundView.jsx'
 const SESSION_KEY = 'tr.driverId'
 const PROGRESS_KEY = 'tr.progress.v2'
 const ISSUES_KEY = 'tr.issues'
+const COLLECTED_AT_KEY = 'tr.collectedAt'
 
 // Stable empties, so a round with nothing ticked yet doesn't hand the map a
 // new array on every render (which would make it re-fit each time).
 const NO_STOPS = []
 const NO_ISSUES = {}
+const NO_TIMES = {}
 
 export default function App() {
   // Survives a reload — a driver who backgrounds the app mid-round comes
@@ -21,11 +23,15 @@ export default function App() {
   // Stops the driver couldn't collect, with why: { roundId: { stopId: reasonId } }.
   // A stop is either collected or has a problem, never both.
   const [issues, setIssues] = useState(() => load(ISSUES_KEY, {}))
+  // When each stop was marked collected, as an ISO timestamp:
+  // { roundId: { stopId: '2026-10-10T07:42:13.512Z' } }.
+  const [collectedAt, setCollectedAt] = useState(() => load(COLLECTED_AT_KEY, {}))
   const [openRoundId, setOpenRoundId] = useState(null)
 
   useEffect(() => save(SESSION_KEY, driverId), [driverId])
   useEffect(() => save(PROGRESS_KEY, progress), [progress])
   useEffect(() => save(ISSUES_KEY, issues), [issues])
+  useEffect(() => save(COLLECTED_AT_KEY, collectedAt), [collectedAt])
 
   const driver = driverId ? findDriver(driverId) : null
 
@@ -42,13 +48,22 @@ export default function App() {
         const { [stopId]: _, ...rest } = prev[roundId] ?? {}
         return { ...prev, [roundId]: reasonId ? { ...rest, [stopId]: reasonId } : rest }
       })
+    // Stamped at the tap itself; undoing or reporting a problem clears it.
+    const setCollectedTime = (stopId, iso) =>
+      setCollectedAt((prev) => {
+        const { [stopId]: _, ...rest } = prev[roundId] ?? {}
+        return { ...prev, [roundId]: iso ? { ...rest, [stopId]: iso } : rest }
+      })
 
     return (
       <RoundView
         round={openRound}
         done={progress[roundId] ?? NO_STOPS}
         issues={issues[roundId] ?? NO_ISSUES}
+        collectedAt={collectedAt[roundId] ?? NO_TIMES}
         onToggleStop={(stopId) => {
+          const wasDone = (progress[roundId] ?? []).includes(stopId)
+          setCollectedTime(stopId, wasDone ? null : new Date().toISOString())
           setIssue(stopId, null)
           setProgress((prev) => {
             const current = prev[roundId] ?? []
@@ -63,6 +78,7 @@ export default function App() {
         onReportIssue={(stopId, reasonId) => {
           setIssue(stopId, reasonId)
           if (reasonId) {
+            setCollectedTime(stopId, null)
             setProgress((prev) => ({
               ...prev,
               [roundId]: (prev[roundId] ?? []).filter((id) => id !== stopId),

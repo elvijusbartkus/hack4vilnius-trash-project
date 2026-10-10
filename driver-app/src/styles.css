@@ -749,3 +749,18 @@ body {
 .sheet__close {
   align-self: center;
 }
+
+.stop-body .collected-at {
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Done rows are dimmed, but the time stamp is the record — keep it legible. */
+.stop-row.is-done .stop-body {
+  opacity: 1;
+}
+
+.stop-row.is-done .stop-body strong {
+  opacity: 0.5;
+}

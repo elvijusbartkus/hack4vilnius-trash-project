@@ -20,6 +20,7 @@ export default function RoundView({
   round,
   done,
   issues,
+  collectedAt,
   onToggleStop,
   onReportIssue,
   onBack,
@@ -151,6 +152,10 @@ export default function RoundView({
                 <small>
                   {issue ? (
                     <em className="issue-text">Nepaimta: {issueLabel(issue)}</em>
+                  ) : isDone && collectedAt[stop.id] ? (
+                    <time className="collected-at" dateTime={collectedAt[stop.id]}>
+                      Paimta {formatStamp(collectedAt[stop.id])}
+                    </time>
                   ) : (
                     stop.containerType
                   )}
@@ -220,3 +225,15 @@ export default function RoundView({
   )
 }
 
+// Time to the second; the date too when it wasn't today, so an old stamp
+// can't pass for this shift's.
+function formatStamp(iso) {
+  const d = new Date(iso)
+  const time = d.toLocaleTimeString('lt-LT', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+  if (d.toDateString() === new Date().toDateString()) return time
+  return `${d.toLocaleDateString('lt-LT')} ${time}`
+}
