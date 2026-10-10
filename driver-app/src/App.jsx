@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
-import { findDriver } from './data/shift.js'
+import { useEffect, useMemo, useState } from 'react'
+import { drivers as plannedDrivers } from './data/shift.js'
+import { useLiveRound } from './lib/live.js'
 import SignIn from './components/SignIn.jsx'
 import ShiftList from './components/ShiftList.jsx'
 import RoundView from './components/RoundView.jsx'
@@ -33,7 +34,17 @@ export default function App() {
   useEffect(() => save(ISSUES_KEY, issues), [issues])
   useEffect(() => save(COLLECTED_AT_KEY, collectedAt), [collectedAt])
 
-  const driver = driverId ? findDriver(driverId) : null
+  // The first driver works the real route day from Supabase (Pilaitė, live);
+  // the other crews keep their planned rounds as decoration.
+  const live = useLiveRound()
+  const drivers = useMemo(
+    () =>
+      plannedDrivers.map((d, i) =>
+        i === 0 ? { ...d, rounds: live.round ? [live.round] : [], liveStatus: live } : d,
+      ),
+    [live],
+  )
+  const driver = driverId ? drivers.find((d) => d.id === driverId) ?? null : null
 
   // Each screen is a history entry (roster 0, rounds 1, open round 2), so the
   // phone's back gesture steps out one level instead of leaving the app.
@@ -55,7 +66,7 @@ export default function App() {
     (window.history.state?.depth ?? 0) > 0 ? window.history.back() : fallback()
 
   if (!driver) {
-    return <SignIn onSignIn={setDriverId} />
+    return <SignIn drivers={drivers} onSignIn={setDriverId} />
   }
 
   const openRound = driver.rounds.find((r) => r.id === openRoundId)

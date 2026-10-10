@@ -70,6 +70,8 @@ export default function RoundView({
         </div>
       </header>
 
+      {round.savings && <SavingsLine savings={round.savings} />}
+
       <p className="fraction-strip">
         <span className="fraction-dot" />
         <strong>{round.fraction.label}</strong>
@@ -105,11 +107,23 @@ export default function RoundView({
           <>
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
-            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
-              <span className="btn-label">
-                <NavigateIcon size={20} /> Navigacija
-              </span>
-            </a>
+            <div className="nav-row">
+              <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
+                <span className="btn-label">
+                  <NavigateIcon size={20} /> Navigacija
+                </span>
+              </a>
+              {/* Waze takes one destination: the next stop. */}
+              <a
+                className="btn btn--waze"
+                href={`https://waze.com/ul?ll=${nextStop.lat},${nextStop.lng}&navigate=yes`}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Waze: ${nextStop.address}`}
+              >
+                Waze
+              </a>
+            </div>
 
             <p className="next-up">
               {done.length || issueCount ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
@@ -222,6 +236,39 @@ export default function RoundView({
         />
       )}
     </div>
+  )
+}
+
+// "117 → 116 sustojimų · −0,4km · −1,0kg CO₂": what residents' answers took
+// off today's route, against every house on the schedule.
+function SavingsLine({ savings }) {
+  const num = (n, digits) =>
+    n.toLocaleString('lt-LT', { minimumFractionDigits: digits, maximumFractionDigits: digits })
+  const km = Math.abs(savings.savedKm)
+  const kg = Math.abs(savings.savedCo2Kg)
+  // nothing to save yet (or under 5 m): plain zeros, no sign
+  const zero = km < 0.005
+  const sign = (n) => (zero ? '' : n < 0 ? '+' : '−')
+  // One skipped house on a busy street saves metres, not kilometres: show what it is.
+  const dist = zero ? '0km' : km < 1 ? `${Math.round((km * 1000) / 10) * 10}m` : `${num(km, 1)}km`
+  const co2 = zero ? '0kg CO₂' : `${num(kg, kg < 1 ? 2 : 1)}kg CO₂`
+  return (
+    <p
+      className="savings-line"
+      title={savings.source === 'osrm' ? 'Atstumai: OSRM' : 'Atstumai apytiksliai (tiesi linija × 1,3)'}
+    >
+      <strong>
+        {savings.baselineStops} → {plural(savings.stops, 'sustojimas', 'sustojimai', 'sustojimų')}
+      </strong>
+      <span>
+        {sign(savings.savedKm)}
+        {dist}
+      </span>
+      <span>
+        {sign(savings.savedCo2Kg)}
+        {co2}
+      </span>
+    </p>
   )
 }
 

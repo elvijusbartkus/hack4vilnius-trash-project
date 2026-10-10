@@ -31,15 +31,17 @@ export const DIESEL_EUR_PER_L = 1.45;
 // kg of CO2 emitted per litre of diesel burned.
 export const CO2_KG_PER_L_DIESEL = 2.68;
 
-// Ecoservice depot coordinates [lat, lon], start/end of the driver route.
-// TODO: set real depot coords. Placeholder = centre of the demo area.
-export const DEPOT: [number, number] = [54.6781, 25.3748];
+// Depot [lat, lon] where driver routes start and end: the driver app's base, Jočionių g. 13.
+export const DEPOT: [number, number] = [54.6508, 25.2731];
 
 // PLACEHOLDER: average truck km saved per skipped stop, for the resident impact card. Not measured.
 export const AVG_KM_SAVED_PER_SKIP = 0.3;
 
 // Fallback when OSRM is unavailable: straight-line (haversine) distance times this factor.
 export const HAVERSINE_ROAD_FACTOR = 1.3;
+
+// Public OSRM server for road distances of the driver route (demo use only).
+export const OSRM_URL = "https://router.project-osrm.org";
 
 // --- Pricing placeholders (PRD section 4). Not real payments. ---
 

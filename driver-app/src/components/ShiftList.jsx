@@ -32,6 +32,14 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
         </p>
       </div>
 
+      {driver.rounds.length === 0 && driver.liveStatus && (
+        <p className="roster-empty" role={driver.liveStatus.status === 'error' ? 'alert' : undefined}>
+          {driver.liveStatus.status === 'error'
+            ? `Nepavyko įkelti maršruto: ${driver.liveStatus.message}`
+            : 'Kraunamas maršrutas…'}
+        </p>
+      )}
+
       <ul className="roster" aria-label="Šiandienos reisai">
         {driver.rounds.map((round) => {
           const done = progress[round.id]?.length ?? 0

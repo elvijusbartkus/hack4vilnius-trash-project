@@ -1,10 +1,9 @@
-import { drivers } from '../data/shift.js'
 import { plural } from '../lib/lt.js'
 import { LogoMark } from './icons.jsx'
 
 // Shift-terminal style sign-in: the driver taps their own row on the day's
 // roster to start. Mock only — the real app hands off to the fleet account system.
-export default function SignIn({ onSignIn }) {
+export default function SignIn({ drivers, onSignIn }) {
   return (
     <div className="screen screen--signin">
       <header className="roster-bar">

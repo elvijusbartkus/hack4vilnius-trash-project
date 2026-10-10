@@ -510,6 +510,61 @@ body {
 }
 
 
+/* Live route: savings against the full schedule */
+.savings-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.savings-line strong {
+  font-size: 18px;
+}
+
+.savings-line span {
+  color: var(--accent);
+}
+
+.nav-row {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-row .btn--nav {
+  flex: 1;
+}
+
+.btn--waze {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 16px 18px;
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.btn--waze:hover {
+  background: var(--panel-hi);
+}
+
+.roster-empty {
+  margin: 0;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+}
+
 /* ---- fraction (bin type) ---- */
 
 .fraction-strip {
