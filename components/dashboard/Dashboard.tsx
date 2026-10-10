@@ -390,10 +390,10 @@ function Hero({
   if (record) {
     const when = formatDay(record.date.slice(0, 10));
     if (record.serviced) {
-      title = `Ištuštinta ${when}, ${record.date.slice(11, 16)}`;
+      title = `Surinkta ${when}, ${record.date.slice(11, 16)}`;
       tone = "good";
     } else {
-      title = `Neištuštinta: ${(record.reason ?? "konteineris nepasiektas").toLowerCase()}`;
+      title = `Nesurinkta: ${(record.reason ?? "konteineris nepasiektas").toLowerCase()}`;
       tone = "bad";
       detail = `${capitalize(when)} Kitas išvežimas: ${scheduled ? formatDay(scheduled) : "nežinomas"}`;
     }
