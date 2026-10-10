@@ -2,22 +2,23 @@
    big, there's one column, and only one round is ever on screen. */
 
 :root {
-  /* TRAGE tokens, same as the resident app (app/globals.css) */
-  --bg: #d9d8d5; /* ground: neutral grey stone */
-  --panel: #dcead2; /* sheet: light green */
-  --panel-hi: #e9f2e3; /* hover / pressed */
-  --panel-lo: #cfe2c3;
-  --ink: #1d211e;
-  --muted: #57534c; /* stone-deep: 6.1:1 on panel, 5.4:1 on ground */
-  --line: #9bb38f; /* rule */
-  --accent: #1f5a3c; /* green: primary actions */
-  --accent-deep: #184a31;
-  --on-accent: #dcead2;
-  --urgent: #96491f; /* clay-deep: urgent text, 4.9:1 on its tint */
-  --urgent-tint: #f2ddd0;
-  --clay: #b0603d; /* clay: urgent marks */
-  --nav: #1d5fa8; /* blue: hand-off to navigation, apart from the green "done" actions */
-  --nav-deep: #174c87;
+  /* WasteWise tokens, same palette as the resident app (app/globals.css), sampled from the logo */
+  --bg: #dfe3e1; /* ground: cool neutral grey */
+  --panel: #e3efe9; /* light mint */
+  --panel-hi: #f0f7f3; /* hover / pressed */
+  --panel-lo: #cfe3dc;
+  --ink: #13201c;
+  --muted: #4a5853; /* 6.3:1 on panel, 5.8:1 on ground */
+  --line: #87ada4; /* rule */
+  --accent: #0f5c4a; /* brand teal-green: "done" actions */
+  --accent-deep: #0b4a3b;
+  --on-accent: #e3efe9;
+  --urgent: #9a5200; /* orange text: 4.9:1 on its tint */
+  --urgent-tint: #fbe8d2;
+  --orange: #a85a00; /* orange marks and fills; white text on it 5.1:1 */
+  /* Navigation hand-off in the logo's route orange, apart from the green "done" actions */
+  --nav: #e8890c;
+  --nav-deep: #d17a06;
   --radius: 4px;
   --font: 'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Barlow Semi Condensed', 'Barlow', system-ui, sans-serif;
@@ -68,7 +69,7 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   background: var(--bg);
-  box-shadow: 0 0 40px rgba(29, 33, 30, 0.1);
+  box-shadow: 0 0 40px rgba(19, 32, 28, 0.1);
 }
 
 .screen {
@@ -96,9 +97,17 @@ body {
 
 .signin-brand h1 {
   margin: 14px 0 4px;
-  font-size: 28px;
-  letter-spacing: 0.14em;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+}
+
+/* Wordmark as in the logo: "Waste" green, "Wise" orange (#c26a00 at 32px bold: large text, 3.3:1) */
+.wm-waste {
   color: var(--accent);
+}
+
+.wm-wise {
+  color: #c26a00;
 }
 
 .signin-brand p {
@@ -396,7 +405,7 @@ body {
 
 .btn--nav {
   background: var(--nav);
-  color: #fff; /* white on #1d5fa8: 6.5:1 */
+  color: var(--ink); /* ink on route orange: 6.4:1 (white would be 2.6:1) */
 }
 
 .btn--nav:hover {
@@ -616,7 +625,7 @@ body {
 }
 
 .marker-stop.is-done {
-  background: #a39e95; /* stone */
+  background: #9aa5a1; /* stone */
 }
 
 .marker-stop.is-compact.is-done {
@@ -625,7 +634,7 @@ body {
 
 .marker-stop.is-active {
   transform: scale(1.3);
-  box-shadow: 0 0 0 5px rgba(31, 90, 60, 0.35);
+  box-shadow: 0 0 0 5px rgba(15, 92, 74, 0.35);
 }
 
 /* ---- couldn't collect ---- */
@@ -643,7 +652,7 @@ body {
 .issue-btn {
   padding: 8px 12px;
   border-radius: var(--radius);
-  border: 1px solid var(--clay);
+  border: 1px solid var(--orange);
   background: var(--urgent-tint);
   color: var(--urgent);
   font: inherit;
@@ -656,7 +665,7 @@ body {
   height: 44px;
   padding: 0 12px;
   border-radius: var(--radius);
-  border: 1px solid var(--clay);
+  border: 1px solid var(--orange);
   background: transparent; /* quiet on every row; the reported state is the loud one */
   color: var(--urgent);
   font: inherit;
@@ -666,18 +675,18 @@ body {
 }
 
 .stop-issue.is-active {
-  background: var(--clay);
-  border-color: var(--clay);
-  color: #fff; /* white on clay #b0603d: 4.6:1 */
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #fff; /* white on orange #a85a00: 5.1:1 */
 }
 
 .stop-row.is-issue {
   background: var(--urgent-tint);
-  border-color: var(--clay);
+  border-color: var(--orange);
 }
 
 .stop-row.is-issue .stop-n {
-  background: var(--clay);
+  background: var(--orange);
 }
 
 .stop-body em.issue-text {
@@ -685,7 +694,7 @@ body {
 }
 
 .marker-stop.is-issue {
-  background: var(--clay);
+  background: var(--orange);
 }
 
 /* Bottom sheet: thumb-reachable reasons, one tap each. */
@@ -696,7 +705,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background: rgba(29, 33, 30, 0.5);
+  background: rgba(19, 32, 28, 0.5);
 }
 
 .sheet {
@@ -741,8 +750,8 @@ body {
 }
 
 .sheet__option.is-selected {
-  border-color: var(--clay);
-  box-shadow: 0 0 0 1px var(--clay);
+  border-color: var(--orange);
+  box-shadow: 0 0 0 1px var(--orange);
   color: var(--urgent);
 }
 

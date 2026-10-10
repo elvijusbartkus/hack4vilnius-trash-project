@@ -254,10 +254,10 @@ export default function Dashboard({
         />
 
         <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
-          <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
+          <h1 className="sr-only">WasteWise: jūsų atliekų išvežimas</h1>
           {demo && state && <DemoControls onFallback={(delay) => setTimeout(() => setBanner(true), delay)} />}
           {error && (
-            <p role="alert" className="mb-5 rounded-[4px] border-2 border-clay bg-sheet-hi px-5 py-3 font-semibold text-clay-deep">
+            <p role="alert" className="mb-5 rounded-[4px] border-2 border-orange bg-sheet-hi px-5 py-3 font-semibold text-orange-deep">
               {error}
             </p>
           )}
@@ -288,7 +288,7 @@ export default function Dashboard({
                           </span>
                           <button
                             onClick={() => cancel(p)}
-                            className="min-h-11 rounded-[3px] border-2 border-clay px-4 font-semibold text-clay-deep hover:bg-clay/10"
+                            className="min-h-11 rounded-[3px] border-2 border-orange px-4 font-semibold text-orange-deep hover:bg-orange/10"
                           >
                             Atšaukti
                           </button>
@@ -351,8 +351,8 @@ export default function Dashboard({
 
 const HERO_BTN = "min-h-14 rounded-[4px] px-7 font-display text-xl font-semibold";
 const ON_GREEN_PRIMARY = `${HERO_BTN} bg-sheet text-green hover:bg-white`;
-// "Ne, nereikia": white text on green (8.1:1, AA) with a clay outline as the accent.
-const ON_GREEN_CLAY = `${HERO_BTN} border-[3px] border-clay-light text-white hover:bg-clay-light/15`;
+// "Ne, nereikia": white text on green (8.1:1, AA) with an orange outline as the accent.
+const ON_GREEN_CLAY = `${HERO_BTN} border-[3px] border-orange-light text-white hover:bg-orange-light/15`;
 
 // The newest real VASA record, if the truck could not collect last time.
 function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
@@ -362,7 +362,7 @@ function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
 
 // Hero: three states from today's date.
 //  1. Day before the scheduled pickup: the evening question (one click, toast with undo).
-//  2. A pickup day in the real VASA history: emptied (green) or not (clay).
+//  2. A pickup day in the real VASA history: emptied (green) or not (orange).
 //  3. Any other day: the next pickup.
 function Hero({
   state,
@@ -406,7 +406,7 @@ function Hero({
   return (
     <section
       aria-labelledby="hero-h"
-      className="on-green order-1 rounded-[4px] bg-green px-6 py-6 text-sheet shadow-[0_20px_40px_-24px_rgb(31_90_60/0.8)] md:order-none md:px-9 md:py-7"
+      className="on-green route-grid order-1 rounded-[4px] bg-green px-6 py-6 text-sheet shadow-[0_20px_40px_-24px_rgb(15_92_74/0.8)] md:order-none md:px-9 md:py-7"
     >
       {isEve && (
         <p className="font-display text-2xl font-semibold leading-tight text-white md:text-[1.75rem]">
@@ -419,8 +419,8 @@ function Hero({
           id="hero-h"
           className={`font-display font-semibold leading-[0.95] tracking-[-0.015em] ${
             isEve ? "text-[clamp(2.5rem,6vw,4.25rem)]" : "text-[clamp(2.25rem,5.5vw,4rem)]"
-          } ${tone === "bad" || answer === "no" ? "text-clay-light" : "text-white"} ${
-            answer === "no" ? "line-through decoration-clay-light/70 decoration-[6px]" : ""
+          } ${tone === "bad" || answer === "no" ? "text-orange-light" : "text-white"} ${
+            answer === "no" ? "line-through decoration-orange-light/70 decoration-[6px]" : ""
           }`}
         >
           {title}
@@ -429,7 +429,7 @@ function Hero({
           <span
             key={answer}
             className={`stamp mt-2 shrink-0 rounded-[2px] border-[3px] px-3 py-0.5 font-display text-base font-bold uppercase tracking-[0.08em] md:text-lg ${
-              answer === "no" ? "border-clay-light text-clay-light" : "border-sheet/80 text-sheet"
+              answer === "no" ? "border-orange-light text-orange-light" : "border-sheet/80 text-sheet"
             }`}
           >
             {answer === "no" ? "Nevažiuos" : "Patvirtinta"}
@@ -448,8 +448,8 @@ function Hero({
       )}
 
       {failure && (
-        <p className="mt-5 rounded-[3px] border-2 border-clay-light bg-clay-light/10 px-4 py-3 text-sheet">
-          <span className="font-semibold text-clay-light">
+        <p className="mt-5 rounded-[3px] border-2 border-orange-light bg-orange-light/10 px-4 py-3 text-sheet">
+          <span className="font-semibold text-orange-light">
             Praėjusį kartą ({formatDay(failure.date.slice(0, 10))}) neišvežta:
           </span>{" "}
           {(failure.reason ?? "konteineris nepasiektas").toLowerCase()}.
@@ -566,14 +566,14 @@ function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void 
               >
                 <span
                   className={`font-medium ${d.isToday ? "text-xs tracking-tight" : "text-sm"} ${
-                    d.extra ? "text-clay-deep" : d.scheduled ? "text-green" : kind === "none" ? "" : "text-green-muted"
+                    d.extra ? "text-orange-deep" : d.scheduled ? "text-green" : kind === "none" ? "" : "text-green-muted"
                   }`}
                 >
                   {d.isToday ? "Šiandien" : formatWeekdayShort(d.date)}
                 </span>
                 <span
                   className={`font-display text-[1.6rem] font-semibold leading-none ${
-                    kind === "skipped" ? "text-clay-deep line-through decoration-clay decoration-2" : ""
+                    kind === "skipped" ? "text-orange-deep line-through decoration-orange decoration-2" : ""
                   } ${kind === "none" ? "font-medium opacity-70" : ""}`}
                 >
                   {date.getDate()}

@@ -11,7 +11,10 @@ export default function SignIn({ onSignIn }) {
         <span className="signin-mark">
           <LogoMark size={56} />
         </span>
-        <h1>TRAGE</h1>
+        <h1>
+          <span className="wm-waste">Waste</span>
+          <span className="wm-wise">Wise</span>
+        </h1>
         <p>Vairuotojo maršrutai · pasirinkite save ir pradėkite pamainą</p>
       </div>
 

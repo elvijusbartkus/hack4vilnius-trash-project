@@ -1,4 +1,4 @@
-// TRAGE service worker: makes the app installable and shows the demo reminder notification.
+// WasteWise service worker: makes the app installable and shows the demo reminder notification.
 // URLs are resolved against the worker's scope, so this works locally and under the GitHub Pages basePath.
 const SCOPE = self.registration.scope;
 // The driver app (built separately into /driver/) is left completely alone.
@@ -14,7 +14,7 @@ self.addEventListener("fetch", (event) => {
 });
 
 const REMINDER = {
-  title: "TRAGE",
+  title: "WasteWise",
   body: "Rytoj išvežimas. Išstumsite konteinerį?",
 };
 

@@ -61,7 +61,7 @@ function ResidentNav({ current, billingUnpaid }: { current: "home" | "billing"; 
 
   const tab = (active: boolean) =>
     `relative flex min-h-11 items-center gap-2 px-1 font-display text-lg font-semibold ${
-      active ? "text-green after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-green" : "text-stone-deep hover:text-ink"
+      active ? "text-green after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-orange" : "text-stone-deep hover:text-ink"
     }`;
 
   return (
@@ -77,7 +77,7 @@ function ResidentNav({ current, billingUnpaid }: { current: "home" | "billing"; 
         Sąskaitos
         {billingUnpaid && (
           <>
-            <span className="h-2 w-2 rounded-full bg-clay" aria-hidden="true" />
+            <span className="h-2 w-2 rounded-full bg-orange" aria-hidden="true" />
             <span className="sr-only">(yra neapmokėta sąskaita)</span>
           </>
         )}
@@ -86,12 +86,15 @@ function ResidentNav({ current, billingUnpaid }: { current: "home" | "billing"; 
   );
 }
 
-// Brand lockup: the mark plus an uppercase, letterspaced wordmark (never set like a panel heading).
+// Brand lockup: the W-route mark plus "Waste" in green and "Wise" in orange, as in the logo.
 export function Wordmark() {
   return (
     <span className="flex shrink-0 items-center gap-2">
-      <LogoMark size={30} />
-      <span className="font-display text-[1.35rem] font-bold uppercase leading-none tracking-[0.14em] text-green">{APP_NAME}</span>
+      <LogoMark size={34} />
+      <span className="font-display text-[1.45rem] font-bold leading-none tracking-[-0.01em]">
+        <span className="text-green">Waste</span>
+        <span className="text-orange">Wise</span>
+      </span>
     </span>
   );
 }

@@ -67,7 +67,7 @@ export function HistoryField({ household, pickups }: { household: Household; pic
           rows={vasa.map((r) =>
             r.serviced
               ? [formatDayCap(r.date.slice(0, 10)), `Išvežta ${r.date.slice(11, 16)}`, "text-green"]
-              : [formatDayCap(r.date.slice(0, 10)), r.reason ?? "Neišvežta", "text-clay-deep"],
+              : [formatDayCap(r.date.slice(0, 10)), r.reason ?? "Neišvežta", "text-orange-deep"],
           )}
         />
       )}
@@ -83,7 +83,7 @@ export function HistoryField({ household, pickups }: { household: Household; pic
                 )}
               </>,
               `${pickupLabel(p)}${p.kind === "extra" && p.amount ? ` · ${EXTRA_AMOUNTS[p.amount]}` : ""}`,
-              p.status === "skipped" || p.kind === "extra" ? "text-clay-deep" : "text-green",
+              p.status === "skipped" || p.kind === "extra" ? "text-orange-deep" : "text-green",
             ])}
           />
         </>

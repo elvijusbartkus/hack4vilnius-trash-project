@@ -58,14 +58,23 @@ export function BellIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-// Brand mark: a bin seen from the side, its lid lifted by a check, the one decision the product asks for.
+// WasteWise mark: the "W route" app icon. Green tile with the map grid, an orange W road with a
+// dashed centre line, a start dot and a bin at the end.
+export const W_ROUTE = "M7.9 16.8 L15.5 37.8 L23.8 21.6 L32.3 37.8 L39.8 16.8";
+
 export function LogoMark({ size = 32 }: { size?: number }) {
   return (
-    <svg viewBox="0 0 32 32" width={size} height={size} aria-hidden="true" className="shrink-0">
-      <rect width="32" height="32" rx="4" className="fill-green" />
-      <path d="M9 12h14l-1.6 13H10.6z" className="fill-sheet" />
-      <path d="M8 9.5h16" className="stroke-sheet" strokeWidth="2.2" strokeLinecap="square" />
-      <path d="M12.5 17.8l2.6 2.6 4.8-5" fill="none" className="stroke-green" strokeWidth="2.4" strokeLinecap="square" />
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden="true" className="shrink-0">
+      <rect width="48" height="48" rx="11" className="fill-green" />
+      <g className="stroke-grid" strokeWidth="2">
+        <path d="M11.8 0v48M36 0v48M0 12h48M0 26.5h48M0 40.8h48" />
+      </g>
+      <path d={W_ROUTE} fill="none" className="stroke-orange-bright" strokeWidth="4.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={W_ROUTE} fill="none" className="stroke-green" strokeWidth="0.9" strokeDasharray="1.6 1.6" />
+      <circle cx="7.9" cy="16.8" r="4.2" className="fill-orange-bright" />
+      <circle cx="7.9" cy="16.8" r="1.8" fill="#fff" />
+      <circle cx="39.8" cy="16.8" r="4.2" className="fill-orange-bright" />
+      <path d="M37.6 14.6h4.4M38 15.6h3.6l-0.5 3.4h-2.6z" fill="#fff" stroke="#fff" strokeWidth="0.7" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -73,15 +82,15 @@ export function LogoMark({ size = 32 }: { size?: number }) {
 export type MarkerKind = "scheduled" | "skipped" | "extra" | "bookable" | "none";
 
 // Ledger markers: shape carries the meaning, colour only reinforces it.
-// scheduled = green square, booked extra = clay circle, not coming = clay crossed square, bookable = plus.
+// scheduled = green square, booked extra = orange circle, not coming = orange crossed square, bookable = orange plus.
 export function Marker({ kind, inverted = false }: { kind: MarkerKind; inverted?: boolean }) {
   if (kind === "none") return <span className="block h-3.5 w-3.5" aria-hidden="true" />;
   const fill = inverted ? "fill-sheet" : "fill-green";
-  const stroke = inverted ? "stroke-sheet" : "stroke-clay-deep";
+  const stroke = inverted ? "stroke-sheet" : "stroke-orange-deep";
   return (
     <svg viewBox="0 0 14 14" width={14} height={14} aria-hidden="true" className="block">
       {kind === "scheduled" && <rect x="1" y="1" width="12" height="12" className={fill} />}
-      {kind === "extra" && <circle cx="7" cy="7" r="6" className={inverted ? "fill-sheet" : "fill-clay"} />}
+      {kind === "extra" && <circle cx="7" cy="7" r="6" className={inverted ? "fill-sheet" : "fill-orange"} />}
       {kind === "skipped" && (
         <g className={stroke} strokeWidth="1.6" fill="none">
           <rect x="1.5" y="1.5" width="11" height="11" />
@@ -89,7 +98,7 @@ export function Marker({ kind, inverted = false }: { kind: MarkerKind; inverted?
         </g>
       )}
       {kind === "bookable" && (
-        <path d="M7 2v10M2 7h10" className={inverted ? "stroke-sheet" : "stroke-green-muted"} strokeWidth="1.8" strokeLinecap="square" />
+        <path d="M7 2v10M2 7h10" className={inverted ? "stroke-sheet" : "stroke-orange"} strokeWidth="1.8" strokeLinecap="square" />
       )}
     </svg>
   );

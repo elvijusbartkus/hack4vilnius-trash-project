@@ -315,3 +315,13 @@ Resident model: the hero asks "Rytoj išvežimas. Išstumsite konteinerį?" unti
 - One shared popup (`components/dashboard/Modal.tsx`) is back for exactly one flow: reporting an extra pickup (day chips, optional amount, price, "Pranešti"). Dimmed backdrop, centered on desktop, bottom sheet on phones, Esc/backdrop/X, focus trap.
 - Hero has three states from today (`DEMO_TODAY`, or `?date=YYYY-MM-DD`): the evening question, the real VASA result for that day ("Ištuštinta …" green / "Neištuštinta: …" clay), or "Kitas išvežimas: …". The container is one line under the date.
 - Layout: left = hero, 14-day calendar, "Papildomas išvežimas"; right = history, impact. No container or help panels.
+
+## Rebrand (2026-10-10): WasteWise
+
+The product is now **WasteWise** (logo sheet: `logos.docx`). Colours are sampled from the logo and replace the Trage palette in both apps (`app/globals.css`, `driver-app/src/styles.css`); layouts and interactions are unchanged.
+
+- **Teal-green** `#0f5c4a` (primary actions, hero), hover `#0b4a3b`, captions `#3b6b5e`, logo grid `#256b5a` (hero texture only).
+- **Mint panels** `#e3efe9` / `#f0f7f3` / `#cfe3dc`, rules `#87ada4`, cool grey ground `#dfe3e1`, ink `#13201c`, secondary text `#4a5853`.
+- **Route orange** is the accent (replaces clay): `#e8890c` brand orange for the logo and fills with ink text (6.4:1, never as text); `#c26a00` marks/outlines/large text; `#9a5200` orange text (5:1 on mint); `#f9c27a` orange on the green hero (4.9:1). Driver app uses `#a85a00` where white text sits on orange (5.1:1).
+- **Mark:** the "W route" icon (green tile, map grid, orange W road with dashed centre line, start dot, bin stop), drawn as inline SVG (`LogoMark`) and rendered to the PWA icons. **Wordmark:** "Waste" green + "Wise" orange, Barlow Semi Condensed 700 at 1.45rem (header) beside a 34px mark.
+- **Orange accents in use:** active tab underline, unpaid-bill dot, bookable "+" days, extra-pickup dots, "not coming" states, warnings, toast check, driver navigation hand-off button.

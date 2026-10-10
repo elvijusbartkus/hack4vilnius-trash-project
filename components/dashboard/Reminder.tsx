@@ -34,7 +34,7 @@ export function ReminderPopup({
         </button>
         <button
           onClick={() => onAnswer(false)}
-          className="min-h-14 rounded-[4px] border-[3px] border-clay px-5 font-display text-xl font-semibold text-clay-deep hover:bg-clay/10"
+          className="min-h-14 rounded-[4px] border-[3px] border-orange px-5 font-display text-xl font-semibold text-orange-deep hover:bg-orange/10"
         >
           Ne, nereikia
         </button>
@@ -56,7 +56,7 @@ export function NotificationBanner({ onOpen, onDismiss }: { onOpen: () => void; 
           <LogoMark size={38} />
           <span className="min-w-0 flex-1">
             <span className="flex items-baseline justify-between gap-2">
-              <span className="text-sm font-bold tracking-[0.08em]">TRAGE</span>
+              <span className="text-sm font-bold">WasteWise</span>
               <span className="text-xs text-stone-deep">dabar</span>
             </span>
             <span className="mt-0.5 block leading-snug">Rytoj išvežimas. Išstumsite konteinerį?</span>

@@ -18,19 +18,19 @@ const barlowSemiCondensed = Barlow_Semi_Condensed({
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
-  title: "Trage – atliekų išvežimas pagal poreikį",
+  title: "WasteWise – atliekų išvežimas pagal poreikį",
   description: "Hack4Vilnius 2026 prototipas",
-  applicationName: "TRAGE",
+  applicationName: "WasteWise",
   manifest: `${base}/manifest.webmanifest`,
   icons: {
     icon: [{ url: `${base}/icons/icon-192.png`, sizes: "192x192", type: "image/png" }],
     apple: [{ url: `${base}/icons/apple-touch-icon.png`, sizes: "180x180" }],
   },
-  appleWebApp: { capable: true, title: "TRAGE", statusBarStyle: "default" },
+  appleWebApp: { capable: true, title: "WasteWise", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1f5a3c",
+  themeColor: "#0f5c4a",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

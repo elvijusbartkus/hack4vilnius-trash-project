@@ -1,7 +1,7 @@
 // All tunable numbers in one place. See PRD sections 4 and 5.
 
 // Product name placeholder (working name until we pick one).
-export const APP_NAME = "Trage";
+export const APP_NAME = "WasteWise";
 
 // --- Demo data (PRD section 5) ---
 

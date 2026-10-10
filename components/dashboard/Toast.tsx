@@ -36,7 +36,7 @@ export default function Toast({ toast, onDone }: { toast: ToastData; onDone: () 
         className="toast slip pointer-events-auto relative w-full max-w-md overflow-hidden rounded-[3px] bg-ink text-sheet shadow-[0_16px_32px_-12px_rgb(29_33_30/0.5)]"
       >
         <div className="flex items-center gap-3 py-2.5 pl-4 pr-2.5">
-          <CheckIcon className="shrink-0 text-sheet-lo" />
+          <CheckIcon className="shrink-0 text-orange-light" />
           <span className="flex-1 font-semibold">
             {toast.message}
             {toast.undo && <span className="sr-only">. Atšaukti galite ir klavišais {shortcut}.</span>}

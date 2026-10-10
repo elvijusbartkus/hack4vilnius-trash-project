@@ -1,26 +1,30 @@
 @import "tailwindcss";
 
 /*
-  Trage palette: neutral grey-stone ground, light-green panels, deep green as the primary
-  action colour, clay (terracotta) as the accent for "not coming" states, extra bookings
-  and warnings, grey stone for secondary text and marks.
+  WasteWise palette: cool grey ground, light-mint panels, the logo's teal-green as the primary
+  action colour, the logo's route orange as the accent for brand moments, "not coming" states,
+  extra pickups and warnings.
 */
 @theme {
-  --color-ground: #d9d8d5; /* page, neutral grey stone */
-  --color-sheet: #dcead2; /* manifest sheet, light green carbon copy */
-  --color-sheet-hi: #e9f2e3; /* hovered / selected field on the sheet */
-  --color-sheet-lo: #cfe2c3; /* pressed field, today column */
-  --color-rule: #9bb38f; /* 1px field rules on the sheet (decorative, not text) */
-  --color-green: #1f5a3c; /* actions, strong values; 6.5:1 on sheet */
-  --color-green-deep: #184a31; /* hover/pressed state of green buttons */
-  --color-green-muted: #3f6b52; /* captions on the sheet; 4.9:1 */
-  --color-stone: #a39e95; /* stamps, marks, borders only (not text) */
-  --color-stone-deep: #57534c; /* secondary text; ≥4.9:1 on ground and sheet */
-  --color-clay: #b0603d; /* accent marks/outlines on the sheet; 3.6:1 (graphics) */
-  --color-clay-deep: #96491f; /* clay text; 5.1:1 on sheet, 4.5:1 on ground */
-  --color-clay-light: #edbb9e; /* clay on the deep-green hero; 4.7:1 on green */
-  --color-ink: #1d211e;
-  --color-sand: #d9d8d5; /* legacy alias of ground */
+  /* WasteWise palette, sampled from the logo (deep teal-green + route orange) */
+  --color-ground: #dfe3e1; /* page: cool neutral grey */
+  --color-sheet: #e3efe9; /* panels: light mint */
+  --color-sheet-hi: #f0f7f3; /* hovered / selected field */
+  --color-sheet-lo: #cfe3dc; /* pressed field, scheduled day */
+  --color-rule: #87ada4; /* 1px rules (decorative, not text) */
+  --color-green: #0f5c4a; /* brand teal-green: primary actions, hero; 6.7:1 on sheet */
+  --color-green-deep: #0b4a3b; /* hover/pressed state of green buttons */
+  --color-green-muted: #3b6b5e; /* captions on panels; 5.2:1 on sheet */
+  --color-grid: #256b5a; /* the logo's map grid, on green only */
+  --color-stone: #9aa5a1; /* marks and borders only (not text) */
+  --color-stone-deep: #4a5853; /* secondary text; 6.3:1 on sheet, 5.8:1 on ground */
+  /* Orange accent (the W route): brand moments, "not coming", extra pickups, warnings */
+  --color-orange-bright: #e8890c; /* logo orange: fills with ink text (6.4:1), never as text */
+  --color-orange: #c26a00; /* marks, outlines, large text; 3.3:1 on sheet */
+  --color-orange-deep: #9a5200; /* orange text; 5:1 on sheet, 4.5:1 on ground */
+  --color-orange-light: #f9c27a; /* orange on the green hero; 4.9:1 */
+  --color-ink: #13201c;
+  --color-sand: #dfe3e1; /* legacy alias of ground */
 
   --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-barlow-sc), var(--font-barlow), ui-sans-serif, sans-serif;
@@ -82,6 +86,15 @@
 .day-panel { animation: slip-in 220ms var(--ease-out-expo) both; }
 
 .backdrop-in { animation: fade-in 180ms ease-out both; }
+
+/* The logo's map grid as a quiet texture on the green hero (brand motif, not decoration on panels). */
+.route-grid {
+  background-image:
+    linear-gradient(to right, transparent 0 calc(100% - 2px), var(--color-grid) 0),
+    linear-gradient(to bottom, transparent 0 calc(100% - 2px), var(--color-grid) 0);
+  background-size: 120px 120px;
+  background-position: -2px -2px;
+}
 
 /* Demo notification banner slides down from the top like a phone notification. */
 @keyframes notif-in {

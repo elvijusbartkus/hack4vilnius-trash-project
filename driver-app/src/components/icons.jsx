@@ -35,21 +35,26 @@ export const NavigateIcon = (p) => (
   </Icon>
 )
 
-// TRAGE mark: a bin with its lid lifted by a check (same as the resident app header).
+// WasteWise mark: the "W route" app icon (same as the resident app header).
+const W_ROUTE = 'M7.9 16.8 L15.5 37.8 L23.8 21.6 L32.3 37.8 L39.8 16.8'
 export function LogoMark({ size = 32 }) {
   return (
-    <svg viewBox="0 0 32 32" width={size} height={size} aria-hidden="true">
-      <rect width="32" height="32" rx="4" fill="#1f5a3c" />
-      <path d="M9 12h14l-1.6 13H10.6z" fill="#dcead2" />
-      <path d="M8 9.5h16" stroke="#dcead2" strokeWidth="2.2" strokeLinecap="square" />
-      <path d="M12.5 17.8l2.6 2.6 4.8-5" fill="none" stroke="#1f5a3c" strokeWidth="2.4" strokeLinecap="square" />
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden="true">
+      <rect width="48" height="48" rx="11" fill="#0f5c4a" />
+      <path d="M11.8 0v48M36 0v48M0 12h48M0 26.5h48M0 40.8h48" stroke="#256b5a" strokeWidth="2" />
+      <path d={W_ROUTE} fill="none" stroke="#e8890c" strokeWidth="4.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={W_ROUTE} fill="none" stroke="#0f5c4a" strokeWidth="0.9" strokeDasharray="1.6 1.6" />
+      <circle cx="7.9" cy="16.8" r="4.2" fill="#e8890c" />
+      <circle cx="7.9" cy="16.8" r="1.8" fill="#fff" />
+      <circle cx="39.8" cy="16.8" r="4.2" fill="#e8890c" />
+      <path d="M37.6 14.6h4.4M38 15.6h3.6l-0.5 3.4h-2.6z" fill="#fff" stroke="#fff" strokeWidth="0.7" strokeLinejoin="round" />
     </svg>
   )
 }
 
 // Depot marker for the map (Leaflet takes an HTML string): a small warehouse glyph.
 export const DEPOT_SVG =
-  '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#dcead2" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M3 10l9-6 9 6v10H3z"/><path d="M8 20v-6h8v6"/></svg>'
+  '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#e3efe9" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M3 10l9-6 9 6v10H3z"/><path d="M8 20v-6h8v6"/></svg>'
 
 // Done-stop check for map markers (HTML string for Leaflet).
 export const CHECK_SVG =

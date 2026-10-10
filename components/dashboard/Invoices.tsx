@@ -36,7 +36,7 @@ function Chip({ paid }: { paid: boolean }) {
   return (
     <span
       className={`shrink-0 rounded-[2px] border px-2 py-0.5 text-sm font-semibold ${
-        paid ? "border-green/60 bg-sheet-hi text-green" : "border-clay bg-clay/10 text-clay-deep"
+        paid ? "border-green/60 bg-sheet-hi text-green" : "border-orange bg-orange/10 text-orange-deep"
       }`}
     >
       {paid ? "Apmokėta" : "Neapmokėta"}
