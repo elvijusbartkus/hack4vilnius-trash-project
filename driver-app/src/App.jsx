@@ -5,10 +5,14 @@ import SignIn from './components/SignIn.jsx'
 import ShiftList from './components/ShiftList.jsx'
 import RoundView from './components/RoundView.jsx'
 
-const SESSION_KEY = 'tr.driverId'
-const PROGRESS_KEY = 'tr.progress.v2'
-const ISSUES_KEY = 'tr.issues'
-const COLLECTED_AT_KEY = 'tr.collectedAt'
+// A refresh is a fresh demo: nothing below is persisted. Clear what older
+// versions kept in localStorage, and start the back-navigation history at the roster.
+try {
+  ;['tr.driverId', 'tr.progress.v2', 'tr.issues', 'tr.collectedAt'].forEach((k) => localStorage.removeItem(k))
+} catch {
+  // storage blocked: nothing to clear
+}
+window.history.replaceState({ depth: 0 }, '')
 
 // Stable empties, so a round with nothing ticked yet doesn't hand the map a
 // new array on every render (which would make it re-fit each time).
@@ -17,22 +21,15 @@ const NO_ISSUES = {}
 const NO_TIMES = {}
 
 export default function App() {
-  // Survives a reload — a driver who backgrounds the app mid-round comes
-  // back to the same place rather than signing in again.
-  const [driverId, setDriverId] = useState(() => load(SESSION_KEY, null))
-  const [progress, setProgress] = useState(() => load(PROGRESS_KEY, {}))
+  const [driverId, setDriverId] = useState(null)
+  const [progress, setProgress] = useState({})
   // Stops the driver couldn't collect, with why: { roundId: { stopId: reasonId } }.
   // A stop is either collected or has a problem, never both.
-  const [issues, setIssues] = useState(() => load(ISSUES_KEY, {}))
+  const [issues, setIssues] = useState({})
   // When each stop was marked collected, as an ISO timestamp:
   // { roundId: { stopId: '2026-10-10T07:42:13.512Z' } }.
-  const [collectedAt, setCollectedAt] = useState(() => load(COLLECTED_AT_KEY, {}))
+  const [collectedAt, setCollectedAt] = useState({})
   const [openRoundId, setOpenRoundId] = useState(null)
-
-  useEffect(() => save(SESSION_KEY, driverId), [driverId])
-  useEffect(() => save(PROGRESS_KEY, progress), [progress])
-  useEffect(() => save(ISSUES_KEY, issues), [issues])
-  useEffect(() => save(COLLECTED_AT_KEY, collectedAt), [collectedAt])
 
   // The first driver works the real route day from Supabase (Pilaitė, live);
   // the other crews keep their planned rounds as decoration.
@@ -134,22 +131,4 @@ export default function App() {
       }
     />
   )
-}
-
-function load(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : fallback
-  } catch {
-    return fallback
-  }
-}
-
-function save(key, value) {
-  try {
-    if (value === null) localStorage.removeItem(key)
-    else localStorage.setItem(key, JSON.stringify(value))
-  } catch {
-    // Private browsing with storage blocked — progress just won't persist.
-  }
 }

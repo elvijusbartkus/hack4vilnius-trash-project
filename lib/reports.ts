@@ -74,6 +74,14 @@ export async function listReports(householdId: number): Promise<Report[]> {
   return [...readLocal(householdId), ...remote].sort((a, b) => b.created_at.localeCompare(a.created_at));
 }
 
+// Full demo reset: all reports, remote and on this device. A missing table is fine.
+export async function resetAllReports() {
+  await supabase.from("reports").delete().gte("id", 0);
+  try {
+    localStorage.removeItem(LOCAL_REPORTS_KEY);
+  } catch {}
+}
+
 export async function resetReports(householdId: number) {
   await supabase.from("reports").delete().eq("household_id", householdId); // ignore "no table"
   try {

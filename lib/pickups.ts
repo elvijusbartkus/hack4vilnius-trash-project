@@ -180,6 +180,12 @@ export async function resetHousehold(householdId: number) {
   check(await supabase.from("pickups").delete().eq("household_id", householdId));
 }
 
+// Full demo reset: every pickup row goes (answers and extra bookings for any house), then the
+// demo history and the neighbours' skips for the route day are seeded again.
+export async function resetAllPickups() {
+  check(await supabase.from("pickups").delete().gte("id", 0));
+}
+
 // Clears the household's answer ("Taip"/"Ne") for one scheduled day, so the question is asked again.
 export async function clearAnswer(householdId: number, date: string) {
   check(await supabase.from("pickups").delete().eq("household_id", householdId).eq("date", date).eq("kind", "scheduled"));
