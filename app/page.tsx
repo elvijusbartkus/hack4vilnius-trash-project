@@ -42,7 +42,14 @@ export default function ResidentPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const clean = () => window.history.replaceState(null, "", window.location.pathname);
+    // drop ?reset / ?onboarding but keep ?date (demo date override)
+    const clean = () => {
+      const q = new URLSearchParams(window.location.search);
+      q.delete("reset");
+      q.delete("onboarding");
+      const rest = q.toString();
+      window.history.replaceState(null, "", window.location.pathname + (rest ? `?${rest}` : ""));
+    };
 
     (async () => {
       // /?onboarding=1 shows the old onboarding screen.
@@ -77,7 +84,9 @@ export default function ResidentPage() {
         onDone={(household, name) => {
           const u = { householdId: household.id, name };
           store(u);
-          window.history.replaceState(null, "", window.location.pathname);
+          const q = new URLSearchParams(window.location.search);
+          q.delete("onboarding");
+          window.history.replaceState(null, "", window.location.pathname + (q.toString() ? `?${q}` : ""));
           setOnboarding(false);
           setUser(u);
         }}

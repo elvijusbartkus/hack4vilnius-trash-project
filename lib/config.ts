@@ -75,6 +75,15 @@ export const TIME_WINDOWS = {
 
 export type TimeWindow = keyof typeof TIME_WINDOWS;
 
+// Optional "how much extra" answer when reporting an extra pickup (stored in pickups.amount).
+export const EXTRA_AMOUNTS = {
+  "1": "1 maišas",
+  "2-3": "2-3 maišai",
+  daugiau: "Daugiau",
+} as const;
+
+export type ExtraAmount = keyof typeof EXTRA_AMOUNTS;
+
 // Days between fixed-schedule pickups (26x per year).
 export const SCHEDULE_INTERVAL_DAYS = 14;
 

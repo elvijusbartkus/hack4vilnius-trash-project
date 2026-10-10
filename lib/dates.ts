@@ -20,8 +20,13 @@ export function addDays(s: string, days: number): string {
   return toISODate(d);
 }
 
-// The app's "today" is fixed for the demo (see DEMO_TODAY in lib/config.ts).
+// The app's "today" is fixed for the demo (DEMO_TODAY in lib/config.ts).
+// For the demo it can be overridden with ?date=YYYY-MM-DD in the URL.
 export function todayISO(): string {
+  if (typeof window !== "undefined") {
+    const d = new URLSearchParams(window.location.search).get("date");
+    if (d && /^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+  }
   return DEMO_TODAY;
 }
 

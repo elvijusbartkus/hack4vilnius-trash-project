@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 import {
   BOOKING_DAYS_AHEAD,
   CALENDAR_DAYS,
+  EXTRA_AMOUNTS,
   EXTRA_PICKUP_PRICE_EUR,
   SCHEDULE_INTERVAL_DAYS,
-  TIME_WINDOWS,
-  type TimeWindow,
+  type ExtraAmount,
 } from "@/lib/config";
 import {
   addDays,
@@ -24,21 +24,20 @@ import {
   bookExtra,
   cancelExtra,
   confirmScheduled,
-  removePickup,
   getNextPickup,
+  removePickup,
   skipScheduled,
   subscribePickups,
-  undoSkip,
   type Household,
   type HouseholdState,
   type Pickup,
   type ServiceRecord,
 } from "@/lib/pickups";
-import { ContainerField, HelpPanel, HistoryField, ImpactField, Panel } from "./Cards";
+import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
-import { CloseIcon, Marker, type MarkerKind } from "./Icons";
+import { Marker, type MarkerKind } from "./Icons";
+import Modal from "./Modal";
 import Toast, { type ToastData } from "./Toast";
-
 
 const ERROR_TEXT = "Nepavyko susisiekti su serveriu. Patikrinkite ryšį ir bandykite dar kartą.";
 
@@ -46,10 +45,9 @@ type Day = {
   date: string;
   isToday: boolean;
   scheduled: boolean;
-  bookable: boolean; // free, within BOOKING_DAYS_AHEAD, not Sunday
   skip: Pickup | null;
-  confirmed: boolean; // "Taip, išstumsiu" saved for this date
   extra: Pickup | null;
+  bookable: boolean; // within the next BOOKING_DAYS_AHEAD days, not Sunday, no extra yet
 };
 
 function buildDays(state: HouseholdState): Day[] {
@@ -61,23 +59,15 @@ function buildDays(state: HouseholdState): Day[] {
   return Array.from({ length: CALENDAR_DAYS }, (_, i) => {
     const date = addDays(today, i);
     const extra = state.pickups.find((p) => p.date === date && p.kind === "extra" && p.status === "planned") ?? null;
-    const isScheduled = scheduled.has(date);
     return {
       date,
       isToday: i === 0,
-      scheduled: isScheduled,
-      bookable: i > 0 && i <= BOOKING_DAYS_AHEAD && !isScheduled && !extra && parseISODate(date).getDay() !== 0,
+      scheduled: scheduled.has(date),
       skip: state.pickups.find((p) => p.date === date && p.kind === "scheduled" && p.status === "skipped") ?? null,
-      confirmed: state.pickups.some((p) => p.date === date && p.kind === "scheduled" && p.status === "planned"),
       extra,
+      bookable: i > 0 && i <= BOOKING_DAYS_AHEAD && !extra && parseISODate(date).getDay() !== 0,
     };
   });
-}
-
-// The newest real VASA record, if the truck could not collect last time.
-function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
-  const newest = [...history].sort((a, b) => b.date.localeCompare(a.date))[0];
-  return newest && !newest.serviced ? newest : null;
 }
 
 export default function Dashboard({
@@ -92,10 +82,8 @@ export default function Dashboard({
   const [state, setState] = useState<HouseholdState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [toast, setToast] = useState<ToastData | null>(null);
-  const [selected, setSelected] = useState<string | null>(null);
-  const [pulse, setPulse] = useState(0);
-  const stripRef = useRef<HTMLDivElement>(null);
-  const dayPanelRef = useRef<HTMLDivElement>(null);
+  const [extraFor, setExtraFor] = useState<string | null>(null); // open "Papildomas išvežimas" popup on this day
+  const toastSeq = useRef(0); // unique key per toast so each one restarts its timer
 
   const load = useCallback(
     () =>
@@ -122,18 +110,18 @@ export default function Dashboard({
 
   const closeToast = useCallback(() => setToast(null), []);
 
-  // Every action: write, refresh in place, toast with undo (the undo itself confirms with a short toast).
+  // Every action: write, refresh in place, toast with undo.
   async function act(write: () => Promise<number | void>, message: string, undo: (result: number | void) => Promise<unknown>) {
     try {
       const result = await write();
       await load();
       setToast({
-        id: Date.now(),
+        id: ++toastSeq.current,
         message,
         undo: () => {
           undo(result)
             .then(load)
-            .then(() => setToast({ id: Date.now(), message: "Atšaukta. Viskas kaip buvo." }))
+            .then(() => setToast({ id: ++toastSeq.current, message: "Atšaukta. Viskas kaip buvo." }))
             .catch((e) => {
               console.error(e);
               setError(ERROR_TEXT);
@@ -148,129 +136,129 @@ export default function Dashboard({
 
   const tomorrow = addDays(todayISO(), 1);
 
-  // "Ne, nereikia": the truck won't come that day. Replaces an earlier "Taip" for the same date.
-  const skip = (date: string) => {
-    const confirmed = state?.confirmed?.date === date ? state.confirmed : null;
-    const next = formatDay(addDays(date, SCHEDULE_INTERVAL_DAYS));
-    return act(
-      async () => {
-        if (confirmed) await removePickup(confirmed.id);
-        return skipScheduled(householdId, date);
-      },
-      `${date === tomorrow ? "Rytoj" : capitalize(formatDay(date))} pas jus neužsuks. Kitas išvežimas: ${next}`,
-      async (id) => {
-        await removePickup(id as number);
-        if (confirmed) await confirmScheduled(householdId, date);
-      },
-    );
-  };
-
-  // "Taip, išstumsiu": saved as a confirmed scheduled pickup.
+  // "Taip, išstumsiu": a confirmed scheduled pickup.
   const confirm = (date: string) =>
     act(
       () => confirmScheduled(householdId, date),
       date === tomorrow ? "Ačiū! Šiukšliavežė atvažiuos rytoj." : `Ačiū! Šiukšliavežė atvažiuos ${formatDay(date)}`,
       (id) => removePickup(id as number),
     );
-  const unskip = (p: Pickup) =>
-    act(() => undoSkip(p.id), `Grąžinta. Atvažiuosime ${formatDay(p.date)}`, () => skipScheduled(householdId, p.date));
-  const book = (date: string, tw: TimeWindow | null) =>
+
+  // "Ne, nereikia": the truck won't come that day.
+  const decline = (date: string) =>
     act(
-      () => bookExtra(householdId, date, tw),
-      `Užsakyta. Atvažiuosime ${tw ? `${formatDay(date)}, ${TIME_WINDOWS[tw].toLowerCase()}.` : formatDay(date)}`,
+      () => skipScheduled(householdId, date),
+      `${date === tomorrow ? "Rytoj" : capitalize(formatDay(date))} pas jus neužsuks. Kitas išvežimas: ${formatDay(
+        addDays(date, SCHEDULE_INTERVAL_DAYS),
+      )}`,
+      (id) => removePickup(id as number),
+    );
+
+  const reportExtra = (date: string, amount: ExtraAmount | null) => {
+    setExtraFor(null);
+    return act(
+      () => bookExtra(householdId, date, null, amount),
+      `Užregistruota. Šiukšliavežė paims papildomai ${formatDay(date)}`,
       (id) => cancelExtra(id as number),
     );
-  const cancel = (p: Pickup) =>
-    act(() => cancelExtra(p.id), `${capitalize(formatDay(p.date))} užsakymas atšauktas.`, () => bookExtra(householdId, p.date, p.time_window));
+  };
 
+  const cancel = (p: Pickup) =>
+    act(
+      () => cancelExtra(p.id),
+      `${capitalize(formatDay(p.date))} papildomas išvežimas atšauktas.`,
+      () => bookExtra(householdId, p.date, null, p.amount ?? null),
+    );
 
   const days = state ? buildDays(state) : [];
-  const selectedDay = days.find((d) => d.date === selected) ?? null;
+  const bookableDays = days.filter((d) => d.bookable).map((d) => d.date);
+  const extras = state?.extras ?? [];
 
-  function selectDay(date: string) {
-    setSelected(date);
-    requestAnimationFrame(() => dayPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
-  }
-
-  // "Užsakyti papildomai": bring the strip into view and point at the bookable days; the resident picks.
-  function showBookable() {
-    setSelected(null);
-    setPulse((n) => n + 1);
-    stripRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-    requestAnimationFrame(() => stripRef.current?.querySelector<HTMLElement>("[data-bookable]")?.focus({ preventScroll: true }));
+  // From the section button: preselect the scheduled day if it is within range.
+  function openExtra(date?: string) {
+    const pre = date ?? (state?.scheduledDate && bookableDays.includes(state.scheduledDate) ? state.scheduledDate : bookableDays[0]);
+    if (pre) setExtraFor(pre);
   }
 
   return (
     <div className="min-h-dvh bg-ground">
-      <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
+      <div inert={!!extraFor}>
+        <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
 
-      <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
-        <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
-        {error && (
-          <p role="alert" className="mb-5 rounded-[4px] border-2 border-clay bg-sheet-hi px-5 py-3 font-semibold text-clay-deep">
-            {error}
-          </p>
-        )}
+        <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
+          <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
+          {error && (
+            <p role="alert" className="mb-5 rounded-[4px] border-2 border-clay bg-sheet-hi px-5 py-3 font-semibold text-clay-deep">
+              {error}
+            </p>
+          )}
 
-        {!state ? (
-          <p className="py-16 text-stone-deep">{error ? "Duomenų nėra." : "Kraunama…"}</p>
-        ) : (
-          <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:items-start md:gap-6">
-            <div className="max-md:contents md:col-span-8 md:flex md:flex-col md:gap-6">
-              <Hero
-                state={state}
-                failure={lastFailure(state.household.history ?? [])}
-                onSkip={skip}
-                onConfirm={confirm}
-                onUnskip={unskip}
-                onCancel={cancel}
-                onBook={showBookable}
-              />
+          {!state ? (
+            <p className="py-16 text-stone-deep">{error ? "Duomenų nėra." : "Kraunama…"}</p>
+          ) : (
+            <div className="flex flex-col gap-4 md:grid md:grid-cols-12 md:items-start md:gap-6">
+              <div className="max-md:contents md:col-span-8 md:flex md:flex-col md:gap-6">
+                <Hero state={state} onConfirm={confirm} onDecline={decline} />
 
-              <Panel title="Artimiausios 14 dienų" className="order-2 md:order-none">
-                <div ref={stripRef}>
-                  <Ledger
-                    days={days}
-                    selected={selected}
-                    pulse={pulse}
-                    onSelect={(d) => (d === selected ? setSelected(null) : selectDay(d))}
-                  />
+                <Panel title="Artimiausios 14 dienų" className="order-2 md:order-none">
+                  <Ledger days={days} onPick={(d) => openExtra(d)} />
+                </Panel>
+
+                <Panel title="Papildomas išvežimas" className="order-3 md:order-none">
+                  <p className="mt-2 text-stone-deep">
+                    Bus daugiau atliekų nei įprastai? Praneškite, ir šiukšliavežė paims papildomai.
+                  </p>
+                  {extras.length > 0 && (
+                    <ul className="mt-3 divide-y divide-rule/60 border-y border-rule/60">
+                      {extras.map((p) => (
+                        <li key={p.id} className="flex items-center justify-between gap-4 py-2">
+                          <span className="flex items-center gap-2.5">
+                            <Marker kind="extra" />
+                            <span className="font-display text-lg font-semibold">{formatHero(p.date)}</span>
+                            {p.amount && <span className="text-stone-deep">· {EXTRA_AMOUNTS[p.amount]}</span>}
+                          </span>
+                          <button
+                            onClick={() => cancel(p)}
+                            className="min-h-11 rounded-[3px] border-2 border-clay px-4 font-semibold text-clay-deep hover:bg-clay/10"
+                          >
+                            Atšaukti
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <button
+                    onClick={() => openExtra()}
+                    disabled={bookableDays.length === 0}
+                    className="mt-4 min-h-13 rounded-[4px] bg-green px-6 font-display text-lg font-semibold text-sheet hover:bg-green-deep disabled:opacity-40"
+                  >
+                    Pranešti apie papildomą išvežimą
+                  </button>
+                </Panel>
+              </div>
+
+              <div className="max-md:contents md:col-span-4 md:flex md:flex-col md:gap-6">
+                <div className="order-4 md:order-none">
+                  <HistoryField household={state.household} pickups={state.pickups} />
                 </div>
-                {selectedDay && (
-                  <div ref={dayPanelRef}>
-                    <DayPanel
-                      key={selectedDay.date}
-                      day={selectedDay}
-                      onClose={() => setSelected(null)}
-                      // close after acting, so the button under the cursor can't flip into its opposite
-                      onSkip={(d) => (setSelected(null), skip(d))}
-                      onUnskip={(p) => (setSelected(null), unskip(p))}
-                      onBook={(d, tw) => (setSelected(null), book(d, tw))}
-                      onCancel={(p) => (setSelected(null), cancel(p))}
-                    />
-                  </div>
-                )}
-              </Panel>
-            </div>
-
-            <div className="max-md:contents md:col-span-4 md:flex md:flex-col md:gap-6">
-              <div className="order-3 md:order-none">
-                <HistoryField household={state.household} pickups={state.pickups} />
-              </div>
-              <div className="order-4 md:order-none">
-                <ContainerField household={state.household} />
-              </div>
-              <div className="order-5 md:order-none">
-                <ImpactField pickups={state.pickups} />
-              </div>
-              <div className="order-6 md:order-none">
-                <HelpPanel />
+                <div className="order-5 md:order-none">
+                  <ImpactField pickups={state.pickups} />
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </main>
+          )}
+        </main>
+      </div>
 
+      {extraFor && state && (
+        <ExtraPopup
+          initialDate={extraFor}
+          days={bookableDays}
+          scheduledDate={state.scheduledDate}
+          onClose={() => setExtraFor(null)}
+          onReport={reportExtra}
+        />
+      )}
       {toast && <Toast key={toast.id} toast={toast} onDone={closeToast} />}
     </div>
   );
@@ -278,185 +266,124 @@ export default function Dashboard({
 
 const HERO_BTN = "min-h-14 rounded-[4px] px-7 font-display text-xl font-semibold";
 const ON_GREEN_PRIMARY = `${HERO_BTN} bg-sheet text-green hover:bg-white`;
-const ON_GREEN_SECONDARY = `${HERO_BTN} border-2 border-sheet/70 text-sheet hover:bg-white/10`;
-// Clay accent: the "not coming" answer.
 const ON_GREEN_CLAY = `${HERO_BTN} border-2 border-clay-light text-clay-light hover:bg-clay-light/10`;
 
-// The one panel that pops. While tomorrow is unanswered it asks the evening question itself,
-// so the page never asks the same thing twice. No confirm steps: every action has undo.
+// The newest real VASA record, if the truck could not collect last time.
+function lastFailure(history: ServiceRecord[]): ServiceRecord | null {
+  const newest = [...history].sort((a, b) => b.date.localeCompare(a.date))[0];
+  return newest && !newest.serviced ? newest : null;
+}
+
+// Hero: three states from today's date.
+//  1. Day before the scheduled pickup: the evening question (one click, toast with undo).
+//  2. A pickup day in the real VASA history: emptied (green) or not (clay).
+//  3. Any other day: the next pickup.
 function Hero({
   state,
-  failure,
-  onSkip,
   onConfirm,
-  onUnskip,
-  onCancel,
-  onBook,
+  onDecline,
 }: {
   state: HouseholdState;
-  failure: ServiceRecord | null;
-  onSkip: (date: string) => void;
   onConfirm: (date: string) => void;
-  onUnskip: (p: Pickup) => void;
-  onCancel: (p: Pickup) => void;
-  onBook: () => void;
+  onDecline: (date: string) => void;
 }) {
   const today = todayISO();
+  const h = state.household;
+  const record = (h.history ?? []).find((r) => r.date.slice(0, 10) === today) ?? null;
   const scheduled = state.scheduledDate;
-  const extra = state.extras[0];
-  const bookedFirst = !!extra && (!state.nextScheduledDate || extra.date < state.nextScheduledDate);
+  const isEve = !record && !!scheduled && scheduled === addDays(today, 1);
+  const containerLine = [h.bin_volume_l && `${h.bin_volume_l}L`, h.carrier, "kas 2 sav."].filter(Boolean).join(" · ");
 
-  let status: "question" | "confirmed" | "today" | "planned" | "skipped" | "booked" | "none";
-  if (bookedFirst) status = "booked";
-  else if (!scheduled) status = "none";
-  else if (state.skip) status = "skipped";
-  else if (scheduled === today) status = "today";
-  else if (state.confirmed) status = "confirmed";
-  else if (scheduled === addDays(today, 1)) status = "question";
-  else status = "planned";
+  const answer = isEve ? (state.skip ? "no" : state.confirmed ? "yes" : null) : null;
+  const failure = isEve && !answer ? lastFailure(h.history ?? []) : null;
 
-  const date = status === "booked" ? extra!.date : scheduled;
-  const stamp: Record<typeof status, string | null> = {
-    question: null,
-    confirmed: "Patvirtinta",
-    today: "Šiandien",
-    planned: "Suplanuota",
-    skipped: "Nevažiuos",
-    booked: "Užsakyta",
-    none: null,
-  };
-
-  // Plain-language line under the date, so no label ever sits above a struck date.
-  let subline: ReactNode = null;
-  if (date) {
-    const wd = capitalize(formatWeekday(date));
-    subline = {
-      question: `${wd} · Atvažiuos pagal grafiką`,
-      confirmed: `Kitas išvežimas · ${wd} · Atvažiuos, konteinerį išstumsite`,
-      today: `Šiandien · Atvažiuos pagal grafiką`,
-      planned: `Kitas išvežimas · ${wd} · Atvažiuos pagal grafiką`,
-      skipped: `${wd} · Šiukšliavežė pas jus nevažiuos`,
-      booked: `Kitas išvežimas · ${wd} · užsakyta papildomai${extra?.time_window ? ` · ${TIME_WINDOWS[extra.time_window]}` : ""}`,
-      none: null,
-    }[status];
-  }
-
-  // Warning (clay accent): the last real pickup failed, so tomorrow matters.
-  const failureLine = failure && (status === "question" || status === "planned" || status === "confirmed") && (
-    <p className="mt-5 rounded-[3px] border-2 border-clay-light bg-clay-light/10 px-4 py-3 text-sheet">
-      <span className="font-semibold text-clay-light">Praėjusį kartą ({formatDay(failure.date.slice(0, 10))}) neišvežta:</span>{" "}
-      {(failure.reason ?? "konteineris nepasiekiamas").toLowerCase()}. Konteineris tikriausiai pilnas, išstumkite jį prie
-      gatvės.
-    </p>
-  );
-
-  let actions: ReactNode;
-  if (status === "question") {
-    actions = (
-      <>
-        <button onClick={() => onConfirm(scheduled!)} className={ON_GREEN_PRIMARY}>
-          Taip, išstumsiu
-        </button>
-        <button onClick={() => onSkip(scheduled!)} className={ON_GREEN_CLAY}>
-          Ne, nereikia
-        </button>
-      </>
-    );
-  } else if (status === "planned" || status === "confirmed") {
-    actions = (
-      <>
-        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
-          Užsakyti papildomai
-        </button>
-        <button onClick={() => onSkip(scheduled!)} className={ON_GREEN_CLAY}>
-          Nereikia išvežti
-        </button>
-      </>
-    );
-  } else if (status === "skipped") {
-    actions = (
-      <>
-        <button onClick={() => onUnskip(state.skip!)} className={ON_GREEN_PRIMARY}>
-          Vis dėlto išstumsiu
-        </button>
-        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
-          Užsakyti papildomai
-        </button>
-      </>
-    );
-  } else if (status === "booked") {
-    actions = (
-      <>
-        <button onClick={() => onCancel(extra!)} className={ON_GREEN_CLAY}>
-          Atšaukti užsakymą
-        </button>
-        <button onClick={onBook} className={ON_GREEN_SECONDARY}>
-          Užsakyti dar vieną
-        </button>
-      </>
-    );
+  let title: string;
+  let tone: "plain" | "good" | "bad" = "plain";
+  let detail: string | null = null;
+  if (record) {
+    const when = formatDay(record.date.slice(0, 10));
+    if (record.serviced) {
+      title = `Ištuštinta ${when}, ${record.date.slice(11, 16)}`;
+      tone = "good";
+    } else {
+      title = `Neištuštinta: ${(record.reason ?? "konteineris nepasiektas").toLowerCase()}`;
+      tone = "bad";
+      detail = `${capitalize(when)} Kitas išvežimas: ${scheduled ? formatDay(scheduled) : "nežinomas"}`;
+    }
+  } else if (isEve) {
+    title = formatDayCap(scheduled!);
   } else {
-    // today (truck already on the way) or nothing scheduled
-    actions = (
-      <button onClick={onBook} className={ON_GREEN_PRIMARY}>
-        Užsakyti papildomai
-      </button>
-    );
+    const next = state.nextScheduledDate ?? scheduled;
+    title = next ? `Kitas išvežimas: ${formatDay(next)}` : "Išvežimų grafike nėra";
   }
-
-  const skipped = status === "skipped";
 
   return (
     <section
       aria-labelledby="hero-h"
       className="on-green order-1 rounded-[4px] bg-green px-6 py-6 text-sheet shadow-[0_20px_40px_-24px_rgb(31_90_60/0.8)] md:order-none md:px-9 md:py-7"
     >
-      {status === "question" && (
+      {isEve && (
         <p className="font-display text-2xl font-semibold leading-tight text-white md:text-[1.75rem]">
-          Rytoj išvežimas. Išstumsite konteinerį?
+          {answer ? "Rytoj išvežimas" : "Rytoj išvežimas. Išstumsite konteinerį?"}
         </p>
       )}
 
-      <div className={`flex items-start justify-between gap-4 ${status === "question" ? "mt-3" : ""}`}>
+      <div className={`flex items-start justify-between gap-4 ${isEve ? "mt-3" : ""}`}>
         <h2
           id="hero-h"
-          className={`font-display font-semibold leading-[0.92] tracking-[-0.015em] ${
-            status === "question" ? "text-[clamp(2.5rem,6vw,4.25rem)]" : "text-[clamp(3rem,7.5vw,5.5rem)]"
-          } ${skipped ? "text-clay-light line-through decoration-clay-light/70 decoration-[6px]" : "text-white"}`}
+          className={`font-display font-semibold leading-[0.95] tracking-[-0.015em] ${
+            isEve ? "text-[clamp(2.5rem,6vw,4.25rem)]" : "text-[clamp(2.25rem,5.5vw,4rem)]"
+          } ${tone === "bad" || answer === "no" ? "text-clay-light" : "text-white"} ${
+            answer === "no" ? "line-through decoration-clay-light/70 decoration-[6px]" : ""
+          }`}
         >
-          <span className="sr-only">{skipped ? "Neatvažiuos: " : "Kitas išvežimas: "}</span>
-          {date ? formatDayCap(date) : "Nesuplanuota"}
+          {title}
         </h2>
-        {stamp[status] && (
+        {answer && (
           <span
-            key={status + date}
+            key={answer}
             className={`stamp mt-2 shrink-0 rounded-[2px] border-[3px] px-3 py-0.5 font-display text-base font-bold uppercase tracking-[0.08em] md:text-lg ${
-              skipped ? "border-clay-light text-clay-light" : "border-sheet/80 text-sheet"
+              answer === "no" ? "border-clay-light text-clay-light" : "border-sheet/80 text-sheet"
             }`}
           >
-            {stamp[status]}
+            {answer === "no" ? "Nevažiuos" : "Patvirtinta"}
           </span>
         )}
       </div>
 
-      {subline && (
-        <p className={`mt-2 font-display text-xl font-medium md:text-2xl ${skipped ? "text-clay-light" : "text-sheet-lo"}`}>
-          {subline}
+      {/* the container, as one quiet line under the date */}
+      <p className="mt-2 font-display text-lg font-medium text-sheet-lo md:text-xl">
+        {isEve && scheduled ? `${capitalize(formatWeekday(scheduled))} · ` : ""}
+        {containerLine}
+      </p>
+      {detail && <p className="mt-2 text-sheet-lo">{detail}</p>}
+      {answer === "no" && state.nextScheduledDate && (
+        <p className="mt-3 font-display text-2xl font-semibold text-white">Kitas išvežimas: {formatDay(state.nextScheduledDate)}</p>
+      )}
+
+      {failure && (
+        <p className="mt-5 rounded-[3px] border-2 border-clay-light bg-clay-light/10 px-4 py-3 text-sheet">
+          <span className="font-semibold text-clay-light">
+            Praėjusį kartą ({formatDay(failure.date.slice(0, 10))}) neišvežta:
+          </span>{" "}
+          {(failure.reason ?? "konteineris nepasiektas").toLowerCase()}.
         </p>
       )}
-      {skipped && state.nextScheduledDate && (
-        <p className="mt-3 font-display text-3xl font-semibold text-white">Kitas išvežimas: {formatDay(state.nextScheduledDate)}</p>
-      )}
-      {status === "today" && <p className="mt-3 text-sheet-lo">Šiukšliavežė jau pakeliui.</p>}
-      {status === "none" && <p className="mt-3 text-sheet-lo">Grafike išvežimų nėra. Galite užsakyti papildomą.</p>}
-      {failureLine}
 
-      {/* screen readers hear state changes made on this panel */}
       <p className="sr-only" aria-live="polite">
-        {stamp[status] ?? ""}
+        {answer === "no" ? "Nevažiuos" : answer === "yes" ? "Patvirtinta" : ""}
       </p>
 
-      <div className="mt-6 flex flex-col gap-3 border-t border-sheet/25 pt-5 sm:flex-row">{actions}</div>
+      {isEve && !answer && (
+        <div className="mt-6 flex flex-col gap-3 border-t border-sheet/25 pt-5 sm:flex-row">
+          <button onClick={() => onConfirm(scheduled!)} className={ON_GREEN_PRIMARY}>
+            Taip, išstumsiu
+          </button>
+          <button onClick={() => onDecline(scheduled!)} className={ON_GREEN_CLAY}>
+            Ne, nereikia
+          </button>
+        </div>
+      )}
     </section>
   );
 }
@@ -470,27 +397,17 @@ function dayKind(d: Day): MarkerKind {
 }
 
 function dayLabel(d: Day): string {
-  const when = formatHero(d.date);
-  if (d.isToday) return `${when}, šiandien`;
-  if (d.extra) return `${when}, užsakyta`;
-  if (d.skip) return `${when}, šiukšliavežė nevažiuos`;
-  if (d.scheduled) return `${when}, ${d.confirmed ? "patvirtinta, atvažiuos" : "atvažiuos pagal grafiką"}`;
-  if (d.bookable) return `${when}, galima užsakyti`;
-  return `${when}, užsakyti negalima`;
+  const parts = [formatHero(d.date)];
+  if (d.isToday) parts.push("šiandien");
+  if (d.extra) parts.push("papildomas išvežimas");
+  if (d.skip) parts.push("šiukšliavežė nevažiuos");
+  else if (d.scheduled) parts.push("išvežimas pagal grafiką");
+  if (d.bookable) parts.push("galima pranešti apie papildomą");
+  return parts.join(", ");
 }
 
-// 14 equal day columns. Arrow keys move along the strip; selecting a day opens its panel below.
-function Ledger({
-  days,
-  selected,
-  pulse,
-  onSelect,
-}: {
-  days: Day[];
-  selected: string | null;
-  pulse: number;
-  onSelect: (date: string) => void;
-}) {
+// 14 equal day columns. Days within the next 7 open the extra-pickup popup with that day selected.
+function Ledger({ days, onPick }: { days: Day[]; onPick: (date: string) => void }) {
   function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
     const buttons = [...e.currentTarget.querySelectorAll<HTMLButtonElement>("button:not([disabled])")];
@@ -507,29 +424,20 @@ function Ledger({
           {days.map((d) => {
             const kind = dayKind(d);
             const date = parseISODate(d.date);
-            const isSel = d.date === selected;
-            const disabled = d.isToday || kind === "none";
+            const disabled = !d.bookable;
             return (
               <button
-                key={`${d.date}-${d.bookable ? pulse : 0}`}
-                onClick={() => onSelect(d.date)}
+                key={d.date}
+                onClick={() => onPick(d.date)}
                 disabled={disabled}
-                data-bookable={d.bookable || undefined}
                 aria-label={dayLabel(d)}
-                aria-pressed={isSel}
                 className={`flex min-h-[88px] flex-col items-center justify-between rounded-[3px] py-2.5 transition-colors ${
-                  isSel
-                    ? "on-green bg-green text-sheet"
-                    : disabled
-                      ? "cursor-default text-stone-deep"
-                      : kind === "scheduled" || kind === "extra"
-                        ? "bg-sheet-lo hover:bg-sheet-hi"
-                        : "hover:bg-sheet-hi"
-                } ${d.bookable && pulse ? "pulse-bookable" : ""}`}
+                  disabled ? "cursor-default" : "hover:bg-sheet-hi"
+                } ${d.scheduled || d.extra ? "bg-sheet-lo" : ""} ${kind === "none" ? "text-stone-deep" : ""}`}
               >
                 <span
                   className={`font-medium ${d.isToday ? "text-xs tracking-tight" : "text-sm"} ${
-                    isSel ? "text-sheet-lo" : disabled ? "" : kind === "extra" ? "text-clay-deep" : kind === "scheduled" ? "text-green" : "text-green-muted"
+                    d.extra ? "text-clay-deep" : d.scheduled ? "text-green" : kind === "none" ? "" : "text-green-muted"
                   }`}
                 >
                   {d.isToday ? "Šiandien" : formatWeekdayShort(d.date)}
@@ -537,11 +445,12 @@ function Ledger({
                 <span
                   className={`font-display text-[1.6rem] font-semibold leading-none ${
                     kind === "skipped" ? "text-clay-deep line-through decoration-clay decoration-2" : ""
-                  } ${disabled && !isSel ? "font-medium opacity-70" : ""}`}
+                  } ${kind === "none" ? "font-medium opacity-70" : ""}`}
                 >
                   {date.getDate()}
                 </span>
-                <Marker kind={kind} inverted={isSel} />
+                {/* a scheduled day can also take an extra report; it keeps its own mark */}
+                <Marker kind={kind} />
               </button>
             );
           })}
@@ -549,8 +458,8 @@ function Ledger({
       </div>
       <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-deep">
         <Legend kind="scheduled">Pagal grafiką, kas 2 sav.</Legend>
-        <Legend kind="bookable">{`Galima užsakyti, ${EXTRA_PICKUP_PRICE_EUR} €`}</Legend>
-        <Legend kind="extra">Užsakyta papildomai</Legend>
+        <Legend kind="bookable">Galima pranešti apie papildomą</Legend>
+        <Legend kind="extra">Papildomas išvežimas</Legend>
         <Legend kind="skipped">Nevažiuos</Legend>
       </div>
     </div>
@@ -580,110 +489,55 @@ function Chip({ selected, onClick, children }: { selected: boolean; onClick: () 
   );
 }
 
-const PANEL_PRIMARY = "min-h-13 rounded-[4px] bg-green px-6 font-display text-lg font-semibold text-sheet hover:bg-green-deep";
-// Clay accent outline for "not coming" / cancel actions on the light panels.
-const PANEL_CLAY =
-  "min-h-13 rounded-[4px] border-2 border-clay px-6 font-display text-lg font-semibold text-clay-deep hover:bg-clay/10";
-
-// The selected day continues the strip panel below a rule (not a nested card), with its one action.
-function DayPanel({
-  day,
+// "Papildomas išvežimas" popup: day (preselected), optional amount, price, one button.
+function ExtraPopup({
+  initialDate,
+  days,
+  scheduledDate,
   onClose,
-  onSkip,
-  onUnskip,
-  onBook,
-  onCancel,
+  onReport,
 }: {
-  day: Day;
+  initialDate: string;
+  days: string[];
+  scheduledDate: string | null;
   onClose: () => void;
-  onSkip: (date: string) => void;
-  onUnskip: (p: Pickup) => void;
-  onBook: (date: string, tw: TimeWindow | null) => void;
-  onCancel: (p: Pickup) => void;
+  onReport: (date: string, amount: ExtraAmount | null) => void;
 }) {
-  const [tw, setTw] = useState<TimeWindow | null>(null);
-  const kind = dayKind(day);
-
-  let status: string;
-  let body: ReactNode = null;
-  let action: ReactNode;
-  if (kind === "extra") {
-    status = "Užsakytas papildomas išvežimas";
-    body = (
-      <p className="mt-1 text-stone-deep">
-        {day.extra!.time_window ? TIME_WINDOWS[day.extra!.time_window] : "Bet kuriuo metu"} · {Number(day.extra!.price_eur)} €
-      </p>
-    );
-    action = (
-      <button onClick={() => onCancel(day.extra!)} className={PANEL_CLAY}>
-        Atšaukti užsakymą
-      </button>
-    );
-  } else if (kind === "skipped") {
-    status = "Šiukšliavežė nevažiuos";
-    action = (
-      <button onClick={() => onUnskip(day.skip!)} className={PANEL_PRIMARY}>
-        Vis dėlto išstumsiu
-      </button>
-    );
-  } else if (kind === "scheduled") {
-    status = day.confirmed ? "Atvažiuos, konteinerį išstumsite" : "Atvažiuos pagal grafiką";
-    body = (
-      <p className="mt-1 text-stone-deep">
-        Jei konteinerio išstumti nereikia, šiukšliavežė pas jus nevažiuos. Kitas išvežimas bus{" "}
-        {formatDay(addDays(day.date, SCHEDULE_INTERVAL_DAYS))}
-      </p>
-    );
-    action = (
-      <button onClick={() => onSkip(day.date)} className={PANEL_CLAY}>
-        Nereikia išvežti
-      </button>
-    );
-  } else {
-    status = "Laisva diena, galima užsakyti";
-    body = (
-      <div className="mt-3">
-        <p id={`tw-${day.date}`} className="text-sm font-semibold text-green-muted">
-          Laikas <span className="font-normal text-stone-deep">(nebūtina)</span>
-        </p>
-        <div role="group" aria-labelledby={`tw-${day.date}`} className="mt-2 flex flex-wrap gap-2">
-          {(Object.keys(TIME_WINDOWS) as TimeWindow[]).map((key) => (
-            <Chip key={key} selected={tw === key} onClick={() => setTw(tw === key ? null : key)}>
-              {TIME_WINDOWS[key]}
-            </Chip>
-          ))}
-        </div>
-      </div>
-    );
-    action = (
-      <button onClick={() => onBook(day.date, tw)} className={PANEL_PRIMARY}>
-        Užsakyti už {EXTRA_PICKUP_PRICE_EUR} €
-      </button>
-    );
-  }
-
+  const [date, setDate] = useState(initialDate);
+  const [amount, setAmount] = useState<ExtraAmount | null>(null);
   return (
-    <div
-      role="region"
-      aria-label={`${formatHero(day.date)}: ${status}`}
-      className="day-panel mt-5 border-t border-rule pt-5"
-      onKeyDown={(e) => e.key === "Escape" && onClose()}
-    >
-      <div className="flex items-start justify-between gap-4">
-        <div aria-live="polite">
-          <h3 className="font-display text-2xl font-semibold leading-tight">{formatHero(day.date)}</h3>
-          <p className="font-semibold text-green-muted">{status}</p>
-        </div>
-        <button
-          onClick={onClose}
-          aria-label="Uždaryti dienos informaciją"
-          className="-mr-2 -mt-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] text-green-muted hover:bg-sheet-hi"
-        >
-          <CloseIcon />
-        </button>
+    <Modal title="Papildomas išvežimas" description="Bus daugiau atliekų nei įprastai? Pasirinkite dieną." onClose={onClose}>
+      <p id="extra-day" className="mt-4 text-sm font-semibold text-green-muted">
+        Diena
+      </p>
+      <div role="group" aria-labelledby="extra-day" className="mt-2 flex flex-wrap gap-2">
+        {days.map((d) => (
+          <Chip key={d} selected={d === date} onClick={() => setDate(d)}>
+            {`${formatWeekdayShort(d)} ${parseISODate(d).getDate()}${d === scheduledDate ? " · grafikas" : ""}`}
+          </Chip>
+        ))}
       </div>
-      {body}
-      <div className="mt-4">{action}</div>
-    </div>
+      <p id="extra-amount" className="mt-5 text-sm font-semibold text-green-muted">
+        Kiek papildomai <span className="font-normal text-stone-deep">(nebūtina)</span>
+      </p>
+      <div role="group" aria-labelledby="extra-amount" className="mt-2 flex flex-wrap gap-2">
+        {(Object.keys(EXTRA_AMOUNTS) as ExtraAmount[]).map((a) => (
+          <Chip key={a} selected={amount === a} onClick={() => setAmount(amount === a ? null : a)}>
+            {EXTRA_AMOUNTS[a]}
+          </Chip>
+        ))}
+      </div>
+      <p className="mt-5 flex items-baseline justify-between border-t border-rule pt-3">
+        <span className="text-stone-deep">{capitalize(formatHero(date))}</span>
+        <span className="font-display text-xl font-semibold">{EXTRA_PICKUP_PRICE_EUR}&nbsp;€</span>
+      </p>
+      <button
+        data-autofocus
+        onClick={() => onReport(date, amount)}
+        className="mt-4 flex min-h-14 w-full items-center justify-center rounded-[4px] bg-green px-6 font-display text-xl font-semibold text-sheet hover:bg-green-deep"
+      >
+        Pranešti
+      </button>
+    </Modal>
   );
 }

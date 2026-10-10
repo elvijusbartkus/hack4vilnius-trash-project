@@ -81,7 +81,9 @@
 /* Day panel opens under the strip. */
 .day-panel { animation: slip-in 220ms var(--ease-out-expo) both; }
 
-/* Toast and address dropdown: rise from the bottom on phones, settle in place on desktop. */
+.backdrop-in { animation: fade-in 180ms ease-out both; }
+
+/* Popups, toast and address dropdown: rise from the bottom on phones, settle in place on desktop. */
 @keyframes slip-up {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
