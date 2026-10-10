@@ -36,7 +36,7 @@ export const FRACTIONS = [
     id: 'packaging',
     label: 'Rūšiuojamos atliekos',
     containerLabel: 'Rūšiuojamų atliekų konteineris',
-    colour: '#ca8a04',
+    colour: '#a16207', // darker packaging yellow: readable on the light-green panels (3.9:1)
     share: 3,
     volumeL: 240,
     compaction: 5,

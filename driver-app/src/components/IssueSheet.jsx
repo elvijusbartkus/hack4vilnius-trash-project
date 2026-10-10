@@ -25,9 +25,10 @@ export default function IssueSheet({ stop, number, current, onPick, onClose }) {
         </p>
 
         <div className="sheet__options">
-          {ISSUE_REASONS.map((reason) => (
+          {ISSUE_REASONS.map((reason, i) => (
             <button
               key={reason.id}
+              autoFocus={i === 0}
               className={`sheet__option${current === reason.id ? ' is-selected' : ''}`}
               onClick={() => onPick(reason.id)}
             >

@@ -7,6 +7,7 @@ import { osmandRouteUrl } from '../lib/osmand.js'
 import { issueLabel } from '../data/issues.js'
 import IssueSheet from './IssueSheet.jsx'
 import { plural } from '../lib/lt.js'
+import { BackIcon, CheckIcon, NavigateIcon } from './icons.jsx'
 
 // The screen the driver actually works from: their route on the map, the
 // button that hands the round to a navigation app, and the stop list to tick
@@ -52,8 +53,14 @@ export default function RoundView({
   const [useGoogle, setUseGoogle] = useStoredFlag('tr.useGoogle')
 
   // With a hundred rows, nobody should have to scroll to find their place.
+  // Not on first open of a fresh round, though: then the map and the
+  // navigation button are what the driver needs, and scrolling hid them.
   const nextRef = useRef(null)
+  // Fresh round: remember stop 1 so nothing scrolls; mid-round reopen: -1 so it scrolls once.
+  const scrolledFor = useRef(done.length === 0 && issueCount === 0 ? nextIndex : -1)
   useEffect(() => {
+    if (scrolledFor.current === nextIndex) return
+    scrolledFor.current = nextIndex
     nextRef.current?.scrollIntoView({ block: 'center', behavior: 'smooth' })
   }, [nextIndex])
 
@@ -64,7 +71,7 @@ export default function RoundView({
     >
       <header className="appbar appbar--round">
         <button className="link-btn" onClick={onBack}>
-          ‹ Šiandien
+          <BackIcon size={18} /> Šiandien
         </button>
         <div className="appbar__title">
           <strong>{round.shiftLabel}</strong>
@@ -167,7 +174,9 @@ export default function RoundView({
                     rel="noreferrer"
                     onClick={() => onToggleStop(nextStop.id)}
                   >
-                    ✓ Ištuštinta
+                    <span className="btn-label">
+                      <CheckIcon size={20} /> Ištuštinta
+                    </span>
                     <small>
                       {afterNext
                         ? `Vykti į ${afterNextNumber}. ${afterNext.address}`
@@ -212,7 +221,7 @@ export default function RoundView({
                     : `Pažymėti ${stop.address} kaip ištuštintą`
                 }
               >
-                {isDone ? '✓' : issue ? '!' : i + 1}
+                {isDone ? <CheckIcon size={18} /> : issue ? '!' : i + 1}
               </button>
 
               <span className="stop-body">
@@ -247,7 +256,7 @@ export default function RoundView({
                   rel="noreferrer"
                   aria-label={`Vykti į ${stop.address}`}
                 >
-                  ➤
+                  <NavigateIcon size={18} />
                 </a>
               )}
             </li>
