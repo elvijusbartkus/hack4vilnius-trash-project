@@ -37,6 +37,7 @@ export default function RoundView({
   const remaining = round.stops.filter((s) => !handled(s))
 
   const [issueStopId, setIssueStopId] = useState(null)
+  const [locating, setLocating] = useState(false)
   const issueStop = round.stops.find((s) => s.id === issueStopId) ?? null
 
   // With a hundred rows, nobody should have to scroll to find their place.
@@ -105,9 +106,28 @@ export default function RoundView({
           <>
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
-            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
+            {/* Starts where the truck is now (phone location), not at the depot.
+                Without a location the link leaves the start to OsmAnd. */}
+            <a
+              className="btn btn--nav"
+              href={osmandRouteUrl(remaining, DEPOT)}
+              onClick={(e) => {
+                if (!navigator.geolocation) return
+                e.preventDefault()
+                setLocating(true)
+                const go = (start) => {
+                  setLocating(false)
+                  window.location.href = osmandRouteUrl(remaining, DEPOT, start)
+                }
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => go({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+                  () => go(null),
+                  { enableHighAccuracy: true, timeout: 8000, maximumAge: 30000 },
+                )
+              }}
+            >
               <span className="btn-label">
-                <NavigateIcon size={20} /> Navigacija
+                <NavigateIcon size={20} /> {locating ? 'Nustatoma vieta…' : 'Navigacija'}
               </span>
             </a>
 

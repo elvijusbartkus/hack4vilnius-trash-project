@@ -6,9 +6,9 @@
 // moves past by itself. No 10-stop limit, and no coming back to this app
 // between stops.
 //
-// `start` is fixed to the depot, where every truck sets off. Left out,
-// OsmAnd is meant to start from "my location", but in practice that didn't
-// take.
+// `start` is the driver's current position from the phone (passed in by the
+// Navigacija button). Left out, OsmAnd is meant to start from "my location",
+// but in practice that didn't always take, so the button asks the phone first.
 //
 // That link is only "browsable", not a verified app link, so a plain <a>
 // would open the osmand.net website. On Android we wrap it in Chrome's
