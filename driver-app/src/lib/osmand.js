@@ -6,9 +6,9 @@
 // moves past by itself. No 10-stop limit, and no coming back to this app
 // between stops.
 //
-// `start` is the phone's GPS position as this page last saw it. Left out,
+// `start` is fixed to the depot, where every truck sets off. Left out,
 // OsmAnd is meant to start from "my location", but in practice that didn't
-// take, so the page passes the position itself when it has one.
+// take.
 //
 // That link is only "browsable", not a verified app link, so a plain <a>
 // would open the osmand.net website. On Android we wrap it in Chrome's
@@ -25,7 +25,7 @@ const STORE_URL = `https://play.google.com/store/apps/details?id=${PACKAGE}`
 /**
  * @param {Array<{lat:number,lng:number}>} stops  in driving order
  * @param {{lat:number,lng:number}} end            where the round finishes
- * @param {{lat:number,lng:number}|null} start     the phone's position, if known
+ * @param {{lat:number,lng:number}|null} start     where the route begins
  */
 export function osmandRouteUrl(stops, end, start = null) {
   // Built by hand rather than with URLSearchParams: OsmAnd splits `via` on
