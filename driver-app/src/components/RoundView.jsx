@@ -4,6 +4,7 @@ import { formatDuration } from './ShiftList.jsx'
 import { DEPOT } from '../data/shift.js'
 import { stopUrl } from '../lib/maps.js'
 import { osmandRouteUrl } from '../lib/osmand.js'
+import { useCurrentPosition } from '../lib/useCurrentPosition.js'
 import { issueLabel } from '../data/issues.js'
 import IssueSheet from './IssueSheet.jsx'
 import { plural } from '../lib/lt.js'
@@ -34,6 +35,7 @@ export default function RoundView({
   const nextStop = complete ? null : round.stops[nextIndex]
   const nextNumber = nextIndex + 1
   const remaining = round.stops.filter((s) => !handled(s))
+  const here = useCurrentPosition()
 
   const [issueStopId, setIssueStopId] = useState(null)
   const issueStop = round.stops.find((s) => s.id === issueStopId) ?? null
@@ -104,7 +106,7 @@ export default function RoundView({
           <>
             {/* Only the stops still to collect go in, so re-opening
                 mid-round picks up where the driver is. */}
-            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT)}>
+            <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, here)}>
               <span className="btn-label">
                 <NavigateIcon size={20} /> Navigacija OsmAnd
               </span>
