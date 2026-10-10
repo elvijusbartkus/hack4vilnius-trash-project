@@ -13,8 +13,9 @@ npm run dev
 1. **Sign in** — shift-terminal style: tap your name. Mock only; the real app
    hands off to the fleet account system.
 2. **Today** — just the rounds assigned to you, with progress on each.
-3. **Round** — your route on the map, the Google Maps button, and the stop
-   list to tick off as you collect. Progress survives a reload.
+3. **Round** — your route on the map, a one-tap "collected, go to the next
+   stop" button that drives Google Maps, and the stop list. Progress
+   survives a reload.
 
 A driver never sees another crew's route — that's what kept the first version
 unreadable. Planning output for the whole city belongs in a dispatcher view,
@@ -34,7 +35,8 @@ the rounds for the signed-in driver.
    has no notion of capacity, so the repair pass is what makes rounds usable.
 2. **Order** (`route.js`) — nearest-neighbour for a fast first guess, then
    2-opt to un-cross the path.
-3. **Hand over** (`maps.js`) — build the Google Maps directions links.
+3. **Hand over** (`gpx.js`, `maps.js`) — the whole round as a GPX route for
+   OsmAnd, or Google Maps links one stop at a time.
 
 ## Container types
 
@@ -79,33 +81,42 @@ a wheelie bin is quick, a 2500 L communal container means working the lift.
 *Known simplification:* only volume is modelled, not payload weight. Real
 glass rounds often hit the axle limit before the body is full.
 
-## The 9-waypoint limit
+## Navigating the whole round in OsmAnd
 
-Google's Maps URL scheme carries an origin, a destination and **at most 9
-intermediate waypoints**. A 100-stop round therefore goes over as ~10
-chained legs, each starting where the last ended.
+**Visas reisas OsmAnd** exports the stops still to collect, plus the depot
+at the end, as a GPX route (`src/lib/gpx.js`) and hands it to OsmAnd. The
+phone's share sheet is used where it accepts the file; otherwise the file
+downloads, and opening it offers OsmAnd. OsmAnd routes between the route
+points on real roads and treats each one as an intermediate destination, so
+it moves from stop to stop by itself, with no 10-stop limit and no trips back
+to this app. The driver ticks containers off in the stop list whenever it
+suits. Re-exporting mid-round only includes what's left.
 
-The driver never sees that as a wall of links: the round screen follows
-which stops are ticked off and offers the one leg they're currently on
-("Open stops 31–40"), advancing by itself. The full leg list is one
-disclosure away.
+## Google Maps fallback (one stop at a time)
 
-Each stop row also has an arrow that navigates straight to that address, for
-jumping out of order.
+Nothing outside Google Maps can add a stop to a navigation that's already
+running, and a Maps link carries at most 10 stops. Chaining 10-stop links
+meant the driver kept reopening legs, so the round now goes over **one stop
+at a time**, as a single tap at each container:
 
-Waze was tried and reverted: its deep-link scheme
-(`waze.com/ul?ll=…&navigate=yes`) takes exactly one destination and has no
-equivalent of `waypoints`, so it cannot accept a multi-stop route at all.
+1. **Pradėti — vykti į 1.** opens Maps navigating to the first stop.
+2. At each container the driver switches back and taps **✓ Ištuštinta**.
+   That one tap marks the stop collected *and* opens Maps on the next one.
+3. After the last stop the same button sends them back to the depot.
 
-The link ends at the last pickup rather than carrying on back to the depot —
-the drive home needs no navigation, and spending the final slot on it would
-cost a stop. So **10 stops is exactly one link and one tap**, which is why
-`MAX_STOPS` is 10. Distance and time estimates *do* include the return,
-because the truck really does have to drive it.
+Every link carries `dir_action=navigate`, so Maps starts turn-by-turn
+straight away with no route preview or extra "Start" tap. **Vėl atidaryti
+navigaciją** reopens the current stop if Maps was closed, and each row in the
+stop list has an arrow for jumping to an address out of order.
 
-Longer rounds are split into consecutive legs that chain end-to-start; the
-driver finishes one and opens the next. `buildMapsLegs` handles this and the
-round screen labels the legs.
+The web app can't notice arrival by itself: once Maps is in front, the
+browser stops giving the page GPS. Fully hands-free would need a native app,
+either Google's Navigation SDK (multi-stop, arrival callbacks) or an
+Android overlay button floating over Maps.
+
+Waze was tried and reverted, because its deep links take one destination
+with no waypoints. With one stop per link that no longer matters, so Waze
+could come back as an option.
 
 ## Mock data
 

@@ -1,26 +1,50 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import RouteMap from './RouteMap.jsx'
 import { formatDuration } from './ShiftList.jsx'
 import { DEPOT } from '../data/shift.js'
-import { stopUrl, MAX_WAYPOINTS } from '../lib/maps.js'
+import { stopUrl } from '../lib/maps.js'
+import { buildGpx, openInOsmAnd } from '../lib/gpx.js'
+import { plural } from '../lib/lt.js'
 
 // The screen the driver actually works from: their route on the map, the
-// button that throws the whole round to Google Maps, and the stop list to
-// tick off as they collect.
+// button that hands the round to a navigation app, and the stop list to tick
+// off as they collect.
+//
+// OsmAnd is the main route: it takes the whole round as a GPX file and moves
+// from stop to stop by itself. Google Maps stays as a fallback, but it can't
+// be fed a new stop while navigating, so it goes one stop at a time: at each
+// container the driver comes back here, taps once, and Maps is already
+// navigating to the next one.
 export default function RoundView({ round, done, onToggleStop, onBack }) {
   const nextIndex = round.stops.findIndex((s) => !done.includes(s.id))
   const complete = nextIndex === -1
   const nextStop = complete ? null : round.stops[nextIndex]
-
-  // A round is bigger than one Maps link, so follow the driver's progress
-  // and offer the leg they're actually on.
   const nextNumber = nextIndex + 1
-  const legIndex = complete
-    ? -1
-    : round.legs.findIndex(
-        (l) => nextNumber >= l.startIndex && nextNumber <= l.endIndex,
-      )
-  const currentLeg = legIndex === -1 ? null : round.legs[legIndex]
+  // Stops can be ticked out of order from the list, so "the one after" is
+  // the next one still to collect, not simply the next in the array.
+  const afterNext = complete
+    ? null
+    : round.stops.find((s, i) => i > nextIndex && !done.includes(s.id)) ?? null
+  const afterNextNumber = afterNext ? round.stops.indexOf(afterNext) + 1 : null
+  const remaining = round.stops
+    .map((s, i) => ({ ...s, number: i + 1 }))
+    .filter((s) => !done.includes(s.id))
+
+  // Until the driver has set off, the first tap is just "go to stop 1" —
+  // there's nothing to mark collected yet.
+  const [startedFlag, setStarted] = useStoredFlag(`tr.started.${round.id}`)
+  const started = startedFlag || done.length > 0
+  const [useGoogle, setUseGoogle] = useStoredFlag('tr.useGoogle')
+
+  const openRoundInOsmAnd = () =>
+    openInOsmAnd(
+      buildGpx({
+        name: `${round.shiftLabel} — ${round.fraction.label}`,
+        stops: remaining,
+        depot: DEPOT,
+      }),
+      `${round.id}.gpx`,
+    )
 
   // With a hundred rows, nobody should have to scroll to find their place.
   const nextRef = useRef(null)
@@ -78,46 +102,71 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
         ) : (
           <>
             <p className="next-up">
-              Kitas sustojimas {nextNumber} iš {round.stops.length}:{' '}
-              <strong>{nextStop.address}</strong>
+              {done.length ? 'Dabar' : 'Pirmas sustojimas'}: {nextNumber} iš{' '}
+              {round.stops.length} — <strong>{nextStop.address}</strong>
             </p>
 
-            <a
-              className="btn btn--primary"
-              href={currentLeg.url}
-              target="_blank"
-              rel="noreferrer"
+            <button className="btn btn--primary btn--collect" onClick={openRoundInOsmAnd}>
+              Visas reisas OsmAnd
+              <small>
+                {plural(remaining.length, 'sustojimas', 'sustojimai', 'sustojimų')} —
+                veda nuo vieno prie kito pats
+              </small>
+            </button>
+            <p className="hint">
+              Ištuštintus konteinerius pažymėkite sąraše žemiau. Neturite
+              OsmAnd? Įdiekite iš Google Play arba App Store.
+            </p>
+
+            <details
+              className="google-fallback"
+              open={useGoogle}
+              onToggle={(e) => setUseGoogle(e.currentTarget.open)}
             >
-              {round.legs.length > 1
-                ? `Google Maps: sustojimai ${currentLeg.startIndex}–${currentLeg.endIndex}`
-                : 'Pradėti maršrutą Google Maps'}
-            </a>
+              <summary>Naudoti Google Maps (po vieną sustojimą)</summary>
 
-            {round.legs.length > 1 && (
-              <>
-                <p className="leg-note">
-                  Atkarpa {legIndex + 1} iš {round.legs.length}. Į vieną Google
-                  Maps nuorodą telpa {MAX_WAYPOINTS + 1} sustojimų, todėl
-                  maršrutas atidaromas dalimis. Pažymėkite ištuštintus
-                  konteinerius ir mygtukas persijungs į kitą atkarpą.
-                </p>
+              {!started ? (
+                <a
+                  className="btn btn--ghost"
+                  href={stopUrl(nextStop)}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setStarted(true)}
+                >
+                  Pradėti — vykti į {nextNumber}.
+                </a>
+              ) : (
+                <>
+                  {/* The one tap a driver makes at every stop: mark this
+                      container done and hand the next destination straight
+                      to Google Maps, which starts navigating without another
+                      tap. */}
+                  <a
+                    className="btn btn--ghost btn--collect"
+                    href={stopUrl(afterNext ?? DEPOT)}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => onToggleStop(nextStop.id)}
+                  >
+                    ✓ Ištuštinta
+                    <small>
+                      {afterNext
+                        ? `Vykti į ${afterNextNumber}. ${afterNext.address}`
+                        : 'Paskutinis — vykti į bazę'}
+                    </small>
+                  </a>
 
-                <details className="full-route">
-                  <summary>Visos atkarpos ({round.legs.length})</summary>
-                  {round.legs.map((leg, i) => (
-                    <a
-                      key={i}
-                      className={`btn btn--ghost${i === legIndex ? ' is-current' : ''}`}
-                      href={leg.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Atkarpa {i + 1} · sustojimai {leg.startIndex}–{leg.endIndex}
-                    </a>
-                  ))}
-                </details>
-              </>
-            )}
+                  <a
+                    className="btn btn--ghost"
+                    href={stopUrl(nextStop)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Vėl atidaryti navigaciją į {nextNumber}.
+                  </a>
+                </>
+              )}
+            </details>
           </>
         )}
       </div>
@@ -171,4 +220,23 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
       </ol>
     </div>
   )
+}
+
+function useStoredFlag(key) {
+  const [value, setValue] = useState(() => {
+    try {
+      return localStorage.getItem(key) === '1'
+    } catch {
+      return false
+    }
+  })
+  const set = (next) => {
+    setValue(next)
+    try {
+      localStorage.setItem(key, next ? '1' : '0')
+    } catch {
+      // Storage blocked — the flag just won't survive a reload.
+    }
+  }
+  return [value, set]
 }

@@ -15,7 +15,7 @@ export function haversine(a, b) {
 
 // Straight-line distance underestimates driving. 1.35 is a common urban
 // detour factor — good enough for planning, the real numbers come from
-// Google Maps once the driver opens the route.
+// Google Maps as the driver goes.
 export const DETOUR_FACTOR = 1.35
 
 export function roadDistance(a, b) {

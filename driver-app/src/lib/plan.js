@@ -7,7 +7,6 @@
 import { FRACTIONS, getFraction } from '../data/vilnius.js'
 import { clusterByCapacity } from './cluster.js'
 import { optimiseRoute, tourLength } from './route.js'
-import { buildMapsLegs } from './maps.js'
 
 export function buildPlan({ pickups, depot, capacityL, maxStops }) {
   const routes = []
@@ -35,7 +34,6 @@ export function buildPlan({ pickups, depot, capacityL, maxStops }) {
         fillPct: Math.round((optimised.loadL / capacityL) * 100),
         districts: [...new Set(group.map((p) => p.district))].sort(),
         urgentCount: group.filter((p) => p.urgent).length,
-        legs: buildMapsLegs(depot, optimised.stops),
         // What the same stops would have cost in the order they arrived.
         unoptimisedKm: tourLength(depot, group),
       })

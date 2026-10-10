@@ -320,8 +320,7 @@ body {
 }
 
 .next-up,
-.all-done,
-.leg-note {
+.all-done {
   margin: 0;
   font-size: 13px;
   color: var(--muted);
@@ -330,10 +329,6 @@ body {
 .all-done {
   color: var(--accent);
   font-weight: 600;
-}
-
-.leg-note {
-  color: #9a3412;
 }
 
 .btn {
@@ -368,22 +363,35 @@ body {
   margin-top: 6px;
 }
 
-.btn--ghost.is-current {
-  border-color: var(--fraction, var(--accent));
-  color: var(--fraction, var(--accent));
+/* The button pressed at every container, so it's the biggest thing on
+   screen and says where it's sending the driver next. */
+.btn--collect {
+  padding: 18px 16px 14px;
+  font-size: 20px;
 }
 
-.full-route {
-  margin-top: 2px;
-  max-height: 220px;
-  overflow-y: auto;
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted);
 }
 
-.full-route summary {
+.google-fallback summary {
   font-size: 13px;
   color: var(--muted);
   cursor: pointer;
   padding: 6px 0;
+}
+
+.btn--collect small {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---- fraction (bin type) ---- */

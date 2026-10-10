@@ -17,8 +17,8 @@ const TRUCK_CAPACITY_L = 16000
 
 // A cap on shift length, not a technical one. Rounds are normally bound by
 // truck capacity; this just stops one becoming an impossible day. The
-// Google Maps waypoint limit deliberately plays no part here — that's a
-// handoff problem, solved by splitting the round into legs.
+// Google Maps waypoint limit deliberately plays no part here — stops are
+// handed to Maps one at a time.
 const MAX_STOPS = 100
 
 // Each driver hauls a single container type all day — the truck is set up
