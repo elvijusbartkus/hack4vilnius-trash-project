@@ -180,6 +180,20 @@ export async function resetHousehold(householdId: number) {
   check(await supabase.from("pickups").delete().eq("household_id", householdId));
 }
 
+// Demo reset: neighbours who answered "Ne, nereikia" for the route day (see DEMO_SEEDED_SKIP_VASA_IDS).
+// Their pickups for that day are replaced, so repeated resets never stack rows.
+export async function seedNeighbourSkips(vasaIds: number[], day: string) {
+  const houses = check(await supabase.from("households").select("id").in("vasa_id", vasaIds)) ?? [];
+  const ids = houses.map((h: { id: number }) => h.id);
+  if (!ids.length) return;
+  check(await supabase.from("pickups").delete().in("household_id", ids).eq("date", day));
+  check(
+    await supabase
+      .from("pickups")
+      .insert(ids.map((id: number) => ({ household_id: id, date: day, kind: "scheduled", status: "skipped", price_eur: 0 }))),
+  );
+}
+
 // Live updates: calls onChange whenever any pickup row changes (other tabs, the driver app later).
 export function subscribePickups(onChange: () => void): () => void {
   const channel = supabase

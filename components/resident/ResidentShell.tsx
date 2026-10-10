@@ -4,8 +4,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { INVOICE_PAID_PREFIX } from "@/components/dashboard/Invoices";
 import type { Household } from "@/lib/pickups";
 import Onboarding from "@/components/resident/Onboarding";
-import { DEMO_DAY, DEMO_USER_NAME } from "@/lib/config";
-import { getDemoHousehold, getHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
+import { DEMO_DAY, DEMO_SEEDED_SKIP_VASA_IDS, DEMO_USER_NAME } from "@/lib/config";
+import { getDemoHousehold, getHousehold, resetHousehold, seedDemoActivity, seedNeighbourSkips } from "@/lib/pickups";
 import { registerServiceWorker } from "@/lib/pwa";
 import { resetReports } from "@/lib/reports";
 
@@ -85,6 +85,7 @@ export default function ResidentShell({
         const ids = new Set([current?.householdId, demo.householdId].filter((id): id is number => !!id));
         await Promise.all([...ids].flatMap((id) => [resetHousehold(id), resetReports(id)]));
         await seedDemoActivity(demo.householdId, DEMO_DAY);
+        await seedNeighbourSkips(DEMO_SEEDED_SKIP_VASA_IDS, DEMO_DAY);
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
           localStorage.removeItem(NAME_KEY);

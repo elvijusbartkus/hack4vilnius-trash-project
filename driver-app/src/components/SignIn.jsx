@@ -1,3 +1,4 @@
+import { DEMO_DAY } from '../../../lib/config.ts'
 import { plural } from '../lib/lt.js'
 import { LogoMark } from './icons.jsx'
 
@@ -59,7 +60,12 @@ export default function SignIn({ drivers, onSignIn }) {
   )
 }
 
+// The demo's route day (DEMO_TODAY + 1), not the real date.
 function today() {
-  const s = new Date().toLocaleDateString('lt-LT', { weekday: 'long', month: 'long', day: 'numeric' })
+  const s = new Date(`${DEMO_DAY}T12:00:00`).toLocaleDateString('lt-LT', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  })
   return s.charAt(0).toUpperCase() + s.slice(1)
 }

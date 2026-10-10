@@ -59,12 +59,17 @@ async function fetchDay() {
     more.data.forEach((h) => known.set(h.id, h))
   }
 
+  // Counted in households (every bin on the schedule), routed in stops (one per address).
+  const counts = {
+    baseline: scheduled.length,
+    today: new Set([...scheduled.filter((h) => !skipped.has(h.id)).map((h) => h.id), ...extraIds]).size,
+  }
   const baseline = uniqueByAddress(scheduled.map((h) => toStop(h)))
   const today = uniqueByAddress([
     ...scheduled.filter((h) => !skipped.has(h.id)).map((h) => toStop(h)),
     ...extraIds.map((id) => known.get(id)).filter(Boolean).map((h) => toStop(h, true)),
   ])
-  return { baseline, today }
+  return { baseline, today, counts }
 }
 
 function toStop(h, extra = false) {
@@ -128,7 +133,7 @@ function plan(stops) {
   return optimiseRoute(DEPOT, stops)
 }
 
-function makeRound(todayPlan, baselineCount, km) {
+function makeRound(todayPlan, counts, km) {
   const savedKm = km.baseline - km.today
   return {
     id: LIVE_ROUND_ID,
@@ -141,8 +146,8 @@ function makeRound(todayPlan, baselineCount, km) {
     durationMin: todayPlan.durationMin,
     live: true,
     savings: {
-      baselineStops: baselineCount,
-      stops: todayPlan.stops.length,
+      baselineStops: counts.baseline,
+      stops: counts.today,
       savedKm,
       savedCo2Kg: (savedKm * FUEL_L_PER_100KM * CO2_KG_PER_L_DIESEL) / 100,
       source: km.source,
@@ -167,8 +172,8 @@ export function useLiveRound() {
       if (busy) return
       busy = true
       try {
-        const { baseline, today } = await fetchDay()
-        const key = `${baseline.length}|${today.map((s) => s.id).join(',')}`
+        const { baseline, today, counts } = await fetchDay()
+        const key = `${counts.baseline}|${counts.today}|${today.map((s) => s.id).join(',')}`
         if (key === lastKey) return
         lastKey = key
 
@@ -182,14 +187,14 @@ export function useLiveRound() {
         // Show the change straight away with the approximate distance,
         // then swap in OSRM road distances once they arrive.
         const approx = { baseline: approxKm(basePlan.stops), today: approxKm(todayPlan.stops), source: 'approx' }
-        if (alive) setState({ status: 'ready', round: makeRound(todayPlan, baseline.length, approx) })
+        if (alive) setState({ status: 'ready', round: makeRound(todayPlan, counts, approx) })
 
         // Not awaited: polling must not wait on OSRM.
         Promise.all([osrmKm(basePlan.stops), osrmKm(todayPlan.stops)]).then(([b, t]) => {
           if (alive && b != null && t != null && lastKey === key) {
             setState({
               status: 'ready',
-              round: makeRound(todayPlan, baseline.length, { baseline: b, today: t, source: 'osrm' }),
+              round: makeRound(todayPlan, counts, { baseline: b, today: t, source: 'osrm' }),
             })
           }
         })

@@ -14,6 +14,10 @@ export const DEMO_DAY = "2026-10-22";
 // VASA id of the household seeded as the demo resident (Darkiemio g. 13, Pilaitė, scheduled on DEMO_DAY).
 export const DEMO_VASA_ID = 9175;
 
+// Neighbours whose "Ne, nereikia" for DEMO_DAY is seeded by the demo reset (/?reset=1), so the
+// driver's savings line starts from real skips: Pajautos g. 8A, Vištyčio g. 4, Stalupėnų g. 56-2 and 54.
+export const DEMO_SEEDED_SKIP_VASA_IDS = [3602, 3600, 13886, 4113];
+
 // Display name of the prefilled demo resident (PRD section 7).
 export const DEMO_USER_NAME = "Žygimantas Bakanas";
 
