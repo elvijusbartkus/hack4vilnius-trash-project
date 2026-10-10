@@ -148,8 +148,12 @@ function ReportForm({ household, onSent }: { household: Household; onSent: (r: R
     setLocating(true);
     setError(null);
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude });
+      async (pos) => {
+        const { latitude: lat, longitude: lon } = pos.coords;
+        setCoords({ lat, lon });
+        // Fill "Vieta" with the street address at that point; the coordinates go along regardless.
+        const address = await addressAt(lat, lon);
+        if (address) setPlace(address);
         setLocating(false);
       },
       () => {
@@ -260,7 +264,7 @@ function ReportForm({ household, onSent }: { household: Household; onSent: (r: R
           disabled={locating}
           className="min-h-11 rounded-[3px] border-2 border-green px-4 font-semibold text-green hover:bg-sheet-hi disabled:opacity-50"
         >
-          {locating ? "Nustatoma…" : "Naudoti mano buvimo vietą"}
+          {locating ? "Ieškomas adresas…" : "Naudoti mano buvimo vietą"}
         </button>
         {coords && (
           <span className="text-sm text-green" aria-live="polite">
@@ -301,6 +305,23 @@ function ReportForm({ household, onSent }: { household: Household; onSent: (r: R
       )}
     </section>
   );
+}
+
+// Reverse geocoding with OpenStreetMap Nominatim: "Darkiemio g. 13", or the nearest named place.
+// Returns null if the lookup fails, so the typed address stays.
+async function addressAt(lat: number, lon: number): Promise<string | null> {
+  try {
+    const q = new URLSearchParams({ format: "jsonv2", lat: String(lat), lon: String(lon), "accept-language": "lt", zoom: "18" });
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?${q}`);
+    if (!res.ok) return null;
+    const json = await res.json();
+    const a = json.address ?? {};
+    const street = a.road ?? a.pedestrian ?? a.footway ?? a.square;
+    if (street) return a.house_number ? `${street} ${a.house_number}` : street;
+    return json.name || (json.display_name ? String(json.display_name).split(",").slice(0, 2).join(",").trim() : null);
+  } catch {
+    return null;
+  }
 }
 
 function CameraIcon() {
