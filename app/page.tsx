@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Dashboard from "@/components/dashboard/Dashboard";
+import { INVOICE_PAID_PREFIX } from "@/components/dashboard/Invoices";
 import Onboarding from "@/components/resident/Onboarding";
 import { DEMO_DAY, DEMO_USER_NAME } from "@/lib/config";
 import { getDemoHousehold, resetHousehold, seedDemoActivity } from "@/lib/pickups";
@@ -76,6 +77,10 @@ export default function ResidentPage() {
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
           localStorage.removeItem(NAME_KEY);
+          // demo invoices back to unpaid
+          Object.keys(localStorage)
+            .filter((k) => k.startsWith(INVOICE_PAID_PREFIX))
+            .forEach((k) => localStorage.removeItem(k));
         } catch {}
         clean();
         setUser(demo);

@@ -35,6 +35,7 @@ import {
 } from "@/lib/pickups";
 import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
+import { InvoicesPanel } from "./Invoices";
 import { ChevronDownIcon, Marker, type MarkerKind } from "./Icons";
 import Modal from "./Modal";
 import { DemoControls, NotificationBanner, ReminderPopup } from "./Reminder";
@@ -299,6 +300,13 @@ export default function Dashboard({
                   <HistoryField household={state.household} pickups={state.pickups} />
                 </div>
                 <div className="order-5 md:order-none">
+                  <InvoicesPanel
+                    householdId={householdId}
+                    pickups={state.pickups}
+                    onPaid={() => setToast({ id: ++toastSeq.current, message: "Sąskaita apmokėta" })}
+                  />
+                </div>
+                <div className="order-6 md:order-none">
                   <ImpactField pickups={state.pickups} />
                 </div>
               </div>

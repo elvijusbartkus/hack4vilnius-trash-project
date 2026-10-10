@@ -20,6 +20,11 @@ export default function Modal({
   children: ReactNode;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
+  // Latest onClose without re-running the setup effect (which would steal focus on every parent render).
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
   const titleId = useId();
   const descId = useId();
 
@@ -31,7 +36,7 @@ export default function Modal({
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") {
         e.preventDefault();
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key !== "Tab") return;
@@ -56,12 +61,12 @@ export default function Modal({
       document.body.style.overflow = overflow;
       previous?.focus();
     };
-  }, [onClose]);
+  }, []);
 
   return (
     <div
       className="backdrop-in fixed inset-0 z-50 flex items-end justify-center bg-ink/50 backdrop-blur-[2px] md:items-center md:p-6"
-      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+      onMouseDown={(e) => e.target === e.currentTarget && onCloseRef.current()}
     >
       <div
         ref={panelRef}

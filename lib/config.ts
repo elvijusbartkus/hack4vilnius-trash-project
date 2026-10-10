@@ -58,6 +58,19 @@ export const ON_DEMAND_PICKUP_PRICE_EUR = 3.0;
 // Refund/credit for skipping a scheduled pickup, EUR. Placeholder (0 = no money back on standard tier).
 export const SKIP_CREDIT_EUR = 0;
 
+// --- Invoices (mock-up only: no real payments) ---
+
+// PLACEHOLDER: current quarter's local waste fee ("vietinė rinkliava"), EUR.
+export const INVOICE_AMOUNT_EUR = 26.5;
+
+// Current invoice period, due date (ISO) and the date range whose extra pickups are added to it.
+export const INVOICE_PERIOD = "2026 m. IV ketv.";
+export const INVOICE_DUE = "2026-11-15";
+export const INVOICE_RANGE: [string, string] = ["2026-10-01", "2026-12-31"];
+
+// Earlier quarters shown as paid (amounts and numbers are blurred in the UI).
+export const PAST_INVOICE_PERIODS = ["2026 m. III ketv.", "2026 m. II ketv.", "2026 m. I ketv."];
+
 // --- Resident booking (PRD section 7) ---
 
 // Days shown in the resident calendar strip (starting today).

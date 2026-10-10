@@ -85,3 +85,9 @@ export function plural(n: number, forms: { one: string; few: string; many: strin
 export function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
+// Lithuanian money with no space before the unit: "26,50€".
+const eurFormat = new Intl.NumberFormat("lt-LT", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+export function formatEur(n: number): string {
+  return `${eurFormat.format(n)}€`;
+}
