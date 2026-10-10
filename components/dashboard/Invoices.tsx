@@ -171,7 +171,7 @@ export function BillingScreen({
                   <dt>
                     <span className="block">Kintamoji dalis</span>
                     <span className="block text-sm text-stone-deep">
-                      {plural(emptyings, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })} × {binL}L ×{" "}
+                      {plural(emptyings, { one: "surinkimas", few: "surinkimai", many: "surinkimų" })} × {binL}L ×{" "}
                       {formatEur(INVOICE_PER_EMPTYING_EUR)}
                     </span>
                   </dt>
@@ -220,7 +220,7 @@ export function BillingScreen({
                         <span>
                           <span className="block">{inv.period}</span>
                           <span className="block text-sm text-stone-deep">
-                            {plural(n, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })}
+                            {plural(n, { one: "surinkimas", few: "surinkimai", many: "surinkimų" })}
                           </span>
                         </span>
                         <span className="flex items-center gap-2.5">
@@ -354,7 +354,7 @@ function PastInvoicePopup({
           <dt>
             <span className="block">Kintamoji dalis</span>
             <span className="block text-sm text-stone-deep">
-              {plural(emptyings, { one: "ištuštinimas", few: "ištuštinimai", many: "ištuštinimų" })} × {binL}L ×{" "}
+              {plural(emptyings, { one: "surinkimas", few: "surinkimai", many: "surinkimų" })} × {binL}L ×{" "}
               {formatEur(INVOICE_PER_EMPTYING_EUR)}
             </span>
           </dt>
