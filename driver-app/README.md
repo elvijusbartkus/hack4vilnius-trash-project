@@ -35,8 +35,8 @@ the rounds for the signed-in driver.
    has no notion of capacity, so the repair pass is what makes rounds usable.
 2. **Order** (`route.js`) — nearest-neighbour for a fast first guess, then
    2-opt to un-cross the path.
-3. **Hand over** (`gpx.js`, `maps.js`) — the whole round as a GPX route for
-   OsmAnd, or Google Maps links one stop at a time.
+3. **Hand over** (`osmand.js`, `maps.js`) — the whole round as one OsmAnd
+   link, or Google Maps links one stop at a time.
 
 ## Container types
 
@@ -83,14 +83,21 @@ glass rounds often hit the axle limit before the body is full.
 
 ## Navigating the whole round in OsmAnd
 
-**Visas reisas OsmAnd** exports the stops still to collect, plus the depot
-at the end, as a GPX route (`src/lib/gpx.js`) and hands it to OsmAnd. The
-phone's share sheet is used where it accepts the file; otherwise the file
-downloads, and opening it offers OsmAnd. OsmAnd routes between the route
-points on real roads and treats each one as an intermediate destination, so
-it moves from stop to stop by itself, with no 10-stop limit and no trips back
-to this app. The driver ticks containers off in the stop list whenever it
-suits. Re-exporting mid-round only includes what's left.
+**Navigacija OsmAnd** is a link to
+`https://osmand.net/map/navigate?via=…&end=…&profile=truck`, with the stops
+still to collect as `via` points and the depot as `end` (`src/lib/osmand.js`).
+OsmAnd opens with that route loaded from the phone's position, and treats
+each via point as an intermediate destination it moves past by itself, so
+there's no 10-stop limit and no trips back to this app. The driver taps
+"Start" once in OsmAnd and ticks containers off in the stop list whenever it
+suits.
+
+On Android the link is wrapped in Chrome's `intent://` syntax naming the
+`net.osmand` package. That opens the app directly rather than the osmand.net
+website, and falls back to the Play Store if OsmAnd isn't installed (OsmAnd+
+users, `net.osmand.plus`, would need the package changed). OsmAnd's
+`osmand.api://navigate_gpx`, which would skip the Start tap, isn't open to
+browsers.
 
 ## Google Maps fallback (one stop at a time)
 

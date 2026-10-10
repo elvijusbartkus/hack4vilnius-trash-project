@@ -3,15 +3,15 @@ import RouteMap from './RouteMap.jsx'
 import { formatDuration } from './ShiftList.jsx'
 import { DEPOT } from '../data/shift.js'
 import { stopUrl } from '../lib/maps.js'
-import { buildGpx, openInOsmAnd } from '../lib/gpx.js'
+import { osmandRouteUrl } from '../lib/osmand.js'
 import { plural } from '../lib/lt.js'
 
 // The screen the driver actually works from: their route on the map, the
 // button that hands the round to a navigation app, and the stop list to tick
 // off as they collect.
 //
-// OsmAnd is the main route: it takes the whole round as a GPX file and moves
-// from stop to stop by itself. Google Maps stays as a fallback, but it can't
+// OsmAnd is the main route: one tap opens it with the whole round loaded,
+// and it moves from stop to stop by itself. Google Maps stays as a fallback, but it can't
 // be fed a new stop while navigating, so it goes one stop at a time: at each
 // container the driver comes back here, taps once, and Maps is already
 // navigating to the next one.
@@ -26,25 +26,13 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
     ? null
     : round.stops.find((s, i) => i > nextIndex && !done.includes(s.id)) ?? null
   const afterNextNumber = afterNext ? round.stops.indexOf(afterNext) + 1 : null
-  const remaining = round.stops
-    .map((s, i) => ({ ...s, number: i + 1 }))
-    .filter((s) => !done.includes(s.id))
+  const remaining = round.stops.filter((s) => !done.includes(s.id))
 
   // Until the driver has set off, the first tap is just "go to stop 1" —
   // there's nothing to mark collected yet.
   const [startedFlag, setStarted] = useStoredFlag(`tr.started.${round.id}`)
   const started = startedFlag || done.length > 0
   const [useGoogle, setUseGoogle] = useStoredFlag('tr.useGoogle')
-
-  const openRoundInOsmAnd = () =>
-    openInOsmAnd(
-      buildGpx({
-        name: `${round.shiftLabel} — ${round.fraction.label}`,
-        stops: remaining,
-        depot: DEPOT,
-      }),
-      `${round.id}.gpx`,
-    )
 
   // With a hundred rows, nobody should have to scroll to find their place.
   const nextRef = useRef(null)
@@ -106,16 +94,21 @@ export default function RoundView({ round, done, onToggleStop, onBack }) {
               {round.stops.length} — <strong>{nextStop.address}</strong>
             </p>
 
-            <button className="btn btn--primary btn--collect" onClick={openRoundInOsmAnd}>
-              Visas reisas OsmAnd
+            {/* Only the stops still to collect go in, so re-opening
+                mid-round picks up where the driver is. */}
+            <a
+              className="btn btn--primary btn--collect"
+              href={osmandRouteUrl(remaining, DEPOT)}
+            >
+              Navigacija OsmAnd
               <small>
                 {plural(remaining.length, 'sustojimas', 'sustojimai', 'sustojimų')} —
                 veda nuo vieno prie kito pats
               </small>
-            </button>
+            </a>
             <p className="hint">
-              Ištuštintus konteinerius pažymėkite sąraše žemiau. Neturite
-              OsmAnd? Įdiekite iš Google Play arba App Store.
+              OsmAnd atsidarys su visu maršrutu — paspauskite „Pradėti“.
+              Ištuštintus konteinerius pažymėkite sąraše žemiau.
             </p>
 
             <details
