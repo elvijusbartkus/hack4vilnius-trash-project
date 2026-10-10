@@ -358,79 +358,45 @@ body {
   cursor: pointer;
 }
 
-.day-summary {
-  margin: 0 0 14px;
-  font-size: 13px;
-  color: var(--muted);
+/* ---- round list: same ruled sheet and rows as the roster ---- */
+
+.roster-head--shift {
+  padding: 16px 0 16px;
 }
 
-/* ---- round list ---- */
-
-.round-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.shift-meta {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 7px;
 }
 
-.round-btn {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  /* fraction colour as a top band (not a side stripe) */
-  box-shadow: inset 0 4px 0 var(--fraction, var(--accent));
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
+.round-row__time {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1;
 }
 
-.round-btn:hover {
-  background: var(--panel-hi);
+.round-row .progress {
+  margin-top: 8px;
 }
 
-.round-btn.is-complete {
-  box-shadow: inset 0 4px 0 var(--line);
-  opacity: 0.65;
-}
-
-.round-btn__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.round-btn__top strong {
-  font-size: 20px;
-}
-
-.round-time {
-  font-size: 13px;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.round-btn__districts {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.round-btn__facts {
-  display: flex;
-  gap: 14px;
+.round-row__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 14px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
+  color: var(--muted);
 }
 
-.round-btn__progress-text {
-  font-size: 12px;
+.round-row.is-complete .round-row__status {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.round-row.is-complete .roster-row__name,
+.round-row.is-complete .round-row__time,
+.round-row.is-complete .roster-row__load {
   color: var(--muted);
 }
 

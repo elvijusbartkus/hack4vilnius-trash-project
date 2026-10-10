@@ -35,6 +35,25 @@ export default function App() {
 
   const driver = driverId ? findDriver(driverId) : null
 
+  // Each screen is a history entry (roster 0, rounds 1, open round 2), so the
+  // phone's back gesture steps out one level instead of leaving the app.
+  const depth = driver ? (openRoundId ? 2 : 1) : 0
+  useEffect(() => {
+    if ((window.history.state?.depth ?? 0) < depth) window.history.pushState({ depth }, '')
+  }, [depth])
+  useEffect(() => {
+    const onPop = (e) => {
+      const d = e.state?.depth ?? 0
+      if (d < 2) setOpenRoundId(null)
+      if (d < 1) setDriverId(null)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+  // In-app back buttons go through history too, so both stay in sync.
+  const stepBack = (fallback) =>
+    (window.history.state?.depth ?? 0) > 0 ? window.history.back() : fallback()
+
   if (!driver) {
     return <SignIn onSignIn={setDriverId} />
   }
@@ -85,7 +104,7 @@ export default function App() {
             }))
           }
         }}
-        onBack={() => setOpenRoundId(null)}
+        onBack={() => stepBack(() => setOpenRoundId(null))}
       />
     )
   }
@@ -96,10 +115,12 @@ export default function App() {
       progress={progress}
       issues={issues}
       onOpen={setOpenRoundId}
-      onSignOut={() => {
-        setDriverId(null)
-        setOpenRoundId(null)
-      }}
+      onSignOut={() =>
+        stepBack(() => {
+          setDriverId(null)
+          setOpenRoundId(null)
+        })
+      }
     />
   )
 }
