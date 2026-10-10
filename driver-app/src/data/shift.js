@@ -26,7 +26,7 @@ const MAX_STOPS = 100
 const DRIVERS = [
   { id: 'd1', name: 'Tomas Jankauskas', truck: 'Mercedes Econic', plate: 'JKL 412', fractionId: 'mixed' },
   { id: 'd2', name: 'Rasa Petrauskienė', truck: 'Volvo FE', plate: 'MPV 806', fractionId: 'mixed' },
-  { id: 'd3', name: 'Mindaugas Urbonas', truck: 'Scania P280', plate: 'ZRT 155', fractionId: 'packaging' },
+  { id: 'd3', name: 'Mindaugas Urbonas', truck: 'Scania P280', plate: 'ZRT 155', fractionId: 'mixed' },
   { id: 'd4', name: 'Giedrė Kazlauskaitė', truck: 'DAF LF', plate: 'BNK 039', fractionId: 'glass' },
 ]
 

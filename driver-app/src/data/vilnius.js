@@ -25,8 +25,8 @@ export const DEPOT = {
 export const FRACTIONS = [
   {
     id: 'mixed',
-    label: 'Nerūšiuojamos atliekos',
-    containerLabel: 'Nerūšiuojamų atliekų konteineris',
+    label: 'Mišrios atliekos',
+    containerLabel: 'Mišrių atliekų konteineris',
     colour: '#475569',
     share: 5,
     volumeL: 240,

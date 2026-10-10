@@ -43,7 +43,7 @@ Three container types, from `FRACTIONS` in `src/data/vilnius.js`:
 
 | Type | Lithuanian | Colour |
 | --- | --- | --- |
-| Non-recyclable | Nerūšiuojamos atliekos | slate |
+| Mixed | Mišrios atliekos | slate |
 | Recyclable | Rūšiuojamos atliekos | yellow |
 | Glass | Stiklas | green |
 
