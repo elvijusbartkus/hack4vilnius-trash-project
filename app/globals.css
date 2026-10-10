@@ -33,6 +33,22 @@
 }
 
 @layer base {
+  /* Everything clickable shows the pointing hand; disabled controls say so. */
+  button:not(:disabled),
+  [role="button"],
+  [role="option"],
+  a[href],
+  label[for],
+  select,
+  summary,
+  input[type="file"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
   html {
     background: var(--color-ground);
     color: var(--color-ink);
