@@ -13,9 +13,9 @@ npm run dev
 1. **Sign in** — shift-terminal style: tap your name. Mock only; the real app
    hands off to the fleet account system.
 2. **Today** — just the rounds assigned to you, with progress on each.
-3. **Round** — your route on the map, a one-tap "collected, go to the next
-   stop" button that drives Google Maps, and the stop list. Progress
-   survives a reload.
+3. **Round** — your route on the map, one tap to navigate the whole round
+   in OsmAnd, and the stop list to tick off or report a missed stop.
+   Progress survives a reload.
 
 A driver never sees another crew's route — that's what kept the first version
 unreadable. Planning output for the whole city belongs in a dispatcher view,
@@ -35,8 +35,7 @@ the rounds for the signed-in driver.
    has no notion of capacity, so the repair pass is what makes rounds usable.
 2. **Order** (`route.js`) — nearest-neighbour for a fast first guess, then
    2-opt to un-cross the path.
-3. **Hand over** (`osmand.js`, `maps.js`) — the whole round as one OsmAnd
-   link, or Google Maps links one stop at a time.
+3. **Hand over** (`osmand.js`) — the whole round as one OsmAnd link.
 
 ## Container types
 
@@ -99,31 +98,12 @@ users, `net.osmand.plus`, would need the package changed). OsmAnd's
 `osmand.api://navigate_gpx`, which would skip the Start tap, isn't open to
 browsers.
 
-## Google Maps fallback (one stop at a time)
+## Google Maps for a single stop
 
-Nothing outside Google Maps can add a stop to a navigation that's already
-running, and a Maps link carries at most 10 stops. Chaining 10-stop links
-meant the driver kept reopening legs, so the round now goes over **one stop
-at a time**, as a single tap at each container:
-
-1. **Pradėti — vykti į 1.** opens Maps navigating to the first stop.
-2. At each container the driver switches back and taps **✓ Ištuštinta**.
-   That one tap marks the stop collected *and* opens Maps on the next one.
-3. After the last stop the same button sends them back to the depot.
-
-Every link carries `dir_action=navigate`, so Maps starts turn-by-turn
-straight away with no route preview or extra "Start" tap. **Vėl atidaryti
-navigaciją** reopens the current stop if Maps was closed, and each row in the
-stop list has an arrow for jumping to an address out of order.
-
-The web app can't notice arrival by itself: once Maps is in front, the
-browser stops giving the page GPS. Fully hands-free would need a native app,
-either Google's Navigation SDK (multi-stop, arrival callbacks) or an
-Android overlay button floating over Maps.
-
-Waze was tried and reverted, because its deep links take one destination
-with no waypoints. With one stop per link that no longer matters, so Waze
-could come back as an option.
+Each stop row has an arrow that opens Google Maps navigating straight to
+that address (`dir_action=navigate`), for jumping out of order. Google can't
+take a whole round (at most 10 stops per link, and nothing can add a stop to
+a running navigation), so OsmAnd carries the round itself.
 
 ## Mock data
 

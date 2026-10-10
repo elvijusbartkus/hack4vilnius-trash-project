@@ -63,7 +63,6 @@ export default function RouteMap({ depot, round, doneIds, issueIds = [], activeI
           done,
           issue,
           active: i === activeIndex,
-          urgent: stop.urgent,
           compact: compact && i !== activeIndex,
         }),
         zIndexOffset: i === activeIndex ? 1000 : done ? 0 : 500,
@@ -89,13 +88,12 @@ function depotIcon() {
 
 // Stops carry the round's fraction colour, so a glass round reads as green
 // and a mixed-waste round as slate at a glance.
-function stopIcon(n, colour, { done, issue, active, urgent, compact }) {
+function stopIcon(n, colour, { done, issue, active, compact }) {
   const classes = ['marker-stop']
   if (compact) classes.push('is-compact')
   if (done) classes.push('is-done')
   if (issue) classes.push('is-issue')
   if (active) classes.push('is-active')
-  if (urgent && !done) classes.push('is-urgent')
 
   const style = done || issue ? '' : ` style="background:${colour}"`
   const label = compact ? '' : done ? '✓' : issue ? '!' : n

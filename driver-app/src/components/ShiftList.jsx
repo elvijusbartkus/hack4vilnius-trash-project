@@ -62,12 +62,6 @@ export default function ShiftList({ driver, progress, issues, onOpen, onSignOut 
                   <span>{formatDuration(round.durationMin)}</span>
                 </span>
 
-                {round.urgentCount > 0 && !complete && (
-                  <span className="badge badge--urgent">
-                    {plural(round.urgentCount, 'skubus', 'skubūs', 'skubių')}
-                  </span>
-                )}
-
                 <span className="progress">
                   <span
                     style={{ width: `${((done + missed) / round.stops.length) * 100}%` }}

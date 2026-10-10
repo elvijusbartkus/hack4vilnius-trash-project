@@ -266,18 +266,6 @@ body {
   color: var(--muted);
 }
 
-.badge {
-  align-self: flex-start;
-  font-size: 11px;
-  padding: 3px 9px;
-  border-radius: 999px;
-}
-
-.badge--urgent {
-  background: #fee2e2;
-  color: var(--urgent);
-}
-
 .progress {
   display: block;
   height: 6px;
@@ -363,36 +351,6 @@ body {
   margin-top: 6px;
 }
 
-/* The button pressed at every container, so it's the biggest thing on
-   screen and says where it's sending the driver next. */
-.btn--collect {
-  padding: 18px 16px 14px;
-  font-size: 20px;
-}
-
-.hint {
-  margin: 0;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.google-fallback summary {
-  font-size: 13px;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 6px 0;
-}
-
-.btn--collect small {
-  display: block;
-  margin-top: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  opacity: 0.9;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 /* ---- fraction (bin type) ---- */
 
@@ -542,13 +500,6 @@ body {
 
 .marker-stop.is-compact.is-done {
   opacity: 0.45;
-}
-
-/* The fill is the fraction colour (set inline), so urgency reads as a red
-   ring rather than a competing fill. */
-.marker-stop.is-urgent {
-  border-color: var(--urgent);
-  border-width: 3px;
 }
 
 .marker-stop.is-active {
