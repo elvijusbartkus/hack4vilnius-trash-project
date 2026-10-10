@@ -107,7 +107,7 @@ export default function RoundView({
                 mid-round picks up where the driver is. */}
             <a className="btn btn--nav" href={osmandRouteUrl(remaining, DEPOT, DEPOT)}>
               <span className="btn-label">
-                <NavigateIcon size={20} /> Navigacija OsmAnd
+                <NavigateIcon size={20} /> Navigacija
               </span>
             </a>
 
