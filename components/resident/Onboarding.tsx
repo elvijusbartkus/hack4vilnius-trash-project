@@ -40,7 +40,7 @@ export default function Onboarding({ onDone }: { onDone: (household: Household, 
     <Screen>
       <div className="pt-6">
         <h1 className="font-display text-4xl font-semibold">Sveiki!</h1>
-        <p className="mt-2 text-clay-deep">Atliekų išvežimas tada, kai jums reikia.</p>
+        <p className="mt-2 text-stone-deep">Atliekų išvežimas tada, kai jums reikia.</p>
       </div>
 
       <label className="flex flex-col gap-2">

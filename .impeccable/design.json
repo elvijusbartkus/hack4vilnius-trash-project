@@ -127,5 +127,8 @@
       "Don't use eco clichés (leaves, recycling arrows, planets), gamification, or generic SaaS white cards.",
       "Don't use icon fonts or stock icon packs; draw icons on the 24px, 2px square-cap grid."
     ]
-  }
+  },
+  "notes": [
+    "2026-10-10: grey clay tokens renamed stone/stone-deep; clay (#b0603d), clay-deep (#96491f), clay-light (#edbb9e) are the terracotta accent for not-coming states, extra bookings and warnings. See DESIGN.md 'Palette update'."
+  ]
 }

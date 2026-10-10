@@ -299,3 +299,13 @@ One curve, expo-out `cubic-bezier(0.16, 1, 0.3, 1)`: stamp-press 420ms; slip-in 
 - **Don't** use pill badges for status; status is a rotated rectangular stamp.
 - **Don't** use eco clichés (leaves, recycling arrows, planets), gamification, or generic SaaS white cards.
 - **Don't** use icon fonts or stock icon packs; draw icons on the 24px, 2px square-cap grid.
+
+## Palette update (2026-10-10): clay accent
+
+The grey clay tokens were renamed `stone` (`#a39e95`, marks and borders) and `stone-deep` (`#57534c`, secondary text). `clay` now names the terracotta accent, used only for "the truck won't come" states, extra bookings and warnings. Green stays the primary action colour.
+
+- **Clay** (`clay`, `#b0603d`): booked-day marker, crossed-square "nevažiuos" marker outline, clay outline buttons on light panels. 3.6:1 on sheet (graphics only).
+- **Clay Deep** (`clay-deep`, `#96491f`): clay text on light surfaces (history "Nevažiuos", failed-pickup reasons, error notices). 5.1:1 on sheet, 4.5:1 on ground.
+- **Clay Light** (`clay-light`, `#edbb9e`): clay inside the deep-green hero ("Ne, nereikia" outline, struck "nevažiuos" date, stamp, failed-pickup warning). 4.7:1 on green.
+
+Resident model: the hero asks "Rytoj išvežimas. Išstumsite konteinerį?" until answered. "Taip, išstumsiu" saves a `scheduled`/`planned` pickup (stamp PATVIRTINTA); "Ne, nereikia" saves `scheduled`/`skipped` (stamp NEVAŽIUOS, clay). No answer keeps the question and the "Atvažiuos pagal grafiką" status.

@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /*
-  Route Manifest palette: pale grey-clay ground, one light-green carbon-copy sheet,
-  deep green as the only action colour, grey clay for stamps and secondary text.
-  Legacy names (green, clay, sand, ink) are kept for compatibility; the driver app is built separately.
+  Trage palette: neutral grey-stone ground, light-green panels, deep green as the primary
+  action colour, clay (terracotta) as the accent for "not coming" states, extra bookings
+  and warnings, grey stone for secondary text and marks.
 */
 @theme {
-  --color-ground: #d9d8d5; /* page, neutral grey clay */
+  --color-ground: #d9d8d5; /* page, neutral grey stone */
   --color-sheet: #dcead2; /* manifest sheet, light green carbon copy */
   --color-sheet-hi: #e9f2e3; /* hovered / selected field on the sheet */
   --color-sheet-lo: #cfe2c3; /* pressed field, today column */
@@ -14,8 +14,11 @@
   --color-green: #1f5a3c; /* actions, strong values; 6.5:1 on sheet */
   --color-green-deep: #184a31; /* hover/pressed state of green buttons */
   --color-green-muted: #3f6b52; /* captions on the sheet; 4.9:1 */
-  --color-clay: #a39e95; /* stamps, marks, borders only (not text) */
-  --color-clay-deep: #57534c; /* secondary text; ≥4.9:1 on ground and sheet */
+  --color-stone: #a39e95; /* stamps, marks, borders only (not text) */
+  --color-stone-deep: #57534c; /* secondary text; ≥4.9:1 on ground and sheet */
+  --color-clay: #b0603d; /* accent marks/outlines on the sheet; 3.6:1 (graphics) */
+  --color-clay-deep: #96491f; /* clay text; 5.1:1 on sheet, 4.5:1 on ground */
+  --color-clay-light: #edbb9e; /* clay on the deep-green hero; 4.7:1 on green */
   --color-ink: #1d211e;
   --color-sand: #d9d8d5; /* legacy alias of ground */
 
@@ -30,7 +33,7 @@
     background: var(--color-ground);
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
-    scrollbar-color: var(--color-clay) transparent;
+    scrollbar-color: var(--color-stone) transparent;
   }
   body {
     background: var(--color-ground);

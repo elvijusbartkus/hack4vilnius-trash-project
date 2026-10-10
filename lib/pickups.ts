@@ -39,7 +39,8 @@ export type HouseholdState = {
   household: Household;
   pickups: Pickup[]; // all app pickups for this household, newest date first
   scheduledDate: string | null; // current fixed-schedule date (next_service rolled forward to today or later)
-  skip: Pickup | null; // skip row for scheduledDate, if any
+  skip: Pickup | null; // skip row for scheduledDate, if any ("Ne, nereikia")
+  confirmed: Pickup | null; // planned scheduled row for scheduledDate ("Taip, išstumsiu")
   nextScheduledDate: string | null; // scheduledDate, or +14 days if it is skipped
   extras: Pickup[]; // planned extra pickups from today on, soonest first
   next: NextPickup | null;
@@ -97,6 +98,7 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
   while (scheduledDate && scheduledDate < today) scheduledDate = addDays(scheduledDate, SCHEDULE_INTERVAL_DAYS);
 
   const skip = rows.find((p) => p.kind === "scheduled" && p.status === "skipped" && p.date === scheduledDate) ?? null;
+  const confirmed = rows.find((p) => p.kind === "scheduled" && p.status === "planned" && p.date === scheduledDate) ?? null;
   const nextScheduledDate = scheduledDate && skip ? addDays(scheduledDate, SCHEDULE_INTERVAL_DAYS) : scheduledDate;
   const extras = rows
     .filter((p) => p.kind === "extra" && p.status === "planned" && p.date >= today)
@@ -106,7 +108,7 @@ export async function getNextPickup(householdId: number): Promise<HouseholdState
   if (nextScheduledDate) candidates.push({ date: nextScheduledDate, kind: "scheduled", timeWindow: null });
   candidates.sort((a, b) => a.date.localeCompare(b.date));
 
-  return { household: h, pickups: rows, scheduledDate, skip, nextScheduledDate, extras, next: candidates[0] ?? null };
+  return { household: h, pickups: rows, scheduledDate, skip, confirmed, nextScheduledDate, extras, next: candidates[0] ?? null };
 }
 
 // Inserts return the new row id so the toast can undo them.
@@ -142,6 +144,23 @@ export async function skipScheduled(householdId: number, date: string): Promise<
       .single(),
   );
   return (row as { id: number }).id;
+}
+
+// "Taip, išstumsiu": the resident confirms the scheduled pickup (kind 'scheduled', status 'planned').
+export async function confirmScheduled(householdId: number, date: string): Promise<number> {
+  const row = check(
+    await supabase
+      .from("pickups")
+      .insert({ household_id: householdId, date, kind: "scheduled", status: "planned", price_eur: 0 })
+      .select("id")
+      .single(),
+  );
+  return (row as { id: number }).id;
+}
+
+// Removes one pickup row (undo of a confirm, skip or booking).
+export async function removePickup(pickupId: number) {
+  check(await supabase.from("pickups").delete().eq("id", pickupId));
 }
 
 export async function undoSkip(pickupId: number) {

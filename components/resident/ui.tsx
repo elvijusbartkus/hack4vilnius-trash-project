@@ -22,5 +22,5 @@ export function Screen({ children }: { children: ReactNode }) {
 }
 
 export function ErrorText({ children }: { children: ReactNode }) {
-  return <p className="rounded-[3px] border border-clay bg-sheet-hi px-4 py-3 text-clay-deep">{children}</p>;
+  return <p className="rounded-[3px] border border-stone bg-sheet-hi px-4 py-3 text-stone-deep">{children}</p>;
 }

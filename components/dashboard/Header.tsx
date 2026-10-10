@@ -23,14 +23,14 @@ export default function Header({
     .toUpperCase();
 
   return (
-    <header className="border-b border-clay bg-ground">
+    <header className="border-b border-stone bg-ground">
       <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-8">
         <div className="flex min-w-0 items-center gap-3 md:gap-5">
           <Wordmark />
           <AddressSwitcher address={address} onSwitch={onSwitch} />
         </div>
         <div className="flex shrink-0 items-center gap-3">
-          <span className="hidden text-clay-deep sm:inline">{name}</span>
+          <span className="hidden text-stone-deep sm:inline">{name}</span>
           <span
             aria-hidden="true"
             className="flex h-10 w-10 items-center justify-center rounded-[3px] border border-green font-display text-base font-semibold text-green"
@@ -112,7 +112,7 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-haspopup="listbox"
-        className="flex min-h-11 max-w-full min-w-0 items-center gap-2 rounded-[3px] border border-clay bg-sheet-hi px-3 text-left hover:border-green-muted"
+        className="flex min-h-11 max-w-full min-w-0 items-center gap-2 rounded-[3px] border border-stone bg-sheet-hi px-3 text-left hover:border-green-muted"
       >
         <span className="sr-only">Adresas: </span>
         <span className="truncate font-semibold">{address ?? "Kraunama…"}</span>
@@ -147,7 +147,7 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
                 }
               }}
               placeholder="Gatvė ir namo numeris"
-              className="min-h-12 w-full bg-transparent outline-none placeholder:text-clay-deep"
+              className="min-h-12 w-full bg-transparent outline-none placeholder:text-stone-deep"
             />
           </label>
           <ul id={listId} role="listbox" aria-label="Adresai" className="max-h-72 overflow-y-auto py-1">
@@ -167,7 +167,7 @@ function AddressSwitcher({ address, onSwitch }: { address: string | null; onSwit
               </li>
             ))}
             {results.length === 0 && (
-              <li className="px-4 py-3 text-clay-deep">{loading ? "Ieškoma…" : "Adresas nerastas"}</li>
+              <li className="px-4 py-3 text-stone-deep">{loading ? "Ieškoma…" : "Adresas nerastas"}</li>
             )}
           </ul>
         </div>

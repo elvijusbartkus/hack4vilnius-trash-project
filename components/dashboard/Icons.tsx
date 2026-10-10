@@ -73,7 +73,7 @@ export function LogoMark({ size = 32 }: { size?: number }) {
 export type MarkerKind = "scheduled" | "skipped" | "extra" | "bookable" | "none";
 
 // Ledger markers: shape carries the meaning, colour only reinforces it.
-// scheduled = filled square, booked extra = filled circle, skipped = crossed square, bookable = plus.
+// scheduled = green square, booked extra = clay circle, not coming = clay crossed square, bookable = plus.
 export function Marker({ kind, inverted = false }: { kind: MarkerKind; inverted?: boolean }) {
   if (kind === "none") return <span className="block h-3.5 w-3.5" aria-hidden="true" />;
   const fill = inverted ? "fill-sheet" : "fill-green";
@@ -81,7 +81,7 @@ export function Marker({ kind, inverted = false }: { kind: MarkerKind; inverted?
   return (
     <svg viewBox="0 0 14 14" width={14} height={14} aria-hidden="true" className="block">
       {kind === "scheduled" && <rect x="1" y="1" width="12" height="12" className={fill} />}
-      {kind === "extra" && <circle cx="7" cy="7" r="6" className={fill} />}
+      {kind === "extra" && <circle cx="7" cy="7" r="6" className={inverted ? "fill-sheet" : "fill-clay"} />}
       {kind === "skipped" && (
         <g className={stroke} strokeWidth="1.6" fill="none">
           <rect x="1.5" y="1.5" width="11" height="11" />

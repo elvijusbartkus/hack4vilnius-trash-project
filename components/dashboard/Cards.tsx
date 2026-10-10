@@ -1,8 +1,6 @@
 import { useId, type ReactNode } from "react";
 import {
   AVG_KM_SAVED_PER_SKIP,
-  BOOKING_DAYS_AHEAD,
-  EXTRA_PICKUP_PRICE_EUR,
   CO2_KG_PER_L_DIESEL,
   FUEL_L_PER_100KM,
   TIME_WINDOWS,
@@ -41,7 +39,7 @@ function Rows({ rows }: { rows: [ReactNode, ReactNode, string?][] }) {
     <dl className="mt-2 divide-y divide-rule/60">
       {rows.map(([k, v, cls], i) => (
         <div key={i} className="flex items-baseline justify-between gap-4 py-1.5">
-          <dt className="text-clay-deep">{k}</dt>
+          <dt className="text-stone-deep">{k}</dt>
           <dd className={`text-right font-display text-[1.05rem] font-semibold ${cls ?? ""}`}>{v}</dd>
         </div>
       ))}
@@ -64,10 +62,10 @@ export function ContainerField({ household }: { household: Household }) {
 }
 
 function pickupLabel(p: Pickup): string {
-  if (p.status === "skipped") return "Praleista";
+  if (p.status === "skipped") return "Nevažiuos";
   if (p.status === "collected") return "Išvežta";
   if (p.status === "blocked") return "Užstatyta";
-  return p.kind === "extra" ? "Užsakyta" : "Suplanuota";
+  return p.kind === "extra" ? "Užsakyta papildomai" : "Patvirtinta";
 }
 
 export function HistoryField({ household, pickups }: { household: Household; pickups: Pickup[] }) {
@@ -76,7 +74,7 @@ export function HistoryField({ household, pickups }: { household: Household; pic
   return (
     <Panel title="Paskutiniai išvežimai">
       {vasa.length === 0 ? (
-        <p className="mt-3 text-clay-deep">VASA įrašų dar nėra.</p>
+        <p className="mt-3 text-stone-deep">VASA įrašų dar nėra.</p>
       ) : (
         <Rows
           rows={vasa.map((r) =>
@@ -94,11 +92,11 @@ export function HistoryField({ household, pickups }: { household: Household; pic
               <>
                 {formatDayCap(p.date)}
                 {p.kind === "extra" && p.time_window && (
-                  <span className="text-clay-deep"> · {TIME_WINDOWS[p.time_window].split(" ")[0]}</span>
+                  <span className="text-stone-deep"> · {TIME_WINDOWS[p.time_window].split(" ")[0]}</span>
                 )}
               </>,
               `${pickupLabel(p)}${p.kind === "extra" ? ` · ${Number(p.price_eur)} €` : ""}`,
-              p.status === "skipped" ? "text-clay-deep" : "text-green",
+              p.status === "skipped" || p.kind === "extra" ? "text-clay-deep" : "text-green",
             ])}
           />
         </>
@@ -117,32 +115,25 @@ export function ImpactField({ pickups }: { pickups: Pickup[] }) {
     <Panel title="Jūsų poveikis">
       <Rows
         rows={[
-          [`Praleista ${year} m.`, skips],
+          [`Atsakyta „Ne“ ${year} m.`, skips],
           ["CO₂ mažiau, apytiksliai", skips ? `≈ ${num.format(skips * perSkip)} kg` : "0 kg"],
         ]}
       />
-      <p className="mt-2 text-sm leading-snug text-clay-deep">
-        Kiekvienas praleistas išvežimas: apie {num.format(perSkip)}&nbsp;kg CO₂ mažiau.
+      <p className="mt-2 text-sm leading-snug text-stone-deep">
+        Kiekvieną kartą, kai šiukšliavežei nereikia atvažiuoti: apie {num.format(perSkip)}&nbsp;kg CO₂ mažiau.
       </p>
     </Panel>
   );
 }
 
-// Short, task-focused help: what skipping and booking actually do.
+// Short, task-focused help: exactly how the service works.
 export function HelpPanel() {
   return (
     <Panel title="Kaip tai veikia">
-      <ul className="mt-2 space-y-2 text-[0.95rem] leading-snug">
-        <li>
-          <span className="font-semibold">Praleisti nemokama.</span> Grafikas lieka, kitas išvežimas po 2 savaičių.
-        </li>
-        <li>
-          <span className="font-semibold">Papildomas išvežimas {EXTRA_PICKUP_PRICE_EUR}&nbsp;€.</span> Pasirinkite dieną
-          kalendoriuje per artimiausias {BOOKING_DAYS_AHEAD} d.
-        </li>
-        <li>
-          <span className="font-semibold">Apsigalvojote?</span> Kiekvieną veiksmą galite atšaukti.
-        </li>
+      <ul className="mt-2 list-disc space-y-2 pl-5 text-base leading-snug marker:text-green-muted">
+        <li>Vakare prieš išvežimą paklausime, ar išstumsite konteinerį.</li>
+        <li>Jei ne, šiukšliavežė pas jus nevažiuos.</li>
+        <li>Reikia papildomo išvežimo? Pasirinkite dieną kalendoriuje.</li>
       </ul>
     </Panel>
   );

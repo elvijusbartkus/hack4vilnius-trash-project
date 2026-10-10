@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Dashboard, { REMINDER_SESSION_KEY } from "@/components/dashboard/Dashboard";
+import Dashboard from "@/components/dashboard/Dashboard";
 import Onboarding from "@/components/resident/Onboarding";
 import { DEMO_USER_NAME } from "@/lib/config";
 import { getDemoHousehold, resetHousehold } from "@/lib/pickups";
@@ -52,7 +52,7 @@ export default function ResidentPage() {
       }
 
       // /?reset=1 deletes pickups for the current and demo household, clears local state,
-      // and loads the demo user (the reminder will show again).
+      // and loads the demo user (tomorrow's question shows again).
       if (params.get("reset") === "1") {
         const current = readStored();
         const demo = await demoUser();
@@ -61,7 +61,6 @@ export default function ResidentPage() {
         try {
           localStorage.removeItem(HOUSEHOLD_KEY);
           localStorage.removeItem(NAME_KEY);
-          sessionStorage.removeItem(REMINDER_SESSION_KEY);
         } catch {}
         clean();
         setUser(demo);
@@ -90,9 +89,9 @@ export default function ResidentPage() {
     return (
       <main className="mx-auto max-w-[1200px] px-4 py-8 md:px-8">
         {error ? (
-          <p role="alert" className="rounded-[3px] border border-clay bg-sheet-hi px-5 py-4 text-clay-deep">Klaida: {error}</p>
+          <p role="alert" className="rounded-[3px] border border-stone bg-sheet-hi px-5 py-4 text-stone-deep">Klaida: {error}</p>
         ) : (
-          <p className="text-clay-deep">Kraunama…</p>
+          <p className="text-stone-deep">Kraunama…</p>
         )}
       </main>
     );
