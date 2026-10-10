@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { APP_NAME } from "@/lib/config";
 import { searchHouseholds, type Household } from "@/lib/pickups";
@@ -10,10 +11,14 @@ export default function Header({
   address,
   name,
   onSwitch,
+  current,
+  billingUnpaid = false,
 }: {
   address: string | null;
   name: string;
   onSwitch: (h: Household) => void;
+  current: "home" | "billing";
+  billingUnpaid?: boolean;
 }) {
   const initials = name
     .split(" ")
@@ -39,7 +44,45 @@ export default function Header({
           </span>
         </div>
       </div>
+      <ResidentNav current={current} billingUnpaid={billingUnpaid} />
     </header>
+  );
+}
+
+// Two resident screens as tabs. Links keep the demo params (?date, ?demo) but never ?reset / ?pay.
+function ResidentNav({ current, billingUnpaid }: { current: "home" | "billing"; billingUnpaid: boolean }) {
+  const [query, setQuery] = useState("");
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    ["reset", "pay", "onboarding", "remind", "answer"].forEach((k) => q.delete(k));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuery(q.toString() ? `?${q}` : "");
+  }, []);
+
+  const tab = (active: boolean) =>
+    `relative flex min-h-11 items-center gap-2 px-1 font-display text-lg font-semibold ${
+      active ? "text-green after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:bg-green" : "text-stone-deep hover:text-ink"
+    }`;
+
+  return (
+    <nav aria-label="Gyventojo meniu" className="mx-auto flex max-w-[1200px] gap-6 px-4 md:px-8">
+      <Link href={`/${query}`} aria-current={current === "home" ? "page" : undefined} className={tab(current === "home")}>
+        Išvežimai
+      </Link>
+      <Link
+        href={`/saskaitos${query}`}
+        aria-current={current === "billing" ? "page" : undefined}
+        className={tab(current === "billing")}
+      >
+        Sąskaitos
+        {billingUnpaid && (
+          <>
+            <span className="h-2 w-2 rounded-full bg-clay" aria-hidden="true" />
+            <span className="sr-only">(yra neapmokėta sąskaita)</span>
+          </>
+        )}
+      </Link>
+    </nav>
   );
 }
 

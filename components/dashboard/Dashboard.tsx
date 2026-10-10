@@ -35,7 +35,7 @@ import {
 } from "@/lib/pickups";
 import { HistoryField, ImpactField, Panel } from "./Cards";
 import Header from "./Header";
-import { InvoicesPanel } from "./Invoices";
+import { isInvoicePaid } from "./Invoices";
 import { ChevronDownIcon, Marker, type MarkerKind } from "./Icons";
 import Modal from "./Modal";
 import { DemoControls, NotificationBanner, ReminderPopup } from "./Reminder";
@@ -88,6 +88,11 @@ export default function Dashboard({
   const [reminderOpen, setReminderOpen] = useState(false);
   const [banner, setBanner] = useState(false); // in-page notification (fallback when system ones aren't possible)
   const pendingRef = useRef<"yes" | "no" | "open" | null>(null);
+  const [billingUnpaid, setBillingUnpaid] = useState(false);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setBillingUnpaid(!isInvoicePaid(householdId));
+  }, [householdId]);
   const [pendingTick, setPendingTick] = useState(0);
   const demo = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("demo") === "1";
   const toastSeq = useRef(0); // unique key per toast so each one restarts its timer
@@ -240,7 +245,13 @@ export default function Dashboard({
   return (
     <div className="min-h-dvh bg-ground">
       <div inert={!!extraFor || reminderOpen}>
-        <Header address={state?.household.address ?? null} name={name} onSwitch={onSwitch} />
+        <Header
+          address={state?.household.address ?? null}
+          name={name}
+          onSwitch={onSwitch}
+          current="home"
+          billingUnpaid={billingUnpaid}
+        />
 
         <main className="mx-auto max-w-[1200px] px-3 pb-32 pt-5 md:px-8 md:pt-8">
           <h1 className="sr-only">Trage: jūsų atliekų išvežimas</h1>
@@ -300,13 +311,6 @@ export default function Dashboard({
                   <HistoryField household={state.household} pickups={state.pickups} />
                 </div>
                 <div className="order-5 md:order-none">
-                  <InvoicesPanel
-                    householdId={householdId}
-                    pickups={state.pickups}
-                    onPaid={() => setToast({ id: ++toastSeq.current, message: "Sąskaita apmokėta" })}
-                  />
-                </div>
-                <div className="order-6 md:order-none">
                   <ImpactField pickups={state.pickups} />
                 </div>
               </div>
